@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Learn modern CSS layout techniques including Flexbox, CSS Grid, and responsive design.">
+    <meta name="description"
+        content="Learn modern CSS layout techniques including Flexbox, CSS Grid, and responsive design.">
     <meta name="author" content="WebDev Academy">
     <title>Chapter 4: Layout - Flexbox & Grid - WebDev Academy</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
 </head>
+
 <body>
     <nav>
         <div class="nav-content">
@@ -20,6 +24,7 @@
                 <li><a href="html.html">HTML</a></li>
                 <li><a href="css.html">CSS</a></li>
                 <li><a href="layout.html">Layout</a></li>
+                <li><a href="dom.html">DOM</a></li>
                 <li><a href="../projects.html">Projects</a></li>
             </ul>
         </div>
@@ -35,19 +40,19 @@
                 <span class="chapter-icon">📐</span>
                 <h1>Chapter 4: Layout - Flexbox & Grid</h1>
             </header>
-                    <button class="chapter-toggle">▼</button>
-                </div>
-                <div class="chapter-content">
-                    <div class="chapter-inner">
-                        <div class="lesson">
-                            <h3>4.1 The Display Property</h3>
-                            <p>The <code>display</code> property is fundamental to CSS layout. It controls how an
-                                element generates boxes and how it interacts with other elements.</p>
+            <button class="chapter-toggle">▼</button>
+            </div>
+            <div class="chapter-content">
+                <div class="chapter-inner">
+                    <div class="lesson">
+                        <h3>4.1 The Display Property</h3>
+                        <p>The <code>display</code> property is fundamental to CSS layout. It controls how an
+                            element generates boxes and how it interacts with other elements.</p>
 
-                            <div class="code-block">
-                                <span class="code-label">Display Values</span>
-                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                                <code>
+                        <div class="code-block">
+                            <span class="code-label">Display Values</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            <code>
 <span class="comment">/* Block elements - stack vertically, take full width */</span><br>
 <span class="selector">div, p, h1, section, article, form</span> {<br>
 &nbsp;&nbsp;<span class="property">display</span>: <span class="css-value">block</span>;<br>
@@ -74,12 +79,12 @@
 <span class="selector">.flex-container</span> { <span class="property">display</span>: <span class="css-value">flex</span>; }<br>
 <span class="selector">.grid-container</span> { <span class="property">display</span>: <span class="css-value">grid</span>; }
                                 </code>
-                            </div>
+                        </div>
 
-                            <h4>Block vs Inline Summary</h4>
-                            <div class="code-block">
-                                <span class="code-label">Key Differences</span>
-                                <code>
+                        <h4>Block vs Inline Summary</h4>
+                        <div class="code-block">
+                            <span class="code-label">Key Differences</span>
+                            <code>
 ┌─────────────────┬─────────────────┬─────────────────┐<br>
 │ Property        │ Block           │ Inline          │<br>
 ├─────────────────┼─────────────────┼─────────────────┤<br>
@@ -90,18 +95,18 @@
 │ Examples        │ div, p, h1      │ span, a, strong │<br>
 └─────────────────┴─────────────────┴─────────────────┘
                                 </code>
-                            </div>
                         </div>
+                    </div>
 
-                        <div class="lesson">
-                            <h3>4.2 Position Property</h3>
-                            <p>The <code>position</code> property controls how elements are placed in the document flow:
-                            </p>
+                    <div class="lesson">
+                        <h3>4.2 Position Property</h3>
+                        <p>The <code>position</code> property controls how elements are placed in the document flow:
+                        </p>
 
-                            <div class="code-block">
-                                <span class="code-label">Position Values</span>
-                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                                <code>
+                        <div class="code-block">
+                            <span class="code-label">Position Values</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            <code>
 <span class="comment">/* Static (default) - normal document flow */</span><br>
 <span class="selector">.static</span> {<br>
 &nbsp;&nbsp;<span class="property">position</span>: <span class="css-value">static</span>;<br>
@@ -141,12 +146,12 @@
 &nbsp;&nbsp;<span class="comment">/* Normal flow until scroll reaches 'top: 0', then fixed */</span><br>
 }
                                 </code>
-                            </div>
+                        </div>
 
-                            <h4>Z-Index: Controlling Stack Order</h4>
-                            <div class="code-block">
-                                <span class="code-label">Z-Index</span>
-                                <code>
+                        <h4>Z-Index: Controlling Stack Order</h4>
+                        <div class="code-block">
+                            <span class="code-label">Z-Index</span>
+                            <code>
 <span class="comment">/* Higher z-index = on top (only works on positioned elements) */</span><br>
 <span class="selector">.modal</span> {<br>
 &nbsp;&nbsp;<span class="property">position</span>: <span class="css-value">fixed</span>;<br>
@@ -163,18 +168,18 @@
 &nbsp;&nbsp;<span class="property">z-index</span>: <span class="css-value">-1</span>; <span class="comment">/* Behind normal elements */</span><br>
 }
                                 </code>
-                            </div>
                         </div>
+                    </div>
 
-                        <div class="lesson">
-                            <h3>4.3 Float Property (Legacy but Useful)</h3>
-                            <p>Float was originally designed for text wrapping around images, but was used for layouts
-                                before Flexbox/Grid. Still useful for specific cases:</p>
+                    <div class="lesson">
+                        <h3>4.3 Float Property (Legacy but Useful)</h3>
+                        <p>Float was originally designed for text wrapping around images, but was used for layouts
+                            before Flexbox/Grid. Still useful for specific cases:</p>
 
-                            <div class="code-block">
-                                <span class="code-label">Float Property</span>
-                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                                <code>
+                        <div class="code-block">
+                            <span class="code-label">Float Property</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            <code>
 <span class="comment">/* Float an image to the left, text wraps around */</span><br>
 <span class="selector">.float-left</span> {<br>
 &nbsp;&nbsp;<span class="property">float</span>: <span class="css-value">left</span>;<br>
@@ -199,19 +204,19 @@
 &nbsp;&nbsp;<span class="property">clear</span>: <span class="css-value">both</span>;<br>
 }
                                 </code>
-                            </div>
                         </div>
+                    </div>
 
-                        <div class="lesson">
-                            <h3>4.4 Flexbox Layout</h3>
-                            <p><strong>Flexbox</strong> is a one-dimensional layout system for arranging items in rows
-                                or columns. It's perfect for navigation, cards, and component layouts.</p>
+                    <div class="lesson">
+                        <h3>4.4 Flexbox Layout</h3>
+                        <p><strong>Flexbox</strong> is a one-dimensional layout system for arranging items in rows
+                            or columns. It's perfect for navigation, cards, and component layouts.</p>
 
-                            <h4>Flex Container Properties</h4>
-                            <div class="code-block">
-                                <span class="code-label">Flex Container</span>
-                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                                <code>
+                        <h4>Flex Container Properties</h4>
+                        <div class="code-block">
+                            <span class="code-label">Flex Container</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            <code>
 <span class="selector">.flex-container</span> {<br>
 &nbsp;&nbsp;<span class="property">display</span>: <span class="css-value">flex</span>; <span class="comment">/* or inline-flex */</span><br>
 <br>
@@ -246,12 +251,12 @@
 &nbsp;&nbsp;<span class="property">column-gap</span>: <span class="css-value">20px</span>;    <span class="comment">/* between columns */</span><br>
 }
                                 </code>
-                            </div>
+                        </div>
 
-                            <h4>Flex Item Properties</h4>
-                            <div class="code-block">
-                                <span class="code-label">Flex Items</span>
-                                <code>
+                        <h4>Flex Item Properties</h4>
+                        <div class="code-block">
+                            <span class="code-label">Flex Items</span>
+                            <code>
 <span class="selector">.flex-item</span> {<br>
 &nbsp;&nbsp;<span class="comment">/* Grow to fill available space */</span><br>
 &nbsp;&nbsp;<span class="property">flex-grow</span>: <span class="css-value">1</span>; <span class="comment">/* 0 = don't grow (default) */</span><br>
@@ -274,12 +279,12 @@
 &nbsp;&nbsp;<span class="property">order</span>: <span class="css-value">-1</span>; <span class="comment">/* move to front */</span><br>
 }
                                 </code>
-                            </div>
+                        </div>
 
-                            <h4>Common Flexbox Patterns</h4>
-                            <div class="code-block">
-                                <span class="code-label">Useful Flexbox Patterns</span>
-                                <code>
+                        <h4>Common Flexbox Patterns</h4>
+                        <div class="code-block">
+                            <span class="code-label">Useful Flexbox Patterns</span>
+                            <code>
 <span class="comment">/* Centering (horizontal and vertical) */</span><br>
 <span class="selector">.center-everything</span> {<br>
 &nbsp;&nbsp;<span class="property">display</span>: <span class="css-value">flex</span>;<br>
@@ -316,19 +321,19 @@
 &nbsp;&nbsp;<span class="property">flex</span>: <span class="css-value">1</span>; <span class="comment">/* grow to push footer down */</span><br>
 }
                                 </code>
-                            </div>
                         </div>
+                    </div>
 
-                        <div class="lesson">
-                            <h3>4.5 CSS Grid Layout</h3>
-                            <p><strong>CSS Grid</strong> is a two-dimensional layout system. It's ideal for page
-                                layouts, galleries, and complex designs.</p>
+                    <div class="lesson">
+                        <h3>4.5 CSS Grid Layout</h3>
+                        <p><strong>CSS Grid</strong> is a two-dimensional layout system. It's ideal for page
+                            layouts, galleries, and complex designs.</p>
 
-                            <h4>Grid Container Properties</h4>
-                            <div class="code-block">
-                                <span class="code-label">Grid Container</span>
-                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                                <code>
+                        <h4>Grid Container Properties</h4>
+                        <div class="code-block">
+                            <span class="code-label">Grid Container</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            <code>
 <span class="selector">.grid-container</span> {<br>
 &nbsp;&nbsp;<span class="property">display</span>: <span class="css-value">grid</span>;<br>
 <br>
@@ -358,12 +363,12 @@
 &nbsp;&nbsp;<span class="property">align-content</span>: <span class="css-value">center</span>;  <span class="comment">/* vertical align of grid */</span><br>
 }
                                 </code>
-                            </div>
+                        </div>
 
-                            <h4>Grid Item Properties</h4>
-                            <div class="code-block">
-                                <span class="code-label">Grid Items</span>
-                                <code>
+                        <h4>Grid Item Properties</h4>
+                        <div class="code-block">
+                            <span class="code-label">Grid Items</span>
+                            <code>
 <span class="selector">.grid-item</span> {<br>
 &nbsp;&nbsp;<span class="comment">/* Span multiple columns/rows */</span><br>
 &nbsp;&nbsp;<span class="property">grid-column</span>: <span class="css-value">span 2</span>;      <span class="comment">/* spans 2 columns */</span><br>
@@ -381,12 +386,12 @@
 &nbsp;&nbsp;<span class="property">align-self</span>: <span class="css-value">center</span>;       <span class="comment">/* vertical */</span><br>
 }
                                 </code>
-                            </div>
+                        </div>
 
-                            <h4>Named Grid Areas</h4>
-                            <div class="code-block">
-                                <span class="code-label">Grid Areas (Visual Layout)</span>
-                                <code>
+                        <h4>Named Grid Areas</h4>
+                        <div class="code-block">
+                            <span class="code-label">Grid Areas (Visual Layout)</span>
+                            <code>
 <span class="selector">.page-layout</span> {<br>
 &nbsp;&nbsp;<span class="property">display</span>: <span class="css-value">grid</span>;<br>
 &nbsp;&nbsp;<span class="property">grid-template-areas</span>:<br>
@@ -403,18 +408,18 @@
 <span class="selector">.content</span> { <span class="property">grid-area</span>: <span class="css-value">content</span>; }<br>
 <span class="selector">.footer</span>  { <span class="property">grid-area</span>: <span class="css-value">footer</span>; }
                                 </code>
-                            </div>
                         </div>
+                    </div>
 
-                        <div class="lesson">
-                            <h3>4.6 Responsive Design</h3>
-                            <p>Responsive design makes your website work on all screen sizes. <strong>Media
-                                    queries</strong> are the key tool:</p>
+                    <div class="lesson">
+                        <h3>4.6 Responsive Design</h3>
+                        <p>Responsive design makes your website work on all screen sizes. <strong>Media
+                                queries</strong> are the key tool:</p>
 
-                            <div class="code-block">
-                                <span class="code-label">Media Queries</span>
-                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                                <code>
+                        <div class="code-block">
+                            <span class="code-label">Media Queries</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            <code>
 <span class="comment">/* Mobile First Approach (recommended) */</span><br>
 <span class="comment">/* Base styles for mobile */</span><br>
 <span class="selector">.container</span> {<br>
@@ -441,11 +446,11 @@
 <span class="comment">/* Tablet: 768px - 1023px */</span><br>
 <span class="comment">/* Desktop: 1024px+ */</span>
                                 </code>
-                            </div>
+                        </div>
 
-                            <div class="code-block">
-                                <span class="code-label">Responsive Layout Example</span>
-                                <code>
+                        <div class="code-block">
+                            <span class="code-label">Responsive Layout Example</span>
+                            <code>
 <span class="comment">/* Mobile: single column */</span><br>
 <span class="selector">.card-grid</span> {<br>
 &nbsp;&nbsp;<span class="property">display</span>: <span class="css-value">grid</span>;<br>
@@ -474,30 +479,30 @@
 &nbsp;&nbsp;<span class="property">gap</span>: <span class="css-value">20px</span>;<br>
 }
                                 </code>
-                            </div>
-
-                            <h4>Responsive Best Practices</h4>
-                            <ul>
-                                <li><strong>Viewport meta tag:</strong> Required for responsive design
-                                    <code>&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</code>
-                                </li>
-                                <li><strong>Use relative units:</strong> %, em, rem, vw, vh instead of px</li>
-                                <li><strong>Flexible images:</strong> <code>max-width: 100%; height: auto;</code></li>
-                                <li><strong>Mobile-first:</strong> Start with mobile styles, add complexity for larger
-                                    screens</li>
-                                <li><strong>Test on real devices:</strong> Browser dev tools help, but real device
-                                    testing is important</li>
-                            </ul>
                         </div>
 
-                        <div class="lesson">
-                            <h3>4.7 CSS Transitions and Transforms</h3>
-                            <p>Add smooth animations and visual effects to your elements:</p>
+                        <h4>Responsive Best Practices</h4>
+                        <ul>
+                            <li><strong>Viewport meta tag:</strong> Required for responsive design
+                                <code>&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</code>
+                            </li>
+                            <li><strong>Use relative units:</strong> %, em, rem, vw, vh instead of px</li>
+                            <li><strong>Flexible images:</strong> <code>max-width: 100%; height: auto;</code></li>
+                            <li><strong>Mobile-first:</strong> Start with mobile styles, add complexity for larger
+                                screens</li>
+                            <li><strong>Test on real devices:</strong> Browser dev tools help, but real device
+                                testing is important</li>
+                        </ul>
+                    </div>
 
-                            <div class="code-block">
-                                <span class="code-label">CSS Transitions</span>
-                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                                <code>
+                    <div class="lesson">
+                        <h3>4.7 CSS Transitions and Transforms</h3>
+                        <p>Add smooth animations and visual effects to your elements:</p>
+
+                        <div class="code-block">
+                            <span class="code-label">CSS Transitions</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            <code>
 <span class="selector">.button</span> {<br>
 &nbsp;&nbsp;<span class="property">background</span>: <span class="css-value">#3b82f6</span>;<br>
 &nbsp;&nbsp;<span class="property">color</span>: <span class="css-value">white</span>;<br>
@@ -521,11 +526,11 @@
 <span class="property">transition-timing-function</span>: <span class="css-value">ease-out</span>;  <span class="comment">/* slow end */</span><br>
 <span class="property">transition-timing-function</span>: <span class="css-value">ease-in-out</span>;
                                 </code>
-                            </div>
+                        </div>
 
-                            <div class="code-block">
-                                <span class="code-label">CSS Transforms</span>
-                                <code>
+                        <div class="code-block">
+                            <span class="code-label">CSS Transforms</span>
+                            <code>
 <span class="selector">.element</span> {<br>
 &nbsp;&nbsp;<span class="comment">/* Move element */</span><br>
 &nbsp;&nbsp;<span class="property">transform</span>: <span class="css-value">translateX(50px)</span>;  <span class="comment">/* move right */</span><br>
@@ -551,17 +556,17 @@
 &nbsp;&nbsp;<span class="property">transform-origin</span>: <span class="css-value">top left</span>;<br>
 }
                                 </code>
-                            </div>
                         </div>
+                    </div>
 
-                        <div class="lesson">
-                            <h3>4.8 CSS Variables (Custom Properties)</h3>
-                            <p>CSS Variables allow you to store values for reuse throughout your stylesheet:</p>
+                    <div class="lesson">
+                        <h3>4.8 CSS Variables (Custom Properties)</h3>
+                        <p>CSS Variables allow you to store values for reuse throughout your stylesheet:</p>
 
-                            <div class="code-block">
-                                <span class="code-label">CSS Variables</span>
-                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                                <code>
+                        <div class="code-block">
+                            <span class="code-label">CSS Variables</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            <code>
 <span class="comment">/* Define variables (usually in :root for global scope) */</span><br>
 <span class="selector">:root</span> {<br>
 &nbsp;&nbsp;<span class="property">--primary-color</span>: <span class="css-value">#3b82f6</span>;<br>
@@ -591,33 +596,33 @@
 &nbsp;&nbsp;<span class="property">--bg-color</span>: <span class="css-value">#1a1a1a</span>;<br>
 }
                                 </code>
-                            </div>
-                        </div>
-
-                        <div class="exercise">
-                            <div class="exercise-header">
-                                <span class="exercise-badge">EXERCISE</span>
-                                <h4>Create a Navigation Bar</h4>
-                            </div>
-                            <p>Use Flexbox to create a horizontal navigation bar with:</p>
-                            <ul>
-                                <li>Items evenly spaced</li>
-                                <li>Vertically centered</li>
-                                <li>A gap of 20px between items</li>
-                            </ul>
-                            <textarea id="layout-exercise-1"
-                                placeholder=".nav {&#10;  /* Write your flexbox CSS here */&#10;}"></textarea>
-                            <button class="btn"
-                                onclick="alert('Great job practicing! In a real implementation, this would render your flexbox layout.')">▶
-                                Run Code</button>
-                            <button class="btn btn-secondary" onclick="showHint('layout-hint-1')">💡 Show Hint</button>
-                            <div id="layout-hint-1" class="feedback"
-                                style="display:none; background: rgba(245, 158, 11, 0.2); border-color: var(--accent); color: var(--accent);">
-                                <strong>Hint:</strong> Use display: flex, justify-content: space-evenly, align-items:
-                                center, and gap: 20px
-                            </div>
                         </div>
                     </div>
+
+                    <div class="exercise">
+                        <div class="exercise-header">
+                            <span class="exercise-badge">EXERCISE</span>
+                            <h4>Create a Navigation Bar</h4>
+                        </div>
+                        <p>Use Flexbox to create a horizontal navigation bar with:</p>
+                        <ul>
+                            <li>Items evenly spaced</li>
+                            <li>Vertically centered</li>
+                            <li>A gap of 20px between items</li>
+                        </ul>
+                        <textarea id="layout-exercise-1"
+                            placeholder=".nav {&#10;  /* Write your flexbox CSS here */&#10;}"></textarea>
+                        <button class="btn"
+                            onclick="alert('Great job practicing! In a real implementation, this would render your flexbox layout.')">▶
+                            Run Code</button>
+                        <button class="btn btn-secondary" onclick="showHint('layout-hint-1')">💡 Show Hint</button>
+                        <div id="layout-hint-1" class="feedback"
+                            style="display:none; background: rgba(245, 158, 11, 0.2); border-color: var(--accent); color: var(--accent);">
+                            <strong>Hint:</strong> Use display: flex, justify-content: space-evenly, align-items:
+                            center, and gap: 20px
+                        </div>
+                    </div>
+                </div>
         </article>
     </main>
 
@@ -629,4 +634,5 @@
 
     <script src="../app.js" defer></script>
 </body>
+
 </html>
