@@ -266,6 +266,44 @@ function runHTMLCode(textareaId, outputId) {
 }
 
 /* ============================================
+   Code Execution (JavaScript)
+   ============================================ */
+/**
+ * Runs JavaScript code from a textarea.
+ * The code has access to the output container via document.getElementById.
+ * @param {string} textareaId - ID of the textarea with code
+ * @param {string} outputId - ID of the output container
+ */
+function runJSCode(textareaId, outputId) {
+  const textarea = document.getElementById(textareaId);
+  const output = document.getElementById(outputId);
+  const chapterId = getCurrentChapterId();
+
+  if (!textarea || !output) return;
+
+  // Clear previous output
+  output.innerHTML = '';
+
+  try {
+    // Create a function that executes the code
+    // The code can access the output via document.getElementById
+    const code = textarea.value;
+    const fn = new Function(code);
+    fn();
+
+    // Mark exercise as complete if code ran without errors
+    if (state.markComplete(chapterId, `exercise-${textareaId}`)) {
+      updateProgress();
+    }
+  } catch (error) {
+    // Display error in output
+    output.innerHTML = `<div style="color: #ef4444; padding: 1rem; background: rgba(239, 68, 68, 0.1); border-radius: 8px; border: 1px solid #ef4444;">
+      <strong>Error:</strong> ${error.message}
+    </div>`;
+  }
+}
+
+/* ============================================
    Code Execution (CSS Preview)
    ============================================ */
 /**
