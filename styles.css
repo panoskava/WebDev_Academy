@@ -704,4 +704,335 @@ footer p {
     .project-card {
         padding: var(--spacing-md);
     }
+
+    .chapter-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .chapter-nav {
+        flex-direction: column;
+    }
+}
+
+/* ============================================
+   16. Chapter Cards (Landing Page)
+   ============================================ */
+.chapter-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-xl);
+    padding: var(--spacing-xl) 0;
+}
+
+.chapter-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-xl);
+    border: 1px solid var(--border-color);
+    text-decoration: none;
+    display: flex;
+    gap: var(--spacing-lg);
+    transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+    animation: fadeIn var(--transition-slow) ease forwards;
+}
+
+.chapter-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+    border-color: var(--color-primary);
+}
+
+.chapter-card .chapter-icon {
+    font-size: 3rem;
+    flex-shrink: 0;
+}
+
+.chapter-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.chapter-card h3 {
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    margin: 0;
+}
+
+.chapter-card p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.chapter-card--projects {
+    border-color: var(--color-secondary);
+}
+
+.chapter-card--projects:hover {
+    border-color: var(--color-secondary);
+    box-shadow: 0 20px 40px rgba(34, 197, 94, 0.2);
+}
+
+.chapter-status {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-top: auto;
+    padding-top: var(--spacing-sm);
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: var(--radius-full);
+    background: var(--border-color);
+}
+
+.status-dot.in-progress {
+    background: var(--color-accent);
+}
+
+.status-dot.completed {
+    background: var(--color-success);
+}
+
+.status-text {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+/* ============================================
+   17. Breadcrumb Navigation
+   ============================================ */
+.breadcrumb {
+    max-width: var(--max-width-content);
+    margin: 0 auto;
+    padding: calc(5rem + var(--spacing-md)) var(--spacing-xl) var(--spacing-md);
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.breadcrumb a {
+    color: var(--color-primary);
+    transition: color var(--transition-base);
+}
+
+.breadcrumb a:hover {
+    color: var(--color-primary-dark);
+}
+
+/* ============================================
+   18. Chapter Page Layout
+   ============================================ */
+.chapter-page {
+    background: var(--bg-card);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-xl);
+    border: 1px solid var(--border-color);
+}
+
+.chapter-page-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+    padding-bottom: var(--spacing-lg);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.chapter-page-header .chapter-icon {
+    font-size: 3rem;
+}
+
+.chapter-page-header h1 {
+    font-size: 2rem;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+/* ============================================
+   19. Chapter Navigation Footer
+   ============================================ */
+.chapter-nav {
+    display: flex;
+    justify-content: space-between;
+    max-width: var(--max-width-content);
+    margin: var(--spacing-xl) auto;
+    padding: 0 var(--spacing-xl);
+    gap: var(--spacing-md);
+}
+
+.nav-prev,
+.nav-next {
+    background: var(--bg-card);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: all var(--transition-base);
+    font-size: 0.9rem;
+}
+
+.nav-prev:hover,
+.nav-next:hover {
+    border-color: var(--color-primary);
+    background: rgba(99, 102, 241, 0.1);
+}
+
+.nav-prev--disabled,
+.nav-next--disabled {
+    opacity: 0.5;
+    cursor: default;
+    pointer-events: none;
+}
+
+/* ============================================
+   20. Active Navigation Link
+   ============================================ */
+.nav-links a.active {
+    color: var(--color-primary);
+}
+
+/* ============================================
+   21. Info Boxes (for chapter content)
+   ============================================ */
+.info-box {
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    margin: var(--spacing-md) 0;
+}
+
+.info-box--success {
+    background: linear-gradient(135deg, #1a4a2e 0%, #0d2818 100%);
+    border-left: 4px solid #4ade80;
+}
+
+.info-box--success h5 {
+    color: #4ade80;
+    margin-top: 0;
+}
+
+.info-box--purple {
+    background: linear-gradient(135deg, #2e1a4a 0%, #18082d 100%);
+    border-left: 4px solid #a78bfa;
+}
+
+.info-box--purple h5 {
+    color: #a78bfa;
+    margin-top: 0;
+}
+
+/* ============================================
+   22. Status Codes Grid
+   ============================================ */
+.status-codes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-md);
+    margin: var(--spacing-md) 0;
+}
+
+.status-card {
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+}
+
+.status-card h5 {
+    margin: 0 0 var(--spacing-sm) 0;
+}
+
+.status-card p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.status-card--success {
+    background: linear-gradient(135deg, #166534 0%, #14532d 100%);
+}
+
+.status-card--success h5 {
+    color: #4ade80;
+}
+
+.status-card--warning {
+    background: linear-gradient(135deg, #854d0e 0%, #713f12 100%);
+}
+
+.status-card--warning h5 {
+    color: #fbbf24;
+}
+
+.status-card--error {
+    background: linear-gradient(135deg, #991b1b 0%, #7f1d1d 100%);
+}
+
+.status-card--error h5 {
+    color: #f87171;
+}
+
+.status-card--server {
+    background: linear-gradient(135deg, #86198f 0%, #701a75 100%);
+}
+
+.status-card--server h5 {
+    color: #f472b6;
+}
+
+/* ============================================
+   23. Comparison Tables
+   ============================================ */
+.table-wrapper {
+    overflow-x: auto;
+    margin: var(--spacing-md) 0;
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.comparison-table thead tr {
+    background: rgba(99, 102, 241, 0.3);
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.comparison-table th {
+    border-bottom: 2px solid var(--color-primary);
+}
+
+.comparison-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Text color utilities for tables */
+.text-info {
+    color: #60a5fa;
+}
+
+.text-success {
+    color: #4ade80;
+}
+
+.text-warning {
+    color: #fbbf24;
+}
+
+.text-error {
+    color: #f87171;
+}
+
+.text-pink {
+    color: #f472b6;
 }

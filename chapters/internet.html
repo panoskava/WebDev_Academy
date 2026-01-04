@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Learn about the Internet, World Wide Web, HTTP protocols, URLs, and how web communication works.">
+    <meta name="author" content="WebDev Academy">
+    <title>Chapter 1: The Internet & World Wide Web - WebDev Academy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+    <nav>
+        <div class="nav-content">
+            <a href="../index.html" class="logo">WebDev Academy</a>
+            <ul class="nav-links">
+                <li><a href="internet.html">Internet</a></li>
+                <li><a href="html.html">HTML</a></li>
+                <li><a href="css.html">CSS</a></li>
+                <li><a href="layout.html">Layout</a></li>
+                <li><a href="../projects.html">Projects</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="../index.html">Home</a> › Chapter 1: The Internet & World Wide Web
+    </div>
+
+    <main>
+        <article class="chapter-page" data-chapter="internet">
+            <header class="chapter-page-header">
+                <span class="chapter-icon">🌐</span>
+                <h1>Chapter 1: The Internet & World Wide Web</h1>
+            </header>
+
+            <div class="chapter-inner">
+                <div class="lesson">
+                    <h3>1.1 What is the Internet?</h3>
+                    <p>The Internet is a global network of interconnected computer networks that use the
+                        Internet Protocol (IP) to communicate. Think of it as a "network of networks" that spans
+                        the entire globe, connecting billions of devices worldwide.</p>
+
+                    <h4>History of the Internet</h4>
+                    <ul>
+                        <li><strong>1960s-70s:</strong> ARPANET - Advanced Research Projects Agency Network,
+                            created by the US Department of Defense. This was the first network to use packet
+                            switching.</li>
+                        <li><strong>1983:</strong> TCP/IP becomes the standard protocol, birth of the modern
+                            Internet</li>
+                        <li><strong>1989:</strong> Tim Berners-Lee invents the World Wide Web at CERN</li>
+                        <li><strong>1991:</strong> First website goes live</li>
+                        <li><strong>1990s-2000s:</strong> Commercial Internet boom, browsers like Netscape and
+                            Internet Explorer</li>
+                    </ul>
+
+                    <h4>Key Components of the Internet</h4>
+                    <ul>
+                        <li><strong>Protocol:</strong> TCP/IP (Transmission Control Protocol/Internet Protocol)
+                            - The "language" computers use to communicate</li>
+                        <li><strong>IP Addresses:</strong> Unique numerical addresses for every device (e.g.,
+                            192.168.1.1)</li>
+                        <li><strong>DNS (Domain Name System):</strong> Translates human-readable names
+                            (google.com) to IP addresses</li>
+                        <li><strong>Routers:</strong> Direct data packets to their destinations</li>
+                        <li><strong>Servers:</strong> Computers that store and serve content</li>
+                    </ul>
+
+                    <h4>Internet Services</h4>
+                    <ul>
+                        <li><strong>World Wide Web (HTTP/HTTPS):</strong> Web pages and websites</li>
+                        <li><strong>Email (SMTP, POP3, IMAP):</strong> Electronic mail</li>
+                        <li><strong>FTP (File Transfer Protocol):</strong> File uploads/downloads</li>
+                        <li><strong>VoIP:</strong> Voice over IP (Skype, Zoom)</li>
+                        <li><strong>Streaming:</strong> Video and audio content</li>
+                    </ul>
+                </div>
+
+                <div class="lesson">
+                    <h3>1.2 Internet vs. World Wide Web</h3>
+                    <p>Many people confuse the Internet with the World Wide Web, but they're fundamentally
+                        different concepts:</p>
+
+                    <h4>The Internet</h4>
+                    <ul>
+                        <li>The <strong>physical infrastructure</strong> - cables, routers, servers, satellites
+                        </li>
+                        <li>A network of networks connecting devices globally</li>
+                        <li>Created in 1969 as ARPANET</li>
+                        <li>Supports many services: email, FTP, VoIP, and the Web</li>
+                    </ul>
+
+                    <h4>The World Wide Web (WWW)</h4>
+                    <ul>
+                        <li>A <strong>service</strong> that runs ON the Internet</li>
+                        <li>A collection of web pages linked by hyperlinks (URLs)</li>
+                        <li>Created in 1989 by Tim Berners-Lee at CERN</li>
+                        <li>Uses HTTP/HTTPS protocols and HTML documents</li>
+                    </ul>
+
+                    <div class="code-block">
+                        <span class="code-label">Analogy</span>
+                        <code>
+Internet = Highway system (roads, bridges, tunnels)<br>
+WWW = Cars driving on the highways (one type of traffic)<br>
+Email = Trucks on the same highways (different type of traffic)<br>
+FTP = Delivery vans (yet another type of traffic)<br>
+<br>
+All use the same roads (Internet), but they're different vehicles (services)!
+                                </code>
+                    </div>
+                </div>
+
+                <div class="lesson">
+                    <h3>1.3 How Web Communication Works</h3>
+                    <p>Understanding the client-server model is fundamental to web development. When you visit a
+                        website, here's the complete process:</p>
+
+                    <h4>Step-by-Step Process</h4>
+                    <ol>
+                        <li><strong>You type a URL</strong> in your browser (the client) - e.g.,
+                            https://www.example.com/page.html</li>
+                        <li><strong>DNS Lookup:</strong> Browser asks DNS server to translate domain name to IP
+                            address</li>
+                        <li><strong>TCP Connection:</strong> Browser establishes a connection with the server
+                        </li>
+                        <li><strong>HTTP Request:</strong> Browser sends an HTTP request to the server</li>
+                        <li><strong>Server Processing:</strong> Server processes the request and finds the
+                            resource</li>
+                        <li><strong>HTTP Response:</strong> Server sends back the requested file with a status
+                            code</li>
+                        <li><strong>Browser Rendering:</strong> Browser parses HTML, downloads CSS/JS, and
+                            renders the page</li>
+                    </ol>
+
+                    <div class="code-block">
+                        <span class="code-label">HTTP Request Example</span>
+                        <code>
+GET /index.html HTTP/1.1<br>
+Host: www.example.com<br>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64)<br>
+Accept: text/html,application/xhtml+xml<br>
+Accept-Language: en-US,en;q=0.9<br>
+Connection: keep-alive
+                                </code>
+                    </div>
+
+                    <div class="code-block">
+                        <span class="code-label">HTTP Response Example</span>
+                        <code>
+HTTP/1.1 200 OK<br>
+Content-Type: text/html; charset=UTF-8<br>
+Content-Length: 1234<br>
+Date: Mon, 01 Jan 2024 12:00:00 GMT<br>
+<br>
+&lt;!DOCTYPE html&gt;<br>
+&lt;html&gt;...&lt;/html&gt;
+                                </code>
+                    </div>
+
+                    <h4>Common HTTP Status Codes</h4>
+                    <ul>
+                        <li><strong>200 OK:</strong> Success! The request was fulfilled</li>
+                        <li><strong>301/302:</strong> Redirect - Resource moved to another URL</li>
+                        <li><strong>404 Not Found:</strong> The requested resource doesn't exist</li>
+                        <li><strong>500 Internal Server Error:</strong> Something went wrong on the server</li>
+                    </ul>
+                </div>
+
+                <div class="lesson">
+                    <h3>1.4 URLs and Domain Names</h3>
+                    <p>A URL (Uniform Resource Locator) is the address of a resource on the web. Understanding
+                        its structure is essential.</p>
+
+                    <div class="code-block">
+                        <span class="code-label">URL Structure</span>
+                        <code
+                            style="font-family: 'Courier New', Courier, monospace; white-space: pre; display: block; line-height: 1.4;">
+https://www.example.com:443/path/page.html?id=123#section
+│       │   │          │   │    │         │      │
+│       │   │          │   │    │         │      └─ Fragment (anchor)
+│       │   │          │   │    │         └─ Query string
+│       │   │          │   │    └─ File name
+│       │   │          │   └─ Path/directory
+│       │   │          └─ Port (usually hidden)
+│       │   └─ Domain name
+│       └─ Subdomain (www)
+└─ Protocol (scheme)
+                                </code>
+                    </div>
+
+                    <h4>Key URL Components</h4>
+                    <ul>
+                        <li><strong>Protocol:</strong> http:// (insecure) or https:// (secure/encrypted)</li>
+                        <li><strong>Domain:</strong> The website's name (e.g., google.com)</li>
+                        <li><strong>Path:</strong> Location of the resource on the server</li>
+                        <li><strong>Query String:</strong> Data sent to the server (?key=value)</li>
+                        <li><strong>Fragment:</strong> Links to a specific part of the page (#section)</li>
+                    </ul>
+                </div>
+
+                <div class="lesson">
+                    <h3>1.5 HTTP Methods (GET, POST, and more)</h3>
+                    <p>HTTP methods (also called HTTP verbs) indicate the desired action to be performed on a
+                        resource. Understanding these is crucial for web development, especially when working
+                        with forms and APIs.</p>
+
+                    <h4>The Two Most Common Methods</h4>
+
+                    <div class="info-box info-box--success">
+                        <h5>GET Request</h5>
+                        <ul>
+                            <li><strong>Purpose:</strong> Retrieve/fetch data from the server</li>
+                            <li><strong>Data location:</strong> Parameters sent in the URL (query string)</li>
+                            <li><strong>Visibility:</strong> Data is visible in the URL bar</li>
+                            <li><strong>Caching:</strong> Can be cached and bookmarked</li>
+                            <li><strong>Length limit:</strong> Limited by URL length (~2000 characters)</li>
+                            <li><strong>Security:</strong> NOT suitable for sensitive data (passwords, etc.)
+                            </li>
+                            <li><strong>Use cases:</strong> Search queries, filtering, navigating pages</li>
+                        </ul>
+                        <div class="code-block">
+                            <span class="code-label">GET Request Example</span>
+                            <code>
+GET /search?q=html+tutorial&lang=en HTTP/1.1<br>
+Host: www.example.com<br>
+<br>
+<span class="comment">// URL shows: https://www.example.com/search?q=html+tutorial&lang=en</span>
+                                    </code>
+                        </div>
+                    </div>
+
+                    <div class="info-box info-box--purple">
+                        <h5>POST Request</h5>
+                        <ul>
+                            <li><strong>Purpose:</strong> Send/submit data to the server</li>
+                            <li><strong>Data location:</strong> Data sent in the request body (not visible in
+                                URL)</li>
+                            <li><strong>Visibility:</strong> Data is hidden from URL bar</li>
+                            <li><strong>Caching:</strong> Cannot be cached or bookmarked</li>
+                            <li><strong>Length limit:</strong> No practical limit on data size</li>
+                            <li><strong>Security:</strong> Better for sensitive data (but still use HTTPS!)</li>
+                            <li><strong>Use cases:</strong> Login forms, file uploads, creating new records</li>
+                        </ul>
+                        <div class="code-block">
+                            <span class="code-label">POST Request Example</span>
+                            <code>
+POST /login HTTP/1.1<br>
+Host: www.example.com<br>
+Content-Type: application/x-www-form-urlencoded<br>
+Content-Length: 29<br>
+<br>
+username=john&password=secret
+                                    </code>
+                        </div>
+                    </div>
+
+                    <h4>GET vs POST Comparison Table</h4>
+                    <div class="table-wrapper">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>GET</th>
+                                    <th>POST</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Data in URL</td>
+                                    <td>✅ Yes</td>
+                                    <td>❌ No</td>
+                                </tr>
+                                <tr>
+                                    <td>Bookmarkable</td>
+                                    <td>✅ Yes</td>
+                                    <td>❌ No</td>
+                                </tr>
+                                <tr>
+                                    <td>Cached</td>
+                                    <td>✅ Yes</td>
+                                    <td>❌ No</td>
+                                </tr>
+                                <tr>
+                                    <td>Data Length</td>
+                                    <td>Limited (~2KB)</td>
+                                    <td>Unlimited</td>
+                                </tr>
+                                <tr>
+                                    <td>For Sensitive Data</td>
+                                    <td>❌ No</td>
+                                    <td>✅ Yes (with HTTPS)</td>
+                                </tr>
+                                <tr>
+                                    <td>Browser Back Button</td>
+                                    <td>Safe to use</td>
+                                    <td>May resubmit data</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h4>Other HTTP Methods</h4>
+                    <ul>
+                        <li><strong>PUT:</strong> Update/replace an existing resource completely</li>
+                        <li><strong>PATCH:</strong> Partially update an existing resource</li>
+                        <li><strong>DELETE:</strong> Remove a resource from the server</li>
+                        <li><strong>HEAD:</strong> Same as GET but returns only headers (no body)</li>
+                        <li><strong>OPTIONS:</strong> Describes communication options for the resource</li>
+                    </ul>
+
+                    <div class="code-block">
+                        <span class="code-label">HTML Form Methods</span>
+                        <code>
+<span class="comment">&lt;!-- GET form (for search, filters) --&gt;</span><br>
+<span class="tag">&lt;form</span> <span class="attr">action</span>=<span class="value">"/search"</span> <span class="attr">method</span>=<span class="value">"GET"</span><span class="tag">&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="value">"text"</span> <span class="attr">name</span>=<span class="value">"q"</span> <span class="attr">placeholder</span>=<span class="value">"Search..."</span><span class="tag">&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;button</span> <span class="attr">type</span>=<span class="value">"submit"</span><span class="tag">&gt;</span>Search<span class="tag">&lt;/button&gt;</span><br>
+<span class="tag">&lt;/form&gt;</span><br>
+<br>
+<span class="comment">&lt;!-- POST form (for login, sensitive data) --&gt;</span><br>
+<span class="tag">&lt;form</span> <span class="attr">action</span>=<span class="value">"/login"</span> <span class="attr">method</span>=<span class="value">"POST"</span><span class="tag">&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="value">"text"</span> <span class="attr">name</span>=<span class="value">"username"</span><span class="tag">&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="value">"password"</span> <span class="attr">name</span>=<span class="value">"password"</span><span class="tag">&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;button</span> <span class="attr">type</span>=<span class="value">"submit"</span><span class="tag">&gt;</span>Login<span class="tag">&lt;/button&gt;</span><br>
+<span class="tag">&lt;/form&gt;</span>
+                                </code>
+                    </div>
+                </div>
+
+                <div class="lesson">
+                    <h3>1.6 HTTP Response Status Codes</h3>
+                    <p>When a server responds to an HTTP request, it includes a status code that indicates
+                        whether the request was successful or not. These codes are grouped into categories.</p>
+
+                    <h4>Status Code Categories</h4>
+                    <div class="table-wrapper">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Range</th>
+                                    <th>Category</th>
+                                    <th>Meaning</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-info">1xx</td>
+                                    <td>Informational</td>
+                                    <td>Request received, continuing process</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-success">2xx</td>
+                                    <td>Success</td>
+                                    <td>Request was successfully received and processed</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-warning">3xx</td>
+                                    <td>Redirection</td>
+                                    <td>Further action needed (resource moved)</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-error">4xx</td>
+                                    <td>Client Error</td>
+                                    <td>Problem with the request (your fault)</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-pink">5xx</td>
+                                    <td>Server Error</td>
+                                    <td>Server failed to fulfill request (server's fault)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h4>Common Status Codes You Must Know</h4>
+
+                    <div class="status-codes-grid">
+                        <div class="status-card status-card--success">
+                            <h5>✅ 200 OK</h5>
+                            <p>The request succeeded. The response contains the requested data.</p>
+                        </div>
+                        <div class="status-card status-card--success">
+                            <h5>✅ 201 Created</h5>
+                            <p>A new resource was successfully created (common with POST).</p>
+                        </div>
+                        <div class="status-card status-card--warning">
+                            <h5>🔄 301 Moved Permanently</h5>
+                            <p>Resource has permanently moved to a new URL.</p>
+                        </div>
+                        <div class="status-card status-card--warning">
+                            <h5>🔄 302 Found (Temporary)</h5>
+                            <p>Resource temporarily moved to a different URL.</p>
+                        </div>
+                        <div class="status-card status-card--error">
+                            <h5>❌ 400 Bad Request</h5>
+                            <p>Server couldn't understand the request (malformed syntax).</p>
+                        </div>
+                        <div class="status-card status-card--error">
+                            <h5>❌ 401 Unauthorized</h5>
+                            <p>Authentication required. User not logged in.</p>
+                        </div>
+                        <div class="status-card status-card--error">
+                            <h5>❌ 403 Forbidden</h5>
+                            <p>Server understood but refuses. User doesn't have permission.</p>
+                        </div>
+                        <div class="status-card status-card--error">
+                            <h5>❌ 404 Not Found</h5>
+                            <p>The requested resource doesn't exist on the server.</p>
+                        </div>
+                        <div class="status-card status-card--server">
+                            <h5>💥 500 Internal Server Error</h5>
+                            <p>Server encountered an unexpected condition.</p>
+                        </div>
+                        <div class="status-card status-card--server">
+                            <h5>💥 503 Service Unavailable</h5>
+                            <p>Server is temporarily down (maintenance/overloaded).</p>
+                        </div>
+                    </div>
+
+                    <div class="code-block">
+                        <span class="code-label">Complete HTTP Response Example</span>
+                        <code>
+HTTP/1.1 200 OK<br>
+Date: Mon, 03 Jan 2026 10:30:00 GMT<br>
+Server: Apache/2.4.41<br>
+Content-Type: text/html; charset=UTF-8<br>
+Content-Length: 1256<br>
+Cache-Control: max-age=3600<br>
+<br>
+&lt;!DOCTYPE html&gt;<br>
+&lt;html&gt;<br>
+&nbsp;&nbsp;&lt;head&gt;&lt;title&gt;Welcome&lt;/title&gt;&lt;/head&gt;<br>
+&nbsp;&nbsp;&lt;body&gt;...&lt;/body&gt;<br>
+&lt;/html&gt;
+                                </code>
+                    </div>
+
+                    <h4>Quick Reference for Troubleshooting</h4>
+                    <ul>
+                        <li><strong>Got 404?</strong> Check the URL - the page doesn't exist</li>
+                        <li><strong>Got 500?</strong> Server problem - contact the website administrator</li>
+                        <li><strong>Got 403?</strong> You don't have permission to access this resource</li>
+                        <li><strong>Got 401?</strong> You need to log in first</li>
+                    </ul>
+                </div>
+
+                <div class="quiz" data-correct="b" data-quiz-id="internet-1">
+                    <h4>📝 Quick Quiz: What is the main difference between the Internet and WWW?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkQuiz(this, 'a')">
+                            <span class="option-letter">A</span>
+                            <span>They are the same thing</span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'b')">
+                            <span class="option-letter">B</span>
+                            <span>Internet is the infrastructure; WWW is a service running on it</span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'c')">
+                            <span class="option-letter">C</span>
+                            <span>WWW is older than the Internet</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quiz" data-correct="c" data-quiz-id="internet-2">
+                    <h4>📝 Quick Quiz: Which HTTP method should you use for a login form with username and
+                        password?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkQuiz(this, 'a')">
+                            <span class="option-letter">A</span>
+                            <span>GET - because it's faster</span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'b')">
+                            <span class="option-letter">B</span>
+                            <span>GET - because data can be bookmarked</span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'c')">
+                            <span class="option-letter">C</span>
+                            <span>POST - because sensitive data shouldn't be visible in the URL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quiz" data-correct="b" data-quiz-id="internet-3">
+                    <h4>📝 Quick Quiz: You try to access a webpage and get a 404 error. What does this mean?
+                    </h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkQuiz(this, 'a')">
+                            <span class="option-letter">A</span>
+                            <span>The server crashed and is experiencing problems</span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'b')">
+                            <span class="option-letter">B</span>
+                            <span>The requested page/resource doesn't exist on the server</span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'c')">
+                            <span class="option-letter">C</span>
+                            <span>You need to log in to access this page</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quiz" data-correct="a" data-quiz-id="internet-4">
+                    <h4>📝 Quick Quiz: What is the main difference between GET and POST requests?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkQuiz(this, 'a')">
+                            <span class="option-letter">A</span>
+                            <span>GET sends data in the URL, POST sends data in the request body</span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'b')">
+                            <span class="option-letter">B</span>
+                            <span>GET is for deleting data, POST is for creating data</span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'c')">
+                            <span class="option-letter">C</span>
+                            <span>GET is more secure than POST</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </main>
+
+
+    <footer>
+        <p>Web Development Fundamentals Course</p>
+        <p>Created by panoskava for WebDev Studying</p>
+    </footer>
+
+    <script src="../app.js" defer></script>
+</body>
+
+</html>
