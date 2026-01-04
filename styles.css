@@ -925,6 +925,36 @@ footer p {
     margin-top: 0;
 }
 
+.info-box--warning {
+    background: linear-gradient(135deg, #4a3a1a 0%, #2d2008 100%);
+    border-left: 4px solid #fbbf24;
+}
+
+.info-box--warning h5 {
+    color: #fbbf24;
+    margin-top: 0;
+}
+
+.info-box--error {
+    background: linear-gradient(135deg, #4a1a1a 0%, #2d0808 100%);
+    border-left: 4px solid #f87171;
+}
+
+.info-box--error h5 {
+    color: #f87171;
+    margin-top: 0;
+}
+
+.info-box--info {
+    background: linear-gradient(135deg, #1a2e4a 0%, #081828 100%);
+    border-left: 4px solid #60a5fa;
+}
+
+.info-box--info h5 {
+    color: #60a5fa;
+    margin-top: 0;
+}
+
 /* ============================================
    22. Status Codes Grid
    ============================================ */

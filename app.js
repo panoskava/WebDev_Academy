@@ -19,6 +19,7 @@ const CONFIG = {
     css: { quizzes: 2, exercises: 2 },
     layout: { quizzes: 3, exercises: 2 },
     dom: { quizzes: 4, exercises: 2 },
+    javascript: { quizzes: 10, exercises: 5 },
     projects: { quizzes: 0, exercises: 0 },
   },
 };
@@ -196,6 +197,7 @@ function getCurrentChapterId() {
   if (path.includes('css')) return 'css';
   if (path.includes('layout')) return 'layout';
   if (path.includes('dom')) return 'dom';
+  if (path.includes('javascript')) return 'javascript';
   if (path.includes('projects')) return 'projects';
   return 'unknown';
 }
@@ -269,8 +271,8 @@ function runHTMLCode(textareaId, outputId) {
    Code Execution (JavaScript)
    ============================================ */
 /**
- * Runs JavaScript code from a textarea.
- * The code has access to the output container via document.getElementById.
+ * Runs JavaScript code from a textarea with console output capture.
+ * Intercepts console.log calls and displays them in the output container.
  * @param {string} textareaId - ID of the textarea with code
  * @param {string} outputId - ID of the output container
  */
@@ -284,23 +286,99 @@ function runJSCode(textareaId, outputId) {
   // Clear previous output
   output.innerHTML = '';
 
+  // Store original console methods
+  const originalLog = console.log;
+  const originalWarn = console.warn;
+  const originalError = console.error;
+  const logs = [];
+
+  // Override console methods to capture output
+  console.log = (...args) => {
+    logs.push({ type: 'log', message: args.map(formatValue).join(' ') });
+    originalLog.apply(console, args);
+  };
+  console.warn = (...args) => {
+    logs.push({ type: 'warn', message: args.map(formatValue).join(' ') });
+    originalWarn.apply(console, args);
+  };
+  console.error = (...args) => {
+    logs.push({ type: 'error', message: args.map(formatValue).join(' ') });
+    originalError.apply(console, args);
+  };
+
   try {
     // Create a function that executes the code
-    // The code can access the output via document.getElementById
     const code = textarea.value;
     const fn = new Function(code);
-    fn();
+    const result = fn();
+
+    // Restore original console methods
+    console.log = originalLog;
+    console.warn = originalWarn;
+    console.error = originalError;
+
+    // Display captured logs
+    if (logs.length > 0) {
+      output.innerHTML = logs.map(log => {
+        const colorClass = log.type === 'error' ? '#ef4444' :
+          log.type === 'warn' ? '#f59e0b' : '#22c55e';
+        return `<div style="color: ${colorClass}; padding: 0.5rem 1rem; background: rgba(34, 197, 94, 0.1); border-radius: 6px; margin-bottom: 4px; font-family: 'Fira Code', monospace; font-size: 14px;">
+          <span style="color: #888;">▸</span> ${escapeHtml(log.message)}
+        </div>`;
+      }).join('');
+    } else if (result !== undefined) {
+      output.innerHTML = `<div style="color: #22c55e; padding: 0.5rem 1rem; background: rgba(34, 197, 94, 0.1); border-radius: 6px; font-family: 'Fira Code', monospace; font-size: 14px;">
+        <span style="color: #888;">▸</span> ${escapeHtml(formatValue(result))}
+      </div>`;
+    } else {
+      output.innerHTML = `<div style="color: #888; padding: 0.5rem 1rem; font-style: italic;">Code executed successfully (no output)</div>`;
+    }
 
     // Mark exercise as complete if code ran without errors
     if (state.markComplete(chapterId, `exercise-${textareaId}`)) {
       updateProgress();
     }
   } catch (error) {
+    // Restore original console methods
+    console.log = originalLog;
+    console.warn = originalWarn;
+    console.error = originalError;
+
     // Display error in output
     output.innerHTML = `<div style="color: #ef4444; padding: 1rem; background: rgba(239, 68, 68, 0.1); border-radius: 8px; border: 1px solid #ef4444;">
-      <strong>Error:</strong> ${error.message}
+      <strong>Error:</strong> ${escapeHtml(error.message)}
     </div>`;
   }
+}
+
+/**
+ * Format a value for display in the console output
+ * @param {*} value - Any JavaScript value
+ * @returns {string} - Formatted string representation
+ */
+function formatValue(value) {
+  if (value === null) return 'null';
+  if (value === undefined) return 'undefined';
+  if (typeof value === 'string') return value;
+  if (typeof value === 'object') {
+    try {
+      return JSON.stringify(value, null, 2);
+    } catch (e) {
+      return String(value);
+    }
+  }
+  return String(value);
+}
+
+/**
+ * Escape HTML characters to prevent XSS
+ * @param {string} text - Text to escape
+ * @returns {string} - Escaped text
+ */
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
 }
 
 /* ============================================

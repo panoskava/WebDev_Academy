@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Learn JavaScript fundamentals: variables, functions, conditionals, loops, arrays, objects, and strings.">
+    <meta name="author" content="WebDev Academy">
+    <title>Chapter 6: JavaScript Fundamentals - WebDev Academy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+    <nav>
+        <div class="nav-content">
+            <a href="../index.html" class="logo">WebDev Academy</a>
+            <ul class="nav-links">
+                <li><a href="internet.html">Internet</a></li>
+                <li><a href="html.html">HTML</a></li>
+                <li><a href="css.html">CSS</a></li>
+                <li><a href="layout.html">Layout</a></li>
+                <li><a href="dom.html">DOM</a></li>
+                <li><a href="javascript.html">JavaScript</a></li>
+                <li><a href="../projects.html">Projects</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="../index.html">Home</a> › Chapter 6: JavaScript Fundamentals
+    </div>
+
+    <main>
+        <article class="chapter-page" data-chapter="javascript">
+            <header class="chapter-page-header">
+                <span class="chapter-icon">⚡</span>
+                <h1>Chapter 6: JavaScript Fundamentals</h1>
+            </header>
+
+            <div class="chapter-inner">
+                <!-- Lesson 1: Introduction -->
+                <div class="lesson">
+                    <h3>6.1 Introduction to JavaScript</h3>
+                    <p><strong>JavaScript</strong> is the programming language of the web. It allows you to add
+                        interactivity, logic, and dynamic behavior to your websites. While HTML provides structure and
+                        CSS provides styling, JavaScript brings your pages to life.</p>
+
+                    <h4>Why Learn JavaScript?</h4>
+                    <ul>
+                        <li>It's the <strong>only programming language</strong> that runs natively in all web browsers
+                        </li>
+                        <li>Powers both <strong>frontend</strong> (user interface) and <strong>backend</strong>
+                            (Node.js) development</li>
+                        <li>Essential for creating interactive web applications</li>
+                        <li>Huge ecosystem of libraries and frameworks (React, Vue, Angular)</li>
+                    </ul>
+
+                    <h4>Your First JavaScript Code</h4>
+                    <p>The simplest way to output something in JavaScript is using <code>console.log()</code>:</p>
+
+                    <div class="code-block">
+                        <span class="code-label">JavaScript</span>
+                        <code>
+<span class="comment">// This is a comment - it's ignored by JavaScript</span><br>
+console.log("Hello, World!");<br>
+<br>
+<span class="comment">// You can log numbers too</span><br>
+console.log(42);<br>
+<br>
+<span class="comment">// And do math</span><br>
+console.log(5 + 3);  <span class="comment">// Outputs: 8</span>
+                        </code>
+                    </div>
+
+                    <div class="info-box info-box--info">
+                        <h5>📝 Comments in JavaScript</h5>
+                        <p>Comments are notes for humans that JavaScript ignores:</p>
+                        <ul>
+                            <li><code>// Single line comment</code></li>
+                            <li><code>/* Multi-line comment */</code></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Quiz 1 -->
+                <div class="quiz" data-correct="c" data-quiz-id="js-quiz-1">
+                    <h4>📝 Quick Quiz: Introduction</h4>
+                    <p>What does <code>console.log()</code> do?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkQuiz(this, 'a')">
+                            <span class="option-letter">A</span>
+                            <span>Creates a new HTML element</span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'b')">
+                            <span class="option-letter">B</span>
+                            <span>Saves data to a file</span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'c')">
+                            <span class="option-letter">C</span>
+                            <span>Outputs a message to the console</span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'd')">
+                            <span class="option-letter">D</span>
+                            <span>Displays an alert box</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lesson 2: Variables & Data Types -->
+                <div class="lesson">
+                    <h3>6.2 Variables & Data Types</h3>
+                    <p><strong>Variables</strong> are containers that store data values. Think of them as labeled boxes
+                        where you can put information and retrieve it later.</p>
+
+                    <h4>Declaring Variables</h4>
+                    <p>JavaScript has three ways to declare variables:</p>
+
+                    <div class="code-block">
+                        <span class="code-label">JavaScript</span>
+                        <code>
+<span class="comment">// let - for values that will change</span><br>
+let age = 25;<br>
+age = 26;  <span class="comment">// Can be reassigned</span><br>
+<br>
+<span class="comment">// const - for values that won't change</span><br>
+const name = "Alice";<br>
+<span class="comment">// name = "Bob";  // Error! Cannot reassign const</span><br>
+<br>
+<span class="comment">// var - older way (avoid in modern code)</span><br>
+var score = 100;
+                        </code>
+                    </div>
+
+                    <div class="info-box info-box--success">
+                        <h5>✅ Best Practice</h5>
+                        <p>Use <code>const</code> by default. Only use <code>let</code> when you know the value will
+                            change. Avoid <code>var</code>.</p>
+                    </div>
+
+                    <h4>Data Types</h4>
+                    <p>JavaScript has several primitive data types:</p>
+
+                    <div class="table-wrapper">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                    <th>Example</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>string</code></td>
+                                    <td>Text (in quotes)</td>
+                                    <td><code>"Hello"</code>, <code>'World'</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>number</code></td>
+                                    <td>Numbers (integer or decimal)</td>
+                                    <td><code>42</code>, <code>3.14</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>boolean</code></td>
+                                    <td>True or false</td>
+                                    <td><code>true</code>, <code>false</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>undefined</code></td>
+                                    <td>No value assigned</td>
+                                    <td><code>let x;</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>null</code></td>
+                                    <td>Intentionally empty</td>
+                                    <td><code>let y = null;</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h4>Template Literals (Backticks)</h4>
+                    <p>Template literals let you embed variables inside strings using <code>${}</code>:</p>
+
+                    <div class="code-block">
+                        <span class="code-label">JavaScript</span>
+                        <code>
+const name = "Joe";<br>
+const age = 30;<br>
+<br>
+<span class="comment">// Old way (string concatenation)</span><br>
+const greeting1 = "Hello " + name + ", you are " + age + " years old.";<br>
+<br>
+<span class="comment">// New way (template literals - use backticks!)</span><br>
+const greeting2 = `Hello ${name}, you are ${age} years old.`;<br>
+<br>
+console.log(greeting2);  <span class="comment">// "Hello Joe, you are 30 years old."</span>
+                        </code>
+                    </div>
+
+                    <div class="info-box info-box--purple">
+                        <h5>💡 This helps with Exercise 2!</h5>
+                        <p>Exercise 2 asks you to create a greeting message like <code>"Hello Joe, how are you?"</code>.
+                            Use template literals: <code>`Hello ${name}, how are you?`</code></p>
+                    </div>
+                </div>
+
+                <!-- Quiz 2 -->
+                <div class="quiz" data-correct="b" data-quiz-id="js-quiz-2">
+                    <h4>📝 Quick Quiz: Variables</h4>
+                    <p>Which keyword should you use for a value that will never change?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkQuiz(this, 'a')">
+                            <span class="option-letter">A</span>
+                            <span><code>let</code></span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'b')">
+                            <span class="option-letter">B</span>
+                            <span><code>const</code></span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'c')">
+                            <span class="option-letter">C</span>
+                            <span><code>var</code></span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'd')">
+                            <span class="option-letter">D</span>
+                            <span><code>static</code></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lesson 3: Functions -->
+                <div class="lesson">
+                    <h3>6.3 Functions</h3>
+                    <p><strong>Functions</strong> are reusable blocks of code that perform a specific task. They help
+                        organize code and avoid repetition.</p>
+
+                    <h4>Function Declaration</h4>
+                    <div class="code-block">
+                        <span class="code-label">JavaScript</span>
+                        <code>
+<span class="comment">// Defining a function</span><br>
+function greet() {<br>
+&nbsp;&nbsp;console.log("Hello!");<br>
+}<br>
+<br>
+<span class="comment">// Calling (running) the function</span><br>
+greet();  <span class="comment">// Outputs: Hello!</span>
+                        </code>
+                    </div>
+
+                    <h4>Parameters and Arguments</h4>
+                    <p>Functions can accept input values called <strong>parameters</strong>:</p>
+
+                    <div class="code-block">
+                        <span class="code-label">JavaScript</span>
+                        <code>
+<span class="comment">// 'name' is a parameter (placeholder)</span><br>
+function sayHello(name) {<br>
+&nbsp;&nbsp;console.log(`Hello ${name}!`);<br>
+}<br>
+<br>
+<span class="comment">// "Alice" is an argument (actual value)</span><br>
+sayHello("Alice");  <span class="comment">// Outputs: Hello Alice!</span><br>
+sayHello("Bob");    <span class="comment">// Outputs: Hello Bob!</span>
+                        </code>
+                    </div>
+
+                    <h4>The <code>return</code> Statement</h4>
+                    <p>Functions can send back a value using <code>return</code>:</p>
+
+                    <div class="code-block">
+                        <span class="code-label">JavaScript</span>
+                        <code>
+function addNumbers(a, b) {<br>
+&nbsp;&nbsp;return a + b;  <span class="comment">// Sends the result back</span><br>
+}<br>
+<br>
+const sum = addNumbers(5, 3);<br>
+console.log(sum);  <span class="comment">// Outputs: 8</span><br>
+<br>
+<span class="comment">// You can also use the return value directly</span><br>
+console.log(addNumbers(10, 20));  <span class="comment">// Outputs: 30</span>
+                        </code>
+                    </div>
+
+                    <div class="info-box info-box--warning">
+                        <h5>⚠️ Important: return vs console.log</h5>
+                        <p><code>return</code> sends a value back to where the function was called.
+                            <code>console.log</code> just prints to the console. For the exercises, you need
+                            <code>return</code>!
+                        </p>
+                    </div>
+
+                    <h4>Export Default (For Exercises)</h4>
+                    <p>The exercises use <code>export default</code> to make functions available for testing:</p>
+
+                    <div class="code-block">
+                        <span class="code-label">JavaScript - Exercise Pattern</span>
+                        <code>
+<span class="comment">// This is the pattern used in the exercises</span><br>
+export default function helloWorld() {<br>
+&nbsp;&nbsp;return "Hello world!";<br>
+}<br>
+<br>
+<span class="comment">// With parameters</span><br>
+export default function sayHello(name) {<br>
+&nbsp;&nbsp;return `Hello ${name}, how are you?`;<br>
+}
+                        </code>
+                    </div>
+                </div>
+
+                <!-- Exercise 1: Hello World -->
+                <div class="exercise">
+                    <h4>Exercise: Functions Practice</h4>
+                    <p>Write a function that takes two numbers and returns their sum:</p>
+
+                    <textarea id="js-ex-1" rows="6" spellcheck="false">function addNumbers(a, b) {
+  // Your code here - return the sum of a and b
+  
+}
+
+console.log(addNumbers(5, 3));</textarea>
+
+                    <button class="btn" onclick="runJSCode('js-ex-1', 'js-ex-1-output')">▶ Run Code</button>
+                    <div class="output-container" id="js-ex-1-output"></div>
+                </div>
+
+                <!-- Quiz 3 -->
+                <div class="quiz" data-correct="a" data-quiz-id="js-quiz-3">
+                    <h4>📝 Quick Quiz: Functions</h4>
+                    <p>What keyword sends a value back from a function?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkQuiz(this, 'a')">
+                            <span class="option-letter">A</span>
+                            <span><code>return</code></span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'b')">
+                            <span class="option-letter">B</span>
+                            <span><code>output</code></span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'c')">
+                            <span class="option-letter">C</span>
+                            <span><code>send</code></span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'd')">
+                            <span class="option-letter">D</span>
+                            <span><code>print</code></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lesson 4: Operators -->
+                <div class="lesson">
+                    <h3>6.4 Operators & Expressions</h3>
+                    <p>Operators allow you to perform operations on values.</p>
+
+                    <h4>Arithmetic Operators</h4>
+                    <div class="code-block">
+                        <span class="code-label">JavaScript</span>
+                        <code>
+console.log(10 + 5);   <span class="comment">// Addition: 15</span><br>
+console.log(10 - 5);   <span class="comment">// Subtraction: 5</span><br>
+console.log(10 * 5);   <span class="comment">// Multiplication: 50</span><br>
+console.log(10 / 5);   <span class="comment">// Division: 2</span><br>
+console.log(10 % 3);   <span class="comment">// Modulo (remainder): 1</span><br>
+console.log(2 ** 3);   <span class="comment">// Exponent: 8</span>
+                        </code>
+                    </div>
+
+                    <div class="info-box info-box--purple">
+                        <h5>💡 Modulo (%) is Key!</h5>
+                        <p>The modulo operator returns the remainder after division. It's perfect for checking if a
+                            number is even or odd:</p>
+                        <ul>
+                            <li><code>10 % 2 === 0</code> → 10 is even</li>
+                            <li><code>7 % 2 === 1</code> → 7 is odd</li>
+                        </ul>
+                    </div>
+
+                    <h4>Comparison Operators</h4>
+                    <p>These compare values and return <code>true</code> or <code>false</code>:</p>
+
+                    <div class="code-block">
+                        <span class="code-label">JavaScript</span>
+                        <code>
+console.log(5 === 5);   <span class="comment">// Equal: true</span><br>
+console.log(5 !== 3);   <span class="comment">// Not equal: true</span><br>
+console.log(5 > 3);     <span class="comment">// Greater than: true</span><br>
+console.log(5 < 3);     <span class="comment">// Less than: false</span><br>
+console.log(5 >= 5);    <span class="comment">// Greater or equal: true</span><br>
+console.log(5 <= 4);    <span class="comment">// Less or equal: false</span>
+                        </code>
+                    </div>
+
+                    <div class="info-box info-box--warning">
+                        <h5>⚠️ Always Use === (Triple Equals)</h5>
+                        <p><code>===</code> checks both value AND type. <code>==</code> only checks value and can cause
+                            bugs:</p>
+                        <ul>
+                            <li><code>"5" == 5</code> → true (unexpected!)</li>
+                            <li><code>"5" === 5</code> → false (correct)</li>
+                        </ul>
+                    </div>
+
+                    <h4>Logical Operators</h4>
+                    <p>Combine multiple conditions:</p>
+
+                    <div class="code-block">
+                        <span class="code-label">JavaScript</span>
+                        <code>
+const age = 25;<br>
+<br>
+<span class="comment">// AND (&&) - both must be true</span><br>
+console.log(age >= 20 && age <= 80);  <span class="comment">// true (age is between 20-80)</span><br>
+<br>
+<span class="comment">// OR (||) - at least one must be true</span><br>
+console.log(age < 18 || age > 65);  <span class="comment">// false (neither is true)</span><br>
+<br>
+<span class="comment">// NOT (!) - reverses the boolean</span><br>
+console.log(!true);   <span class="comment">// false</span><br>
+console.log(!false);  <span class="comment">// true</span>
+                        </code>
+                    </div>
+
+                    <div class="info-box info-box--purple">
+                        <h5>💡 This helps with Exercise 5!</h5>
+                        <p>To check if a value is between 20 and 80 (inclusive):</p>
+                        <code>age >= 20 && age <= 80</code>
+                    </div>
+                </div>
+
+                <!-- Quiz 4 -->
+                <div class="quiz" data-correct="b" data-quiz-id="js-quiz-4">
+                    <h4>📝 Quick Quiz: Operators</h4>
+                    <p>What does <code>10 % 3</code> return?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkQuiz(this, 'a')">
+                            <span class="option-letter">A</span>
+                            <span>3.33</span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'b')">
+                            <span class="option-letter">B</span>
+                            <span>1</span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'c')">
+                            <span class="option-letter">C</span>
+                            <span>3</span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'd')">
+                            <span class="option-letter">D</span>
+                            <span>30</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lesson 5: Conditionals -->
+                <div class="lesson">
+                    <h3>6.5 Conditional Statements</h3>
+                    <p>Conditionals let your code make decisions based on conditions.</p>
+
+                    <h4>if Statement</h4>
+                    <div class="code-block">
+                        <span class="code-label">JavaScript</span>
+                        <code>
+const num = 5;<br>
+<br>
+if (num > 0) {<br>
+&nbsp;&nbsp;console.log("Positive!");<br>
+}
+                        </code>
+                    </div>
+
+                    <h4>if...else Statement</h4>
+                    <div class="code-block">
+                        <span class="code-label">JavaScript</span>
+                        <code>
+function isPositive(num) {<br>
+&nbsp;&nbsp;if (num > 0) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;return true;<br>
+&nbsp;&nbsp;} else {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;return false;<br>
+&nbsp;&nbsp;}<br>
+}
+                        </code>
+                    </div>
+
+                    <h4>else if Chains (Exercise 7)</h4>
+                    <p>For multiple conditions, use <code>else if</code>:</p>
+
+                    <div class="code-block">
+                        <span class="code-label">JavaScript - Grade Calculator</span>
+                        <code>
+function calculateGrade(score) {<br>
+&nbsp;&nbsp;if (score >= 90 && score <= 100) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;return "A";<br>
+&nbsp;&nbsp;} else if (score >= 80) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;return "B";<br>
+&nbsp;&nbsp;} else if (score >= 70) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;return "C";<br>
+&nbsp;&nbsp;} else if (score >= 60) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;return "D";<br>
+&nbsp;&nbsp;} else {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;return "F";<br>
+&nbsp;&nbsp;}<br>
+}
+                        </code>
+                    </div>
+
+                    <h4>switch Statement (Exercise 8)</h4>
+                    <p>For checking a value against multiple specific cases:</p>
+
+                    <div class="code-block">
+                        <span class="code-label">JavaScript - Day Type</span>
+                        <code>
+function getDayType(day) {<br>
+&nbsp;&nbsp;switch (day) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;case "Saturday":<br>
+&nbsp;&nbsp;&nbsp;&nbsp;case "Sunday":<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return "Weekend";<br>
+&nbsp;&nbsp;&nbsp;&nbsp;case "Monday":<br>
+&nbsp;&nbsp;&nbsp;&nbsp;case "Tuesday":<br>
+&nbsp;&nbsp;&nbsp;&nbsp;case "Wednesday":<br>
+&nbsp;&nbsp;&nbsp;&nbsp;case "Thursday":<br>
+&nbsp;&nbsp;&nbsp;&nbsp;case "Friday":<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return "Weekday";<br>
+&nbsp;&nbsp;&nbsp;&nbsp;default:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return "Invalid day";<br>
+&nbsp;&nbsp;}<br>
+}
+                        </code>
+                    </div>
+                </div>
+
+                <!-- Quiz 5 -->
+                <div class="quiz" data-correct="c" data-quiz-id="js-quiz-5">
+                    <h4>📝 Quick Quiz: Conditionals</h4>
+                    <p>What does <code>switch</code> use to handle no matches?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkQuiz(this, 'a')">
+                            <span class="option-letter">A</span>
+                            <span><code>else</code></span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'b')">
+                            <span class="option-letter">B</span>
+                            <span><code>otherwise</code></span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'c')">
+                            <span class="option-letter">C</span>
+                            <span><code>default</code></span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'd')">
+                            <span class="option-letter">D</span>
+                            <span><code>fallback</code></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercise 2: Conditionals -->
+                <div class="exercise">
+                    <h4>Exercise: Conditionals Practice</h4>
+                    <p>Write a function that returns true if a number is positive, false otherwise:</p>
+
+                    <textarea id="js-ex-2" rows="8" spellcheck="false">function isPositive(num) {
+  // Return true if num > 0, otherwise return false
+
+}
+
+console.log(isPositive(5));   // Should output: true
+console.log(isPositive(-3));  // Should output: false
+console.log(isPositive(0));   // Should output: false</textarea>
+
+                    <button class="btn" onclick="runJSCode('js-ex-2', 'js-ex-2-output')">▶ Run Code</button>
+                    <div class="output-container" id="js-ex-2-output"></div>
+                </div>
+
+                <!-- Lesson 6: Loops -->
+                <div class="lesson">
+                    <h3>6.6 Loops</h3>
+                    <p>Loops repeat code multiple times. JavaScript has several loop types.</p>
+
+                    <h4>for Loop (Exercise 11)</h4>
+                    <p>Best when you know how many times to repeat:</p>
+
+                    <div class="code-block">
+                        <span class="code-label">JavaScript</span>
+                        <code>
+<span class="comment">// for (initialization; condition; update)</span><br>
+for (let i = 1; i <= 5; i++) {<br>
+&nbsp;&nbsp;console.log(i);  <span class="comment">// 1, 2, 3, 4, 5</span><br>
+}<br>
+<br>
+<span class="comment">// Create array with values 2-10</span><br>
+function integers() {<br>
+&nbsp;&nbsp;const result = [];<br>
+&nbsp;&nbsp;for (let i = 2; i <= 10; i++) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;result.push(i);<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;return result;<br>
+}
+                        </code>
+                    </div>
+
+                    <h4>while Loop (Exercise 12)</h4>
+                    <p>Best when you don't know exactly how many iterations:</p>
+
+                    <div class="code-block">
+                        <span class="code-label">JavaScript</span>
+                        <code>
+<span class="comment">// Countdown from n to 1</span><br>
+function countDown(n) {<br>
+&nbsp;&nbsp;const result = [];<br>
+&nbsp;&nbsp;while (n >= 1) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;result.push(n);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;n--;  <span class="comment">// Decrease n by 1</span><br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;return result;<br>
+}
+                        </code>
+                    </div>
+
+                    <h4>break and continue</h4>
+                    <div class="code-block">
+                        <span class="code-label">JavaScript</span>
+                        <code>
+<span class="comment">// break - exit the loop completely</span><br>
+for (let i = 1; i <= 10; i++) {<br>
+&nbsp;&nbsp;if (i === 5) break;  <span class="comment">// Stop at 5</span><br>
+&nbsp;&nbsp;console.log(i);  <span class="comment">// 1, 2, 3, 4</span><br>
+}<br>
+<br>
+<span class="comment">// continue - skip to next iteration</span><br>
+for (let i = 1; i <= 5; i++) {<br>
+&nbsp;&nbsp;if (i === 3) continue;  <span class="comment">// Skip 3</span><br>
+&nbsp;&nbsp;console.log(i);  <span class="comment">// 1, 2, 4, 5</span><br>
+}
+                        </code>
+                    </div>
+
+                    <div class="info-box info-box--purple">
+                        <h5>💡 Prime Numbers (Exercise 13)</h5>
+                        <p>A prime number is only divisible by 1 and itself. Use nested loops to check:</p>
+                        <code>if (num % divisor === 0)</code> means num is divisible by divisor.
+                    </div>
+                </div>
+
+                <!-- Quiz 6 -->
+                <div class="quiz" data-correct="d" data-quiz-id="js-quiz-6">
+                    <h4>📝 Quick Quiz: Loops</h4>
+                    <p>Which keyword skips to the next loop iteration?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkQuiz(this, 'a')">
+                            <span class="option-letter">A</span>
+                            <span><code>break</code></span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'b')">
+                            <span class="option-letter">B</span>
+                            <span><code>skip</code></span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'c')">
+                            <span class="option-letter">C</span>
+                            <span><code>next</code></span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'd')">
+                            <span class="option-letter">D</span>
+                            <span><code>continue</code></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lesson 7: Arrays -->
+                <div class="lesson">
+                    <h3>6.7 Arrays</h3>
+                    <p>Arrays store multiple values in a single variable.</p>
+
+                    <h4>Creating and Accessing Arrays</h4>
+                    <div class="code-block">
+                        <span class="code-label">JavaScript</span>
+                        <code>
+const fruits = ["apple", "banana", "orange"];<br>
+<br>
+console.log(fruits[0]);     <span class="comment">// "apple" (index starts at 0)</span><br>
+console.log(fruits[1]);     <span class="comment">// "banana"</span><br>
+console.log(fruits.length); <span class="comment">// 3</span>
+                        </code>
+                    </div>
+
+                    <h4>Array Methods</h4>
+                    <div class="code-block">
+                        <span class="code-label">JavaScript</span>
+                        <code>
+const nums = [1, 2, 3];<br>
+<br>
+nums.push(4);      <span class="comment">// Add to end: [1, 2, 3, 4]</span><br>
+nums.pop();        <span class="comment">// Remove from end: [1, 2, 3]</span><br>
+nums.includes(2);  <span class="comment">// Check if exists: true</span>
+                        </code>
+                    </div>
+
+                    <h4>Iterating Arrays (Exercises 14-16)</h4>
+                    <div class="code-block">
+                        <span class="code-label">JavaScript</span>
+                        <code>
+<span class="comment">// Sum all numbers in an array</span><br>
+function sumArray(nums) {<br>
+&nbsp;&nbsp;let sum = 0;<br>
+&nbsp;&nbsp;for (let i = 0; i < nums.length; i++) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;sum += nums[i];<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;return sum;<br>
+}<br>
+<br>
+<span class="comment">// Count even numbers</span><br>
+function countEven(nums) {<br>
+&nbsp;&nbsp;let count = 0;<br>
+&nbsp;&nbsp;for (let i = 0; i < nums.length; i++) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if (nums[i] % 2 === 0) count++;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;return count;<br>
+}<br>
+<br>
+<span class="comment">// Average of numbers</span><br>
+function average(nums) {<br>
+&nbsp;&nbsp;return sumArray(nums) / nums.length;<br>
+}
+                        </code>
+                    </div>
+
+                    <h4>Creating New Arrays (Exercises 17-20)</h4>
+                    <div class="code-block">
+                        <span class="code-label">JavaScript</span>
+                        <code>
+<span class="comment">// Reverse an array</span><br>
+function reverseArray(arr) {<br>
+&nbsp;&nbsp;const reversed = [];<br>
+&nbsp;&nbsp;for (let i = arr.length - 1; i >= 0; i--) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;reversed.push(arr[i]);<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;return reversed;<br>
+}<br>
+<br>
+<span class="comment">// Remove duplicates</span><br>
+function removeDuplicates(arr) {<br>
+&nbsp;&nbsp;const unique = [];<br>
+&nbsp;&nbsp;for (let i = 0; i < arr.length; i++) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if (!unique.includes(arr[i])) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unique.push(arr[i]);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;return unique;<br>
+}
+                        </code>
+                    </div>
+                </div>
+
+                <!-- Quiz 7 -->
+                <div class="quiz" data-correct="a" data-quiz-id="js-quiz-7">
+                    <h4>📝 Quick Quiz: Arrays</h4>
+                    <p>What is the index of the first element in an array?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkQuiz(this, 'a')">
+                            <span class="option-letter">A</span>
+                            <span>0</span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'b')">
+                            <span class="option-letter">B</span>
+                            <span>1</span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'c')">
+                            <span class="option-letter">C</span>
+                            <span>-1</span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'd')">
+                            <span class="option-letter">D</span>
+                            <span>first</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercise 3: Arrays -->
+                <div class="exercise">
+                    <h4>Exercise: Arrays Practice</h4>
+                    <p>Write a function that sums all numbers in an array:</p>
+
+                    <textarea id="js-ex-3" rows="8" spellcheck="false">function sumArray(nums) {
+  // Return the sum of all numbers in the array
+
+}
+
+console.log(sumArray([1, 2, 3, 4, 5]));  // Should output: 15</textarea>
+
+                    <button class="btn" onclick="runJSCode('js-ex-3', 'js-ex-3-output')">▶ Run Code</button>
+                    <div class="output-container" id="js-ex-3-output"></div>
+                </div>
+
+                <!-- Lesson 8: Objects -->
+                <div class="lesson">
+                    <h3>6.8 Objects</h3>
+                    <p>Objects store data as key-value pairs (properties).</p>
+
+                    <h4>Creating Objects</h4>
+                    <div class="code-block">
+                        <span class="code-label">JavaScript</span>
+                        <code>
+const person = {<br>
+&nbsp;&nbsp;name: "Alice",<br>
+&nbsp;&nbsp;age: 25,<br>
+&nbsp;&nbsp;isStudent: true<br>
+};<br>
+<br>
+<span class="comment">// Accessing properties</span><br>
+console.log(person.name);      <span class="comment">// "Alice" (dot notation)</span><br>
+console.log(person["age"]);    <span class="comment">// 25 (bracket notation)</span>
+                        </code>
+                    </div>
+
+                    <h4>Object Methods (Exercises 21-25)</h4>
+                    <div class="code-block">
+                        <span class="code-label">JavaScript</span>
+                        <code>
+<span class="comment">// Count properties</span><br>
+function countProperties(obj) {<br>
+&nbsp;&nbsp;return Object.keys(obj).length;<br>
+}<br>
+<br>
+<span class="comment">// Check if property exists</span><br>
+function hasProperty(obj, key) {<br>
+&nbsp;&nbsp;return obj.hasOwnProperty(key);<br>
+}<br>
+<br>
+<span class="comment">// Get all keys</span><br>
+function getKeys(obj) {<br>
+&nbsp;&nbsp;return Object.keys(obj);<br>
+}<br>
+<br>
+<span class="comment">// Merge two objects</span><br>
+function mergeObjects(obj1, obj2) {<br>
+&nbsp;&nbsp;return { ...obj1, ...obj2 };<br>
+}
+                        </code>
+                    </div>
+
+                    <h4>for...in Loop</h4>
+                    <div class="code-block">
+                        <span class="code-label">JavaScript</span>
+                        <code>
+<span class="comment">// Multiply all values by a multiplier</span><br>
+function multiplyValues(obj, multiplier) {<br>
+&nbsp;&nbsp;const result = {};<br>
+&nbsp;&nbsp;for (let key in obj) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;result[key] = obj[key] * multiplier;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;return result;<br>
+}
+                        </code>
+                    </div>
+                </div>
+
+                <!-- Quiz 8 -->
+                <div class="quiz" data-correct="b" data-quiz-id="js-quiz-8">
+                    <h4>📝 Quick Quiz: Objects</h4>
+                    <p>What does <code>Object.keys(obj)</code> return?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkQuiz(this, 'a')">
+                            <span class="option-letter">A</span>
+                            <span>All values of the object</span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'b')">
+                            <span class="option-letter">B</span>
+                            <span>Array of property names</span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'c')">
+                            <span class="option-letter">C</span>
+                            <span>The number of properties</span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'd')">
+                            <span class="option-letter">D</span>
+                            <span>A copy of the object</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lesson 9: Strings -->
+                <div class="lesson">
+                    <h3>6.9 String Manipulation</h3>
+                    <p>Strings can be manipulated like arrays - each character has an index.</p>
+
+                    <h4>String Basics</h4>
+                    <div class="code-block">
+                        <span class="code-label">JavaScript</span>
+                        <code>
+const text = "Hello";<br>
+<br>
+console.log(text.length);    <span class="comment">// 5</span><br>
+console.log(text[0]);        <span class="comment">// "H"</span><br>
+console.log(text.toLowerCase()); <span class="comment">// "hello"</span><br>
+console.log(text.toUpperCase()); <span class="comment">// "HELLO"</span>
+                        </code>
+                    </div>
+
+                    <h4>String Exercises (26-30)</h4>
+                    <div class="code-block">
+                        <span class="code-label">JavaScript</span>
+                        <code>
+<span class="comment">// Reverse a string</span><br>
+function reverseString(str) {<br>
+&nbsp;&nbsp;let result = "";<br>
+&nbsp;&nbsp;for (let i = str.length - 1; i >= 0; i--) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;result += str[i];<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;return result;<br>
+}<br>
+<br>
+<span class="comment">// Count vowels</span><br>
+function countVowels(str) {<br>
+&nbsp;&nbsp;const vowels = "aeiouAEIOU";<br>
+&nbsp;&nbsp;let count = 0;<br>
+&nbsp;&nbsp;for (let char of str) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if (vowels.includes(char)) count++;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;return count;<br>
+}<br>
+<br>
+<span class="comment">// Truncate string</span><br>
+function truncate(str, maxLength) {<br>
+&nbsp;&nbsp;if (str.length <= maxLength) return str;<br>
+&nbsp;&nbsp;return str.slice(0, maxLength) + "...";<br>
+}<br>
+<br>
+<span class="comment">// Count words</span><br>
+function countWords(str) {<br>
+&nbsp;&nbsp;return str.trim().split(" ").filter(w => w).length;<br>
+}
+                        </code>
+                    </div>
+                </div>
+
+                <!-- Quiz 9 -->
+                <div class="quiz" data-correct="c" data-quiz-id="js-quiz-9">
+                    <h4>📝 Quick Quiz: Strings</h4>
+                    <p>What does <code>"hello".toUpperCase()</code> return?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkQuiz(this, 'a')">
+                            <span class="option-letter">A</span>
+                            <span>"Hello"</span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'b')">
+                            <span class="option-letter">B</span>
+                            <span>"hELLO"</span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'c')">
+                            <span class="option-letter">C</span>
+                            <span>"HELLO"</span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'd')">
+                            <span class="option-letter">D</span>
+                            <span>"hello"</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercise 4: Strings -->
+                <div class="exercise">
+                    <h4>Exercise: Strings Practice</h4>
+                    <p>Reverse a string:</p>
+
+                    <textarea id="js-ex-4" rows="8" spellcheck="false">function reverseString(str) {
+  // Return the reversed string
+
+}
+
+console.log(reverseString("hello"));  // Should output: "olleh"</textarea>
+
+                    <button class="btn" onclick="runJSCode('js-ex-4', 'js-ex-4-output')">▶ Run Code</button>
+                    <div class="output-container" id="js-ex-4-output"></div>
+                </div>
+
+                <!-- Lesson 10: Summary -->
+                <div class="lesson">
+                    <h3>6.10 Exercise Mapping Guide</h3>
+                    <p>Here's which lesson helps with each exercise:</p>
+
+                    <div class="table-wrapper">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Exercise</th>
+                                    <th>Concept</th>
+                                    <th>Key Lesson</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1-3</td>
+                                    <td>Functions, return, template literals</td>
+                                    <td>6.2, 6.3</td>
+                                </tr>
+                                <tr>
+                                    <td>4-6</td>
+                                    <td>if/else, boolean returns</td>
+                                    <td>6.5</td>
+                                </tr>
+                                <tr>
+                                    <td>7-8</td>
+                                    <td>else if chains, switch</td>
+                                    <td>6.5</td>
+                                </tr>
+                                <tr>
+                                    <td>9-10</td>
+                                    <td>Complex boolean logic (&&, ||)</td>
+                                    <td>6.4, 6.5</td>
+                                </tr>
+                                <tr>
+                                    <td>11-13</td>
+                                    <td>for/while loops</td>
+                                    <td>6.6</td>
+                                </tr>
+                                <tr>
+                                    <td>14-20</td>
+                                    <td>Array iteration & manipulation</td>
+                                    <td>6.7</td>
+                                </tr>
+                                <tr>
+                                    <td>21-25</td>
+                                    <td>Objects & properties</td>
+                                    <td>6.8</td>
+                                </tr>
+                                <tr>
+                                    <td>26-30</td>
+                                    <td>String manipulation</td>
+                                    <td>6.9</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Quiz 10 -->
+                <div class="quiz" data-correct="d" data-quiz-id="js-quiz-10">
+                    <h4>Final Check</h4>
+                    <p>To check if a number is even, which expression should you use?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkQuiz(this, 'a')">
+                            <span class="option-letter">A</span>
+                            <span><code>num / 2 === 0</code></span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'b')">
+                            <span class="option-letter">B</span>
+                            <span><code>num == "even"</code></span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'c')">
+                            <span class="option-letter">C</span>
+                            <span><code>num.isEven()</code></span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'd')">
+                            <span class="option-letter">D</span>
+                            <span><code>num % 2 === 0</code></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Final Exercise -->
+                <div class="exercise">
+                    <h4>Final Exercise: Combine Your Skills</h4>
+                    <p>Count how many vowels are in a string:</p>
+
+                    <textarea id="js-ex-5" rows="10" spellcheck="false">function countVowels(str) {
+  // Count vowels (a, e, i, o, u) - case insensitive
+
+}
+
+console.log(countVowels("Hello World"));  // Should output: 3
+console.log(countVowels("AEIOU"));        // Should output: 5</textarea>
+
+                    <button class="btn" onclick="runJSCode('js-ex-5', 'js-ex-5-output')">▶ Run Code</button>
+                    <div class="output-container" id="js-ex-5-output"></div>
+                </div>
+
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 WebDev Academy | Created for learning web development</p>
+    </footer>
+
+    <script src="../app.js"></script>
+</body>
+
+</html>
