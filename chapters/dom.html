@@ -917,74 +917,64 @@ copy($0.outerHTML);        <span class="comment">// Copy element's HTML</span>
                 <!-- ============================================
                      Exercises
                      ============================================ -->
-                <div class="lesson">
-                    <h3>💻 Exercise 1: DOM Manipulation</h3>
-                    <p>Practice creating and styling elements dynamically. Modify the code to create a styled card.</p>
+                <div class="exercise">
+                    <div class="exercise-header">
+                        <span class="exercise-badge">EXERCISE</span>
+                        <h4>DOM Manipulation</h4>
+                    </div>
+                    <p>Practice creating and styling elements dynamically. Modify the code to create a styled card with:
+                    </p>
+                    <ul>
+                        <li>A title and description</li>
+                        <li>Padding and background color</li>
+                        <li>Rounded corners and a border</li>
+                    </ul>
+                    <textarea id="dom-exercise-1" placeholder="// Create a new card element
+const card = document.createElement('div');
+card.className = 'exercise-card';
 
-                    <div class="exercise">
-                        <textarea id="dom-exercise-1" rows="12">// Create a new card element
-const card = document.createElement("div");
-card.className = "exercise-card";
-card.innerHTML = `
-  <h4>My Card Title</h4>
-  <p>This card was created with JavaScript!</p>
-`;
-
-// Style it
-card.style.padding = "1rem";
-card.style.backgroundColor = "#1a1a2e";
-card.style.borderRadius = "8px";
-card.style.border = "1px solid #4a9eff";
+// Add content and styles here...
 
 // Add to output
-document.getElementById("dom-output-1").appendChild(card);</textarea>
-                        <div class="exercise-controls">
-                            <button onclick="runHTMLCode('dom-exercise-1', 'dom-output-1')" class="run-btn">▶ Run
-                                Code</button>
-                            <button onclick="showHint('dom-hint-1')" class="hint-btn">💡 Hint</button>
-                        </div>
-                        <div id="dom-hint-1" class="hint" style="display: none;">
-                            Try adding more styles like box-shadow, or create child elements using createElement
-                            and appendChild.
-                        </div>
-                        <div id="dom-output-1" class="code-output"></div>
+document.getElementById('dom-output-1').appendChild(card);"></textarea>
+                    <button class="btn" onclick="runHTMLCode('dom-exercise-1', 'dom-output-1')">▶ Run Code</button>
+                    <button class="btn btn-secondary" onclick="showHint('dom-hint-1')">💡 Show Hint</button>
+                    <div id="dom-hint-1" class="feedback"
+                        style="display:none; background: rgba(245, 158, 11, 0.2); border-color: var(--accent); color: var(--accent);">
+                        <strong>Hint:</strong> Use innerHTML to add content, then use style.padding,
+                        style.backgroundColor,
+                        style.borderRadius, and style.border to style the element.
+                    </div>
+                    <div class="output-preview" id="dom-output-1">
+                        <em style="color: #999;">Your preview will appear here...</em>
                     </div>
                 </div>
 
-                <div class="lesson">
-                    <h3>💻 Exercise 2: DOM Traversal</h3>
-                    <p>Practice navigating the DOM tree. The code traverses a list and logs each item.</p>
+                <div class="exercise">
+                    <div class="exercise-header">
+                        <span class="exercise-badge">EXERCISE</span>
+                        <h4>DOM Traversal</h4>
+                    </div>
+                    <p>Practice navigating the DOM tree. Write code that:</p>
+                    <ul>
+                        <li>Creates a list with multiple items</li>
+                        <li>Traverses the list using firstElementChild and nextElementSibling</li>
+                        <li>Styles each item during traversal</li>
+                    </ul>
+                    <textarea id="dom-exercise-2" placeholder="// Create a list for demonstration
+const output = document.getElementById('dom-output-2');
+output.innerHTML = '<ul id=&quot;demo-list&quot;><li>First Item</li><li>Second Item</li></ul>';
 
-                    <div class="exercise">
-                        <textarea id="dom-exercise-2" rows="15">// Create a list for demonstration
-const output = document.getElementById("dom-output-2");
-output.innerHTML = `
-  <ul id="demo-list">
-    <li>First Item</li>
-    <li>Second Item</li>
-    <li>Third Item</li>
-  </ul>
-`;
-
-// Traverse the list
-const list = document.getElementById("demo-list");
-let current = list.firstElementChild;
-
-while (current) {
-  current.style.color = "#4a9eff";
-  console.log("Found:", current.textContent);
-  current = current.nextElementSibling;
-}</textarea>
-                        <div class="exercise-controls">
-                            <button onclick="runHTMLCode('dom-exercise-2', 'dom-output-2')" class="run-btn">▶ Run
-                                Code</button>
-                            <button onclick="showHint('dom-hint-2')" class="hint-btn">💡 Hint</button>
-                        </div>
-                        <div id="dom-hint-2" class="hint" style="display: none;">
-                            Open the browser console (F12) to see the console.log output. Try adding more items
-                            or reversing the traversal using lastElementChild and previousElementSibling.
-                        </div>
-                        <div id="dom-output-2" class="code-output"></div>
+// Traverse and style the list..."></textarea>
+                    <button class="btn" onclick="runHTMLCode('dom-exercise-2', 'dom-output-2')">▶ Run Code</button>
+                    <button class="btn btn-secondary" onclick="showHint('dom-hint-2')">💡 Show Hint</button>
+                    <div id="dom-hint-2" class="feedback"
+                        style="display:none; background: rgba(245, 158, 11, 0.2); border-color: var(--accent); color: var(--accent);">
+                        <strong>Hint:</strong> Use a while loop: let current = list.firstElementChild; then current =
+                        current.nextElementSibling in the loop.
+                    </div>
+                    <div class="output-preview" id="dom-output-2">
+                        <em style="color: #999;">Your preview will appear here...</em>
                     </div>
                 </div>
 
