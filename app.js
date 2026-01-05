@@ -20,6 +20,7 @@ const CONFIG = {
     layout: { quizzes: 3, exercises: 2 },
     dom: { quizzes: 4, exercises: 2 },
     javascript: { quizzes: 10, exercises: 5 },
+    'javascript-part2': { quizzes: 7, exercises: 3 },
     projects: { quizzes: 0, exercises: 0 },
   },
 };
@@ -197,6 +198,7 @@ function getCurrentChapterId() {
   if (path.includes('css')) return 'css';
   if (path.includes('layout')) return 'layout';
   if (path.includes('dom')) return 'dom';
+  if (path.includes('javascript-part2')) return 'javascript-part2';
   if (path.includes('javascript')) return 'javascript';
   if (path.includes('projects')) return 'projects';
   return 'unknown';

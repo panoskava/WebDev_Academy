@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="JavaScript Part 2: Advanced array methods, object transformations, closures, promises, and DOM integration.">
+    <meta name="author" content="WebDev Academy">
+    <title>Chapter 7: JavaScript Part 2 - WebDev Academy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+    <nav>
+        <div class="nav-content">
+            <a href="../index.html" class="logo">WebDev Academy</a>
+            <ul class="nav-links">
+                <li><a href="internet.html">Internet</a></li>
+                <li><a href="html.html">HTML</a></li>
+                <li><a href="css.html">CSS</a></li>
+                <li><a href="layout.html">Layout</a></li>
+                <li><a href="dom.html">DOM</a></li>
+                <li><a href="javascript.html">JavaScript</a></li>
+                <li><a href="javascript-part2.html">JS Part 2</a></li>
+                <li><a href="../projects.html">Projects</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="../index.html">Home</a> › Chapter 7: JavaScript Part 2
+    </div>
+
+    <main>
+        <article class="chapter-page" data-chapter="javascript-part2">
+            <header class="chapter-page-header">
+                <span class="chapter-icon">🚀</span>
+                <h1>Chapter 7: JavaScript Part 2</h1>
+            </header>
+
+            <div class="chapter-inner">
+                <!-- LESSON 7.1: Problem-Solving Mindset -->
+                <div class="lesson">
+                    <h3>7.1 The Problem-Solving Mindset</h3>
+                    <p>Before diving into advanced JavaScript, let's develop the <strong>thinking process</strong>
+                        that separates beginners from effective programmers.</p>
+
+                    <h4>The 4-Step Approach</h4>
+                    <p>When you see a coding problem, don't start typing immediately. Follow this process:</p>
+
+                    <div class="info-box info-box--purple">
+                        <h5>🧠 Step 1: Understand the Problem</h5>
+                        <p>Ask yourself: What is the <strong>input</strong>? What is the expected
+                            <strong>output</strong>?
+                            What <strong>transformation</strong> happens between them?
+                        </p>
+                    </div>
+
+                    <div class="info-box info-box--info">
+                        <h5>📝 Step 2: Plan Your Approach</h5>
+                        <p>Before writing code, describe your solution in plain English.
+                            "For each item, I will check if... then I will..."</p>
+                    </div>
+
+                    <div class="info-box info-box--success">
+                        <h5>💻 Step 3: Write the Code</h5>
+                        <p>Translate your plan into JavaScript. Start simple, test often.</p>
+                    </div>
+
+                    <div class="info-box info-box--warning">
+                        <h5>🔍 Step 4: Debug & Refine</h5>
+                        <p>If it doesn't work, use <code>console.log()</code> to see what's happening at each step.</p>
+                    </div>
+
+                    <h4>Example: Thinking Through a Problem</h4>
+                    <p>Let's apply this to Exercise 31: "Filter an array in-place to keep only values between a and b."
+                    </p>
+
+                    <div class="code-block">
+                        <span class="code-label">Thinking Process</span>
+                        <code>
+<span class="comment">// Step 1: Understand</span><br>
+<span class="comment">// Input: array [5, 3, 8, 1], a=1, b=4</span><br>
+<span class="comment">// Output: modify array to become [3, 1]</span><br>
+<span class="comment">// Transformation: REMOVE elements outside range</span><br>
+<br>
+<span class="comment">// Step 2: Plan</span><br>
+<span class="comment">// - Loop through array</span><br>
+<span class="comment">// - For each element, check if it's outside range</span><br>
+<span class="comment">// - If outside, remove it</span><br>
+<span class="comment">// - Key insight: modifying while looping = go BACKWARDS!</span>
+                        </code>
+                    </div>
+                </div>
+
+                <!-- Quiz 1 -->
+                <div class="quiz" data-correct="b" data-quiz-id="js2-quiz-1">
+                    <h4>📝 Quick Quiz: What should you do FIRST when facing a coding problem?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkQuiz(this, 'a')">
+                            <span class="option-letter">A</span>
+                            <span>Start typing code immediately</span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'b')">
+                            <span class="option-letter">B</span>
+                            <span>Understand input, output, and transformation</span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'c')">
+                            <span class="option-letter">C</span>
+                            <span>Copy code from the internet</span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'd')">
+                            <span class="option-letter">D</span>
+                            <span>Ask someone else to solve it</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LESSON 7.2: Advanced Array Methods -->
+                <div class="lesson">
+                    <h3>7.2 Advanced Array Methods</h3>
+                    <p>In Part 1, you learned to loop through arrays. Now let's learn to <strong>modify arrays
+                            in-place</strong>.</p>
+
+                    <h4>The <code>splice()</code> Method (Exercise 31)</h4>
+                    <p><code>splice()</code> is a powerful method that can insert, remove, or replace elements:</p>
+
+                    <div class="code-block">
+                        <span class="code-label">JavaScript</span>
+                        <code>
+const arr = ['a', 'b', 'c', 'd', 'e'];<br>
+<br>
+<span class="comment">// splice(startIndex, deleteCount)</span><br>
+arr.splice(2, 1);  <span class="comment">// Remove 1 element at index 2</span><br>
+console.log(arr);  <span class="comment">// ['a', 'b', 'd', 'e']</span><br>
+<br>
+<span class="comment">// splice(startIndex, deleteCount, ...newItems)</span><br>
+arr.splice(1, 2, 'X', 'Y');  <span class="comment">// Remove 2, insert 'X', 'Y'</span><br>
+console.log(arr);  <span class="comment">// ['a', 'X', 'Y', 'e']</span>
+                        </code>
+                    </div>
+
+                    <div class="info-box info-box--warning">
+                        <h5>⚠️ Critical: Iterate BACKWARDS When Removing</h5>
+                        <p>When removing elements from an array while looping, <strong>go backwards</strong>.
+                            Why? Because removing shifts all indices after that point!</p>
+                    </div>
+
+                    <div class="code-block">
+                        <span class="code-label">JavaScript - Exercise 31 Pattern</span>
+                        <code>
+function filterRangeInPlace(arr, a, b) {<br>
+&nbsp;&nbsp;<span class="comment">// Loop BACKWARDS to avoid index shifting issues</span><br>
+&nbsp;&nbsp;for (let i = arr.length - 1; i >= 0; i--) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if (arr[i] < a || arr[i] > b) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arr.splice(i, 1);  <span class="comment">// Remove element at i</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<span class="comment">// No return - we modified the original array</span><br>
+}
+                        </code>
+                    </div>
+
+                    <h4>Building New Arrays (Exercise 32)</h4>
+                    <p>Sometimes you need to create a <strong>new array</strong> with unique values:</p>
+
+                    <div class="code-block">
+                        <span class="code-label">JavaScript - Exercise 32 Pattern</span>
+                        <code>
+function unique(arr) {<br>
+&nbsp;&nbsp;const result = [];  <span class="comment">// Accumulator</span><br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;for (let i = 0; i < arr.length; i++) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// Only add if not already in result</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;if (!result.includes(arr[i])) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result.push(arr[i]);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;return result;<br>
+}
+                        </code>
+                    </div>
+
+                    <div class="info-box info-box--purple">
+                        <h5>💡 Mindset: Modify vs Return New</h5>
+                        <p><strong>Exercise 31</strong>: "modify in place" = change the original, return nothing<br>
+                            <strong>Exercise 32</strong>: "return new array" = original unchanged, return result
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Exercise 1 -->
+                <div class="exercise">
+                    <h4>Exercise: Array Filtering</h4>
+                    <p>Write a function that removes all values outside the range [a, b] from an array
+                        <em>in-place</em>:
+                    </p>
+
+                    <textarea id="js2-ex-1" rows="10" spellcheck="false">function filterRangeInPlace(arr, a, b) {
+  // Remove elements where arr[i] < a or arr[i] > b
+  // Remember: loop BACKWARDS!
+  
+}
+
+let arr = [5, 3, 8, 1];
+filterRangeInPlace(arr, 1, 4);
+console.log(arr);  // Should be [3, 1]</textarea>
+
+                    <button class="btn" onclick="runJSCode('js2-ex-1', 'js2-ex-1-output')">▶ Run Code</button>
+                    <div class="output-container" id="js2-ex-1-output"></div>
+                </div>
+
+                <!-- Quiz 2 -->
+                <div class="quiz" data-correct="c" data-quiz-id="js2-quiz-2">
+                    <h4>📝 Quick Quiz: Why loop backwards when removing elements from an array?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkQuiz(this, 'a')">
+                            <span class="option-letter">A</span>
+                            <span>It's faster</span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'b')">
+                            <span class="option-letter">B</span>
+                            <span>JavaScript requires it</span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'c')">
+                            <span class="option-letter">C</span>
+                            <span>Removing shifts indices, so forward looping skips elements</span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'd')">
+                            <span class="option-letter">D</span>
+                            <span>Arrays are stored backwards in memory</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LESSON 7.3: Object Transformations -->
+                <div class="lesson">
+                    <h3>7.3 Object Transformations</h3>
+                    <p>A common pattern: take an array of objects and <strong>transform</strong> each into a different
+                        shape.</p>
+
+                    <h4>Transforming Objects (Exercise 33)</h4>
+                    <p>Given users with <code>name</code> and <code>surname</code>, create objects with
+                        <code>fullName</code>:
+                    </p>
+
+                    <div class="code-block">
+                        <span class="code-label">JavaScript - Exercise 33 Pattern</span>
+                        <code>
+function fullNames(arr) {<br>
+&nbsp;&nbsp;const result = [];<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;for (let i = 0; i < arr.length; i++) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// Create NEW object with different structure</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;const newObj = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fullName: arr[i].name + " " + arr[i].surname,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id: arr[i].id<br>
+&nbsp;&nbsp;&nbsp;&nbsp;};<br>
+&nbsp;&nbsp;&nbsp;&nbsp;result.push(newObj);<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;return result;<br>
+}
+                        </code>
+                    </div>
+
+                    <h4>Grouping by ID (Exercise 34)</h4>
+                    <p>Convert an array of objects into an object where keys are the IDs:</p>
+
+                    <div class="code-block">
+                        <span class="code-label">JavaScript - Exercise 34 Pattern</span>
+                        <code>
+<span class="comment">// Input: [{id: "john", name: "John"}, {id: "ann", name: "Ann"}]</span><br>
+<span class="comment">// Output: { john: {id: "john", name: "John"}, ann: {...} }</span><br>
+<br>
+function groupById(arr) {<br>
+&nbsp;&nbsp;const result = {};  <span class="comment">// Object, not array!</span><br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;for (let i = 0; i < arr.length; i++) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// Use the id as the KEY</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;result[arr[i].id] = arr[i];<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;return result;<br>
+}
+                        </code>
+                    </div>
+
+                    <div class="info-box info-box--purple">
+                        <h5>💡 Key Insight: Dynamic Object Keys</h5>
+                        <p>Use <code>obj[variable]</code> to set a key using a variable's value:<br>
+                            <code>result[arr[i].id] = arr[i]</code> creates <code>result.john = {...}</code>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Quiz 3 -->
+                <div class="quiz" data-correct="a" data-quiz-id="js2-quiz-3">
+                    <h4>📝 Quick Quiz: To use a variable as an object key, which syntax is correct?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkQuiz(this, 'a')">
+                            <span class="option-letter">A</span>
+                            <span><code>obj[variableName]</code></span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'b')">
+                            <span class="option-letter">B</span>
+                            <span><code>obj.variableName</code></span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'c')">
+                            <span class="option-letter">C</span>
+                            <span><code>obj{variableName}</code></span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'd')">
+                            <span class="option-letter">D</span>
+                            <span><code>obj->variableName</code></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LESSON 7.4: Constructor Functions -->
+                <div class="lesson">
+                    <h3>7.4 Constructor Functions & <code>this</code></h3>
+                    <p>Sometimes you need to create <strong>objects with methods</strong> that you can customize later.
+                    </p>
+
+                    <h4>The Factory Pattern (Exercise 35)</h4>
+                    <p>A "constructor" function creates and returns an object:</p>
+
+                    <div class="code-block">
+                        <span class="code-label">JavaScript - Exercise 35 Pattern</span>
+                        <code>
+function Calculator() {<br>
+&nbsp;&nbsp;<span class="comment">// Object with methods property</span><br>
+&nbsp;&nbsp;const obj = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;methods: {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+": (a, b) => a + b,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"-": (a, b) => a - b<br>
+&nbsp;&nbsp;&nbsp;&nbsp;},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;calculate(str) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// Parse "3 + 7" into parts</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const parts = str.split(" ");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const num1 = Number(parts[0]);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const operator = parts[1];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const num2 = Number(parts[2]);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// Look up operator and call it</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return this.methods[operator](num1, num2);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;addMethod(name, func) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.methods[name] = func;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;};<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;return obj;<br>
+}
+                        </code>
+                    </div>
+
+                    <div class="info-box info-box--info">
+                        <h5>📌 Understanding <code>this</code></h5>
+                        <p>Inside an object's method, <code>this</code> refers to the object itself.<br>
+                            <code>this.methods</code> = "the methods property of THIS object"
+                        </p>
+                    </div>
+
+                    <h4>Using the Calculator</h4>
+                    <div class="code-block">
+                        <span class="code-label">JavaScript</span>
+                        <code>
+const calc = Calculator();  <span class="comment">// Create calculator</span><br>
+<br>
+console.log(calc.calculate("3 + 7"));  <span class="comment">// 10</span><br>
+console.log(calc.calculate("10 - 4")); <span class="comment">// 6</span><br>
+<br>
+<span class="comment">// Add new operations!</span><br>
+calc.addMethod("*", (a, b) => a * b);<br>
+calc.addMethod("**", (a, b) => a ** b);<br>
+<br>
+console.log(calc.calculate("3 * 4"));  <span class="comment">// 12</span><br>
+console.log(calc.calculate("2 ** 8")); <span class="comment">// 256</span>
+                        </code>
+                    </div>
+
+                    <div class="info-box info-box--purple">
+                        <h5>💡 Mindset: Extensible Objects</h5>
+                        <p>The key insight: store operations as <strong>functions in an object</strong>.
+                            Then you can add new operations without changing the core code!</p>
+                    </div>
+                </div>
+
+                <!-- Quiz 4 -->
+                <div class="quiz" data-correct="b" data-quiz-id="js2-quiz-4">
+                    <h4>📝 Quick Quiz: What does <code>this</code> refer to inside an object method?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkQuiz(this, 'a')">
+                            <span class="option-letter">A</span>
+                            <span>The window object</span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'b')">
+                            <span class="option-letter">B</span>
+                            <span>The object that contains the method</span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'c')">
+                            <span class="option-letter">C</span>
+                            <span>The function itself</span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'd')">
+                            <span class="option-letter">D</span>
+                            <span>undefined</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LESSON 7.5: Closures -->
+                <div class="lesson">
+                    <h3>7.5 Closures & Function Chaining</h3>
+                    <p>This is one of JavaScript's most powerful (and tricky) concepts!</p>
+
+                    <h4>What is a Closure?</h4>
+                    <p>A <strong>closure</strong> is a function that "remembers" variables from its outer scope:</p>
+
+                    <div class="code-block">
+                        <span class="code-label">JavaScript</span>
+                        <code>
+function createCounter() {<br>
+&nbsp;&nbsp;let count = 0;  <span class="comment">// This variable is "closed over"</span><br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;return function() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;count++;  <span class="comment">// Can still access count!</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;return count;<br>
+&nbsp;&nbsp;};<br>
+}<br>
+<br>
+const counter = createCounter();<br>
+console.log(counter()); <span class="comment">// 1</span><br>
+console.log(counter()); <span class="comment">// 2</span><br>
+console.log(counter()); <span class="comment">// 3</span>
+                        </code>
+                    </div>
+
+                    <h4>Function Chaining (Exercise 36)</h4>
+                    <p>The challenge: make <code>sum(1)(2)(3) == 6</code> work. How?</p>
+
+                    <div class="info-box info-box--warning">
+                        <h5>⚠️ The Trick: Return a Function!</h5>
+                        <p>If <code>sum(1)</code> must be callable again like <code>sum(1)(2)</code>,
+                            then <code>sum(1)</code> must return a <strong>function</strong>.</p>
+                    </div>
+
+                    <div class="code-block">
+                        <span class="code-label">JavaScript - Exercise 36 Pattern</span>
+                        <code>
+function sum(x) {<br>
+&nbsp;&nbsp;let total = x;  <span class="comment">// Closure: remember running total</span><br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;function add(y) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;total += y;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;return add;  <span class="comment">// Return ITSELF for chaining!</span><br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;<span class="comment">// Magic: when compared with ==, JavaScript calls valueOf</span><br>
+&nbsp;&nbsp;add.valueOf = () => total;<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;return add;<br>
+}<br>
+<br>
+console.log(sum(1)(2)(3) == 6);  <span class="comment">// true!</span>
+                        </code>
+                    </div>
+
+                    <div class="info-box info-box--purple">
+                        <h5>💡 Mindset: Functions are Objects</h5>
+                        <p>In JavaScript, functions ARE objects! You can add properties to them like
+                            <code>add.valueOf</code>.
+                            This is what makes chaining possible.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Quiz 5 -->
+                <div class="quiz" data-correct="d" data-quiz-id="js2-quiz-5">
+                    <h4>📝 Quick Quiz: What must <code>sum(1)</code> return for <code>sum(1)(2)</code> to work?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkQuiz(this, 'a')">
+                            <span class="option-letter">A</span>
+                            <span>A number</span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'b')">
+                            <span class="option-letter">B</span>
+                            <span>An array</span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'c')">
+                            <span class="option-letter">C</span>
+                            <span>An object</span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'd')">
+                            <span class="option-letter">D</span>
+                            <span>A function</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LESSON 7.6: Promises -->
+                <div class="lesson">
+                    <h3>7.6 Promises & Async JavaScript</h3>
+                    <p>JavaScript often needs to wait for things (loading data, timers).
+                        <strong>Promises</strong> let you handle these "wait and then do something" situations.
+                    </p>
+
+                    <h4>Why Async? (The Problem)</h4>
+                    <p>JavaScript is <strong>single-threaded</strong> – it can only do one thing at a time.
+                        But we don't want to freeze the page while waiting for a timer or network request!</p>
+
+                    <h4>Creating a Promise (Exercise 37)</h4>
+                    <div class="code-block">
+                        <span class="code-label">JavaScript - Exercise 37 Pattern</span>
+                        <code>
+function delay(ms) {<br>
+&nbsp;&nbsp;return new Promise((resolve) => {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;setTimeout(resolve, ms);<br>
+&nbsp;&nbsp;});<br>
+}<br>
+<br>
+<span class="comment">// Usage:</span><br>
+delay(3000).then(() => {<br>
+&nbsp;&nbsp;console.log("3 seconds passed!");<br>
+});
+                        </code>
+                    </div>
+
+                    <div class="info-box info-box--info">
+                        <h5>📌 How Promises Work</h5>
+                        <p><code>new Promise((resolve) => {...})</code> creates a promise.<br>
+                            Call <code>resolve()</code> when the async task is done.<br>
+                            <code>.then()</code> runs the callback after <code>resolve()</code> is called.
+                        </p>
+                    </div>
+
+                    <h4>Promise Chaining (Exercise 38)</h4>
+                    <p>Chain multiple <code>.then()</code> calls for sequential operations:</p>
+
+                    <div class="code-block">
+                        <span class="code-label">JavaScript - Exercise 38 Pattern</span>
+                        <code>
+function showSequenceMessages() {<br>
+&nbsp;&nbsp;delay(1000)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.then(() => {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log("Starting...");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return delay(2000);  <span class="comment">// Return next promise!</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;})<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.then(() => {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log("Completed!");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return delay(1000);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;})<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.then(() => {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log("End of messages.");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;});<br>
+}
+                        </code>
+                    </div>
+
+                    <div class="info-box info-box--warning">
+                        <h5>⚠️ Key: Return the Next Promise</h5>
+                        <p>To chain properly, each <code>.then()</code> must <code>return</code> the next promise.
+                            Otherwise they run in parallel, not sequence!</p>
+                    </div>
+                </div>
+
+                <!-- Quiz 6 -->
+                <div class="quiz" data-correct="c" data-quiz-id="js2-quiz-6">
+                    <h4>📝 Quick Quiz: What do you call to signal a Promise is complete?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkQuiz(this, 'a')">
+                            <span class="option-letter">A</span>
+                            <span><code>complete()</code></span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'b')">
+                            <span class="option-letter">B</span>
+                            <span><code>done()</code></span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'c')">
+                            <span class="option-letter">C</span>
+                            <span><code>resolve()</code></span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'd')">
+                            <span class="option-letter">D</span>
+                            <span><code>finish()</code></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercise 2 -->
+                <div class="exercise">
+                    <h4>Exercise: Promise Delay</h4>
+                    <p>Write a <code>delay(ms)</code> function that returns a Promise that resolves after
+                        <code>ms</code> milliseconds:</p>
+
+                    <textarea id="js2-ex-2" rows="12" spellcheck="false">function delay(ms) {
+  // Return a new Promise that resolves after ms milliseconds
+  // Hint: use setTimeout inside the Promise
+  
+}
+
+// Test it:
+console.log("Starting...");
+delay(2000).then(() => {
+  console.log("2 seconds passed!");
+});</textarea>
+
+                    <button class="btn" onclick="runJSCode('js2-ex-2', 'js2-ex-2-output')">▶ Run Code</button>
+                    <div class="output-container" id="js2-ex-2-output"></div>
+                </div>
+
+                <!-- LESSON 7.7: DOM Events & Form Validation (HTML/CSS Integration) -->
+                <div class="lesson">
+                    <h3>7.7 Combining JavaScript with HTML & CSS</h3>
+                    <p>This is where it all comes together! JavaScript can <strong>read from</strong> and
+                        <strong>modify</strong> your HTML page dynamically.
+                    </p>
+
+                    <div class="info-box info-box--success">
+                        <h5>🔗 The Connection: JS + HTML + CSS</h5>
+                        <p><strong>HTML</strong>: Structure (what elements exist)<br>
+                            <strong>CSS</strong>: Appearance (how they look)<br>
+                            <strong>JavaScript</strong>: Behavior (what happens when user interacts)
+                        </p>
+                    </div>
+
+                    <h4>Event Listeners (Exercise 39)</h4>
+                    <p>HTML buttons trigger JavaScript functions when clicked:</p>
+
+                    <div class="code-block">
+                        <span class="code-label">HTML</span>
+                        <code>
+&lt;button <span class="attr">id</span>=<span class="value">"accept-btn"</span>&gt;Accept&lt;/button&gt;<br>
+&lt;button <span class="attr">id</span>=<span class="value">"decline-btn"</span>&gt;Decline&lt;/button&gt;
+                        </code>
+                    </div>
+
+                    <div class="code-block">
+                        <span class="code-label">JavaScript - Exercise 39 Pattern</span>
+                        <code>
+function handleButtons(event) {<br>
+&nbsp;&nbsp;let message = '';<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;<span class="comment">// Check WHICH button was clicked</span><br>
+&nbsp;&nbsp;if (event.target.id === 'accept-btn') {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;message = 'Accepted';<br>
+&nbsp;&nbsp;} else if (event.target.id === 'decline-btn') {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;message = 'Declined';<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;<span class="comment">// Create new paragraph element</span><br>
+&nbsp;&nbsp;const p = document.createElement('p');<br>
+&nbsp;&nbsp;p.textContent = message;<br>
+&nbsp;&nbsp;document.body.appendChild(p);<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;<span class="comment">// Remove after 2 seconds</span><br>
+&nbsp;&nbsp;setTimeout(() => {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;p.remove();<br>
+&nbsp;&nbsp;}, 2000);<br>
+}
+                        </code>
+                    </div>
+
+                    <div class="info-box info-box--purple">
+                        <h5>💡 Key Concepts</h5>
+                        <ul>
+                            <li><code>event.target</code> = the element that was clicked</li>
+                            <li><code>document.createElement('p')</code> = create new element</li>
+                            <li><code>element.textContent</code> = set text inside element</li>
+                            <li><code>parent.appendChild(child)</code> = add element to page</li>
+                            <li><code>element.remove()</code> = remove element from page</li>
+                        </ul>
+                    </div>
+
+                    <h4>Form Validation (Exercise 40)</h4>
+                    <p>Validate user input before allowing form submission:</p>
+
+                    <div class="code-block">
+                        <span class="code-label">HTML - Form Structure</span>
+                        <code>
+&lt;form <span class="attr">id</span>=<span class="value">"mainform"</span> <span class="attr">onsubmit</span>=<span class="value">"return validate()"</span>&gt;<br>
+&nbsp;&nbsp;&lt;input <span class="attr">type</span>=<span class="value">"text"</span> <span class="attr">id</span>=<span class="value">"code"</span> <span class="attr">placeholder</span>=<span class="value">"Code (number)"</span>&gt;<br>
+&nbsp;&nbsp;&lt;input <span class="attr">type</span>=<span class="value">"email"</span> <span class="attr">id</span>=<span class="value">"email"</span> <span class="attr">placeholder</span>=<span class="value">"Email"</span>&gt;<br>
+&nbsp;&nbsp;&lt;input <span class="attr">type</span>=<span class="value">"password"</span> <span class="attr">id</span>=<span class="value">"pass"</span> <span class="attr">placeholder</span>=<span class="value">"Password"</span>&gt;<br>
+&nbsp;&nbsp;&lt;input <span class="attr">type</span>=<span class="value">"password"</span> <span class="attr">id</span>=<span class="value">"pass_conf"</span> <span class="attr">placeholder</span>=<span class="value">"Confirm"</span>&gt;<br>
+&nbsp;&nbsp;&lt;button <span class="attr">type</span>=<span class="value">"submit"</span>&gt;Submit&lt;/button&gt;<br>
+&lt;/form&gt;
+                        </code>
+                    </div>
+
+                    <div class="code-block">
+                        <span class="code-label">JavaScript - Exercise 40 Pattern</span>
+                        <code>
+function validate() {<br>
+&nbsp;&nbsp;<span class="comment">// Get values from form fields</span><br>
+&nbsp;&nbsp;const email = document.getElementById("email").value;<br>
+&nbsp;&nbsp;const code = document.getElementById("code").value;<br>
+&nbsp;&nbsp;const pass = document.getElementById("pass").value;<br>
+&nbsp;&nbsp;const confirmPass = document.getElementById("pass_conf").value;<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;<span class="comment">// Rule 1: No empty fields</span><br>
+&nbsp;&nbsp;if (email === "" || code === "" || pass === "") {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;return false;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;<span class="comment">// Rule 2: Max 15 characters</span><br>
+&nbsp;&nbsp;if (code.length > 15 || email.length > 15) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;return false;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;<span class="comment">// Rule 3: Password min 9 characters</span><br>
+&nbsp;&nbsp;if (pass.length < 9) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;return false;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;<span class="comment">// Rule 4: Code must be a number</span><br>
+&nbsp;&nbsp;if (isNaN(code)) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;return false;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;<span class="comment">// Rule 5: Passwords must match</span><br>
+&nbsp;&nbsp;if (pass !== confirmPass) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;return false;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;<span class="comment">// Rule 6: Email must have @ and .</span><br>
+&nbsp;&nbsp;if (!email.includes("@") || !email.includes(".")) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;return false;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;return true;  <span class="comment">// All rules passed!</span><br>
+}
+                        </code>
+                    </div>
+
+                    <div class="info-box info-box--info">
+                        <h5>📌 Mindset: Validation Pattern</h5>
+                        <p>Check each rule one by one. <code>return false</code> immediately if any rule fails.
+                            Only <code>return true</code> at the very end if ALL rules pass.</p>
+                    </div>
+                </div>
+
+                <!-- Quiz 7 -->
+                <div class="quiz" data-correct="b" data-quiz-id="js2-quiz-7">
+                    <h4>📝 Quick Quiz: What does <code>document.getElementById("email").value</code> return?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkQuiz(this, 'a')">
+                            <span class="option-letter">A</span>
+                            <span>The input element itself</span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'b')">
+                            <span class="option-letter">B</span>
+                            <span>The text typed into the input field</span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'c')">
+                            <span class="option-letter">C</span>
+                            <span>The id of the element</span>
+                        </div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 'd')">
+                            <span class="option-letter">D</span>
+                            <span>undefined</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercise 3: DOM -->
+                <div class="exercise">
+                    <h4>Exercise: Dynamic Elements</h4>
+                    <p>Write code that creates a paragraph, adds it to the page, then removes it after 3 seconds:</p>
+
+                    <textarea id="js2-ex-3" rows="10" spellcheck="false">// Create a new <p> element
+const p = document.createElement('p');
+p.textContent = 'Hello! I will disappear in 3 seconds...';
+
+// Add it to the output container (not document.body for this exercise)
+document.getElementById('js2-ex-3-output').appendChild(p);
+
+// TODO: Use setTimeout to remove the paragraph after 3 seconds
+</textarea>
+
+                    <button class="btn" onclick="runJSCode('js2-ex-3', 'js2-ex-3-output')">▶ Run Code</button>
+                    <div class="output-container" id="js2-ex-3-output"></div>
+                </div>
+
+                <!-- Exercise Mapping -->
+                <div class="lesson">
+                    <h3>7.8 Exercise Mapping Guide</h3>
+                    <p>Here's how this chapter's lessons map to the exercises:</p>
+
+                    <div class="table-wrapper">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Exercise</th>
+                                    <th>Topic</th>
+                                    <th>Relevant Lesson</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>31</td>
+                                    <td>Filter array in-place</td>
+                                    <td>7.2 (splice, backwards loop)</td>
+                                </tr>
+                                <tr>
+                                    <td>32</td>
+                                    <td>Remove duplicates</td>
+                                    <td>7.2 (includes, accumulator)</td>
+                                </tr>
+                                <tr>
+                                    <td>33</td>
+                                    <td>Transform objects</td>
+                                    <td>7.3 (object mapping)</td>
+                                </tr>
+                                <tr>
+                                    <td>34</td>
+                                    <td>Group by ID</td>
+                                    <td>7.3 (dynamic keys)</td>
+                                </tr>
+                                <tr>
+                                    <td>35</td>
+                                    <td>Extensible Calculator</td>
+                                    <td>7.4 (constructor, this)</td>
+                                </tr>
+                                <tr>
+                                    <td>36</td>
+                                    <td>Chained sum(1)(2)</td>
+                                    <td>7.5 (closures, valueOf)</td>
+                                </tr>
+                                <tr>
+                                    <td>37</td>
+                                    <td>Promise delay</td>
+                                    <td>7.6 (Promise, setTimeout)</td>
+                                </tr>
+                                <tr>
+                                    <td>38</td>
+                                    <td>Sequence messages</td>
+                                    <td>7.6 (Promise chaining)</td>
+                                </tr>
+                                <tr>
+                                    <td>39</td>
+                                    <td>Button handlers</td>
+                                    <td>7.7 (DOM events, createElement)</td>
+                                </tr>
+                                <tr>
+                                    <td>40</td>
+                                    <td>Form validation</td>
+                                    <td>7.7 (getValue, isNaN, validation)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 WebDev Academy | Created for learning web development</p>
+    </footer>
+
+    <script src="../app.js"></script>
+</body>
+
+</html>
