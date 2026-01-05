@@ -803,62 +803,157 @@ console.log(sumArray([1, 2, 3, 4, 5]));  // Should output: 15</textarea>
                 <!-- Lesson 8: Objects -->
                 <div class="lesson">
                     <h3>6.8 Objects</h3>
-                    <p>Objects store data as key-value pairs (properties).</p>
+                    <p>Objects are one of the most important concepts in JavaScript. They let you group related data
+                        together.</p>
 
-                    <h4>Creating Objects</h4>
+                    <div class="info-box info-box--purple">
+                        <h5>💡 Why Use Objects?</h5>
+                        <p>Imagine you need to store information about a person: their name, age, and email.
+                            Without objects, you'd need 3 separate variables:</p>
+                        <code>let personName = "Alice"; let personAge = 25; let personEmail = "alice@email.com";</code>
+                        <p>With an <strong>object</strong>, you group all related data together under one name!</p>
+                    </div>
+
+                    <h4>What is an Object?</h4>
+                    <p>An object is a collection of <strong>key-value pairs</strong> (called properties). Think of it
+                        like a labeled container:</p>
+
                     <div class="code-block">
                         <span class="code-label">JavaScript</span>
                         <code>
+<span class="comment">// Think of this like a filing cabinet with labeled drawers</span><br>
 const person = {<br>
-&nbsp;&nbsp;name: "Alice",<br>
-&nbsp;&nbsp;age: 25,<br>
-&nbsp;&nbsp;isStudent: true<br>
+&nbsp;&nbsp;name: "Alice",      <span class="comment">// key: "name", value: "Alice"</span><br>
+&nbsp;&nbsp;age: 25,            <span class="comment">// key: "age", value: 25</span><br>
+&nbsp;&nbsp;isStudent: true     <span class="comment">// key: "isStudent", value: true</span><br>
 };<br>
 <br>
-<span class="comment">// Accessing properties</span><br>
-console.log(person.name);      <span class="comment">// "Alice" (dot notation)</span><br>
-console.log(person["age"]);    <span class="comment">// 25 (bracket notation)</span>
+<span class="comment">// You can store ANY type of value in an object:</span><br>
+<span class="comment">// - Strings, numbers, booleans</span><br>
+<span class="comment">// - Arrays, other objects</span><br>
+<span class="comment">// - Even functions!</span>
                         </code>
                     </div>
 
-                    <h4>Object Methods (Exercises 21-25)</h4>
+                    <h4>Accessing Properties: Two Ways</h4>
+                    <p>There are two ways to get values from an object:</p>
+
                     <div class="code-block">
                         <span class="code-label">JavaScript</span>
                         <code>
+const person = { name: "Alice", age: 25 };<br>
+<br>
+<span class="comment">// 1. Dot notation (most common, cleaner)</span><br>
+console.log(person.name);      <span class="comment">// "Alice"</span><br>
+console.log(person.age);       <span class="comment">// 25</span><br>
+<br>
+<span class="comment">// 2. Bracket notation (needed for dynamic keys)</span><br>
+console.log(person["name"]);   <span class="comment">// "Alice"</span><br>
+<br>
+<span class="comment">// Bracket notation shines when the key is in a variable:</span><br>
+const keyName = "age";<br>
+console.log(person[keyName]);  <span class="comment">// 25 - this works!</span><br>
+console.log(person.keyName);   <span class="comment">// undefined - this looks for literal "keyName"</span>
+                        </code>
+                    </div>
+
+                    <div class="info-box info-box--warning">
+                        <h5>⚠️ When to Use Bracket Notation</h5>
+                        <p>Use brackets <code>obj[key]</code> when:</p>
+                        <ul>
+                            <li>The key is stored in a variable</li>
+                            <li>The key has spaces or special characters: <code>obj["full name"]</code></li>
+                        </ul>
+                    </div>
+
+                    <h4>Modifying Objects</h4>
+                    <div class="code-block">
+                        <span class="code-label">JavaScript</span>
+                        <code>
+const person = { name: "Alice", age: 25 };<br>
+<br>
+<span class="comment">// Change existing property</span><br>
+person.age = 26;<br>
+<br>
+<span class="comment">// Add new property</span><br>
+person.email = "alice@email.com";<br>
+<br>
+<span class="comment">// Delete a property</span><br>
+delete person.isStudent;<br>
+<br>
+console.log(person);<br>
+<span class="comment">// { name: "Alice", age: 26, email: "alice@email.com" }</span>
+                        </code>
+                    </div>
+
+                    <div class="info-box info-box--info">
+                        <h5>📌 Objects are Mutable</h5>
+                        <p>Even though we used <code>const</code>, we can still change the object's properties.
+                            <code>const</code> only prevents reassigning the variable, not modifying the object's
+                            contents.
+                        </p>
+                    </div>
+
+                    <h4>Useful Object Methods (Exercises 21-25)</h4>
+                    <div class="code-block">
+                        <span class="code-label">JavaScript</span>
+                        <code>
+const person = { name: "Alice", age: 25, city: "Athens" };<br>
+<br>
+<span class="comment">// Get all keys as an array</span><br>
+Object.keys(person);    <span class="comment">// ["name", "age", "city"]</span><br>
+<br>
+<span class="comment">// Get all values as an array</span><br>
+Object.values(person);  <span class="comment">// ["Alice", 25, "Athens"]</span><br>
+<br>
 <span class="comment">// Count properties</span><br>
-function countProperties(obj) {<br>
-&nbsp;&nbsp;return Object.keys(obj).length;<br>
-}<br>
+Object.keys(person).length;  <span class="comment">// 3</span><br>
 <br>
 <span class="comment">// Check if property exists</span><br>
-function hasProperty(obj, key) {<br>
-&nbsp;&nbsp;return obj.hasOwnProperty(key);<br>
-}<br>
-<br>
-<span class="comment">// Get all keys</span><br>
-function getKeys(obj) {<br>
-&nbsp;&nbsp;return Object.keys(obj);<br>
-}<br>
-<br>
-<span class="comment">// Merge two objects</span><br>
-function mergeObjects(obj1, obj2) {<br>
-&nbsp;&nbsp;return { ...obj1, ...obj2 };<br>
-}
+person.hasOwnProperty("name");  <span class="comment">// true</span><br>
+person.hasOwnProperty("email"); <span class="comment">// false</span>
                         </code>
                     </div>
 
-                    <h4>for...in Loop</h4>
+                    <h4>Looping Through Objects: for...in</h4>
                     <div class="code-block">
                         <span class="code-label">JavaScript</span>
                         <code>
-<span class="comment">// Multiply all values by a multiplier</span><br>
-function multiplyValues(obj, multiplier) {<br>
-&nbsp;&nbsp;const result = {};<br>
-&nbsp;&nbsp;for (let key in obj) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;result[key] = obj[key] * multiplier;<br>
-&nbsp;&nbsp;}<br>
-&nbsp;&nbsp;return result;<br>
-}
+const scores = { math: 90, english: 85, science: 92 };<br>
+<br>
+<span class="comment">// for...in loops through all KEYS</span><br>
+for (let subject in scores) {<br>
+&nbsp;&nbsp;console.log(subject + ": " + scores[subject]);<br>
+}<br>
+<span class="comment">// Output:</span><br>
+<span class="comment">// math: 90</span><br>
+<span class="comment">// english: 85</span><br>
+<span class="comment">// science: 92</span>
+                        </code>
+                    </div>
+
+                    <div class="info-box info-box--purple">
+                        <h5>💡 Mindset: Objects vs Arrays</h5>
+                        <p><strong>Use Arrays</strong> when you have a <em>list</em> of similar items (e.g., list of
+                            names)<br>
+                            <strong>Use Objects</strong> when you have <em>labeled</em> data with different types (e.g.,
+                            a person's info)
+                        </p>
+                    </div>
+
+                    <h4>Merging Objects (Spread Operator)</h4>
+                    <div class="code-block">
+                        <span class="code-label">JavaScript</span>
+                        <code>
+const defaults = { theme: "dark", language: "en" };<br>
+const userPrefs = { language: "el" };<br>
+<br>
+<span class="comment">// Spread operator (...) copies properties</span><br>
+const merged = { ...defaults, ...userPrefs };<br>
+<br>
+console.log(merged);<br>
+<span class="comment">// { theme: "dark", language: "el" }</span><br>
+<span class="comment">// Note: userPrefs.language overrides defaults.language!</span>
                         </code>
                     </div>
                 </div>
