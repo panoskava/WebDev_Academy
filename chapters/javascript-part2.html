@@ -329,32 +329,108 @@ function groupById(arr) {<br>
                     <p>Sometimes you need to create <strong>objects with methods</strong> that you can customize later.
                     </p>
 
-                    <h4>The Factory Pattern (Exercise 35)</h4>
-                    <p>A "constructor" function creates and returns an object:</p>
+                    <div class="info-box info-box--purple">
+                        <h5>💡 Why Constructor Functions?</h5>
+                        <p>Imagine you need to create multiple calculators, each with different operations.
+                            Instead of writing code for each one, you write a <strong>template</strong> (the
+                            constructor)
+                            that creates configured calculators on demand.</p>
+                    </div>
 
+                    <h4>Understanding the Problem (Exercise 35)</h4>
+                    <p>We need to create an "extensible calculator" that:</p>
+                    <ul>
+                        <li>Parses strings like <code>"3 + 7"</code> and returns the result</li>
+                        <li>Starts with <code>+</code> and <code>-</code> operations</li>
+                        <li>Allows <strong>adding new operations</strong> later</li>
+                    </ul>
+
+                    <h4>Step-by-Step Logic Breakdown</h4>
+
+                    <div class="info-box info-box--info">
+                        <h5>📌 Step 1: Store Operations as Functions</h5>
+                        <p>The key insight is: <strong>operators are just functions</strong>!<br>
+                            <code>+</code> takes two numbers and returns their sum.<br>
+                            <code>-</code> takes two numbers and returns their difference.<br>
+                            We can store these as functions in an object:
+                        </p>
+                    </div>
+
+                    <div class="code-block">
+                        <span class="code-label">JavaScript - The Logic</span>
+                        <code>
+<span class="comment">// Operations stored as functions</span><br>
+const methods = {<br>
+&nbsp;&nbsp;"+": (a, b) => a + b,  <span class="comment">// Takes a, b, returns sum</span><br>
+&nbsp;&nbsp;"-": (a, b) => a - b   <span class="comment">// Takes a, b, returns difference</span><br>
+};<br>
+<br>
+<span class="comment">// To use: look up the operator, call the function</span><br>
+methods["+"](3, 7);  <span class="comment">// Returns 10</span><br>
+methods["-"](10, 4); <span class="comment">// Returns 6</span>
+                        </code>
+                    </div>
+
+                    <div class="info-box info-box--info">
+                        <h5>📌 Step 2: Parse the Input String</h5>
+                        <p>Given <code>"3 + 7"</code>, we need to extract: first number, operator, second number.</p>
+                    </div>
+
+                    <div class="code-block">
+                        <span class="code-label">JavaScript - Parsing</span>
+                        <code>
+const str = "3 + 7";<br>
+<br>
+<span class="comment">// Split by spaces into array</span><br>
+const parts = str.split(" ");  <span class="comment">// ["3", "+", "7"]</span><br>
+<br>
+const num1 = Number(parts[0]);     <span class="comment">// 3 (convert string to number)</span><br>
+const operator = parts[1];         <span class="comment">// "+"</span><br>
+const num2 = Number(parts[2]);     <span class="comment">// 7</span>
+                        </code>
+                    </div>
+
+                    <div class="info-box info-box--info">
+                        <h5>📌 Step 3: Look Up and Execute</h5>
+                        <p>Use the operator to find the right function, then call it!</p>
+                    </div>
+
+                    <div class="code-block">
+                        <span class="code-label">JavaScript - Execute</span>
+                        <code>
+<span class="comment">// Look up the function for this operator</span><br>
+const operatorFunction = methods[operator];  <span class="comment">// methods["+"]</span><br>
+<br>
+<span class="comment">// Call it with our numbers</span><br>
+const result = operatorFunction(num1, num2); <span class="comment">// 10</span>
+                        </code>
+                    </div>
+
+                    <h4>The Complete Solution</h4>
                     <div class="code-block">
                         <span class="code-label">JavaScript - Exercise 35 Pattern</span>
                         <code>
 function Calculator() {<br>
-&nbsp;&nbsp;<span class="comment">// Object with methods property</span><br>
 &nbsp;&nbsp;const obj = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// Store operators as functions</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;methods: {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+": (a, b) => a + b,<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"-": (a, b) => a - b<br>
 &nbsp;&nbsp;&nbsp;&nbsp;},<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;calculate(str) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// Parse "3 + 7" into parts</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// Parse the string</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const parts = str.split(" ");<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const num1 = Number(parts[0]);<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const operator = parts[1];<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const num2 = Number(parts[2]);<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// Look up operator and call it</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// Look up and execute</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return this.methods[operator](num1, num2);<br>
 &nbsp;&nbsp;&nbsp;&nbsp;},<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;addMethod(name, func) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// Add new operation to methods object</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.methods[name] = func;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br>
 &nbsp;&nbsp;};<br>
@@ -364,10 +440,12 @@ function Calculator() {<br>
                         </code>
                     </div>
 
-                    <div class="info-box info-box--info">
-                        <h5>📌 Understanding <code>this</code></h5>
-                        <p>Inside an object's method, <code>this</code> refers to the object itself.<br>
-                            <code>this.methods</code> = "the methods property of THIS object"
+                    <div class="info-box info-box--warning">
+                        <h5>⚠️ Understanding <code>this</code></h5>
+                        <p>Inside a method, <code>this</code> refers to the object that contains the method.<br>
+                            <code>this.methods</code> means "look for <code>methods</code> inside THIS object".<br><br>
+                            <strong>Why not just write <code>obj.methods</code>?</strong><br>
+                            Using <code>this</code> makes the code work even if the variable name changes!
                         </p>
                     </div>
 
@@ -380,7 +458,7 @@ const calc = Calculator();  <span class="comment">// Create calculator</span><br
 console.log(calc.calculate("3 + 7"));  <span class="comment">// 10</span><br>
 console.log(calc.calculate("10 - 4")); <span class="comment">// 6</span><br>
 <br>
-<span class="comment">// Add new operations!</span><br>
+<span class="comment">// Add new operations - this is the "extensible" part!</span><br>
 calc.addMethod("*", (a, b) => a * b);<br>
 calc.addMethod("**", (a, b) => a ** b);<br>
 <br>
@@ -390,9 +468,10 @@ console.log(calc.calculate("2 ** 8")); <span class="comment">// 256</span>
                     </div>
 
                     <div class="info-box info-box--purple">
-                        <h5>💡 Mindset: Extensible Objects</h5>
-                        <p>The key insight: store operations as <strong>functions in an object</strong>.
-                            Then you can add new operations without changing the core code!</p>
+                        <h5>💡 Mindset: Data-Driven Design</h5>
+                        <p>Instead of hard-coding <code>if (operator === "+") { return a + b; }</code>,
+                            we store operations as <strong>data</strong> (functions in an object).
+                            This makes the code flexible - add new operations by adding data, not code!</p>
                     </div>
                 </div>
 
@@ -424,8 +503,17 @@ console.log(calc.calculate("2 ** 8")); <span class="comment">// 256</span>
                     <h3>7.5 Closures & Function Chaining</h3>
                     <p>This is one of JavaScript's most powerful (and tricky) concepts!</p>
 
+                    <div class="info-box info-box--purple">
+                        <h5>💡 Why Closures Exist</h5>
+                        <p>Normally, variables inside a function are destroyed when the function ends.
+                            But what if you NEED to keep a value around? Closures let a function
+                            <strong>remember</strong> variables even after its parent function finishes.
+                        </p>
+                    </div>
+
                     <h4>What is a Closure?</h4>
-                    <p>A <strong>closure</strong> is a function that "remembers" variables from its outer scope:</p>
+                    <p>A <strong>closure</strong> is created when a function "captures" variables from its outer scope:
+                    </p>
 
                     <div class="code-block">
                         <span class="code-label">JavaScript</span>
@@ -446,24 +534,80 @@ console.log(counter()); <span class="comment">// 3</span>
                         </code>
                     </div>
 
-                    <h4>Function Chaining (Exercise 36)</h4>
-                    <p>The challenge: make <code>sum(1)(2)(3) == 6</code> work. How?</p>
+                    <div class="info-box info-box--info">
+                        <h5>📌 How It Works Step-by-Step</h5>
+                        <p>1. <code>createCounter()</code> runs, creates <code>count = 0</code><br>
+                            2. It returns the inner function (which references <code>count</code>)<br>
+                            3. <code>createCounter</code> finishes, but <code>count</code> survives!<br>
+                            4. Every time you call <code>counter()</code>, it uses THE SAME <code>count</code></p>
+                    </div>
+
+                    <h4>Understanding the Challenge (Exercise 36)</h4>
+                    <p>We need to make <code>sum(1)(2)(3) == 6</code> work. Let's break this down:</p>
+
+                    <div class="code-block">
+                        <span class="code-label">Analyzing the Problem</span>
+                        <code>
+<span class="comment">// What does this syntax mean?</span><br>
+sum(1)(2)(3) == 6<br>
+<br>
+<span class="comment">// Let's break it into steps:</span><br>
+<span class="comment">// Step 1: sum(1) is called → must return SOMETHING</span><br>
+<span class="comment">// Step 2: that SOMETHING is called with (2)</span><br>
+<span class="comment">// Step 3: that result is called with (3)</span><br>
+<span class="comment">// Step 4: that result is compared with 6</span><br>
+<br>
+<span class="comment">// KEY INSIGHT: For (2) and (3) to work, </span><br>
+<span class="comment">// sum(1) must return a FUNCTION!</span>
+                        </code>
+                    </div>
 
                     <div class="info-box info-box--warning">
-                        <h5>⚠️ The Trick: Return a Function!</h5>
-                        <p>If <code>sum(1)</code> must be callable again like <code>sum(1)(2)</code>,
-                            then <code>sum(1)</code> must return a <strong>function</strong>.</p>
+                        <h5>⚠️ The Key Insight: Return a Function</h5>
+                        <p>If <code>sum(1)</code> needs to be called again like <code>sum(1)(2)</code>,
+                            then <code>sum(1)</code> <strong>must return a function</strong>.<br><br>
+                            That returned function also returns itself, allowing infinite chaining!</p>
+                    </div>
+
+                    <h4>Building the Solution Step-by-Step</h4>
+
+                    <div class="code-block">
+                        <span class="code-label">JavaScript - Step 1: Basic Structure</span>
+                        <code>
+function sum(x) {<br>
+&nbsp;&nbsp;let total = x;  <span class="comment">// Remember the first number</span><br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;function add(y) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;total += y;   <span class="comment">// Add new number to total</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;return add;   <span class="comment">// Return OURSELVES for chaining</span><br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;return add;  <span class="comment">// Return the add function</span><br>
+}<br>
+<br>
+<span class="comment">// Now sum(1)(2)(3) works but...</span><br>
+<span class="comment">// How do we get the final number out?</span>
+                        </code>
+                    </div>
+
+                    <div class="info-box info-box--info">
+                        <h5>📌 The valueOf Trick</h5>
+                        <p>When JavaScript compares a function with <code>==</code>, it calls the function's
+                            <code>valueOf()</code> method to get a primitive value.<br><br>
+                            By adding <code>add.valueOf = () => total</code>, we tell JavaScript:
+                            "When you need a number, use <code>total</code>"
+                        </p>
                     </div>
 
                     <div class="code-block">
-                        <span class="code-label">JavaScript - Exercise 36 Pattern</span>
+                        <span class="code-label">JavaScript - Complete Solution (Exercise 36)</span>
                         <code>
 function sum(x) {<br>
 &nbsp;&nbsp;let total = x;  <span class="comment">// Closure: remember running total</span><br>
 &nbsp;&nbsp;<br>
 &nbsp;&nbsp;function add(y) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;total += y;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;return add;  <span class="comment">// Return ITSELF for chaining!</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;total += y;    <span class="comment">// Add to the running total</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;return add;    <span class="comment">// Return itself for more chaining</span><br>
 &nbsp;&nbsp;}<br>
 &nbsp;&nbsp;<br>
 &nbsp;&nbsp;<span class="comment">// Magic: when compared with ==, JavaScript calls valueOf</span><br>
@@ -472,16 +616,23 @@ function sum(x) {<br>
 &nbsp;&nbsp;return add;<br>
 }<br>
 <br>
-console.log(sum(1)(2)(3) == 6);  <span class="comment">// true!</span>
+<span class="comment">// Let's trace through sum(1)(2)(3) == 6:</span><br>
+<span class="comment">// 1. sum(1) → total=1, returns add function</span><br>
+<span class="comment">// 2. add(2) → total=3, returns add function</span><br>
+<span class="comment">// 3. add(3) → total=6, returns add function</span><br>
+<span class="comment">// 4. add == 6 → calls valueOf() → returns 6</span><br>
+<span class="comment">// 5. 6 == 6 → true!</span>
                         </code>
                     </div>
 
                     <div class="info-box info-box--purple">
-                        <h5>💡 Mindset: Functions are Objects</h5>
-                        <p>In JavaScript, functions ARE objects! You can add properties to them like
-                            <code>add.valueOf</code>.
-                            This is what makes chaining possible.
-                        </p>
+                        <h5>💡 Key Takeaways</h5>
+                        <ul>
+                            <li><strong>Closures</strong>: Inner functions remember outer variables</li>
+                            <li><strong>Self-returning functions</strong>: Return yourself for chaining</li>
+                            <li><strong>Functions are objects</strong>: You can add properties like <code>valueOf</code>
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
@@ -515,16 +666,73 @@ console.log(sum(1)(2)(3) == 6);  <span class="comment">// true!</span>
                         <strong>Promises</strong> let you handle these "wait and then do something" situations.
                     </p>
 
-                    <h4>Why Async? (The Problem)</h4>
-                    <p>JavaScript is <strong>single-threaded</strong> – it can only do one thing at a time.
-                        But we don't want to freeze the page while waiting for a timer or network request!</p>
+                    <div class="info-box info-box--purple">
+                        <h5>💡 Why Do We Need Async?</h5>
+                        <p>JavaScript runs on a <strong>single thread</strong> - it can only do one thing at a
+                            time.<br><br>
+                            <strong>Problem:</strong> If we wait for a 3-second timer like this:<br>
+                            <code>wait(3000); console.log("Done!");</code><br>
+                            The ENTIRE page would freeze for 3 seconds!<br><br>
+                            <strong>Solution:</strong> Tell JavaScript "start this timer, and I'll tell you what to do
+                            when it finishes" - that's async programming!
+                        </p>
+                    </div>
 
-                    <h4>Creating a Promise (Exercise 37)</h4>
+                    <h4>Understanding setTimeout</h4>
+                    <p>Before promises, let's understand <code>setTimeout</code>:</p>
+
                     <div class="code-block">
-                        <span class="code-label">JavaScript - Exercise 37 Pattern</span>
+                        <span class="code-label">JavaScript</span>
+                        <code>
+console.log("1. Start");<br>
+<br>
+setTimeout(() => {<br>
+&nbsp;&nbsp;console.log("2. This runs LATER (after 2 seconds)");<br>
+}, 2000);<br>
+<br>
+console.log("3. End");<br>
+<br>
+<span class="comment">// Output order: 1, 3, 2</span><br>
+<span class="comment">// JavaScript doesn't WAIT - it schedules and moves on!</span>
+                        </code>
+                    </div>
+
+                    <div class="info-box info-box--info">
+                        <h5>📌 How setTimeout Works</h5>
+                        <p><code>setTimeout(callback, ms)</code> says:<br>
+                            "After <code>ms</code> milliseconds, run the <code>callback</code> function"<br><br>
+                            JavaScript sets the timer, then <strong>immediately continues</strong> to the next line!</p>
+                    </div>
+
+                    <h4>The Problem: Callback Hell</h4>
+                    <p>What if you need to do things in sequence? With callbacks, it gets messy:</p>
+
+                    <div class="code-block">
+                        <span class="code-label">JavaScript - The Problem (Nested Callbacks)</span>
+                        <code>
+setTimeout(() => {<br>
+&nbsp;&nbsp;console.log("Step 1");<br>
+&nbsp;&nbsp;setTimeout(() => {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;console.log("Step 2");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;setTimeout(() => {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log("Step 3");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// This keeps indenting... "callback hell" 😱</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;}, 1000);<br>
+&nbsp;&nbsp;}, 1000);<br>
+}, 1000);
+                        </code>
+                    </div>
+
+                    <h4>The Solution: Promises (Exercise 37)</h4>
+                    <p><strong>Promises</strong> give us a cleaner way to handle async operations:</p>
+
+                    <div class="code-block">
+                        <span class="code-label">JavaScript - Creating a Promise</span>
                         <code>
 function delay(ms) {<br>
+&nbsp;&nbsp;<span class="comment">// Create a new Promise</span><br>
 &nbsp;&nbsp;return new Promise((resolve) => {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// When timeout completes, call resolve()</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;setTimeout(resolve, ms);<br>
 &nbsp;&nbsp;});<br>
 }<br>
@@ -536,25 +744,27 @@ delay(3000).then(() => {<br>
                         </code>
                     </div>
 
-                    <div class="info-box info-box--info">
-                        <h5>📌 How Promises Work</h5>
-                        <p><code>new Promise((resolve) => {...})</code> creates a promise.<br>
-                            Call <code>resolve()</code> when the async task is done.<br>
-                            <code>.then()</code> runs the callback after <code>resolve()</code> is called.
+                    <div class="info-box info-box--warning">
+                        <h5>⚠️ The Promise Contract</h5>
+                        <p>When you create a Promise:<br>
+                            <code>new Promise((resolve) => { ... })</code><br><br>
+                            You're making a promise to JavaScript: "I'll call <code>resolve()</code> when I'm done"<br>
+                            Then <code>.then()</code> runs your callback after <code>resolve()</code> is called.
                         </p>
                     </div>
 
                     <h4>Promise Chaining (Exercise 38)</h4>
-                    <p>Chain multiple <code>.then()</code> calls for sequential operations:</p>
+                    <p>The real power is <strong>chaining</strong> - each <code>.then()</code> waits for the previous
+                        one:</p>
 
                     <div class="code-block">
-                        <span class="code-label">JavaScript - Exercise 38 Pattern</span>
+                        <span class="code-label">JavaScript - Chained Promises</span>
                         <code>
 function showSequenceMessages() {<br>
 &nbsp;&nbsp;delay(1000)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;.then(() => {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log("Starting...");<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return delay(2000);  <span class="comment">// Return next promise!</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return delay(2000);  <span class="comment">// ← Return next Promise!</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;})<br>
 &nbsp;&nbsp;&nbsp;&nbsp;.then(() => {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log("Completed!");<br>
@@ -567,10 +777,33 @@ function showSequenceMessages() {<br>
                         </code>
                     </div>
 
+                    <div class="info-box info-box--info">
+                        <h5>📌 Execution Timeline</h5>
+                        <p><strong>0ms:</strong> Start delay(1000)<br>
+                            <strong>1000ms:</strong> Log "Starting...", start delay(2000)<br>
+                            <strong>3000ms:</strong> Log "Completed!", start delay(1000)<br>
+                            <strong>4000ms:</strong> Log "End of messages."<br><br>
+                            Total time: 4 seconds, running in sequence!
+                        </p>
+                    </div>
+
                     <div class="info-box info-box--warning">
-                        <h5>⚠️ Key: Return the Next Promise</h5>
-                        <p>To chain properly, each <code>.then()</code> must <code>return</code> the next promise.
-                            Otherwise they run in parallel, not sequence!</p>
+                        <h5>⚠️ Critical: You MUST Return the Promise</h5>
+                        <p>If you forget to <code>return</code> the next promise, they run in <strong>parallel</strong>,
+                            not sequence!<br><br>
+                            <strong>Wrong:</strong> <code>.then(() => { delay(2000); })</code> ← missing return!<br>
+                            <strong>Right:</strong> <code>.then(() => { return delay(2000); })</code>
+                        </p>
+                    </div>
+
+                    <div class="info-box info-box--purple">
+                        <h5>💡 Key Takeaways</h5>
+                        <ul>
+                            <li><code>setTimeout</code> schedules code to run later</li>
+                            <li>Promises wrap async operations in a clean interface</li>
+                            <li><code>.then()</code> chains allow sequential async operations</li>
+                            <li>Always <code>return</code> the next promise in a chain!</li>
+                        </ul>
                     </div>
                 </div>
 
@@ -601,7 +834,8 @@ function showSequenceMessages() {<br>
                 <div class="exercise">
                     <h4>Exercise: Promise Delay</h4>
                     <p>Write a <code>delay(ms)</code> function that returns a Promise that resolves after
-                        <code>ms</code> milliseconds:</p>
+                        <code>ms</code> milliseconds:
+                    </p>
 
                     <textarea id="js2-ex-2" rows="12" spellcheck="false">function delay(ms) {
   // Return a new Promise that resolves after ms milliseconds
