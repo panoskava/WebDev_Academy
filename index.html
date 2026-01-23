@@ -5,149 +5,475 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Master web development fundamentals with interactive lessons, hands-on exercises, and real-world projects. Learn HTML, CSS, and layout techniques.">
-    <meta name="author" content="WebDev Academy">
-    <title>Web Development Fundamentals - Interactive Course</title>
+        content="Master web development fundamentals with interactive lessons, hands-on exercises, and real-world projects. Learn HTML, CSS, and JavaScript.">
+    <meta name="theme-color" content="#0d1117">
+
+    <title>WebDev Academy | Web Development Fundamentals</title>
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
         rel="stylesheet">
+
+    <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
+
+    <style>
+        /* Landing Page Specific Styles */
+        .landing-hero {
+            text-align: center;
+            padding: var(--space-3xl) var(--space-lg);
+            padding-top: calc(var(--header-height) + var(--space-3xl));
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .landing-hero__title {
+            font-size: var(--font-size-4xl);
+            margin-bottom: var(--space-md);
+            background: linear-gradient(135deg, var(--color-text-primary) 0%, var(--color-accent-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .landing-hero__subtitle {
+            font-size: var(--font-size-lg);
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-xl);
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: var(--space-lg);
+            padding: var(--space-xl) var(--space-lg);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .content-card {
+            background-color: var(--color-bg-secondary);
+            border: 1px solid var(--color-border-default);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            transition: all var(--transition-normal);
+            text-decoration: none;
+            display: block;
+        }
+
+        .content-card:hover {
+            border-color: var(--color-accent-secondary);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-glow);
+            text-decoration: none;
+        }
+
+        .content-card__icon {
+            font-size: 2.5rem;
+            margin-bottom: var(--space-md);
+        }
+
+        .content-card__title {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-sm);
+        }
+
+        .content-card__meta {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-muted);
+            margin-bottom: var(--space-md);
+        }
+
+        .content-card__description {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-md);
+        }
+
+        .content-card__stats {
+            display: flex;
+            gap: var(--space-md);
+            flex-wrap: wrap;
+        }
+
+        .content-card__stat {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            font-size: var(--font-size-xs);
+            color: var(--color-text-muted);
+            background-color: var(--color-bg-tertiary);
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--radius-full);
+        }
+
+        .content-card--projects {
+            border-color: var(--color-accent-primary);
+        }
+
+        .content-card--projects:hover {
+            border-color: var(--color-accent-primary);
+            box-shadow: 0 0 20px rgba(35, 134, 54, 0.15);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: var(--font-size-2xl);
+            color: var(--color-text-primary);
+            margin: var(--space-2xl) 0 var(--space-lg);
+        }
+
+        .landing-footer {
+            text-align: center;
+            padding: var(--space-2xl) var(--space-lg);
+            border-top: 1px solid var(--color-border-default);
+            margin-top: var(--space-3xl);
+        }
+
+        .progress-container {
+            max-width: 400px;
+            margin: var(--space-xl) auto;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background-color: var(--color-bg-tertiary);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+            margin-bottom: var(--space-sm);
+        }
+
+        .progress-bar__fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-accent-secondary), var(--color-accent-cyan));
+            border-radius: var(--radius-full);
+            transition: width var(--transition-normal);
+            width: 0%;
+        }
+
+        .progress-text {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-muted);
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
-    <nav>
-        <div class="nav-content">
-            <a href="index.html" class="logo">WebDev Academy</a>
-            <ul class="nav-links">
-                <li><a href="chapters/internet.html">Internet</a></li>
-                <li><a href="chapters/html.html">HTML</a></li>
-                <li><a href="chapters/css.html">CSS</a></li>
-                <li><a href="chapters/layout.html">Layout</a></li>
-                <li><a href="chapters/dom.html">DOM</a></li>
-                <li><a href="chapters/javascript.html">JavaScript</a></li>
-                <li><a href="chapters/javascript-part2.html">JS Part 2</a></li>
-                <li><a href="projects.html">Projects</a></li>
-            </ul>
-        </div>
-    </nav>
+    <!-- Header -->
+    <header class="header">
+        <a href="index.html" class="header__logo">
+            <span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="16 18 22 12 16 6"></polyline>
+                    <polyline points="8 6 2 12 8 18"></polyline>
+                </svg></span> WebDev Academy
+        </a>
+        <nav class="header__nav">
+            <a href="chapters/internet.html" class="header__link">Internet</a>
+            <a href="chapters/html.html" class="header__link">HTML</a>
+            <a href="chapters/css.html" class="header__link">CSS</a>
+            <a href="chapters/layout.html" class="header__link">Layout</a>
+            <a href="chapters/dom.html" class="header__link">DOM</a>
+            <a href="chapters/javascript.html" class="header__link">JavaScript</a>
+            <a href="projects.html" class="header__link">Projects</a>
+        </nav>
+    </header>
 
-    <section class="hero">
-        <h1>Web Development Fundamentals</h1>
-        <p>Master the building blocks of the web with interactive lessons, hands-on exercises, and real-world projects.
+    <!-- Hero Section -->
+    <section class="landing-hero animate-fade-in">
+        <h1 class="landing-hero__title">
+            <span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="16 18 22 12 16 6"></polyline>
+                    <polyline points="8 6 2 12 8 18"></polyline>
+                </svg></span>
+            Web Development Fundamentals
+        </h1>
+        <p class="landing-hero__subtitle">
+            Master the building blocks of the web with interactive lessons, hands-on exercises, and real-world projects.
         </p>
-        <div class="progress-bar">
-            <div class="progress-fill" id="progressFill"></div>
-            <div class="progress-text">Course Progress: <span id="progressPercent">0</span>%</div>
+
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-bar__fill" id="progressFill"></div>
+            </div>
+            <p class="progress-text">Course Progress: <span id="progressPercent">0</span>%</p>
+        </div>
+
+        <!-- Study Tip Alert -->
+        <div class="alert alert--info" style="max-width: 600px; margin: 0 auto; text-align: left;">
+            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M9 18h6M10 22h4M12 2a7 7 0 0 1 7 7c0 2.4-1.2 4.5-3 5.7V17H8v-2.3C6.2 13.5 5 11.4 5 9a7 7 0 0 1 7-7z" />
+                </svg></span>
+            <div class="alert__content">
+                <strong>How to study:</strong> Work through chapters in order. Each includes theory, examples, quizzes,
+                and hands-on exercises.
+            </div>
         </div>
     </section>
 
-    <main>
-        <section class="chapter-cards">
-            <a href="chapters/internet.html" class="chapter-card" data-chapter="internet">
-                <span class="chapter-icon">🌐</span>
-                <div class="chapter-card-content">
-                    <h3>Chapter 1: The Internet</h3>
-                    <p>Learn how the web works, HTTP protocols, URLs, and the client-server model.</p>
-                    <span class="chapter-status">
-                        <span class="status-dot" id="status-internet"></span>
-                        <span class="status-text" id="status-text-internet">Not started</span>
+    <!-- Course Content -->
+    <section id="content">
+        <h2 class="section-title">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"
+                style="vertical-align: middle;">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+            </svg>
+            Course Chapters
+        </h2>
+
+        <div class="content-grid">
+            <!-- Chapter 1: Internet -->
+            <a href="chapters/internet.html" class="content-card" data-chapter="internet">
+                <div class="content-card__icon" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="40" height="40">
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="2" y1="12" x2="22" y2="12" />
+                        <path
+                            d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                    </svg>
+                </div>
+                <h3 class="content-card__title">Chapter 1: The Internet</h3>
+                <p class="content-card__meta">Fundamentals • HTTP • URLs</p>
+                <p class="content-card__description">
+                    Learn how the web works, HTTP protocols, URLs, and the client-server model.
+                </p>
+                <div class="content-card__stats">
+                    <span class="content-card__stat">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                        </svg>
+                        4 Quizzes
                     </span>
+                    <span class="content-card__stat" id="status-internet">Not started</span>
                 </div>
             </a>
 
-            <a href="chapters/html.html" class="chapter-card" data-chapter="html">
-                <span class="chapter-icon">📄</span>
-                <div class="chapter-card-content">
-                    <h3>Chapter 2: HTML</h3>
-                    <p>Master the structure of web pages with semantic elements, forms, and tables.</p>
-                    <span class="chapter-status">
-                        <span class="status-dot" id="status-html"></span>
-                        <span class="status-text" id="status-text-html">Not started</span>
+            <!-- Chapter 2: HTML -->
+            <a href="chapters/html.html" class="content-card" data-chapter="html">
+                <div class="content-card__icon" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="40" height="40">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" y1="13" x2="8" y2="13" />
+                        <line x1="16" y1="17" x2="8" y2="17" />
+                        <polyline points="10 9 9 9 8 9" />
+                    </svg>
+                </div>
+                <h3 class="content-card__title">Chapter 2: HTML</h3>
+                <p class="content-card__meta">Structure • Semantics • Forms</p>
+                <p class="content-card__description">
+                    Master the structure of web pages with semantic elements, forms, and tables.
+                </p>
+                <div class="content-card__stats">
+                    <span class="content-card__stat">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                        </svg>
+                        2 Quizzes • 2 Exercises
                     </span>
+                    <span class="content-card__stat" id="status-html">Not started</span>
                 </div>
             </a>
 
-            <a href="chapters/css.html" class="chapter-card" data-chapter="css">
-                <span class="chapter-icon">🎨</span>
-                <div class="chapter-card-content">
-                    <h3>Chapter 3: CSS</h3>
-                    <p>Style your pages with colors, typography, box model, and modern CSS techniques.</p>
-                    <span class="chapter-status">
-                        <span class="status-dot" id="status-css"></span>
-                        <span class="status-text" id="status-text-css">Not started</span>
+            <!-- Chapter 3: CSS -->
+            <a href="chapters/css.html" class="content-card" data-chapter="css">
+                <div class="content-card__icon" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="40" height="40">
+                        <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
+                    </svg>
+                </div>
+                <h3 class="content-card__title">Chapter 3: CSS</h3>
+                <p class="content-card__meta">Styling • Box Model • Selectors</p>
+                <p class="content-card__description">
+                    Style your pages with colors, typography, box model, and modern CSS techniques.
+                </p>
+                <div class="content-card__stats">
+                    <span class="content-card__stat">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                        </svg>
+                        2 Quizzes • 2 Exercises
                     </span>
+                    <span class="content-card__stat" id="status-css">Not started</span>
                 </div>
             </a>
 
-            <a href="chapters/layout.html" class="chapter-card" data-chapter="layout">
-                <span class="chapter-icon">📐</span>
-                <div class="chapter-card-content">
-                    <h3>Chapter 4: Layout</h3>
-                    <p>Create responsive layouts with Flexbox, CSS Grid, and media queries.</p>
-                    <span class="chapter-status">
-                        <span class="status-dot" id="status-layout"></span>
-                        <span class="status-text" id="status-text-layout">Not started</span>
+            <!-- Chapter 4: Layout -->
+            <a href="chapters/layout.html" class="content-card" data-chapter="layout">
+                <div class="content-card__icon" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="40" height="40">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                        <line x1="3" y1="9" x2="21" y2="9" />
+                        <line x1="9" y1="21" x2="9" y2="9" />
+                    </svg>
+                </div>
+                <h3 class="content-card__title">Chapter 4: Layout</h3>
+                <p class="content-card__meta">Flexbox • Grid • Responsive</p>
+                <p class="content-card__description">
+                    Create responsive layouts with Flexbox, CSS Grid, and media queries.
+                </p>
+                <div class="content-card__stats">
+                    <span class="content-card__stat">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                        </svg>
+                        3 Quizzes • 2 Exercises
                     </span>
+                    <span class="content-card__stat" id="status-layout">Not started</span>
                 </div>
             </a>
 
-            <a href="chapters/dom.html" class="chapter-card" data-chapter="dom">
-                <span class="chapter-icon">🔧</span>
-                <div class="chapter-card-content">
-                    <h3>Chapter 5: The DOM</h3>
-                    <p>Interact with web pages using JavaScript, DOM objects, and dynamic element manipulation.</p>
-                    <span class="chapter-status">
-                        <span class="status-dot" id="status-dom"></span>
-                        <span class="status-text" id="status-text-dom">Not started</span>
+            <!-- Chapter 5: DOM -->
+            <a href="chapters/dom.html" class="content-card" data-chapter="dom">
+                <div class="content-card__icon" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="40" height="40">
+                        <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                        <polyline points="2 17 12 22 22 17" />
+                        <polyline points="2 12 12 17 22 12" />
+                    </svg>
+                </div>
+                <h3 class="content-card__title">Chapter 5: The DOM</h3>
+                <p class="content-card__meta">Document • Elements • Events</p>
+                <p class="content-card__description">
+                    Interact with web pages using JavaScript, DOM objects, and dynamic element manipulation.
+                </p>
+                <div class="content-card__stats">
+                    <span class="content-card__stat">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                        </svg>
+                        4 Quizzes • 2 Exercises
                     </span>
+                    <span class="content-card__stat" id="status-dom">Not started</span>
                 </div>
             </a>
 
-            <a href="chapters/javascript.html" class="chapter-card" data-chapter="javascript">
-                <span class="chapter-icon">⚡</span>
-                <div class="chapter-card-content">
-                    <h3>Chapter 6: JavaScript</h3>
-                    <p>Learn JavaScript fundamentals: variables, functions, loops, arrays, objects, and strings.</p>
-                    <span class="chapter-status">
-                        <span class="status-dot" id="status-javascript"></span>
-                        <span class="status-text" id="status-text-javascript">Not started</span>
+            <!-- Chapter 6: JavaScript -->
+            <a href="chapters/javascript.html" class="content-card" data-chapter="javascript">
+                <div class="content-card__icon" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="40" height="40">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                    </svg>
+                </div>
+                <h3 class="content-card__title">Chapter 6: JavaScript</h3>
+                <p class="content-card__meta">Variables • Functions • Arrays</p>
+                <p class="content-card__description">
+                    Learn JavaScript fundamentals: variables, functions, loops, arrays, objects, and strings.
+                </p>
+                <div class="content-card__stats">
+                    <span class="content-card__stat">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                        </svg>
+                        10 Quizzes • 5 Exercises
                     </span>
+                    <span class="content-card__stat" id="status-javascript">Not started</span>
                 </div>
             </a>
 
-            <a href="chapters/javascript-part2.html" class="chapter-card" data-chapter="javascript-part2">
-                <span class="chapter-icon">🚀</span>
-                <div class="chapter-card-content">
-                    <h3>Chapter 7: JS Part 2</h3>
-                    <p>Advanced JavaScript: closures, promises, DOM events, and combining JS with HTML/CSS.</p>
-                    <span class="chapter-status">
-                        <span class="status-dot" id="status-javascript-part2"></span>
-                        <span class="status-text" id="status-text-javascript-part2">Not started</span>
+            <!-- Chapter 7: JS Part 2 -->
+            <a href="chapters/javascript-part2.html" class="content-card" data-chapter="javascript-part2">
+                <div class="content-card__icon" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="40" height="40">
+                        <line x1="4" y1="22" x2="4" y2="15" />
+                        <line x1="9" y1="22" x2="9" y2="9" />
+                        <line x1="14" y1="22" x2="14" y2="3" />
+                        <line x1="19" y1="22" x2="19" y2="12" />
+                    </svg>
+                </div>
+                <h3 class="content-card__title">Chapter 7: JS Part 2</h3>
+                <p class="content-card__meta">Closures • Promises • Events</p>
+                <p class="content-card__description">
+                    Advanced JavaScript: closures, promises, DOM events, and combining JS with HTML/CSS.
+                </p>
+                <div class="content-card__stats">
+                    <span class="content-card__stat">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                        </svg>
+                        7 Quizzes • 3 Exercises
                     </span>
+                    <span class="content-card__stat" id="status-javascript-part2">Not started</span>
                 </div>
             </a>
 
-            <a href="projects.html" class="chapter-card chapter-card--projects" data-chapter="projects">
-                <span class="chapter-icon">🚀</span>
-                <div class="chapter-card-content">
-                    <h3>Practice Projects</h3>
-                    <p>Apply your skills with hands-on projects: Portfolio, Product Cards, and Blog Layout.</p>
-                    <span class="chapter-status">
-                        <span class="status-dot" id="status-projects"></span>
-                        <span class="status-text" id="status-text-projects">Not started</span>
+            <!-- Projects Card -->
+            <a href="projects.html" class="content-card content-card--projects" data-chapter="projects">
+                <div class="content-card__icon" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="40" height="40">
+                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+                    </svg>
+                </div>
+                <h3 class="content-card__title">Practice Projects</h3>
+                <p class="content-card__meta">Hands-on • Real-world</p>
+                <p class="content-card__description">
+                    Apply your skills with hands-on projects: Portfolio, Product Cards, and Blog Layout.
+                </p>
+                <div class="content-card__stats">
+                    <span class="content-card__stat">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                            <polyline points="22 4 12 14.01 9 11.01" />
+                        </svg>
+                        3 Projects
                     </span>
+                    <span class="content-card__stat" id="status-projects">Not started</span>
                 </div>
             </a>
-        </section>
-    </main>
+        </div>
+    </section>
 
-    <footer>
-        <p>Web Development Fundamentals Course</p>
-        <p style="margin-top: 0.5rem; font-size: 0.875rem;">Created by panoskava for WebDev Studying</p>
+    <!-- Footer -->
+    <footer class="landing-footer">
+        <p style="color: var(--color-text-muted); font-size: var(--font-size-sm);">
+            WebDev Academy • Web Development Fundamentals<br>
+            Created by panoskava for WebDev Studying
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"
+                style="vertical-align: middle;">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+        </p>
     </footer>
 
-    <script src="app.js" defer></script>
+    <!-- JavaScript -->
+    <script src="app.js"></script>
 </body>
 
 </html>
