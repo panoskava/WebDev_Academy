@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="el">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CUSTOMIZE: Change the description for SEO -->
+    <meta name="description" content="Ακαδημία - Θεωρητικό Υλικό">
+    <meta name="theme-color" content="#0d1117">
+
+    <!-- CUSTOMIZE: Change the page title -->
+    <title>Θεωρητικό Υλικό | Ακαδημία</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../styles.css">
+
+    <style>
+        /* =============================================
+           Theory Index Specific Styles
+           ============================================= */
+        .theory-hero {
+            text-align: center;
+            padding: var(--space-3xl) var(--space-lg);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .theory-hero__title {
+            font-size: var(--font-size-4xl);
+            margin-bottom: var(--space-md);
+            /* CUSTOMIZE: Change the gradient colors if desired */
+            background: linear-gradient(135deg, var(--color-text-primary) 0%, var(--color-accent-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .theory-hero__subtitle {
+            font-size: var(--font-size-lg);
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-xl);
+        }
+
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: var(--space-lg);
+            padding: var(--space-xl) var(--space-lg);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .lesson-card {
+            background-color: var(--color-bg-secondary);
+            border: 1px solid var(--color-border-default);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            transition: all var(--transition-normal);
+            text-decoration: none;
+            display: block;
+        }
+
+        .lesson-card:hover {
+            border-color: var(--color-accent-purple);
+            transform: translateY(-4px);
+            box-shadow: 0 0 20px rgba(163, 113, 247, 0.15);
+            text-decoration: none;
+        }
+
+        .lesson-card__number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--color-accent-purple), var(--color-accent-cyan));
+            border-radius: var(--radius-full);
+            font-weight: 700;
+            color: white;
+            margin-bottom: var(--space-md);
+        }
+
+        .lesson-card__title {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-sm);
+        }
+
+        .lesson-card__description {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-md);
+            line-height: var(--line-height-relaxed);
+        }
+
+        .lesson-card__topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-xs);
+        }
+
+        .lesson-card__topic {
+            font-size: var(--font-size-xs);
+            padding: var(--space-xs) var(--space-sm);
+            background-color: var(--color-bg-tertiary);
+            border-radius: var(--radius-full);
+            color: var(--color-text-muted);
+        }
+
+        /* For lessons that are not yet ready */
+        .lesson-card--coming-soon {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .lesson-card--coming-soon .lesson-card__title::after {
+            content: " (Σύντομα)";
+            font-size: var(--font-size-sm);
+            color: var(--color-accent-warning);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: var(--font-size-2xl);
+            color: var(--color-text-primary);
+            margin: var(--space-2xl) 0 var(--space-lg);
+            border: none;
+        }
+
+        .theory-footer {
+            text-align: center;
+            padding: var(--space-2xl) var(--space-lg);
+            border-top: 1px solid var(--color-border-default);
+            margin-top: var(--space-3xl);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- =============================================
+         HEADER
+         CUSTOMIZE: Change the navigation links
+         ============================================= -->
+    <header class="header">
+        <a href="../index.html" class="header__logo">
+            <!-- CUSTOMIZE: Change the icon and title -->
+            <span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                    <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5" />
+                </svg></span> Ακαδημία
+        </a>
+        <nav class="header__nav">
+            <a href="../index.html" class="header__link">Αρχική</a>
+            <a href="index.html" class="header__link" style="color: var(--color-text-primary);">Θεωρία</a>
+            <a href="../index.html#content" class="header__link">Περιεχόμενο</a>
+        </nav>
+    </header>
+
+    <!-- =============================================
+         HERO SECTION
+         CUSTOMIZE: Change the title and description
+         ============================================= -->
+    <section class="theory-hero animate-fade-in">
+        <h1 class="theory-hero__title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="40"
+                height="40" style="vertical-align: middle;">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                <path d="M8 7h8M8 11h6" />
+            </svg> Θεωρητικό Υλικό</h1>
+        <p class="theory-hero__subtitle">
+            <!-- CUSTOMIZE: Change the description -->
+            Μάθε τα βασικά βήμα-βήμα, από την αρχή μέχρι την εξέταση.
+            Κάθε μάθημα περιλαμβάνει θεωρία, παραδείγματα και ασκήσεις.
+        </p>
+        <div class="alert alert--tip" style="max-width: 600px; margin: 0 auto; text-align: left;">
+            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M9 18h6M10 22h4M12 2a7 7 0 0 1 7 7c0 2.4-1.2 4.5-3 5.7V17H8v-2.3C6.2 13.5 5 11.4 5 9a7 7 0 0 1 7-7z" />
+                </svg></span>
+            <div class="alert__content">
+                <strong>Συμβουλή:</strong> Ακολούθησε τα μαθήματα με τη σειρά. Κάθε μάθημα χτίζει
+                πάνω στα προηγούμενα!
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         LESSONS GRID
+         CUSTOMIZE: Add lesson cards here
+         ============================================= -->
+    <section id="lessons">
+        <h2 class="section-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24"
+                height="24" style="vertical-align: middle;">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+            </svg> Μαθήματα</h2>
+
+        <div class="lessons-grid">
+            <!-- ==================
+                 LESSON CARD 1 - Template
+                 CUSTOMIZE: Copy this block for each lesson
+                 ================== -->
+            <a href="lesson-template.html" class="lesson-card">
+                <!-- CUSTOMIZE: Lesson number -->
+                <div class="lesson-card__number">1</div>
+                <!-- CUSTOMIZE: Lesson title -->
+                <h3 class="lesson-card__title">Τίτλος Μαθήματος 1</h3>
+                <!-- CUSTOMIZE: Lesson description -->
+                <p class="lesson-card__description">
+                    Σύντομη περιγραφή του μαθήματος. Τι θα μάθει ο χρήστης
+                    και ποια θέματα καλύπτονται.
+                </p>
+                <!-- CUSTOMIZE: Topics/tags -->
+                <div class="lesson-card__topics">
+                    <span class="lesson-card__topic">Θέμα 1</span>
+                    <span class="lesson-card__topic">Θέμα 2</span>
+                    <span class="lesson-card__topic">Θέμα 3</span>
+                </div>
+            </a>
+
+            <!-- ==================
+                 LESSON CARD 2 - Example
+                 ================== -->
+            <a href="#" class="lesson-card">
+                <div class="lesson-card__number">2</div>
+                <h3 class="lesson-card__title">Τίτλος Μαθήματος 2</h3>
+                <p class="lesson-card__description">
+                    Σύντομη περιγραφή του δεύτερου μαθήματος.
+                    Βασίζεται στο πρώτο μάθημα.
+                </p>
+                <div class="lesson-card__topics">
+                    <span class="lesson-card__topic">Θέμα A</span>
+                    <span class="lesson-card__topic">Θέμα B</span>
+                </div>
+            </a>
+
+            <!-- ==================
+                 LESSON CARD 3 - Coming Soon Example
+                 Add class "lesson-card--coming-soon" for lessons not yet ready
+                 ================== -->
+            <div class="lesson-card lesson-card--coming-soon">
+                <div class="lesson-card__number">3</div>
+                <h3 class="lesson-card__title">Τίτλος Μαθήματος 3</h3>
+                <p class="lesson-card__description">
+                    Αυτό το μάθημα θα προστεθεί σύντομα...
+                </p>
+                <div class="lesson-card__topics">
+                    <span class="lesson-card__topic">Σύντομα</span>
+                </div>
+            </div>
+
+            <!-- CUSTOMIZE: Add more lessons here -->
+
+        </div>
+    </section>
+
+    <!-- =============================================
+         FOOTER
+         CUSTOMIZE: Change the footer text
+         ============================================= -->
+    <footer class="theory-footer">
+        <p style="color: var(--color-text-muted); font-size: var(--font-size-sm);">
+            Ακαδημία • Θεωρητικό Υλικό<br>
+            Δημιουργήθηκε για εκπαιδευτικούς σκοπούς <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                width="16" height="16" style="vertical-align: middle;">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5" />
+            </svg>
+        </p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="../app.js"></script>
+</body>
+
+</html>
