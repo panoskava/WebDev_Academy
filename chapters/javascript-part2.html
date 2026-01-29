@@ -6,203 +6,445 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
         content="JavaScript Part 2: Advanced array methods, object transformations, closures, promises, and DOM integration.">
-    <meta name="author" content="WebDev Academy">
-    <title>Chapter 7: JavaScript Part 2 - WebDev Academy</title>
+    <meta name="theme-color" content="#0d1117">
+
+    <title>Chapter 7: JavaScript Part 2 | WebDev Academy</title>
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
         rel="stylesheet">
+
+    <!-- Styles -->
     <link rel="stylesheet" href="../styles.css">
+
+    <!-- Highlight.js - Syntax Highlighting with Atom One Dark Theme -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
 </head>
 
 <body>
-    <nav>
-        <div class="nav-content">
-            <a href="../index.html" class="logo">WebDev Academy</a>
-            <ul class="nav-links">
-                <li><a href="internet.html">Internet</a></li>
-                <li><a href="html.html">HTML</a></li>
-                <li><a href="css.html">CSS</a></li>
-                <li><a href="layout.html">Layout</a></li>
-                <li><a href="dom.html">DOM</a></li>
-                <li><a href="javascript.html">JavaScript</a></li>
-                <li><a href="javascript-part2.html">JS Part 2</a></li>
-                <li><a href="../projects.html">Projects</a></li>
-            </ul>
-        </div>
-    </nav>
+    <!-- Header -->
+    <header class="header">
+        <a href="../index.html" class="header__logo">
+            <span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="16 18 22 12 16 6"></polyline>
+                    <polyline points="8 6 2 12 8 18"></polyline>
+                </svg></span> WebDev Academy
+        </a>
+        <nav class="header__nav">
+            <a href="index.html" class="header__link">← Back to Chapters</a>
+        </nav>
+    </header>
 
-    <div class="breadcrumb">
-        <a href="../index.html">Home</a> › Chapter 7: JavaScript Part 2
-    </div>
+    <!-- Main Layout with Sidebar -->
+    <div class="app-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar__section">
+                <h3 class="sidebar__title">Chapter 7</h3>
+                <ul class="sidebar__list">
+                    <li class="sidebar__item">
+                        <a href="#intro" class="sidebar__link sidebar__link--active">
+                            <span class="sidebar__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <line x1="2" y1="12" x2="22" y2="12" />
+                                    <path
+                                        d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                                </svg></span>
+                            Introduction
+                        </a>
+                    </li>
+                    <li class="sidebar__item">
+                        <a href="#problem-solving" class="sidebar__link">
+                            <span class="sidebar__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M9 18h6M10 22h4M12 2a7 7 0 0 1 7 7c0 2.4-1.2 4.5-3 5.7V17H8v-2.3C6.2 13.5 5 11.4 5 9a7 7 0 0 1 7-7z" />
+                                </svg></span>
+                            7.1 Problem-Solving Mindset
+                        </a>
+                    </li>
+                    <li class="sidebar__item">
+                        <a href="#array-methods" class="sidebar__link">
+                            <span class="sidebar__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                                    <polyline points="2 17 12 22 22 17" />
+                                    <polyline points="2 12 12 17 22 12" />
+                                </svg></span>
+                            7.2 Advanced Array Methods
+                        </a>
+                    </li>
+                    <li class="sidebar__item">
+                        <a href="#object-transformations" class="sidebar__link">
+                            <span class="sidebar__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                                    <line x1="3" y1="9" x2="21" y2="9" />
+                                    <line x1="9" y1="21" x2="9" y2="9" />
+                                </svg></span>
+                            7.3 Object Transformations
+                        </a>
+                    </li>
+                    <li class="sidebar__item">
+                        <a href="#constructor-functions" class="sidebar__link">
+                            <span class="sidebar__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+                                </svg></span>
+                            7.4 Constructor Functions
+                        </a>
+                    </li>
+                    <li class="sidebar__item">
+                        <a href="#closures" class="sidebar__link">
+                            <span class="sidebar__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
+                                    <path d="M12 8v4l3 3" />
+                                </svg></span>
+                            7.5 Closures
+                        </a>
+                    </li>
+                    <li class="sidebar__item">
+                        <a href="#promises" class="sidebar__link">
+                            <span class="sidebar__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="23 4 23 10 17 10" />
+                                    <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
+                                </svg></span>
+                            7.6 Promises
+                        </a>
+                    </li>
+                    <li class="sidebar__item">
+                        <a href="#dom-integration" class="sidebar__link">
+                            <span class="sidebar__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                    <polyline points="14 2 14 8 20 8" />
+                                    <line x1="16" y1="13" x2="8" y2="13" />
+                                    <line x1="16" y1="17" x2="8" y2="17" />
+                                </svg></span>
+                            7.7 JS + HTML + CSS
+                        </a>
+                    </li>
+                    <li class="sidebar__item">
+                        <a href="#exercise-mapping" class="sidebar__link">
+                            <span class="sidebar__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="8" y1="6" x2="21" y2="6" />
+                                    <line x1="8" y1="12" x2="21" y2="12" />
+                                    <line x1="8" y1="18" x2="21" y2="18" />
+                                    <line x1="3" y1="6" x2="3.01" y2="6" />
+                                    <line x1="3" y1="12" x2="3.01" y2="12" />
+                                    <line x1="3" y1="18" x2="3.01" y2="18" />
+                                </svg></span>
+                            7.8 Exercise Mapping
+                        </a>
+                    </li>
 
-    <main>
-        <article class="chapter-page" data-chapter="javascript-part2">
-            <header class="chapter-page-header">
-                <span class="chapter-icon">🚀</span>
-                <h1>Chapter 7: JavaScript Part 2</h1>
-            </header>
+                </ul>
+            </div>
 
-            <div class="chapter-inner">
-                <!-- LESSON 7.1: Problem-Solving Mindset -->
-                <div class="lesson">
-                    <h3>7.1 The Problem-Solving Mindset</h3>
-                    <p>Before diving into advanced JavaScript, let's develop the <strong>thinking process</strong>
-                        that separates beginners from effective programmers.</p>
+            <div class="sidebar__section">
+                <h3 class="sidebar__title">Navigation</h3>
+                <ul class="sidebar__list">
+                    <li class="sidebar__item">
+                        <a href="javascript.html" class="sidebar__link">
+                            <span class="sidebar__icon">←</span>
+                            Prev: JavaScript
+                        </a>
+                    </li>
+                    <li class="sidebar__item">
+                        <a href="../projects.html" class="sidebar__link">
+                            <span class="sidebar__icon">→</span>
+                            Next: Projects
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
 
-                    <h4>The 4-Step Approach</h4>
-                    <p>When you see a coding problem, don't start typing immediately. Follow this process:</p>
-
-                    <div class="info-box info-box--purple">
-                        <h5>🧠 Step 1: Understand the Problem</h5>
-                        <p>Ask yourself: What is the <strong>input</strong>? What is the expected
-                            <strong>output</strong>?
-                            What <strong>transformation</strong> happens between them?
-                        </p>
-                    </div>
-
-                    <div class="info-box info-box--info">
-                        <h5>📝 Step 2: Plan Your Approach</h5>
-                        <p>Before writing code, describe your solution in plain English.
-                            "For each item, I will check if... then I will..."</p>
-                    </div>
-
-                    <div class="info-box info-box--success">
-                        <h5>💻 Step 3: Write the Code</h5>
-                        <p>Translate your plan into JavaScript. Start simple, test often.</p>
-                    </div>
-
-                    <div class="info-box info-box--warning">
-                        <h5>🔍 Step 4: Debug & Refine</h5>
-                        <p>If it doesn't work, use <code>console.log()</code> to see what's happening at each step.</p>
-                    </div>
-
-                    <h4>Example: Thinking Through a Problem</h4>
-                    <p>Let's apply this to Exercise 31: "Filter an array in-place to keep only values between a and b."
+        <!-- Main Content -->
+        <main class="main-content">
+            <article class="chapter-page" data-chapter="javascript-part2">
+                <!-- Introduction -->
+                <section id="intro" class="animate-fade-in">
+                    <h1>Chapter 7: JavaScript Part 2</h1>
+                    <p class="section-intro">
+                        Take your JavaScript skills to the next level with advanced array methods, object
+                        transformations,
+                        closures, promises, and DOM integration. This chapter builds on the fundamentals to teach you
+                        professional-level JavaScript patterns.
                     </p>
 
-                    <div class="code-block">
-                        <span class="code-label">Thinking Process</span>
-                        <code>
-<span class="comment">// Step 1: Understand</span><br>
-<span class="comment">// Input: array [5, 3, 8, 1], a=1, b=4</span><br>
-<span class="comment">// Output: modify array to become [3, 1]</span><br>
-<span class="comment">// Transformation: REMOVE elements outside range</span><br>
-<br>
-<span class="comment">// Step 2: Plan</span><br>
-<span class="comment">// - Loop through array</span><br>
-<span class="comment">// - For each element, check if it's outside range</span><br>
-<span class="comment">// - If outside, remove it</span><br>
-<span class="comment">// - Key insight: modifying while looping = go BACKWARDS!</span>
-                        </code>
-                    </div>
-                </div>
-
-                <!-- Quiz 1 -->
-                <div class="quiz" data-correct="b" data-quiz-id="js2-quiz-1">
-                    <h4>📝 Quick Quiz: What should you do FIRST when facing a coding problem?</h4>
-                    <div class="quiz-options">
-                        <div class="quiz-option" onclick="checkQuiz(this, 'a')">
-                            <span class="option-letter">A</span>
-                            <span>Start typing code immediately</span>
-                        </div>
-                        <div class="quiz-option" onclick="checkQuiz(this, 'b')">
-                            <span class="option-letter">B</span>
-                            <span>Understand input, output, and transformation</span>
-                        </div>
-                        <div class="quiz-option" onclick="checkQuiz(this, 'c')">
-                            <span class="option-letter">C</span>
-                            <span>Copy code from the internet</span>
-                        </div>
-                        <div class="quiz-option" onclick="checkQuiz(this, 'd')">
-                            <span class="option-letter">D</span>
-                            <span>Ask someone else to solve it</span>
+                    <div class="alert alert--info">
+                        <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10" />
+                                <circle cx="12" cy="12" r="6" />
+                                <circle cx="12" cy="12" r="2" />
+                            </svg></span>
+                        <div class="alert__content">
+                            <strong>What you'll learn:</strong>
+                            <ul>
+                                <li>Problem-solving mindset and debugging strategies</li>
+                                <li>Advanced array methods: splice, includes, building new arrays</li>
+                                <li>Object transformations and grouping patterns</li>
+                                <li>Constructor functions and the <code>this</code> keyword</li>
+                                <li>Closures and function chaining</li>
+                                <li>Promises and asynchronous JavaScript</li>
+                                <li>DOM events and form validation</li>
+                            </ul>
                         </div>
                     </div>
-                </div>
+                </section>
 
-                <!-- LESSON 7.2: Advanced Array Methods -->
-                <div class="lesson">
-                    <h3>7.2 Advanced Array Methods</h3>
-                    <p>In Part 1, you learned to loop through arrays. Now let's learn to <strong>modify arrays
-                            in-place</strong>.</p>
+                <!-- 7.1 The Problem-Solving Mindset -->
+                <section id="problem-solving">
+                    <h2>7.1 The Problem-Solving Mindset</h2>
 
-                    <h4>The <code>splice()</code> Method (Exercise 31)</h4>
-                    <p><code>splice()</code> is a powerful method that can insert, remove, or replace elements:</p>
+                    <article class="problem-card">
+                        <p>Before diving into advanced JavaScript, let's develop the <strong>thinking process</strong>
+                            that separates beginners from effective programmers.</p>
 
-                    <div class="code-block">
-                        <span class="code-label">JavaScript</span>
-                        <code>
-const arr = ['a', 'b', 'c', 'd', 'e'];<br>
-<br>
-<span class="comment">// splice(startIndex, deleteCount)</span><br>
-arr.splice(2, 1);  <span class="comment">// Remove 1 element at index 2</span><br>
-console.log(arr);  <span class="comment">// ['a', 'b', 'd', 'e']</span><br>
-<br>
-<span class="comment">// splice(startIndex, deleteCount, ...newItems)</span><br>
-arr.splice(1, 2, 'X', 'Y');  <span class="comment">// Remove 2, insert 'X', 'Y'</span><br>
-console.log(arr);  <span class="comment">// ['a', 'X', 'Y', 'e']</span>
-                        </code>
-                    </div>
+                        <h4>The 4-Step Approach</h4>
+                        <p>When you see a coding problem, don't start typing immediately. Follow this process:</p>
 
-                    <div class="info-box info-box--warning">
-                        <h5>⚠️ Critical: Iterate BACKWARDS When Removing</h5>
-                        <p>When removing elements from an array while looping, <strong>go backwards</strong>.
-                            Why? Because removing shifts all indices after that point!</p>
-                    </div>
+                        <div class="alert alert--important">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="11" cy="11" r="8" />
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>Step 1: Understand the Problem</strong>
+                                <p>Ask yourself: What is the <strong>input</strong>? What is the expected
+                                    <strong>output</strong>? What <strong>transformation</strong> happens between
+                                    them?<br>
+                                    <em>Skipping this often leads to the "XY Problem"—solving the wrong issue
+                                        entirely.</em>
+                                </p>
+                            </div>
+                        </div>
 
-                    <div class="code-block">
-                        <span class="code-label">JavaScript - Exercise 31 Pattern</span>
-                        <code>
-function filterRangeInPlace(arr, a, b) {<br>
-&nbsp;&nbsp;<span class="comment">// Loop BACKWARDS to avoid index shifting issues</span><br>
-&nbsp;&nbsp;for (let i = arr.length - 1; i >= 0; i--) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;if (arr[i] < a || arr[i] > b) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arr.splice(i, 1);  <span class="comment">// Remove element at i</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-&nbsp;&nbsp;}<br>
-&nbsp;&nbsp;<span class="comment">// No return - we modified the original array</span><br>
-}
-                        </code>
-                    </div>
+                        <div class="alert alert--info">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                                    <polyline points="14 2 14 8 20 8" />
+                                    <line x1="16" y1="13" x2="8" y2="13" />
+                                    <line x1="16" y1="17" x2="8" y2="17" />
+                                    <line x1="10" y1="9" x2="8" y2="9" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>Step 2: Plan Your Approach</strong>
+                                <p>Before writing code, describe your solution in plain English.
+                                    "For each item, I will check if..."<br>
+                                    <em>Writing out logic first separates <strong>thinking</strong> from
+                                        <strong>syntax</strong>. It's faster to edit English than debug code.</em>
+                                </p>
+                            </div>
+                        </div>
 
-                    <h4>Building New Arrays (Exercise 32)</h4>
-                    <p>Sometimes you need to create a <strong>new array</strong> with unique values:</p>
+                        <div class="alert alert--tip">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="4 17 10 11 4 5" />
+                                    <line x1="12" y1="19" x2="20" y2="19" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>Step 3: Write the Code</strong>
+                                <p>Translate your plan into JavaScript. Start with small, testable pieces rather than
+                                    the whole function at once.</p>
+                            </div>
+                        </div>
 
-                    <div class="code-block">
-                        <span class="code-label">JavaScript - Exercise 32 Pattern</span>
-                        <code>
-function unique(arr) {<br>
-&nbsp;&nbsp;const result = [];  <span class="comment">// Accumulator</span><br>
-&nbsp;&nbsp;<br>
-&nbsp;&nbsp;for (let i = 0; i < arr.length; i++) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// Only add if not already in result</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;if (!result.includes(arr[i])) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result.push(arr[i]);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-&nbsp;&nbsp;}<br>
-&nbsp;&nbsp;<br>
-&nbsp;&nbsp;return result;<br>
-}
-                        </code>
-                    </div>
+                        <div class="alert alert--warning">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect width="8" height="14" x="8" y="6" rx="4" />
+                                    <path d="m19 7-3 2" />
+                                    <path d="m5 7 3 2" />
+                                    <path d="m19 19-3-2" />
+                                    <path d="m5 19 3-2" />
+                                    <path d="M20 13h-4" />
+                                    <path d="M4 13h4" />
+                                    <path d="m10 4 1 2" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>Step 4: Debug & Refine</strong>
+                                <p>If it doesn't work, use <code>console.log()</code> to see the data at each step.
+                                    Don't guess—<strong>verify</strong>.</p>
+                            </div>
+                        </div>
 
-                    <div class="info-box info-box--purple">
-                        <h5>💡 Mindset: Modify vs Return New</h5>
-                        <p><strong>Exercise 31</strong>: "modify in place" = change the original, return nothing<br>
-                            <strong>Exercise 32</strong>: "return new array" = original unchanged, return result
-                        </p>
-                    </div>
-                </div>
+                        <h4>Example: Thinking Through a Problem</h4>
+                        <p>Let's apply this to Exercise 31: "Filter an array in-place to keep only values between a and
+                            b."</p>
 
-                <!-- Exercise 1 -->
-                <div class="exercise">
-                    <h4>Exercise: Array Filtering</h4>
-                    <p>Write a function that removes all values outside the range [a, b] from an array
-                        <em>in-place</em>:
-                    </p>
+                        <pre><code class="language-javascript">// Step 1: Understand
+// Input: array [5, 3, 8, 1], a=1, b=4
+// Output: modify array to become [3, 1]
+// Transformation: REMOVE elements outside range
 
-                    <textarea id="js2-ex-1" rows="10" spellcheck="false">function filterRangeInPlace(arr, a, b) {
+// Step 2: Plan
+// - Loop through array
+// - For each element, check if it's outside range
+// - If outside, remove it (splice)
+// - Key insight: Modifying an array while looping through it causes index shifts.
+//   Solution: Loop BACKWARDS to avoid skipping elements!</code></pre>
+                    </article>
+
+                    <!-- Quiz 1 -->
+                    <article class="problem-card">
+                        <div class="quiz" data-correct="b" data-quiz-id="js2-quiz-1">
+                            <h4>Quick Quiz: What should you do FIRST when facing a coding problem?</h4>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="checkQuiz(this, 'a')">
+                                    <span class="option-letter">A</span>
+                                    <span>Start typing code immediately</span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'b')">
+                                    <span class="option-letter">B</span>
+                                    <span>Understand input, output, and transformation</span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'c')">
+                                    <span class="option-letter">C</span>
+                                    <span>Copy code from the internet</span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'd')">
+                                    <span class="option-letter">D</span>
+                                    <span>Ask someone else to solve it</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </section>
+
+                <!-- 7.2 Advanced Array Methods -->
+                <section id="array-methods">
+                    <h2>7.2 Advanced Array Methods</h2>
+
+                    <article class="problem-card">
+                        <p>In Part 1, you learned to loop through arrays. Now let's learn to <strong>modify arrays
+                                in-place</strong>.</p>
+
+                        <h4>The <code>splice()</code> Method (Exercise 31)</h4>
+                        <p><code>splice()</code> is a powerful method that can insert, remove, or replace elements:</p>
+
+                        <pre><code class="language-javascript">const arr = ['a', 'b', 'c', 'd', 'e'];
+
+// splice(startIndex, deleteCount)
+arr.splice(2, 1);  // Remove 1 element at index 2
+console.log(arr);  // ['a', 'b', 'd', 'e']
+
+// splice(startIndex, deleteCount, ...newItems)
+arr.splice(1, 2, 'X', 'Y');  // Remove 2, insert 'X', 'Y'
+console.log(arr);  // ['a', 'X', 'Y', 'e']</code></pre>
+
+                        <div class="alert alert--warning">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+                                    <line x1="12" y1="9" x2="12" y2="13" />
+                                    <line x1="12" y1="17" x2="12.01" y2="17" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>Critical: Iterate BACKWARDS When Removing</strong>
+                                <p>When removing elements from an array while looping, <strong>go
+                                        backwards</strong>.<br>
+                                    Why? removing an element at <code>i</code> shifts all subsequent elements to the
+                                    left (new <code>i</code> is the old <code>i+1</code>). A forward loop would
+                                    increment <code>i</code> and skip an element!</p>
+                            </div>
+                        </div>
+
+                        <pre><code class="language-javascript">// Exercise 31 Pattern
+function filterRangeInPlace(arr, a, b) {
+  // Loop BACKWARDS to avoid index shifting issues
+  for (let i = arr.length - 1; i >= 0; i--) {
+    if (arr[i] < a || arr[i] > b) {
+      arr.splice(i, 1);  // Remove element at i
+    }
+  }
+  // No return - we modified the original array
+}</code></pre>
+
+                        <h4>Building New Arrays (Exercise 32)</h4>
+                        <p>Sometimes you need to create a <strong>new array</strong> with unique values:</p>
+
+                        <pre><code class="language-javascript">// Exercise 32 Pattern
+function unique(arr) {
+  const result = [];  // Accumulator
+  
+  for (let i = 0; i < arr.length; i++) {
+    // Only add if not already in result
+    if (!result.includes(arr[i])) {
+      result.push(arr[i]);
+    }
+  }
+  
+  return result;
+}</code></pre>
+
+                        <div class="alert alert--important">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="9" y1="18" x2="15" y2="18" />
+                                    <line x1="10" y1="22" x2="14" y2="22" />
+                                    <path
+                                        d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 9.5 8 4.65 4.65 0 0 0 8 15.9c.7.7 1.11 1.4 1.25 2.1" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>Mindset: Modify vs Return New (Immutability)</strong>
+                                <p><strong>Exercise 31</strong> "Modifies in-place". Good for memory efficiency.<br>
+                                    <strong>Exercise 32</strong> "Returns new array". This is
+                                    <strong>Immutability</strong>. Modern frameworks like React prefer this because it
+                                    makes tracking changes easier.
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Exercise 1 -->
+                    <article class="problem-card">
+                        <div class="exercise">
+                            <div class="exercise-header">
+                                <span class="exercise-badge">EXERCISE</span>
+                                <h4>Array Filtering</h4>
+                            </div>
+                            <p>Write a function that removes all values outside the range [a, b] from an array
+                                <em>in-place</em>:
+                            </p>
+
+                            <textarea id="js2-ex-1" spellcheck="false"
+                                placeholder="// Write function filterRangeInPlace(arr, a, b) { ... }">function filterRangeInPlace(arr, a, b) {
   // Remove elements where arr[i] < a or arr[i] > b
   // Remember: loop BACKWARDS!
   
@@ -212,632 +454,788 @@ let arr = [5, 3, 8, 1];
 filterRangeInPlace(arr, 1, 4);
 console.log(arr);  // Should be [3, 1]</textarea>
 
-                    <button class="btn" onclick="runJSCode('js2-ex-1', 'js2-ex-1-output')">▶ Run Code</button>
-                    <div class="output-container" id="js2-ex-1-output"></div>
-                </div>
-
-                <!-- Quiz 2 -->
-                <div class="quiz" data-correct="c" data-quiz-id="js2-quiz-2">
-                    <h4>📝 Quick Quiz: Why loop backwards when removing elements from an array?</h4>
-                    <div class="quiz-options">
-                        <div class="quiz-option" onclick="checkQuiz(this, 'a')">
-                            <span class="option-letter">A</span>
-                            <span>It's faster</span>
+                            <div class="btn-group">
+                                <button class="btn btn--primary" onclick="runJSCode('js2-ex-1', 'js2-ex-1-output')">▶
+                                    Run Code</button>
+                                <button class="btn btn--secondary" onclick="showHint('js2-hint-1')">💡 Show
+                                    Hint</button>
+                            </div>
+                            <div id="js2-hint-1" class="feedback" style="display:none;">
+                                <strong>Hint:</strong> Use <code>for (let i = arr.length - 1; i >= 0; i--)</code> and
+                                <code>arr.splice(i, 1)</code>.
+                            </div>
+                            <div class="output-preview" id="js2-ex-1-output">
+                                <em>Your preview will appear here...</em>
+                            </div>
                         </div>
-                        <div class="quiz-option" onclick="checkQuiz(this, 'b')">
-                            <span class="option-letter">B</span>
-                            <span>JavaScript requires it</span>
+                    </article>
+
+                    <!-- Quiz 2 -->
+                    <article class="problem-card">
+                        <div class="quiz" data-correct="c" data-quiz-id="js2-quiz-2">
+                            <h4>Quick Quiz: Why loop backwards when removing elements from an array?</h4>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="checkQuiz(this, 'a')">
+                                    <span class="option-letter">A</span>
+                                    <span>It's faster</span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'b')">
+                                    <span class="option-letter">B</span>
+                                    <span>JavaScript requires it</span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'c')">
+                                    <span class="option-letter">C</span>
+                                    <span>Removing shifts indices, so forward looping skips elements</span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'd')">
+                                    <span class="option-letter">D</span>
+                                    <span>Arrays are stored backwards in memory</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="quiz-option" onclick="checkQuiz(this, 'c')">
-                            <span class="option-letter">C</span>
-                            <span>Removing shifts indices, so forward looping skips elements</span>
-                        </div>
-                        <div class="quiz-option" onclick="checkQuiz(this, 'd')">
-                            <span class="option-letter">D</span>
-                            <span>Arrays are stored backwards in memory</span>
-                        </div>
-                    </div>
-                </div>
+                    </article>
+                </section>
 
-                <!-- LESSON 7.3: Object Transformations -->
-                <div class="lesson">
-                    <h3>7.3 Object Transformations</h3>
-                    <p>A common pattern: take an array of objects and <strong>transform</strong> each into a different
-                        shape.</p>
+                <!-- 7.3 Object Transformations -->
+                <section id="object-transformations">
+                    <h2>7.3 Object Transformations</h2>
 
-                    <h4>Transforming Objects (Exercise 33)</h4>
-                    <p>Given users with <code>name</code> and <code>surname</code>, create objects with
-                        <code>fullName</code>:
-                    </p>
+                    <article class="problem-card">
+                        <p>A common pattern: take an array of objects and <strong>transform</strong> each into a
+                            different shape.</p>
 
-                    <div class="code-block">
-                        <span class="code-label">JavaScript - Exercise 33 Pattern</span>
-                        <code>
-function fullNames(arr) {<br>
-&nbsp;&nbsp;const result = [];<br>
-&nbsp;&nbsp;<br>
-&nbsp;&nbsp;for (let i = 0; i < arr.length; i++) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// Create NEW object with different structure</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;const newObj = {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fullName: arr[i].name + " " + arr[i].surname,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id: arr[i].id<br>
-&nbsp;&nbsp;&nbsp;&nbsp;};<br>
-&nbsp;&nbsp;&nbsp;&nbsp;result.push(newObj);<br>
-&nbsp;&nbsp;}<br>
-&nbsp;&nbsp;<br>
-&nbsp;&nbsp;return result;<br>
-}
-                        </code>
-                    </div>
-
-                    <h4>Grouping by ID (Exercise 34)</h4>
-                    <p>Convert an array of objects into an object where keys are the IDs:</p>
-
-                    <div class="code-block">
-                        <span class="code-label">JavaScript - Exercise 34 Pattern</span>
-                        <code>
-<span class="comment">// Input: [{id: "john", name: "John"}, {id: "ann", name: "Ann"}]</span><br>
-<span class="comment">// Output: { john: {id: "john", name: "John"}, ann: {...} }</span><br>
-<br>
-function groupById(arr) {<br>
-&nbsp;&nbsp;const result = {};  <span class="comment">// Object, not array!</span><br>
-&nbsp;&nbsp;<br>
-&nbsp;&nbsp;for (let i = 0; i < arr.length; i++) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// Use the id as the KEY</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;result[arr[i].id] = arr[i];<br>
-&nbsp;&nbsp;}<br>
-&nbsp;&nbsp;<br>
-&nbsp;&nbsp;return result;<br>
-}
-                        </code>
-                    </div>
-
-                    <div class="info-box info-box--purple">
-                        <h5>💡 Key Insight: Dynamic Object Keys</h5>
-                        <p>Use <code>obj[variable]</code> to set a key using a variable's value:<br>
-                            <code>result[arr[i].id] = arr[i]</code> creates <code>result.john = {...}</code>
+                        <h4>Transforming Objects (Exercise 33)</h4>
+                        <p>Given users with <code>name</code> and <code>surname</code>, create objects with
+                            <code>fullName</code>:
                         </p>
-                    </div>
-                </div>
 
-                <!-- Quiz 3 -->
-                <div class="quiz" data-correct="a" data-quiz-id="js2-quiz-3">
-                    <h4>📝 Quick Quiz: To use a variable as an object key, which syntax is correct?</h4>
-                    <div class="quiz-options">
-                        <div class="quiz-option" onclick="checkQuiz(this, 'a')">
-                            <span class="option-letter">A</span>
-                            <span><code>obj[variableName]</code></span>
+                        <pre><code class="language-javascript">// Exercise 33 Pattern
+function fullNames(arr) {
+  const result = [];
+  
+  for (let i = 0; i < arr.length; i++) {
+    // Create NEW object with different structure
+    const newObj = {
+      fullName: arr[i].name + " " + arr[i].surname,
+      id: arr[i].id
+    };
+    result.push(newObj);
+  }
+  
+  return result;
+}</code></pre>
+
+                        <h4>Grouping by ID (Exercise 34)</h4>
+                        <p>Convert an array of objects into an object where keys are the IDs:</p>
+
+                        <pre><code class="language-javascript">// Input: [{id: "john", name: "John"}, {id: "ann", name: "Ann"}]
+// Output: { john: {id: "john", name: "John"}, ann: {...} }
+
+// Exercise 34 Pattern
+function groupById(arr) {
+  const result = {};  // Object, not array!
+  
+  for (let i = 0; i < arr.length; i++) {
+    // Use the id as the KEY
+    result[arr[i].id] = arr[i];
+  }
+  
+  return result;
+}</code></pre>
+
+                        <div class="alert alert--important">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="9" y1="18" x2="15" y2="18" />
+                                    <line x1="10" y1="22" x2="14" y2="22" />
+                                    <path
+                                        d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 9.5 8 4.65 4.65 0 0 0 8 15.9c.7.7 1.11 1.4 1.25 2.1" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>Key Insight: Dynamic Object Keys & Performance</strong>
+                                <p>Use <code>obj[variable]</code> to set a key using a variable's value.<br>
+                                    <strong>Why do this?</strong> Searching for an item in an Array takes time (O(n)).
+                                    Searching in an Object by key is instant (O(1)). This is a crucial optimization for
+                                    large datasets!
+                                </p>
+                            </div>
                         </div>
-                        <div class="quiz-option" onclick="checkQuiz(this, 'b')">
-                            <span class="option-letter">B</span>
-                            <span><code>obj.variableName</code></span>
+                    </article>
+
+                    <!-- Quiz 3 -->
+                    <article class="problem-card">
+                        <div class="quiz" data-correct="a" data-quiz-id="js2-quiz-3">
+                            <h4>Quick Quiz: To use a variable as an object key, which syntax is correct?</h4>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="checkQuiz(this, 'a')">
+                                    <span class="option-letter">A</span>
+                                    <span><code>obj[variableName]</code></span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'b')">
+                                    <span class="option-letter">B</span>
+                                    <span><code>obj.variableName</code></span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'c')">
+                                    <span class="option-letter">C</span>
+                                    <span><code>obj{variableName}</code></span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'd')">
+                                    <span class="option-letter">D</span>
+                                    <span><code>obj->variableName</code></span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="quiz-option" onclick="checkQuiz(this, 'c')">
-                            <span class="option-letter">C</span>
-                            <span><code>obj{variableName}</code></span>
+                    </article>
+                </section>
+
+                <!-- 7.4 Constructor Functions -->
+                <section id="constructor-functions">
+                    <h2>7.4 Constructor Functions & <code>this</code></h2>
+
+                    <article class="problem-card">
+                        <p>Sometimes you need to create <strong>multiple objects</strong> with the same methods and
+                            structure.</p>
+
+                        <div class="alert alert--important">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="9" y1="18" x2="15" y2="18" />
+                                    <line x1="10" y1="22" x2="14" y2="22" />
+                                    <path
+                                        d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 9.5 8 4.65 4.65 0 0 0 8 15.9c.7.7 1.11 1.4 1.25 2.1" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>Why Constructor Functions?</strong>
+                                <p>Instead of manually writing `{...}` for every object, a Constructor is like a
+                                    <strong>Blueprint</strong> or <strong>Factory</strong>.<br>
+                                    <em>Note: In modern JavaScript, we also use <code>class</code> syntax, which is
+                                        syntactic sugar over this exact pattern.</em>
+                                </p>
+                            </div>
                         </div>
-                        <div class="quiz-option" onclick="checkQuiz(this, 'd')">
-                            <span class="option-letter">D</span>
-                            <span><code>obj->variableName</code></span>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- LESSON 7.4: Constructor Functions -->
-                <div class="lesson">
-                    <h3>7.4 Constructor Functions & <code>this</code></h3>
-                    <p>Sometimes you need to create <strong>objects with methods</strong> that you can customize later.
-                    </p>
-
-                    <div class="info-box info-box--purple">
-                        <h5>💡 Why Constructor Functions?</h5>
-                        <p>Imagine you need to create multiple calculators, each with different operations.
-                            Instead of writing code for each one, you write a <strong>template</strong> (the
-                            constructor)
-                            that creates configured calculators on demand.</p>
-                    </div>
-
-                    <h4>Understanding the Problem (Exercise 35)</h4>
-                    <p>We need to create an "extensible calculator" that:</p>
-                    <ul>
-                        <li>Parses strings like <code>"3 + 7"</code> and returns the result</li>
-                        <li>Starts with <code>+</code> and <code>-</code> operations</li>
-                        <li>Allows <strong>adding new operations</strong> later</li>
-                    </ul>
-
-                    <h4>Step-by-Step Logic Breakdown</h4>
-
-                    <div class="info-box info-box--info">
-                        <h5>📌 Step 1: Store Operations as Functions</h5>
-                        <p>The key insight is: <strong>operators are just functions</strong>!<br>
-                            <code>+</code> takes two numbers and returns their sum.<br>
-                            <code>-</code> takes two numbers and returns their difference.<br>
-                            We can store these as functions in an object:
-                        </p>
-                    </div>
-
-                    <div class="code-block">
-                        <span class="code-label">JavaScript - The Logic</span>
-                        <code>
-<span class="comment">// Operations stored as functions</span><br>
-const methods = {<br>
-&nbsp;&nbsp;"+": (a, b) => a + b,  <span class="comment">// Takes a, b, returns sum</span><br>
-&nbsp;&nbsp;"-": (a, b) => a - b   <span class="comment">// Takes a, b, returns difference</span><br>
-};<br>
-<br>
-<span class="comment">// To use: look up the operator, call the function</span><br>
-methods["+"](3, 7);  <span class="comment">// Returns 10</span><br>
-methods["-"](10, 4); <span class="comment">// Returns 6</span>
-                        </code>
-                    </div>
-
-                    <div class="info-box info-box--info">
-                        <h5>📌 Step 2: Parse the Input String</h5>
-                        <p>Given <code>"3 + 7"</code>, we need to extract: first number, operator, second number.</p>
-                    </div>
-
-                    <div class="code-block">
-                        <span class="code-label">JavaScript - Parsing</span>
-                        <code>
-const str = "3 + 7";<br>
-<br>
-<span class="comment">// Split by spaces into array</span><br>
-const parts = str.split(" ");  <span class="comment">// ["3", "+", "7"]</span><br>
-<br>
-const num1 = Number(parts[0]);     <span class="comment">// 3 (convert string to number)</span><br>
-const operator = parts[1];         <span class="comment">// "+"</span><br>
-const num2 = Number(parts[2]);     <span class="comment">// 7</span>
-                        </code>
-                    </div>
-
-                    <div class="info-box info-box--info">
-                        <h5>📌 Step 3: Look Up and Execute</h5>
-                        <p>Use the operator to find the right function, then call it!</p>
-                    </div>
-
-                    <div class="code-block">
-                        <span class="code-label">JavaScript - Execute</span>
-                        <code>
-<span class="comment">// Look up the function for this operator</span><br>
-const operatorFunction = methods[operator];  <span class="comment">// methods["+"]</span><br>
-<br>
-<span class="comment">// Call it with our numbers</span><br>
-const result = operatorFunction(num1, num2); <span class="comment">// 10</span>
-                        </code>
-                    </div>
-
-                    <h4>The Complete Solution</h4>
-                    <div class="code-block">
-                        <span class="code-label">JavaScript - Exercise 35 Pattern</span>
-                        <code>
-function Calculator() {<br>
-&nbsp;&nbsp;const obj = {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// Store operators as functions</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;methods: {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+": (a, b) => a + b,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"-": (a, b) => a - b<br>
-&nbsp;&nbsp;&nbsp;&nbsp;},<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;calculate(str) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// Parse the string</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const parts = str.split(" ");<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const num1 = Number(parts[0]);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const operator = parts[1];<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const num2 = Number(parts[2]);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// Look up and execute</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return this.methods[operator](num1, num2);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;},<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;addMethod(name, func) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// Add new operation to methods object</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.methods[name] = func;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-&nbsp;&nbsp;};<br>
-&nbsp;&nbsp;<br>
-&nbsp;&nbsp;return obj;<br>
-}
-                        </code>
-                    </div>
-
-                    <div class="info-box info-box--warning">
-                        <h5>⚠️ Understanding <code>this</code></h5>
-                        <p>Inside a method, <code>this</code> refers to the object that contains the method.<br>
-                            <code>this.methods</code> means "look for <code>methods</code> inside THIS object".<br><br>
-                            <strong>Why not just write <code>obj.methods</code>?</strong><br>
-                            Using <code>this</code> makes the code work even if the variable name changes!
-                        </p>
-                    </div>
-
-                    <h4>Using the Calculator</h4>
-                    <div class="code-block">
-                        <span class="code-label">JavaScript</span>
-                        <code>
-const calc = Calculator();  <span class="comment">// Create calculator</span><br>
-<br>
-console.log(calc.calculate("3 + 7"));  <span class="comment">// 10</span><br>
-console.log(calc.calculate("10 - 4")); <span class="comment">// 6</span><br>
-<br>
-<span class="comment">// Add new operations - this is the "extensible" part!</span><br>
-calc.addMethod("*", (a, b) => a * b);<br>
-calc.addMethod("**", (a, b) => a ** b);<br>
-<br>
-console.log(calc.calculate("3 * 4"));  <span class="comment">// 12</span><br>
-console.log(calc.calculate("2 ** 8")); <span class="comment">// 256</span>
-                        </code>
-                    </div>
-
-                    <div class="info-box info-box--purple">
-                        <h5>💡 Mindset: Data-Driven Design</h5>
-                        <p>Instead of hard-coding <code>if (operator === "+") { return a + b; }</code>,
-                            we store operations as <strong>data</strong> (functions in an object).
-                            This makes the code flexible - add new operations by adding data, not code!</p>
-                    </div>
-                </div>
-
-                <!-- Quiz 4 -->
-                <div class="quiz" data-correct="b" data-quiz-id="js2-quiz-4">
-                    <h4>📝 Quick Quiz: What does <code>this</code> refer to inside an object method?</h4>
-                    <div class="quiz-options">
-                        <div class="quiz-option" onclick="checkQuiz(this, 'a')">
-                            <span class="option-letter">A</span>
-                            <span>The window object</span>
-                        </div>
-                        <div class="quiz-option" onclick="checkQuiz(this, 'b')">
-                            <span class="option-letter">B</span>
-                            <span>The object that contains the method</span>
-                        </div>
-                        <div class="quiz-option" onclick="checkQuiz(this, 'c')">
-                            <span class="option-letter">C</span>
-                            <span>The function itself</span>
-                        </div>
-                        <div class="quiz-option" onclick="checkQuiz(this, 'd')">
-                            <span class="option-letter">D</span>
-                            <span>undefined</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- LESSON 7.5: Closures -->
-                <div class="lesson">
-                    <h3>7.5 Closures & Function Chaining</h3>
-                    <p>This is one of JavaScript's most powerful (and tricky) concepts!</p>
-
-                    <div class="info-box info-box--purple">
-                        <h5>💡 Why Closures Exist</h5>
-                        <p>Normally, variables inside a function are destroyed when the function ends.
-                            But what if you NEED to keep a value around? Closures let a function
-                            <strong>remember</strong> variables even after its parent function finishes.
-                        </p>
-                    </div>
-
-                    <h4>What is a Closure?</h4>
-                    <p>A <strong>closure</strong> is created when a function "captures" variables from its outer scope:
-                    </p>
-
-                    <div class="code-block">
-                        <span class="code-label">JavaScript</span>
-                        <code>
-function createCounter() {<br>
-&nbsp;&nbsp;let count = 0;  <span class="comment">// This variable is "closed over"</span><br>
-&nbsp;&nbsp;<br>
-&nbsp;&nbsp;return function() {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;count++;  <span class="comment">// Can still access count!</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;return count;<br>
-&nbsp;&nbsp;};<br>
-}<br>
-<br>
-const counter = createCounter();<br>
-console.log(counter()); <span class="comment">// 1</span><br>
-console.log(counter()); <span class="comment">// 2</span><br>
-console.log(counter()); <span class="comment">// 3</span>
-                        </code>
-                    </div>
-
-                    <div class="info-box info-box--info">
-                        <h5>📌 How It Works Step-by-Step</h5>
-                        <p>1. <code>createCounter()</code> runs, creates <code>count = 0</code><br>
-                            2. It returns the inner function (which references <code>count</code>)<br>
-                            3. <code>createCounter</code> finishes, but <code>count</code> survives!<br>
-                            4. Every time you call <code>counter()</code>, it uses THE SAME <code>count</code></p>
-                    </div>
-
-                    <h4>Understanding the Challenge (Exercise 36)</h4>
-                    <p>We need to make <code>sum(1)(2)(3) == 6</code> work. Let's break this down:</p>
-
-                    <div class="code-block">
-                        <span class="code-label">Analyzing the Problem</span>
-                        <code>
-<span class="comment">// What does this syntax mean?</span><br>
-sum(1)(2)(3) == 6<br>
-<br>
-<span class="comment">// Let's break it into steps:</span><br>
-<span class="comment">// Step 1: sum(1) is called → must return SOMETHING</span><br>
-<span class="comment">// Step 2: that SOMETHING is called with (2)</span><br>
-<span class="comment">// Step 3: that result is called with (3)</span><br>
-<span class="comment">// Step 4: that result is compared with 6</span><br>
-<br>
-<span class="comment">// KEY INSIGHT: For (2) and (3) to work, </span><br>
-<span class="comment">// sum(1) must return a FUNCTION!</span>
-                        </code>
-                    </div>
-
-                    <div class="info-box info-box--warning">
-                        <h5>⚠️ The Key Insight: Return a Function</h5>
-                        <p>If <code>sum(1)</code> needs to be called again like <code>sum(1)(2)</code>,
-                            then <code>sum(1)</code> <strong>must return a function</strong>.<br><br>
-                            That returned function also returns itself, allowing infinite chaining!</p>
-                    </div>
-
-                    <h4>Building the Solution Step-by-Step</h4>
-
-                    <div class="code-block">
-                        <span class="code-label">JavaScript - Step 1: Basic Structure</span>
-                        <code>
-function sum(x) {<br>
-&nbsp;&nbsp;let total = x;  <span class="comment">// Remember the first number</span><br>
-&nbsp;&nbsp;<br>
-&nbsp;&nbsp;function add(y) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;total += y;   <span class="comment">// Add new number to total</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;return add;   <span class="comment">// Return OURSELVES for chaining</span><br>
-&nbsp;&nbsp;}<br>
-&nbsp;&nbsp;<br>
-&nbsp;&nbsp;return add;  <span class="comment">// Return the add function</span><br>
-}<br>
-<br>
-<span class="comment">// Now sum(1)(2)(3) works but...</span><br>
-<span class="comment">// How do we get the final number out?</span>
-                        </code>
-                    </div>
-
-                    <div class="info-box info-box--info">
-                        <h5>📌 The valueOf Trick</h5>
-                        <p>When JavaScript compares a function with <code>==</code>, it calls the function's
-                            <code>valueOf()</code> method to get a primitive value.<br><br>
-                            By adding <code>add.valueOf = () => total</code>, we tell JavaScript:
-                            "When you need a number, use <code>total</code>"
-                        </p>
-                    </div>
-
-                    <div class="code-block">
-                        <span class="code-label">JavaScript - Complete Solution (Exercise 36)</span>
-                        <code>
-function sum(x) {<br>
-&nbsp;&nbsp;let total = x;  <span class="comment">// Closure: remember running total</span><br>
-&nbsp;&nbsp;<br>
-&nbsp;&nbsp;function add(y) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;total += y;    <span class="comment">// Add to the running total</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;return add;    <span class="comment">// Return itself for more chaining</span><br>
-&nbsp;&nbsp;}<br>
-&nbsp;&nbsp;<br>
-&nbsp;&nbsp;<span class="comment">// Magic: when compared with ==, JavaScript calls valueOf</span><br>
-&nbsp;&nbsp;add.valueOf = () => total;<br>
-&nbsp;&nbsp;<br>
-&nbsp;&nbsp;return add;<br>
-}<br>
-<br>
-<span class="comment">// Let's trace through sum(1)(2)(3) == 6:</span><br>
-<span class="comment">// 1. sum(1) → total=1, returns add function</span><br>
-<span class="comment">// 2. add(2) → total=3, returns add function</span><br>
-<span class="comment">// 3. add(3) → total=6, returns add function</span><br>
-<span class="comment">// 4. add == 6 → calls valueOf() → returns 6</span><br>
-<span class="comment">// 5. 6 == 6 → true!</span>
-                        </code>
-                    </div>
-
-                    <div class="info-box info-box--purple">
-                        <h5>💡 Key Takeaways</h5>
-                        <ul>
-                            <li><strong>Closures</strong>: Inner functions remember outer variables</li>
-                            <li><strong>Self-returning functions</strong>: Return yourself for chaining</li>
-                            <li><strong>Functions are objects</strong>: You can add properties like <code>valueOf</code>
-                            </li>
+                        <h4>Understanding the Problem (Exercise 35)</h4>
+                        <p>We need to create an "extensible calculator" that:</p>
+                        <ul class="content-list">
+                            <li>Parses strings like <code>"3 + 7"</code> and returns the result</li>
+                            <li>Starts with <code>+</code> and <code>-</code> operations</li>
+                            <li>Allows <strong>adding new operations</strong> later</li>
                         </ul>
-                    </div>
-                </div>
 
-                <!-- Quiz 5 -->
-                <div class="quiz" data-correct="d" data-quiz-id="js2-quiz-5">
-                    <h4>📝 Quick Quiz: What must <code>sum(1)</code> return for <code>sum(1)(2)</code> to work?</h4>
-                    <div class="quiz-options">
-                        <div class="quiz-option" onclick="checkQuiz(this, 'a')">
-                            <span class="option-letter">A</span>
-                            <span>A number</span>
+                        <h4>Step-by-Step Logic Breakdown</h4>
+
+                        <div class="alert alert--info">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="17" x2="12" y2="22" />
+                                    <path
+                                        d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>Step 1: Store Operations as Functions</strong>
+                                <p>The key insight is: <strong>operators are just functions</strong>!<br>
+                                    <code>+</code> takes two numbers and returns their sum.<br>
+                                    We can store these functions in an object to look them up dynamically.
+                                </p>
+                            </div>
                         </div>
-                        <div class="quiz-option" onclick="checkQuiz(this, 'b')">
-                            <span class="option-letter">B</span>
-                            <span>An array</span>
+
+                        <pre><code class="language-javascript">// Operations stored as functions
+const methods = {
+  "+": (a, b) => a + b,  // Takes a, b, returns sum
+  "-": (a, b) => a - b   // Takes a, b, returns difference
+};
+
+// To use: look up the operator, call the function
+methods["+"](3, 7);  // Returns 10
+methods["-"](10, 4); // Returns 6</code></pre>
+
+                        <div class="alert alert--info">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="17" x2="12" y2="22" />
+                                    <path
+                                        d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>Step 2: Parse the Input String</strong>
+                                <p>Given <code>"3 + 7"</code>, we need to extract: first number, operator, second
+                                    number.</p>
+                            </div>
                         </div>
-                        <div class="quiz-option" onclick="checkQuiz(this, 'c')">
-                            <span class="option-letter">C</span>
-                            <span>An object</span>
+
+                        <pre><code class="language-javascript">const str = "3 + 7";
+
+// Split by spaces into array
+const parts = str.split(" ");  // ["3", "+", "7"]
+
+const num1 = Number(parts[0]);     // 3 (convert string to number)
+const operator = parts[1];         // "+"
+const num2 = Number(parts[2]);     // 7</code></pre>
+
+                        <div class="alert alert--info">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="17" x2="12" y2="22" />
+                                    <path
+                                        d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>Step 3: Look Up and Execute</strong>
+                                <p>Use the operator to find the right function, then call it!</p>
+                            </div>
                         </div>
-                        <div class="quiz-option" onclick="checkQuiz(this, 'd')">
-                            <span class="option-letter">D</span>
-                            <span>A function</span>
+
+                        <pre><code class="language-javascript">// Look up the function for this operator
+const operatorFunction = methods[operator];  // methods["+"]
+
+// Call it with our numbers
+const result = operatorFunction(num1, num2); // 10</code></pre>
+
+                        <h4>The Complete Solution</h4>
+                        <pre><code class="language-javascript">// Exercise 35 Pattern
+function Calculator() {
+  const obj = {
+    // Store operators as functions
+    methods: {
+      "+": (a, b) => a + b,
+      "-": (a, b) => a - b
+    },
+    
+    calculate(str) {
+      // Parse the string
+      const parts = str.split(" ");
+      const num1 = Number(parts[0]);
+      const operator = parts[1];
+      const num2 = Number(parts[2]);
+      
+      // Look up and execute
+      if (!this.methods[operator] || isNaN(num1) || isNaN(num2)) {
+          return NaN;
+      }
+      return this.methods[operator](num1, num2);
+    },
+    
+    addMethod(name, func) {
+      // Add new operation to methods object
+      this.methods[name] = func;
+    }
+  };
+  
+  return obj;
+}</code></pre>
+
+                        <div class="alert alert--warning">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+                                    <line x1="12" y1="9" x2="12" y2="13" />
+                                    <line x1="12" y1="17" x2="12.01" y2="17" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>Understanding <code>this</code></strong>
+                                <p>Inside a method, <code>this</code> refers to the <strong>object calling the
+                                        method</strong>.<br>
+                                    <code>this.methods</code> looks for <code>methods</code> inside the current
+                                    object.<br>
+                                    <em>Tip: <code>this</code> is dynamic! It's determined at the moment the function is
+                                        NOT defined, but CALLED.</em>
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <!-- LESSON 7.6: Promises -->
-                <div class="lesson">
-                    <h3>7.6 Promises & Async JavaScript</h3>
-                    <p>JavaScript often needs to wait for things (loading data, timers).
-                        <strong>Promises</strong> let you handle these "wait and then do something" situations.
-                    </p>
+                        <h4>Using the Calculator</h4>
+                        <pre><code class="language-javascript">const calc = Calculator();  // Create calculator
 
-                    <div class="info-box info-box--purple">
-                        <h5>💡 Why Do We Need Async?</h5>
-                        <p>JavaScript runs on a <strong>single thread</strong> - it can only do one thing at a
-                            time.<br><br>
-                            <strong>Problem:</strong> If we wait for a 3-second timer like this:<br>
-                            <code>wait(3000); console.log("Done!");</code><br>
-                            The ENTIRE page would freeze for 3 seconds!<br><br>
-                            <strong>Solution:</strong> Tell JavaScript "start this timer, and I'll tell you what to do
-                            when it finishes" - that's async programming!
-                        </p>
-                    </div>
+console.log(calc.calculate("3 + 7"));  // 10
+console.log(calc.calculate("10 - 4")); // 6
 
-                    <h4>Understanding setTimeout</h4>
-                    <p>Before promises, let's understand <code>setTimeout</code>:</p>
+// Add new operations - this is the "extensible" part!
+calc.addMethod("*", (a, b) => a * b);
+calc.addMethod("**", (a, b) => a ** b);
 
-                    <div class="code-block">
-                        <span class="code-label">JavaScript</span>
-                        <code>
-console.log("1. Start");<br>
-<br>
-setTimeout(() => {<br>
-&nbsp;&nbsp;console.log("2. This runs LATER (after 2 seconds)");<br>
-}, 2000);<br>
-<br>
-console.log("3. End");<br>
-<br>
-<span class="comment">// Output order: 1, 3, 2</span><br>
-<span class="comment">// JavaScript doesn't WAIT - it schedules and moves on!</span>
-                        </code>
-                    </div>
+console.log(calc.calculate("3 * 4"));  // 12
+console.log(calc.calculate("2 ** 8")); // 256</code></pre>
 
-                    <div class="info-box info-box--info">
-                        <h5>📌 How setTimeout Works</h5>
-                        <p><code>setTimeout(callback, ms)</code> says:<br>
-                            "After <code>ms</code> milliseconds, run the <code>callback</code> function"<br><br>
-                            JavaScript sets the timer, then <strong>immediately continues</strong> to the next line!</p>
-                    </div>
+                        <div class="alert alert--important">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="9" y1="18" x2="15" y2="18" />
+                                    <line x1="10" y1="22" x2="14" y2="22" />
+                                    <path
+                                        d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 9.5 8 4.65 4.65 0 0 0 8 15.9c.7.7 1.11 1.4 1.25 2.1" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>Mindset: Data-Driven Design</strong>
+                                <p>Instead of hard-coding <code>if (operator === "+") { return a + b; }</code>,
+                                    we store operations as <strong>data</strong> (functions in an object).
+                                    This makes the code flexible - add new operations just by adding new data!</p>
+                            </div>
+                        </div>
+                    </article>
 
-                    <h4>The Problem: Callback Hell</h4>
-                    <p>What if you need to do things in sequence? With callbacks, it gets messy:</p>
+                    <!-- Quiz 4 -->
+                    <article class="problem-card">
+                        <div class="quiz" data-correct="b" data-quiz-id="js2-quiz-4">
+                            <h4>Quick Quiz: What does <code>this</code> refer to inside an object method?</h4>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="checkQuiz(this, 'a')">
+                                    <span class="option-letter">A</span>
+                                    <span>The window object</span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'b')">
+                                    <span class="option-letter">B</span>
+                                    <span>The object that contains the method</span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'c')">
+                                    <span class="option-letter">C</span>
+                                    <span>The function itself</span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'd')">
+                                    <span class="option-letter">D</span>
+                                    <span>undefined</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </section>
 
-                    <div class="code-block">
-                        <span class="code-label">JavaScript - The Problem (Nested Callbacks)</span>
-                        <code>
-setTimeout(() => {<br>
-&nbsp;&nbsp;console.log("Step 1");<br>
-&nbsp;&nbsp;setTimeout(() => {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;console.log("Step 2");<br>
-&nbsp;&nbsp;&nbsp;&nbsp;setTimeout(() => {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log("Step 3");<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// This keeps indenting... "callback hell" 😱</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;}, 1000);<br>
-&nbsp;&nbsp;}, 1000);<br>
-}, 1000);
-                        </code>
-                    </div>
+                <!-- 7.5 Closures -->
+                <section id="closures">
+                    <h2>7.5 Closures & Function Chaining</h2>
 
-                    <h4>The Solution: Promises (Exercise 37)</h4>
-                    <p><strong>Promises</strong> give us a cleaner way to handle async operations:</p>
+                    <article class="problem-card">
+                        <p>This is one of JavaScript's most powerful (and tricky) concepts!</p>
 
-                    <div class="code-block">
-                        <span class="code-label">JavaScript - Creating a Promise</span>
-                        <code>
-function delay(ms) {<br>
-&nbsp;&nbsp;<span class="comment">// Create a new Promise</span><br>
-&nbsp;&nbsp;return new Promise((resolve) => {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// When timeout completes, call resolve()</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;setTimeout(resolve, ms);<br>
-&nbsp;&nbsp;});<br>
-}<br>
-<br>
-<span class="comment">// Usage:</span><br>
-delay(3000).then(() => {<br>
-&nbsp;&nbsp;console.log("3 seconds passed!");<br>
-});
-                        </code>
-                    </div>
+                        <div class="alert alert--important">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="9" y1="18" x2="15" y2="18" />
+                                    <line x1="10" y1="22" x2="14" y2="22" />
+                                    <path
+                                        d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 9.5 8 4.65 4.65 0 0 0 8 15.9c.7.7 1.11 1.4 1.25 2.1" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>Why Closures Exist</strong>
+                                <p>Normally, variables inside a function are destroyed when the function ends.
+                                    But what if you NEED to keep a value around? Closures let a function
+                                    <strong>remember</strong> variables even after its parent function finishes.<br>
+                                    <em>Use Cases: This pattern is essential for <strong>Private Variables</strong>
+                                        (encapsulation) and Factory Functions.</em>
+                                </p>
+                            </div>
+                        </div>
 
-                    <div class="info-box info-box--warning">
-                        <h5>⚠️ The Promise Contract</h5>
-                        <p>When you create a Promise:<br>
-                            <code>new Promise((resolve) => { ... })</code><br><br>
-                            You're making a promise to JavaScript: "I'll call <code>resolve()</code> when I'm done"<br>
-                            Then <code>.then()</code> runs your callback after <code>resolve()</code> is called.
-                        </p>
-                    </div>
+                        <h4>What is a Closure?</h4>
+                        <p>A <strong>closure</strong> is created when a function "captures" variables from its outer
+                            scope:</p>
 
-                    <h4>Promise Chaining (Exercise 38)</h4>
-                    <p>The real power is <strong>chaining</strong> - each <code>.then()</code> waits for the previous
-                        one:</p>
-
-                    <div class="code-block">
-                        <span class="code-label">JavaScript - Chained Promises</span>
-                        <code>
-function showSequenceMessages() {<br>
-&nbsp;&nbsp;delay(1000)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;.then(() => {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log("Starting...");<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return delay(2000);  <span class="comment">// ← Return next Promise!</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;})<br>
-&nbsp;&nbsp;&nbsp;&nbsp;.then(() => {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log("Completed!");<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return delay(1000);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;})<br>
-&nbsp;&nbsp;&nbsp;&nbsp;.then(() => {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log("End of messages.");<br>
-&nbsp;&nbsp;&nbsp;&nbsp;});<br>
+                        <pre><code class="language-javascript">function createCounter() {
+  let count = 0;  // This variable is "closed over"
+  
+  return function() {
+    count++;  // Can still access count!
+    return count;
+  };
 }
-                        </code>
-                    </div>
 
-                    <div class="info-box info-box--info">
-                        <h5>📌 Execution Timeline</h5>
-                        <p><strong>0ms:</strong> Start delay(1000)<br>
-                            <strong>1000ms:</strong> Log "Starting...", start delay(2000)<br>
-                            <strong>3000ms:</strong> Log "Completed!", start delay(1000)<br>
-                            <strong>4000ms:</strong> Log "End of messages."<br><br>
-                            Total time: 4 seconds, running in sequence!
+const counter = createCounter();
+console.log(counter()); // 1
+console.log(counter()); // 2
+console.log(counter()); // 3</code></pre>
+
+                        <div class="alert alert--info">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="17" x2="12" y2="22" />
+                                    <path
+                                        d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>How It Works Step-by-Step</strong>
+                                <p>1. <code>createCounter()</code> runs, creates <code>count = 0</code><br>
+                                    2. It returns the inner function (which references <code>count</code>)<br>
+                                    3. <code>createCounter</code> finishes, but <code>count</code> survives!<br>
+                                    4. Every time you call <code>counter()</code>, it uses THE SAME <code>count</code>
+                                </p>
+                            </div>
+                        </div>
+
+                        <h4>Understanding the Challenge (Exercise 36)</h4>
+                        <p>We need to make <code>sum(1)(2)(3) == 6</code> work. Let's break this down:</p>
+
+                        <pre><code class="language-javascript">// Analyzing the Problem
+// What does this syntax mean?
+sum(1)(2)(3) == 6
+
+// Let's break it into steps:
+// Step 1: sum(1) is called → must return SOMETHING
+// Step 2: that SOMETHING is called with (2)
+// Step 3: that result is called with (3)
+// Step 4: that result is compared with 6
+
+// KEY INSIGHT: For (2) and (3) to work, 
+// sum(1) must return a FUNCTION!</code></pre>
+
+                        <div class="alert alert--warning">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+                                    <line x1="12" y1="9" x2="12" y2="13" />
+                                    <line x1="12" y1="17" x2="12.01" y2="17" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>The Key Insight: Return a Function</strong>
+                                <p>If <code>sum(1)</code> needs to be called again like <code>sum(1)(2)</code>,
+                                    then <code>sum(1)</code> <strong>must return a function</strong>.<br><br>
+                                    That returned function also returns itself, allowing infinite chaining!</p>
+                            </div>
+                        </div>
+
+                        <h4>Building the Solution Step-by-Step</h4>
+
+                        <pre><code class="language-javascript">// Step 1: Basic Structure
+function sum(x) {
+  let total = x;  // Remember the first number
+  
+  function add(y) {
+    total += y;   // Add new number to total
+    return add;   // Return OURSELVES for chaining
+  }
+  
+  return add;  // Return the add function
+}
+
+// Now sum(1)(2)(3) works but...
+// How do we get the final number out?</code></pre>
+
+                        <div class="alert alert--info">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="9" y1="18" x2="15" y2="18" />
+                                    <line x1="10" y1="22" x2="14" y2="22" />
+                                    <path
+                                        d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 9.5 8 4.65 4.65 0 0 0 8 15.9c.7.7 1.11 1.4 1.25 2.1" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>The valueOf Trick</strong>
+                                <p>When JavaScript compares a function with <code>==</code>, it calls the function's
+                                    <code>valueOf()</code> method to get a primitive value.<br><br>
+                                    By adding <code>add.valueOf = () => total</code>, we tell JavaScript:
+                                    "When you need a number, use <code>total</code>"
+                                </p>
+                            </div>
+                        </div>
+
+                        <pre><code class="language-javascript">// Complete Solution (Exercise 36)
+function sum(x) {
+  let total = x;  // Closure: remember running total
+  
+  function add(y) {
+    total += y;    // Add to the running total
+    return add;    // Return itself for more chaining
+  }
+  
+  // Magic: when compared with ==, JavaScript calls valueOf
+  add.valueOf = () => total;
+  
+  return add;
+}
+
+// Let's trace through sum(1)(2)(3) == 6:
+// 1. sum(1) → total=1, returns add function
+// 2. add(2) → total=3, returns add function
+// 3. add(3) → total=6, returns add function
+// 4. add == 6 → calls valueOf() → returns 6
+// 5. 6 == 6 → true!</code></pre>
+
+                        <div class="alert alert--important">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="9" y1="18" x2="15" y2="18" />
+                                    <line x1="10" y1="22" x2="14" y2="22" />
+                                    <path
+                                        d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 9.5 8 4.65 4.65 0 0 0 8 15.9c.7.7 1.11 1.4 1.25 2.1" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>Key Takeaways</strong>
+                                <ul>
+                                    <li><strong>Closures</strong>: Inner functions remember outer variables</li>
+                                    <li><strong>Self-returning functions</strong>: Return yourself for chaining</li>
+                                    <li><strong>Functions are objects</strong>: You can add properties like
+                                        <code>valueOf</code>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Quiz 5 -->
+                    <article class="problem-card">
+                        <div class="quiz" data-correct="d" data-quiz-id="js2-quiz-5">
+                            <h4>Quick Quiz: What must <code>sum(1)</code> return for <code>sum(1)(2)</code> to work?
+                            </h4>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="checkQuiz(this, 'a')">
+                                    <span class="option-letter">A</span>
+                                    <span>A number</span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'b')">
+                                    <span class="option-letter">B</span>
+                                    <span>An array</span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'c')">
+                                    <span class="option-letter">C</span>
+                                    <span>An object</span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'd')">
+                                    <span class="option-letter">D</span>
+                                    <span>A function</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </section>
+
+                <!-- 7.6 Promises -->
+                <section id="promises">
+                    <h2>7.6 Promises & Async JavaScript</h2>
+
+                    <article class="problem-card">
+                        <p>JavaScript often needs to wait for things (loading data, timers).
+                            <strong>Promises</strong> let you handle these "wait and then do something" situations.
                         </p>
-                    </div>
 
-                    <div class="info-box info-box--warning">
-                        <h5>⚠️ Critical: You MUST Return the Promise</h5>
-                        <p>If you forget to <code>return</code> the next promise, they run in <strong>parallel</strong>,
-                            not sequence!<br><br>
-                            <strong>Wrong:</strong> <code>.then(() => { delay(2000); })</code> ← missing return!<br>
-                            <strong>Right:</strong> <code>.then(() => { return delay(2000); })</code>
-                        </p>
-                    </div>
-
-                    <div class="info-box info-box--purple">
-                        <h5>💡 Key Takeaways</h5>
-                        <ul>
-                            <li><code>setTimeout</code> schedules code to run later</li>
-                            <li>Promises wrap async operations in a clean interface</li>
-                            <li><code>.then()</code> chains allow sequential async operations</li>
-                            <li>Always <code>return</code> the next promise in a chain!</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Quiz 6 -->
-                <div class="quiz" data-correct="c" data-quiz-id="js2-quiz-6">
-                    <h4>📝 Quick Quiz: What do you call to signal a Promise is complete?</h4>
-                    <div class="quiz-options">
-                        <div class="quiz-option" onclick="checkQuiz(this, 'a')">
-                            <span class="option-letter">A</span>
-                            <span><code>complete()</code></span>
+                        <div class="alert alert--important">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="9" y1="18" x2="15" y2="18" />
+                                    <line x1="10" y1="22" x2="14" y2="22" />
+                                    <path
+                                        d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 9.5 8 4.65 4.65 0 0 0 8 15.9c.7.7 1.11 1.4 1.25 2.1" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>Why Do We Need Async?</strong>
+                                <p>JavaScript runs on a <strong>single thread</strong> (it can only do one thing at a
+                                    time).<br>
+                                    <strong>The Event Loop</strong> queues up long tasks (like timers or network
+                                    requests) to run <em>later</em>, so the main page doesn't freeze.<br>
+                                    <em>This is the foundation for modern `async/await` syntax!</em>
+                                </p>
+                            </div>
                         </div>
-                        <div class="quiz-option" onclick="checkQuiz(this, 'b')">
-                            <span class="option-letter">B</span>
-                            <span><code>done()</code></span>
-                        </div>
-                        <div class="quiz-option" onclick="checkQuiz(this, 'c')">
-                            <span class="option-letter">C</span>
-                            <span><code>resolve()</code></span>
-                        </div>
-                        <div class="quiz-option" onclick="checkQuiz(this, 'd')">
-                            <span class="option-letter">D</span>
-                            <span><code>finish()</code></span>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Exercise 2 -->
-                <div class="exercise">
-                    <h4>Exercise: Promise Delay</h4>
-                    <p>Write a <code>delay(ms)</code> function that returns a Promise that resolves after
-                        <code>ms</code> milliseconds:
-                    </p>
+                        <h4>Understanding setTimeout</h4>
+                        <p>Before promises, let's understand <code>setTimeout</code>:</p>
 
-                    <textarea id="js2-ex-2" rows="12" spellcheck="false">function delay(ms) {
+                        <pre><code class="language-javascript">console.log("1. Start");
+
+setTimeout(() => {
+  console.log("2. This runs LATER (after 2 seconds)");
+}, 2000);
+
+console.log("3. End");
+
+// Output order: 1, 3, 2
+// JavaScript doesn't WAIT - it schedules and moves on!</code></pre>
+
+                        <div class="alert alert--info">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="17" x2="12" y2="22" />
+                                    <path
+                                        d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>How setTimeout Works</strong>
+                                <p><code>setTimeout(callback, ms)</code> says: "After <code>ms</code> milliseconds, run
+                                    the <code>callback</code> function"<br><br>
+                                    JavaScript sets the timer, then <strong>immediately continues</strong> to the next
+                                    line!</p>
+                            </div>
+                        </div>
+
+                        <h4>The Problem: Callback Hell</h4>
+                        <p>What if you need to do things in sequence? With callbacks, it gets messy:</p>
+
+                        <pre><code class="language-javascript">// The Problem (Nested Callbacks)
+setTimeout(() => {
+  console.log("Step 1");
+  setTimeout(() => {
+    console.log("Step 2");
+    setTimeout(() => {
+      console.log("Step 3");
+      // This keeps indenting... "callback hell" 😱
+    }, 1000);
+  }, 1000);
+}, 1000);</code></pre>
+
+                        <h4>The Solution: Promises (Exercise 37)</h4>
+                        <p><strong>Promises</strong> give us a cleaner way to handle async operations:</p>
+
+                        <pre><code class="language-javascript">// Creating a Promise
+function delay(ms) {
+  // Create a new Promise
+  return new Promise((resolve) => {
+    // When timeout completes, call resolve()
+    setTimeout(resolve, ms);
+  });
+}
+
+// Usage:
+delay(3000).then(() => {
+  console.log("3 seconds passed!");
+});</code></pre>
+
+                        <div class="alert alert--warning">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+                                    <line x1="12" y1="9" x2="12" y2="13" />
+                                    <line x1="12" y1="17" x2="12.01" y2="17" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>The Promise Contract</strong>
+                                <p>A Promise is an object that says "I might have a value later".<br>
+                                    You call <code>resolve()</code> when you're done.<br>
+                                    Who waits? The code using <code>.then()</code> waits!</p>
+                            </div>
+                        </div>
+
+                        <h4>Promise Chaining (Exercise 38)</h4>
+                        <p>The real magic is <strong>chaining</strong> steps flat, without nesting:</p>
+
+                        <pre><code class="language-javascript">// Chained Promises
+function showSequenceMessages() {
+  delay(1000)
+    .then(() => {
+      console.log("Starting...");
+      return delay(2000);  // ← Return next Promise!
+    })
+    .then(() => {
+      console.log("Completed!");
+      return delay(1000);
+    })
+    .then(() => {
+      console.log("End of messages.");
+    });
+}</code></pre>
+
+                        <div class="alert alert--info">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="17" x2="12" y2="22" />
+                                    <path
+                                        d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>Execution Timeline</strong>
+                                <p><strong>0ms:</strong> Start delay(1000)<br>
+                                    <strong>1000ms:</strong> Log "Starting...", start delay(2000)<br>
+                                    <strong>3000ms:</strong> Log "Completed!", start delay(1000)<br>
+                                    <strong>4000ms:</strong> Log "End of messages."<br><br>
+                                    Total time: 4 seconds, running in sequence!
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="alert alert--warning">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+                                    <line x1="12" y1="9" x2="12" y2="13" />
+                                    <line x1="12" y1="17" x2="12.01" y2="17" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>Critical: You MUST Return the Promise</strong>
+                                <p>If you forget to <code>return</code> the next promise, they run in
+                                    <strong>parallel</strong>, not sequence!<br><br>
+                                    <strong>Wrong:</strong> <code>.then(() => { delay(2000); })</code> ← missing
+                                    return!<br>
+                                    <strong>Right:</strong> <code>.then(() => { return delay(2000); })</code>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="alert alert--important">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="9" y1="18" x2="15" y2="18" />
+                                    <line x1="10" y1="22" x2="14" y2="22" />
+                                    <path
+                                        d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 9.5 8 4.65 4.65 0 0 0 8 15.9c.7.7 1.11 1.4 1.25 2.1" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>Key Takeaways</strong>
+                                <ul>
+                                    <li><code>setTimeout</code> schedules code to run later</li>
+                                    <li>Promises wrap async operations in a clean interface</li>
+                                    <li><code>.then()</code> chains allow sequential async operations</li>
+                                    <li>Always <code>return</code> the next promise in a chain!</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Quiz 6 -->
+                    <article class="problem-card">
+                        <div class="quiz" data-correct="c" data-quiz-id="js2-quiz-6">
+                            <h4>Quick Quiz: What do you call to signal a Promise is complete?</h4>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="checkQuiz(this, 'a')">
+                                    <span class="option-letter">A</span>
+                                    <span><code>complete()</code></span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'b')">
+                                    <span class="option-letter">B</span>
+                                    <span><code>done()</code></span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'c')">
+                                    <span class="option-letter">C</span>
+                                    <span><code>resolve()</code></span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'd')">
+                                    <span class="option-letter">D</span>
+                                    <span><code>finish()</code></span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Exercise 2 -->
+                    <article class="problem-card">
+                        <div class="exercise">
+                            <div class="exercise-header">
+                                <span class="exercise-badge">EXERCISE</span>
+                                <h4>Promise Delay</h4>
+                            </div>
+                            <p>Write a <code>delay(ms)</code> function that returns a Promise that resolves after
+                                <code>ms</code> milliseconds:
+                            </p>
+
+                            <textarea id="js2-ex-2" spellcheck="false" placeholder="">function delay(ms) {
   // Return a new Promise that resolves after ms milliseconds
   // Hint: use setTimeout inside the Promise
   
@@ -849,261 +1247,259 @@ delay(2000).then(() => {
   console.log("2 seconds passed!");
 });</textarea>
 
-                    <button class="btn" onclick="runJSCode('js2-ex-2', 'js2-ex-2-output')">▶ Run Code</button>
-                    <div class="output-container" id="js2-ex-2-output"></div>
-                </div>
+                            <div class="btn-group">
+                                <button class="btn btn--primary" onclick="runJSCode('js2-ex-2', 'js2-ex-2-output')">▶
+                                    Run Code</button>
+                                <button class="btn btn--secondary" onclick="showHint('js2-hint-2')">💡 Show
+                                    Hint</button>
+                            </div>
+                            <div id="js2-hint-2" class="feedback" style="display:none;">
+                                <strong>Hint:</strong> Use
+                                <code>return new Promise((resolve) => setTimeout(resolve, ms));</code>
+                            </div>
+                            <div class="output-preview" id="js2-ex-2-output">
+                                <em>Your preview will appear here...</em>
+                            </div>
+                        </div>
+                    </article>
+                </section>
 
-                <!-- LESSON 7.7: DOM Events & Form Validation (HTML/CSS Integration) -->
-                <div class="lesson">
-                    <h3>7.7 Combining JavaScript with HTML & CSS</h3>
-                    <p>This is where it all comes together! JavaScript can <strong>read from</strong> and
-                        <strong>modify</strong> your HTML page dynamically.
+                <!-- 7.7 JS + HTML + CSS -->
+                <section id="dom-integration">
+                    <h2>7.7 JS + HTML + CSS Integration</h2>
+
+                    <article class="problem-card">
+                        <p>Finally, let's connect JavaScript to the web page (DOM). We'll build a <strong>Live Form
+                                Validator</strong>.</p>
+
+                        <div class="alert alert--info">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="17" x2="12" y2="22" />
+                                    <path
+                                        d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>The Goal (Exercise 39)</strong>
+                                <p>We want an input field that:<br>
+                                    1. Listens for user typing<br>
+                                    2. Checks if the value is valid (e.g., "contains @")<br>
+                                    3. Changes color (Green/Red) instantly</p>
+                            </div>
+                        </div>
+
+                        <h4>The HTML Structure</h4>
+                        <pre><code class="language-html">&lt;input type="text" id="username" placeholder="Enter username"&gt;
+&lt;div id="feedback"&gt;&lt;/div&gt;</code></pre>
+
+                        <h4>The CSS Classes</h4>
+                        <pre><code class="language-css">.valid { border-color: green; color: green; }
+.invalid { border-color: red; color: red; }</code></pre>
+
+                        <h4>The JavaScript Logic</h4>
+
+                        <pre><code class="language-javascript">// Exercise 39 Pattern
+const input = document.getElementById('username');
+const feedback = document.getElementById('feedback');
+
+// Listen for "input" events (fires every keystroke)
+input.addEventListener('input', function() {
+  const value = input.value;
+  
+  if (value.includes('@')) {
+    // Valid case
+    input.className = 'valid';
+    feedback.textContent = 'Valid username!';
+  } else {
+    // Invalid case
+    input.className = 'invalid';
+    feedback.textContent = 'Must contain @ symbol';
+  }
+});</code></pre>
+
+                        <div class="alert alert--important">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="9" y1="18" x2="15" y2="18" />
+                                    <line x1="10" y1="22" x2="14" y2="22" />
+                                    <path
+                                        d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 9.5 8 4.65 4.65 0 0 0 8 15.9c.7.7 1.11 1.4 1.25 2.1" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>Separation of Concerns</strong>
+                                <p>Notice how we just change the <code>className</code>?<br>
+                                    We let <strong>CSS</strong> handle the colors and styles.<br>
+                                    We let <strong>JavaScript</strong> handle the logic.<br>
+                                    This keeps our code clean and maintainable!</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Quiz 7 -->
+                    <article class="problem-card">
+                        <div class="quiz" data-correct="b" data-quiz-id="js2-quiz-7">
+                            <h4>Quick Quiz: Which method attaches an event handler to an element?</h4>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="checkQuiz(this, 'a')">
+                                    <span class="option-letter">A</span>
+                                    <span><code>element.onClick(handler)</code></span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'b')">
+                                    <span class="option-letter">B</span>
+                                    <span><code>element.addEventListener('click', handler)</code></span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'c')">
+                                    <span class="option-letter">C</span>
+                                    <span><code>element.attachEvent('click', handler)</code></span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'd')">
+                                    <span class="option-letter">D</span>
+                                    <span><code>element.listen('click', handler)</code></span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Exercise 3 -->
+                    <article class="problem-card">
+                        <div class="exercise">
+                            <div class="exercise-header">
+                                <span class="exercise-badge">EXERCISE</span>
+                                <h4>Form Validation</h4>
+                            </div>
+                            <p>Write code that adds the class <code>"valid"</code> if the input contains "user", and
+                                <code>"invalid"</code> otherwise:
+                            </p>
+
+                            <!-- Mini DOM environment for the exercise -->
+                            <div
+                                style="background:var(--color-bg-tertiary); padding:1rem; border-radius:var(--radius-md); margin-bottom:1rem; border:1px solid var(--color-border-default);">
+                                <input type="text" id="test-input" placeholder="Type here..."
+                                    style="padding:0.5rem; border:2px solid #ccc; border-radius:4px; width:100%;">
+                                <div id="test-feedback" style="margin-top:0.5rem; font-size:0.9rem;"></div>
+                                <style>
+                                    .valid {
+                                        border-color: #2ea043 !important;
+                                        color: #2ea043;
+                                    }
+
+                                    .invalid {
+                                        border-color: #da3633 !important;
+                                        color: #da3633;
+                                    }
+                                </style>
+                            </div>
+
+                            <textarea id="js2-ex-3" spellcheck="false" placeholder="">const input = document.getElementById('test-input');
+
+input.addEventListener('input', function() {
+  // 1. Get value
+  const val = input.value;
+  
+  // 2. Check if val includes "user"
+  // 3. Set input.className to 'valid' or 'invalid'
+  
+});</textarea>
+
+                            <div class="btn-group">
+                                <button class="btn btn--primary" onclick="runJSCode('js2-ex-3', 'js2-ex-3-output')">▶
+                                    Run Code</button>
+                                <button class="btn btn--secondary" onclick="showHint('js2-hint-3')">💡 Show
+                                    Hint</button>
+                            </div>
+                            <div id="js2-hint-3" class="feedback" style="display:none;">
+                                <strong>Hint:</strong> Use
+                                <code>if (input.value.includes('user')) { input.className = 'valid'; }</code>
+                            </div>
+                            <div class="output-preview" id="js2-ex-3-output">
+                                <em>Your preview will appear here...</em>
+                            </div>
+                        </div>
+                    </article>
+                </section>
+
+                <!-- 7.8 Exercise Mapping -->
+                <section id="exercise-mapping">
+                    <h2>7.8 Exercise Mapping</h2>
+                    <article class="problem-card">
+                        <p>Here is a map of the exercises we've covered in this chapter:</p>
+
+                        <div style="overflow-x: auto;">
+                            <table style="width:100%; border-collapse: collapse; text-align: left; font-size: 0.95rem;">
+                                <thead>
+                                    <tr style="border-bottom: 2px solid var(--color-border-default);">
+                                        <th style="padding: 12px;">Topic</th>
+                                        <th style="padding: 12px;">Exercise ID</th>
+                                        <th style="padding: 12px;">Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="border-bottom: 1px solid var(--color-border-muted);">
+                                        <td style="padding: 12px;">Array Methods</td>
+                                        <td style="padding: 12px;">#31, #32</td>
+                                        <td style="padding: 12px;">Filter range in-place; Unique array members</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid var(--color-border-muted);">
+                                        <td style="padding: 12px;">Objects</td>
+                                        <td style="padding: 12px;">#33, #34</td>
+                                        <td style="padding: 12px;">Map to objects; Group by ID</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid var(--color-border-muted);">
+                                        <td style="padding: 12px;">Constructors</td>
+                                        <td style="padding: 12px;">#35</td>
+                                        <td style="padding: 12px;">Extensible Calculator</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid var(--color-border-muted);">
+                                        <td style="padding: 12px;">Closures</td>
+                                        <td style="padding: 12px;">#36</td>
+                                        <td style="padding: 12px;">Function chaining sum(a)(b)</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid var(--color-border-muted);">
+                                        <td style="padding: 12px;">Promises</td>
+                                        <td style="padding: 12px;">#37, #38</td>
+                                        <td style="padding: 12px;">Delay function; Promise chaining</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 12px;">DOM</td>
+                                        <td style="padding: 12px;">#39</td>
+                                        <td style="padding: 12px;">Live form validation</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </article>
+                </section>
+
+                <!-- Footer -->
+                <footer class="chapter-footer">
+                    <div class="alert alert--tip">
+                        <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10" />
+                                <circle cx="12" cy="12" r="6" />
+                                <circle cx="12" cy="12" r="2" />
+                            </svg></span>
+                        <div class="alert__content">
+                            <strong>Chapter Completed!</strong> You've mastered advanced JavaScript! You now have the
+                            tools to build complex, interactive web applications.
+                            <p class="cta-button">
+                                <a href="../projects.html" class="btn btn--primary">Go to Projects →</a>
+                            </p>
+                        </div>
+                    </div>
+                    <p class="chapter-footer__meta">
+                        WebDev Academy • Chapter 7: JavaScript Part 2<br>
+                        <a href="index.html">← Back to Chapters</a>
                     </p>
+                </footer>
+            </article>
+        </main>
+    </div>
 
-                    <div class="info-box info-box--success">
-                        <h5>🔗 The Connection: JS + HTML + CSS</h5>
-                        <p><strong>HTML</strong>: Structure (what elements exist)<br>
-                            <strong>CSS</strong>: Appearance (how they look)<br>
-                            <strong>JavaScript</strong>: Behavior (what happens when user interacts)
-                        </p>
-                    </div>
-
-                    <h4>Event Listeners (Exercise 39)</h4>
-                    <p>HTML buttons trigger JavaScript functions when clicked:</p>
-
-                    <div class="code-block">
-                        <span class="code-label">HTML</span>
-                        <code>
-&lt;button <span class="attr">id</span>=<span class="value">"accept-btn"</span>&gt;Accept&lt;/button&gt;<br>
-&lt;button <span class="attr">id</span>=<span class="value">"decline-btn"</span>&gt;Decline&lt;/button&gt;
-                        </code>
-                    </div>
-
-                    <div class="code-block">
-                        <span class="code-label">JavaScript - Exercise 39 Pattern</span>
-                        <code>
-function handleButtons(event) {<br>
-&nbsp;&nbsp;let message = '';<br>
-&nbsp;&nbsp;<br>
-&nbsp;&nbsp;<span class="comment">// Check WHICH button was clicked</span><br>
-&nbsp;&nbsp;if (event.target.id === 'accept-btn') {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;message = 'Accepted';<br>
-&nbsp;&nbsp;} else if (event.target.id === 'decline-btn') {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;message = 'Declined';<br>
-&nbsp;&nbsp;}<br>
-&nbsp;&nbsp;<br>
-&nbsp;&nbsp;<span class="comment">// Create new paragraph element</span><br>
-&nbsp;&nbsp;const p = document.createElement('p');<br>
-&nbsp;&nbsp;p.textContent = message;<br>
-&nbsp;&nbsp;document.body.appendChild(p);<br>
-&nbsp;&nbsp;<br>
-&nbsp;&nbsp;<span class="comment">// Remove after 2 seconds</span><br>
-&nbsp;&nbsp;setTimeout(() => {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;p.remove();<br>
-&nbsp;&nbsp;}, 2000);<br>
-}
-                        </code>
-                    </div>
-
-                    <div class="info-box info-box--purple">
-                        <h5>💡 Key Concepts</h5>
-                        <ul>
-                            <li><code>event.target</code> = the element that was clicked</li>
-                            <li><code>document.createElement('p')</code> = create new element</li>
-                            <li><code>element.textContent</code> = set text inside element</li>
-                            <li><code>parent.appendChild(child)</code> = add element to page</li>
-                            <li><code>element.remove()</code> = remove element from page</li>
-                        </ul>
-                    </div>
-
-                    <h4>Form Validation (Exercise 40)</h4>
-                    <p>Validate user input before allowing form submission:</p>
-
-                    <div class="code-block">
-                        <span class="code-label">HTML - Form Structure</span>
-                        <code>
-&lt;form <span class="attr">id</span>=<span class="value">"mainform"</span> <span class="attr">onsubmit</span>=<span class="value">"return validate()"</span>&gt;<br>
-&nbsp;&nbsp;&lt;input <span class="attr">type</span>=<span class="value">"text"</span> <span class="attr">id</span>=<span class="value">"code"</span> <span class="attr">placeholder</span>=<span class="value">"Code (number)"</span>&gt;<br>
-&nbsp;&nbsp;&lt;input <span class="attr">type</span>=<span class="value">"email"</span> <span class="attr">id</span>=<span class="value">"email"</span> <span class="attr">placeholder</span>=<span class="value">"Email"</span>&gt;<br>
-&nbsp;&nbsp;&lt;input <span class="attr">type</span>=<span class="value">"password"</span> <span class="attr">id</span>=<span class="value">"pass"</span> <span class="attr">placeholder</span>=<span class="value">"Password"</span>&gt;<br>
-&nbsp;&nbsp;&lt;input <span class="attr">type</span>=<span class="value">"password"</span> <span class="attr">id</span>=<span class="value">"pass_conf"</span> <span class="attr">placeholder</span>=<span class="value">"Confirm"</span>&gt;<br>
-&nbsp;&nbsp;&lt;button <span class="attr">type</span>=<span class="value">"submit"</span>&gt;Submit&lt;/button&gt;<br>
-&lt;/form&gt;
-                        </code>
-                    </div>
-
-                    <div class="code-block">
-                        <span class="code-label">JavaScript - Exercise 40 Pattern</span>
-                        <code>
-function validate() {<br>
-&nbsp;&nbsp;<span class="comment">// Get values from form fields</span><br>
-&nbsp;&nbsp;const email = document.getElementById("email").value;<br>
-&nbsp;&nbsp;const code = document.getElementById("code").value;<br>
-&nbsp;&nbsp;const pass = document.getElementById("pass").value;<br>
-&nbsp;&nbsp;const confirmPass = document.getElementById("pass_conf").value;<br>
-&nbsp;&nbsp;<br>
-&nbsp;&nbsp;<span class="comment">// Rule 1: No empty fields</span><br>
-&nbsp;&nbsp;if (email === "" || code === "" || pass === "") {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;return false;<br>
-&nbsp;&nbsp;}<br>
-&nbsp;&nbsp;<br>
-&nbsp;&nbsp;<span class="comment">// Rule 2: Max 15 characters</span><br>
-&nbsp;&nbsp;if (code.length > 15 || email.length > 15) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;return false;<br>
-&nbsp;&nbsp;}<br>
-&nbsp;&nbsp;<br>
-&nbsp;&nbsp;<span class="comment">// Rule 3: Password min 9 characters</span><br>
-&nbsp;&nbsp;if (pass.length < 9) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;return false;<br>
-&nbsp;&nbsp;}<br>
-&nbsp;&nbsp;<br>
-&nbsp;&nbsp;<span class="comment">// Rule 4: Code must be a number</span><br>
-&nbsp;&nbsp;if (isNaN(code)) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;return false;<br>
-&nbsp;&nbsp;}<br>
-&nbsp;&nbsp;<br>
-&nbsp;&nbsp;<span class="comment">// Rule 5: Passwords must match</span><br>
-&nbsp;&nbsp;if (pass !== confirmPass) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;return false;<br>
-&nbsp;&nbsp;}<br>
-&nbsp;&nbsp;<br>
-&nbsp;&nbsp;<span class="comment">// Rule 6: Email must have @ and .</span><br>
-&nbsp;&nbsp;if (!email.includes("@") || !email.includes(".")) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;return false;<br>
-&nbsp;&nbsp;}<br>
-&nbsp;&nbsp;<br>
-&nbsp;&nbsp;return true;  <span class="comment">// All rules passed!</span><br>
-}
-                        </code>
-                    </div>
-
-                    <div class="info-box info-box--info">
-                        <h5>📌 Mindset: Validation Pattern</h5>
-                        <p>Check each rule one by one. <code>return false</code> immediately if any rule fails.
-                            Only <code>return true</code> at the very end if ALL rules pass.</p>
-                    </div>
-                </div>
-
-                <!-- Quiz 7 -->
-                <div class="quiz" data-correct="b" data-quiz-id="js2-quiz-7">
-                    <h4>📝 Quick Quiz: What does <code>document.getElementById("email").value</code> return?</h4>
-                    <div class="quiz-options">
-                        <div class="quiz-option" onclick="checkQuiz(this, 'a')">
-                            <span class="option-letter">A</span>
-                            <span>The input element itself</span>
-                        </div>
-                        <div class="quiz-option" onclick="checkQuiz(this, 'b')">
-                            <span class="option-letter">B</span>
-                            <span>The text typed into the input field</span>
-                        </div>
-                        <div class="quiz-option" onclick="checkQuiz(this, 'c')">
-                            <span class="option-letter">C</span>
-                            <span>The id of the element</span>
-                        </div>
-                        <div class="quiz-option" onclick="checkQuiz(this, 'd')">
-                            <span class="option-letter">D</span>
-                            <span>undefined</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Exercise 3: DOM -->
-                <div class="exercise">
-                    <h4>Exercise: Dynamic Elements</h4>
-                    <p>Write code that creates a paragraph, adds it to the page, then removes it after 3 seconds:</p>
-
-                    <textarea id="js2-ex-3" rows="10" spellcheck="false">// Create a new <p> element
-const p = document.createElement('p');
-p.textContent = 'Hello! I will disappear in 3 seconds...';
-
-// Add it to the output container (not document.body for this exercise)
-document.getElementById('js2-ex-3-output').appendChild(p);
-
-// TODO: Use setTimeout to remove the paragraph after 3 seconds
-</textarea>
-
-                    <button class="btn" onclick="runJSCode('js2-ex-3', 'js2-ex-3-output')">▶ Run Code</button>
-                    <div class="output-container" id="js2-ex-3-output"></div>
-                </div>
-
-                <!-- Exercise Mapping -->
-                <div class="lesson">
-                    <h3>7.8 Exercise Mapping Guide</h3>
-                    <p>Here's how this chapter's lessons map to the exercises:</p>
-
-                    <div class="table-wrapper">
-                        <table class="comparison-table">
-                            <thead>
-                                <tr>
-                                    <th>Exercise</th>
-                                    <th>Topic</th>
-                                    <th>Relevant Lesson</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>31</td>
-                                    <td>Filter array in-place</td>
-                                    <td>7.2 (splice, backwards loop)</td>
-                                </tr>
-                                <tr>
-                                    <td>32</td>
-                                    <td>Remove duplicates</td>
-                                    <td>7.2 (includes, accumulator)</td>
-                                </tr>
-                                <tr>
-                                    <td>33</td>
-                                    <td>Transform objects</td>
-                                    <td>7.3 (object mapping)</td>
-                                </tr>
-                                <tr>
-                                    <td>34</td>
-                                    <td>Group by ID</td>
-                                    <td>7.3 (dynamic keys)</td>
-                                </tr>
-                                <tr>
-                                    <td>35</td>
-                                    <td>Extensible Calculator</td>
-                                    <td>7.4 (constructor, this)</td>
-                                </tr>
-                                <tr>
-                                    <td>36</td>
-                                    <td>Chained sum(1)(2)</td>
-                                    <td>7.5 (closures, valueOf)</td>
-                                </tr>
-                                <tr>
-                                    <td>37</td>
-                                    <td>Promise delay</td>
-                                    <td>7.6 (Promise, setTimeout)</td>
-                                </tr>
-                                <tr>
-                                    <td>38</td>
-                                    <td>Sequence messages</td>
-                                    <td>7.6 (Promise chaining)</td>
-                                </tr>
-                                <tr>
-                                    <td>39</td>
-                                    <td>Button handlers</td>
-                                    <td>7.7 (DOM events, createElement)</td>
-                                </tr>
-                                <tr>
-                                    <td>40</td>
-                                    <td>Form validation</td>
-                                    <td>7.7 (getValue, isNaN, validation)</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-            </div>
-        </article>
-    </main>
-
-    <footer>
-        <p>&copy; 2026 WebDev Academy | Created for learning web development</p>
-    </footer>
-
+    <!-- Scripts -->
     <script src="../app.js"></script>
 </body>
 

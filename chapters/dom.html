@@ -6,932 +6,1082 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
         content="Learn about the Document Object Model (DOM), global objects, element manipulation, and DOM tree traversal in JavaScript.">
-    <meta name="author" content="WebDev Academy">
-    <title>Chapter 5: The DOM - WebDev Academy</title>
+    <meta name="theme-color" content="#0d1117">
+
+    <title>Chapter 5: The DOM | WebDev Academy</title>
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
         rel="stylesheet">
+
+    <!-- Styles -->
     <link rel="stylesheet" href="../styles.css">
+
+    <!-- Highlight.js - Syntax Highlighting with Atom One Dark Theme -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
 </head>
 
 <body>
-    <nav>
-        <div class="nav-content">
-            <a href="../index.html" class="logo">WebDev Academy</a>
-            <ul class="nav-links">
-                <li><a href="internet.html">Internet</a></li>
-                <li><a href="html.html">HTML</a></li>
-                <li><a href="css.html">CSS</a></li>
-                <li><a href="layout.html">Layout</a></li>
-                <li><a href="dom.html">DOM</a></li>
-                <li><a href="javascript.html">JavaScript</a></li>
-                <li><a href="javascript-part2.html">JS Part 2</a></li>
-                <li><a href="../projects.html">Projects</a></li>
-            </ul>
-        </div>
-    </nav>
+    <!-- Header -->
+    <header class="header">
+        <a href="../index.html" class="header__logo">
+            <span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="16 18 22 12 16 6"></polyline>
+                    <polyline points="8 6 2 12 8 18"></polyline>
+                </svg></span> WebDev Academy
+        </a>
+        <nav class="header__nav">
+            <a href="index.html" class="header__link">← Back to Chapters</a>
+        </nav>
+    </header>
 
-    <div class="breadcrumb">
-        <a href="../index.html">Home</a> › Chapter 5: The DOM
-    </div>
+    <!-- Main Layout with Sidebar -->
+    <div class="app-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar__section">
+                <h3 class="sidebar__title">Chapter 5</h3>
+                <ul class="sidebar__list">
+                    <li class="sidebar__item">
+                        <a href="#intro" class="sidebar__link sidebar__link--active">
+                            <span class="sidebar__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <line x1="2" y1="12" x2="22" y2="12" />
+                                    <path
+                                        d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                                </svg></span>
+                            Introduction
+                        </a>
+                    </li>
+                    <li class="sidebar__item">
+                        <a href="#global-objects" class="sidebar__link">
+                            <span class="sidebar__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                                    <line x1="8" y1="21" x2="16" y2="21" />
+                                    <line x1="12" y1="17" x2="12" y2="21" />
+                                </svg></span>
+                            5.1 Global DOM Objects
+                        </a>
+                    </li>
+                    <li class="sidebar__item">
+                        <a href="#unobtrusive-js" class="sidebar__link">
+                            <span class="sidebar__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                    <polyline points="14 2 14 8 20 8" />
+                                    <line x1="16" y1="13" x2="8" y2="13" />
+                                    <line x1="16" y1="17" x2="8" y2="17" />
+                                </svg></span>
+                            5.1.2 Unobtrusive JS
+                        </a>
+                    </li>
+                    <li class="sidebar__item">
+                        <a href="#element-objects" class="sidebar__link">
+                            <span class="sidebar__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                                    <polyline points="2 17 12 22 22 17" />
+                                    <polyline points="2 12 12 17 22 12" />
+                                </svg></span>
+                            5.2 DOM Element Objects
+                        </a>
+                    </li>
+                    <li class="sidebar__item">
+                        <a href="#dom-tree" class="sidebar__link">
+                            <span class="sidebar__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="5" x2="12" y2="19" />
+                                    <polyline points="19 12 12 19 5 12" />
+                                </svg></span>
+                            5.3 The DOM Tree
+                        </a>
+                    </li>
+                    <li class="sidebar__item">
+                        <a href="#devtools" class="sidebar__link">
+                            <span class="sidebar__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+                                </svg></span>
+                            5.3.2 Browser DevTools
+                        </a>
+                    </li>
+                    <li class="sidebar__item">
+                        <a href="#quizzes" class="sidebar__link">
+                            <span class="sidebar__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <circle cx="12" cy="12" r="6" />
+                                    <circle cx="12" cy="12" r="2" />
+                                </svg></span>
+                            Quizzes
+                        </a>
+                    </li>
+                    <li class="sidebar__item">
+                        <a href="#exercises" class="sidebar__link">
+                            <span class="sidebar__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                                    <polyline points="22 4 12 14.01 9 11.01" />
+                                </svg></span>
+                            Exercises
+                        </a>
+                    </li>
+                </ul>
+            </div>
 
-    <main>
-        <article class="chapter-page" data-chapter="dom">
-            <header class="chapter-page-header">
-                <span class="chapter-icon">🔧</span>
-                <h1>Chapter 5: The Document Object Model (DOM)</h1>
-            </header>
+            <div class="sidebar__section">
+                <h3 class="sidebar__title">Navigation</h3>
+                <ul class="sidebar__list">
+                    <li class="sidebar__item">
+                        <a href="layout.html" class="sidebar__link">
+                            <span class="sidebar__icon">←</span>
+                            Prev: Layout
+                        </a>
+                    </li>
+                    <li class="sidebar__item">
+                        <a href="javascript.html" class="sidebar__link">
+                            <span class="sidebar__icon">→</span>
+                            Next: JavaScript
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
 
-            <div class="chapter-inner">
-                <!-- ============================================
-                     Section 5.1: Global DOM Objects
-                     ============================================ -->
-                <div class="lesson">
-                    <h3>5.1 Global DOM Objects</h3>
-                    <p>When JavaScript runs in a browser, it has access to several <strong>global objects</strong>
-                        that represent different aspects of the browser environment. These objects provide the
-                        foundation for all DOM manipulation and browser interaction.</p>
-
-                    <h4>The Six Global DOM Objects</h4>
-                    <p>Every browser provides six core global objects that JavaScript can access:</p>
-
-                    <div class="table-wrapper">
-                        <table class="comparison-table">
-                            <thead>
-                                <tr>
-                                    <th>Object</th>
-                                    <th>Description</th>
-                                    <th>Common Uses</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><code>window</code></td>
-                                    <td>The browser window itself; the global scope</td>
-                                    <td>Timers, alerts, window dimensions</td>
-                                </tr>
-                                <tr>
-                                    <td><code>document</code></td>
-                                    <td>The HTML document loaded in the window</td>
-                                    <td>Selecting/modifying elements</td>
-                                </tr>
-                                <tr>
-                                    <td><code>location</code></td>
-                                    <td>The current URL and navigation</td>
-                                    <td>Redirects, URL parameters</td>
-                                </tr>
-                                <tr>
-                                    <td><code>navigator</code></td>
-                                    <td>Information about the browser</td>
-                                    <td>Browser detection, geolocation</td>
-                                </tr>
-                                <tr>
-                                    <td><code>screen</code></td>
-                                    <td>Information about the user's screen</td>
-                                    <td>Screen dimensions, color depth</td>
-                                </tr>
-                                <tr>
-                                    <td><code>history</code></td>
-                                    <td>The browser's session history</td>
-                                    <td>Back/forward navigation</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <h4>The <code>window</code> Object</h4>
-                    <p>The <code>window</code> object is the top-level object in the browser. All global variables
-                        and functions become properties of <code>window</code>.</p>
-
-                    <div class="code-block">
-                        <span class="code-label">JavaScript</span>
-                        <code>
-<span class="comment">// Window properties</span><br>
-console.log(window.innerWidth);  <span class="comment">// Browser viewport width</span><br>
-console.log(window.innerHeight); <span class="comment">// Browser viewport height</span><br>
-console.log(window.outerWidth);  <span class="comment">// Full window width</span><br>
-console.log(window.outerHeight); <span class="comment">// Full window height</span><br>
-<br>
-<span class="comment">// Window methods</span><br>
-window.alert("Hello!");   <span class="comment">// Show alert dialog</span><br>
-window.confirm("Sure?");  <span class="comment">// Show confirm dialog (returns boolean)</span><br>
-window.prompt("Name?");   <span class="comment">// Show input dialog (returns string)</span><br>
-<br>
-<span class="comment">// Timers</span><br>
-window.setTimeout(() => console.log("Delayed!"), 1000);<br>
-window.setInterval(() => console.log("Repeating!"), 2000);
-                        </code>
-                    </div>
-
-                    <h4>The <code>document</code> Object</h4>
-                    <p>The <code>document</code> object represents the entire HTML page. It's your primary interface
-                        for selecting and manipulating DOM elements.</p>
-
-                    <div class="code-block">
-                        <span class="code-label">JavaScript</span>
-                        <code>
-<span class="comment">// Document properties</span><br>
-console.log(document.title);       <span class="comment">// Page title</span><br>
-console.log(document.URL);         <span class="comment">// Current URL</span><br>
-console.log(document.referrer);    <span class="comment">// Previous page URL</span><br>
-console.log(document.cookie);      <span class="comment">// Cookies (string)</span><br>
-<br>
-<span class="comment">// Selecting elements</span><br>
-document.getElementById("myId");          <span class="comment">// By ID</span><br>
-document.querySelector(".myClass");       <span class="comment">// CSS selector (first match)</span><br>
-document.querySelectorAll("p");           <span class="comment">// All matches</span><br>
-<br>
-<span class="comment">// Document structure</span><br>
-console.log(document.documentElement);    <span class="comment">// &lt;html&gt; element</span><br>
-console.log(document.head);               <span class="comment">// &lt;head&gt; element</span><br>
-console.log(document.body);               <span class="comment">// &lt;body&gt; element</span>
-                        </code>
-                    </div>
-
-                    <h4>The <code>location</code> Object</h4>
-                    <p>The <code>location</code> object provides information about the current URL and methods to
-                        navigate to other pages.</p>
-
-                    <div class="code-block">
-                        <span class="code-label">JavaScript</span>
-                        <code>
-<span class="comment">// Location properties (for URL: https://example.com:8080/path/page.html?id=123#section)</span><br>
-console.log(location.href);      <span class="comment">// Full URL</span><br>
-console.log(location.protocol);  <span class="comment">// "https:"</span><br>
-console.log(location.host);      <span class="comment">// "example.com:8080"</span><br>
-console.log(location.hostname);  <span class="comment">// "example.com"</span><br>
-console.log(location.port);      <span class="comment">// "8080"</span><br>
-console.log(location.pathname);  <span class="comment">// "/path/page.html"</span><br>
-console.log(location.search);    <span class="comment">// "?id=123"</span><br>
-console.log(location.hash);      <span class="comment">// "#section"</span><br>
-<br>
-<span class="comment">// Navigation methods</span><br>
-location.assign("https://google.com");  <span class="comment">// Navigate (adds to history)</span><br>
-location.replace("https://google.com"); <span class="comment">// Navigate (no history entry)</span><br>
-location.reload();                      <span class="comment">// Refresh the page</span>
-                        </code>
-                    </div>
-
-                    <h4>The <code>navigator</code>, <code>screen</code>, and <code>history</code> Objects</h4>
-
-                    <div class="code-block">
-                        <span class="code-label">JavaScript</span>
-                        <code>
-<span class="comment">// Navigator - browser information</span><br>
-console.log(navigator.userAgent);   <span class="comment">// Browser identifier string</span><br>
-console.log(navigator.language);    <span class="comment">// Browser language (e.g., "en-US")</span><br>
-console.log(navigator.onLine);      <span class="comment">// true if connected to internet</span><br>
-console.log(navigator.cookieEnabled); <span class="comment">// true if cookies enabled</span><br>
-<br>
-<span class="comment">// Screen - display information</span><br>
-console.log(screen.width);       <span class="comment">// Screen width in pixels</span><br>
-console.log(screen.height);      <span class="comment">// Screen height in pixels</span><br>
-console.log(screen.availWidth);  <span class="comment">// Available width (minus taskbar)</span><br>
-console.log(screen.colorDepth);  <span class="comment">// Color depth (bits)</span><br>
-<br>
-<span class="comment">// History - session navigation</span><br>
-history.back();      <span class="comment">// Go back one page</span><br>
-history.forward();   <span class="comment">// Go forward one page</span><br>
-history.go(-2);      <span class="comment">// Go back 2 pages</span><br>
-console.log(history.length); <span class="comment">// Number of entries in history</span>
-                        </code>
-                    </div>
-                </div>
-
-                <div class="lesson">
-                    <h3>5.1.2 Unobtrusive JavaScript</h3>
-                    <p><strong>Unobtrusive JavaScript</strong> is a best practice that keeps JavaScript code separate
-                        from HTML, making code more maintainable and accessible. Instead of inline event handlers,
-                        we attach events from external JavaScript files.</p>
-
-                    <div class="info-box info-box--error">
-                        <h5>❌ Obtrusive JavaScript (Avoid This!)</h5>
-                        <div class="code-block">
-                            <span class="code-label">HTML - Bad Practice</span>
-                            <code>
-&lt;button <span class="attr">onclick</span>=<span class="value">"alert('Clicked!')"</span>&gt;Click Me&lt;/button&gt;<br>
-&lt;a <span class="attr">href</span>=<span class="value">"#"</span> <span class="attr">onclick</span>=<span class="value">"doSomething(); return false;"</span>&gt;Link&lt;/a&gt;<br>
-&lt;input <span class="attr">onchange</span>=<span class="value">"validateField(this)"</span>&gt;
-                            </code>
-                        </div>
-                        <p>Problems: Mixes behavior with structure, hard to maintain, not accessible.</p>
-                    </div>
-
-                    <div class="info-box info-box--success">
-                        <h5>✅ Unobtrusive JavaScript (Best Practice)</h5>
-                        <div class="code-block">
-                            <span class="code-label">HTML - Clean Structure</span>
-                            <code>
-&lt;button <span class="attr">id</span>=<span class="value">"myButton"</span>&gt;Click Me&lt;/button&gt;<br>
-&lt;a <span class="attr">href</span>=<span class="value">"/actual-page"</span> <span class="attr">id</span>=<span class="value">"myLink"</span>&gt;Link&lt;/a&gt;<br>
-&lt;input <span class="attr">id</span>=<span class="value">"myInput"</span>&gt;
-                            </code>
-                        </div>
-                        <div class="code-block">
-                            <span class="code-label">JavaScript - Separate File</span>
-                            <code>
-document.getElementById("myButton").onclick = function() {<br>
-&nbsp;&nbsp;alert("Clicked!");<br>
-};<br>
-<br>
-document.getElementById("myLink").onclick = function(event) {<br>
-&nbsp;&nbsp;event.preventDefault();<br>
-&nbsp;&nbsp;doSomething();<br>
-};
-                            </code>
-                        </div>
-                    </div>
-
-                    <h4>The <code>window.onload</code> Event Handler</h4>
-                    <p>When JavaScript runs, the DOM might not be fully loaded yet. The <code>window.onload</code>
-                        event fires when the entire page (including images, stylesheets) has loaded.</p>
-
-                    <div class="code-block">
-                        <span class="code-label">JavaScript</span>
-                        <code>
-<span class="comment">// Wait for page to fully load before running code</span><br>
-window.onload = function() {<br>
-&nbsp;&nbsp;<span class="comment">// DOM is now fully loaded - safe to manipulate elements</span><br>
-&nbsp;&nbsp;const heading = document.getElementById("main-heading");<br>
-&nbsp;&nbsp;heading.textContent = "Page Loaded!";<br>
-};<br>
-<br>
-<span class="comment">// Modern alternative: DOMContentLoaded (faster, doesn't wait for images)</span><br>
-document.addEventListener("DOMContentLoaded", function() {<br>
-&nbsp;&nbsp;console.log("DOM ready!");<br>
-});
-                        </code>
-                    </div>
-
-                    <h4>Anonymous Functions</h4>
-                    <p>An <strong>anonymous function</strong> is a function without a name. They're commonly used
-                        for event handlers and callbacks.</p>
-
-                    <div class="code-block">
-                        <span class="code-label">JavaScript</span>
-                        <code>
-<span class="comment">// Named function</span><br>
-function greet() {<br>
-&nbsp;&nbsp;console.log("Hello!");<br>
-}<br>
-<br>
-<span class="comment">// Anonymous function (assigned to variable)</span><br>
-const greet = function() {<br>
-&nbsp;&nbsp;console.log("Hello!");<br>
-};<br>
-<br>
-<span class="comment">// Anonymous function (as event handler)</span><br>
-button.onclick = function() {<br>
-&nbsp;&nbsp;console.log("Clicked!");<br>
-};<br>
-<br>
-<span class="comment">// Arrow function (ES6 shorthand)</span><br>
-button.onclick = () => console.log("Clicked!");<br>
-<br>
-<span class="comment">// With parameters</span><br>
-button.onclick = (event) => {<br>
-&nbsp;&nbsp;console.log(event.target);<br>
-};
-                        </code>
-                    </div>
-
-                    <h4>The <code>this</code> Keyword in DOM Events</h4>
-                    <p>In event handlers, <code>this</code> refers to the DOM element that triggered the event.
-                        This is incredibly useful for reusable event handlers.</p>
-
-                    <div class="code-block">
-                        <span class="code-label">JavaScript</span>
-                        <code>
-<span class="comment">// 'this' refers to the clicked button</span><br>
-const buttons = document.querySelectorAll(".btn");<br>
-<br>
-buttons.forEach(function(button) {<br>
-&nbsp;&nbsp;button.onclick = function() {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;console.log(this.textContent); <span class="comment">// Text of THIS button</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;this.style.backgroundColor = "green";<br>
-&nbsp;&nbsp;};<br>
-});<br>
-<br>
-<span class="comment">// ⚠️ Warning: Arrow functions don't bind 'this'!</span><br>
-button.onclick = () => {<br>
-&nbsp;&nbsp;console.log(this); <span class="comment">// 'this' is NOT the button (inherits from scope)</span><br>
-};<br>
-<br>
-<span class="comment">// Solution: Use event.target with arrow functions</span><br>
-button.onclick = (event) => {<br>
-&nbsp;&nbsp;console.log(event.target); <span class="comment">// The clicked element</span><br>
-};
-                        </code>
-                    </div>
-                </div>
-
-                <!-- ============================================
-                     Section 5.2: DOM Element Objects
-                     ============================================ -->
-                <div class="lesson">
-                    <h3>5.2 DOM Element Objects</h3>
-                    <p>Once you've selected a DOM element, you can read and modify its properties. This section
-                        covers the most common ways to manipulate element content, styles, and attributes.</p>
-
-                    <h4>Modifying Element Text</h4>
-                    <p>There are three main properties for working with element content:</p>
-
-                    <div class="table-wrapper">
-                        <table class="comparison-table">
-                            <thead>
-                                <tr>
-                                    <th>Property</th>
-                                    <th>Description</th>
-                                    <th>When to Use</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><code>innerHTML</code></td>
-                                    <td>Gets/sets HTML content (parses tags)</td>
-                                    <td>When you need to insert HTML elements</td>
-                                </tr>
-                                <tr>
-                                    <td><code>textContent</code></td>
-                                    <td>Gets/sets text only (ignores tags)</td>
-                                    <td>When inserting plain text (safer!)</td>
-                                </tr>
-                                <tr>
-                                    <td><code>value</code></td>
-                                    <td>Gets/sets value of form inputs</td>
-                                    <td>For &lt;input&gt;, &lt;textarea&gt;, &lt;select&gt;</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="code-block">
-                        <span class="code-label">JavaScript</span>
-                        <code>
-const div = document.getElementById("myDiv");<br>
-const input = document.getElementById("myInput");<br>
-<br>
-<span class="comment">// innerHTML - parses HTML tags</span><br>
-div.innerHTML = "&lt;strong&gt;Bold text&lt;/strong&gt;"; <span class="comment">// Renders as bold</span><br>
-console.log(div.innerHTML); <span class="comment">// "&lt;strong&gt;Bold text&lt;/strong&gt;"</span><br>
-<br>
-<span class="comment">// textContent - treats everything as text (safer)</span><br>
-div.textContent = "&lt;strong&gt;Bold text&lt;/strong&gt;"; <span class="comment">// Shows literal tags</span><br>
-console.log(div.textContent); <span class="comment">// "&lt;strong&gt;Bold text&lt;/strong&gt;"</span><br>
-<br>
-<span class="comment">// value - for form elements</span><br>
-console.log(input.value);    <span class="comment">// Current input value</span><br>
-input.value = "New text";    <span class="comment">// Set new value</span><br>
-input.value = "";            <span class="comment">// Clear the input</span>
-                        </code>
-                    </div>
-
-                    <div class="info-box info-box--warning">
-                        <h5>⚠️ Security Warning: innerHTML and XSS</h5>
-                        <p>Never use <code>innerHTML</code> with user-provided data! It can lead to Cross-Site
-                            Scripting (XSS) attacks where malicious code is injected into your page.</p>
-                        <div class="code-block">
-                            <span class="code-label">JavaScript - Dangerous!</span>
-                            <code>
-<span class="comment">// ❌ DANGEROUS - user could inject scripts</span><br>
-div.innerHTML = userInput;<br>
-<br>
-<span class="comment">// ✅ SAFE - textContent escapes HTML</span><br>
-div.textContent = userInput;
-                            </code>
-                        </div>
-                    </div>
-
-                    <h4>Adjusting Styles with the DOM</h4>
-                    <p>Every element has a <code>style</code> property that allows you to directly modify CSS
-                        properties. Note that CSS properties with hyphens become camelCase in JavaScript.</p>
-
-                    <div class="code-block">
-                        <span class="code-label">JavaScript</span>
-                        <code>
-const element = document.getElementById("myElement");<br>
-<br>
-<span class="comment">// Setting individual styles</span><br>
-element.style.color = "blue";<br>
-element.style.backgroundColor = "yellow";  <span class="comment">// Note: camelCase!</span><br>
-element.style.fontSize = "20px";<br>
-element.style.border = "2px solid red";<br>
-element.style.marginTop = "10px";<br>
-<br>
-<span class="comment">// Reading styles (only works for inline styles)</span><br>
-console.log(element.style.color); <span class="comment">// "blue"</span><br>
-<br>
-<span class="comment">// To read computed styles (including CSS file styles)</span><br>
-const computed = window.getComputedStyle(element);<br>
-console.log(computed.fontSize); <span class="comment">// "20px"</span>
-                        </code>
-                    </div>
-
-                    <h4>CSS Property Name Conversion</h4>
-                    <div class="table-wrapper">
-                        <table class="comparison-table">
-                            <thead>
-                                <tr>
-                                    <th>CSS Property</th>
-                                    <th>JavaScript Property</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><code>background-color</code></td>
-                                    <td><code>backgroundColor</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>font-size</code></td>
-                                    <td><code>fontSize</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>margin-top</code></td>
-                                    <td><code>marginTop</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>border-radius</code></td>
-                                    <td><code>borderRadius</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>z-index</code></td>
-                                    <td><code>zIndex</code></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <h4>Unobtrusive Styling with <code>className</code> and <code>classList</code></h4>
-                    <p>Instead of setting styles directly, the <strong>unobtrusive approach</strong> is to toggle
-                        CSS classes. This keeps your styles in CSS files and your JavaScript clean.</p>
-
-                    <div class="code-block">
-                        <span class="code-label">JavaScript</span>
-                        <code>
-const element = document.getElementById("myElement");<br>
-<br>
-<span class="comment">// className - get/set the entire class attribute</span><br>
-console.log(element.className); <span class="comment">// "card primary"</span><br>
-element.className = "card active"; <span class="comment">// Replaces ALL classes</span><br>
-<br>
-<span class="comment">// classList - modern API for managing classes (preferred!)</span><br>
-element.classList.add("active");      <span class="comment">// Add a class</span><br>
-element.classList.remove("hidden");   <span class="comment">// Remove a class</span><br>
-element.classList.toggle("expanded"); <span class="comment">// Add if missing, remove if present</span><br>
-element.classList.contains("active"); <span class="comment">// Returns true/false</span><br>
-element.classList.replace("old", "new"); <span class="comment">// Replace one class with another</span><br>
-<br>
-<span class="comment">// Add multiple classes</span><br>
-element.classList.add("class1", "class2", "class3");
-                        </code>
-                    </div>
-
-                    <div class="info-box info-box--purple">
-                        <h5>💡 Best Practice: Use classList for State Changes</h5>
-                        <p>Define your visual states in CSS, then toggle classes in JavaScript:</p>
-                        <div class="code-block">
-                            <span class="code-label">CSS</span>
-                            <code>
-.button { background: blue; }<br>
-.button.loading { background: gray; cursor: wait; }<br>
-.button.success { background: green; }
-                            </code>
-                        </div>
-                        <div class="code-block">
-                            <span class="code-label">JavaScript</span>
-                            <code>
-button.classList.add("loading");<br>
-<span class="comment">// After async operation...</span><br>
-button.classList.remove("loading");<br>
-button.classList.add("success");
-                            </code>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ============================================
-                     Section 5.3: The DOM Tree
-                     ============================================ -->
-                <div class="lesson">
-                    <h3>5.3 The DOM Tree</h3>
-                    <p>The DOM represents an HTML document as a tree structure where each element, attribute,
-                        and piece of text is a <strong>node</strong>. Understanding this tree structure is essential
-                        for navigating and manipulating the DOM.</p>
-
-                    <h4>Types of DOM Nodes</h4>
-                    <p>There are three main types of nodes you'll work with:</p>
-
-                    <div class="table-wrapper">
-                        <table class="comparison-table">
-                            <thead>
-                                <tr>
-                                    <th>Node Type</th>
-                                    <th>nodeType Value</th>
-                                    <th>Description</th>
-                                    <th>Example</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>Element Node</strong></td>
-                                    <td>1</td>
-                                    <td>HTML tags</td>
-                                    <td><code>&lt;div&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;span&gt;</code></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Text Node</strong></td>
-                                    <td>3</td>
-                                    <td>Text content inside elements</td>
-                                    <td>"Hello World"</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Attribute Node</strong></td>
-                                    <td>2</td>
-                                    <td>Attributes on elements</td>
-                                    <td><code>id="main"</code>, <code>class="card"</code></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="code-block">
-                        <span class="code-label">HTML Structure</span>
-                        <code>
-&lt;div id="container"&gt;<br>
-&nbsp;&nbsp;&lt;p class="intro"&gt;Hello &lt;strong&gt;World&lt;/strong&gt;&lt;/p&gt;<br>
-&nbsp;&nbsp;&lt;ul&gt;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Item 1&lt;/li&gt;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Item 2&lt;/li&gt;<br>
-&nbsp;&nbsp;&lt;/ul&gt;<br>
-&lt;/div&gt;
-                        </code>
-                    </div>
-
-                    <div class="code-block">
-                        <span class="code-label">JavaScript - Checking Node Types</span>
-                        <code>
-const div = document.getElementById("container");<br>
-<br>
-console.log(div.nodeType);     <span class="comment">// 1 (Element)</span><br>
-console.log(div.nodeName);     <span class="comment">// "DIV"</span><br>
-console.log(div.nodeValue);    <span class="comment">// null (elements have no nodeValue)</span><br>
-<br>
-const textNode = div.firstChild;<br>
-console.log(textNode.nodeType); <span class="comment">// 3 (Text - includes whitespace!)</span>
-                        </code>
-                    </div>
-
-                    <h4>Traversing the DOM Tree</h4>
-                    <p>You can navigate between nodes using these properties:</p>
-
-                    <div class="table-wrapper">
-                        <table class="comparison-table">
-                            <thead>
-                                <tr>
-                                    <th>Property</th>
-                                    <th>Returns</th>
-                                    <th>Includes Text Nodes?</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><code>parentNode</code></td>
-                                    <td>Parent node</td>
-                                    <td>N/A</td>
-                                </tr>
-                                <tr>
-                                    <td><code>childNodes</code></td>
-                                    <td>All child nodes (NodeList)</td>
-                                    <td>✅ Yes</td>
-                                </tr>
-                                <tr>
-                                    <td><code>children</code></td>
-                                    <td>Child <em>elements</em> only</td>
-                                    <td>❌ No</td>
-                                </tr>
-                                <tr>
-                                    <td><code>firstChild</code></td>
-                                    <td>First child node</td>
-                                    <td>✅ Yes</td>
-                                </tr>
-                                <tr>
-                                    <td><code>firstElementChild</code></td>
-                                    <td>First child element</td>
-                                    <td>❌ No</td>
-                                </tr>
-                                <tr>
-                                    <td><code>lastChild</code></td>
-                                    <td>Last child node</td>
-                                    <td>✅ Yes</td>
-                                </tr>
-                                <tr>
-                                    <td><code>lastElementChild</code></td>
-                                    <td>Last child element</td>
-                                    <td>❌ No</td>
-                                </tr>
-                                <tr>
-                                    <td><code>nextSibling</code></td>
-                                    <td>Next sibling node</td>
-                                    <td>✅ Yes</td>
-                                </tr>
-                                <tr>
-                                    <td><code>nextElementSibling</code></td>
-                                    <td>Next sibling element</td>
-                                    <td>❌ No</td>
-                                </tr>
-                                <tr>
-                                    <td><code>previousSibling</code></td>
-                                    <td>Previous sibling node</td>
-                                    <td>✅ Yes</td>
-                                </tr>
-                                <tr>
-                                    <td><code>previousElementSibling</code></td>
-                                    <td>Previous sibling element</td>
-                                    <td>❌ No</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="info-box info-box--warning">
-                        <h5>⚠️ Watch Out for Text Nodes!</h5>
-                        <p>Whitespace between tags creates text nodes! Use the <code>Element</code> variants
-                            (like <code>firstElementChild</code>) to skip text nodes.</p>
-                    </div>
-
-                    <div class="code-block">
-                        <span class="code-label">JavaScript - DOM Traversal</span>
-                        <code>
-const ul = document.querySelector("ul");<br>
-<br>
-<span class="comment">// Parent navigation</span><br>
-console.log(ul.parentNode);       <span class="comment">// &lt;div id="container"&gt;</span><br>
-<br>
-<span class="comment">// Child navigation (prefer Element variants)</span><br>
-console.log(ul.children);         <span class="comment">// HTMLCollection [li, li]</span><br>
-console.log(ul.firstElementChild); <span class="comment">// First &lt;li&gt;</span><br>
-console.log(ul.lastElementChild);  <span class="comment">// Last &lt;li&gt;</span><br>
-<br>
-<span class="comment">// Sibling navigation</span><br>
-const firstLi = ul.firstElementChild;<br>
-console.log(firstLi.nextElementSibling); <span class="comment">// Second &lt;li&gt;</span>
-                        </code>
-                    </div>
-
-                    <h4>Selecting Groups of Elements</h4>
-                    <p>Modern JavaScript provides powerful methods to select elements:</p>
-
-                    <div class="code-block">
-                        <span class="code-label">JavaScript</span>
-                        <code>
-<span class="comment">// By ID (returns single element or null)</span><br>
-const header = document.getElementById("header");<br>
-<br>
-<span class="comment">// By tag name (returns live HTMLCollection)</span><br>
-const paragraphs = document.getElementsByTagName("p");<br>
-<br>
-<span class="comment">// By class name (returns live HTMLCollection)</span><br>
-const cards = document.getElementsByClassName("card");<br>
-<br>
-<span class="comment">// By name attribute (returns live NodeList)</span><br>
-const radios = document.getElementsByName("color");<br>
-<br>
-<span class="comment">// CSS selectors (RECOMMENDED - most flexible)</span><br>
-const firstCard = document.querySelector(".card");         <span class="comment">// First match</span><br>
-const allCards = document.querySelectorAll(".card");       <span class="comment">// All matches</span><br>
-const nested = document.querySelector("#main .card.active"); <span class="comment">// Complex selector</span>
-                        </code>
-                    </div>
-
-                    <h4>Creating and Modifying Nodes</h4>
-                    <p>You can dynamically create, insert, and remove DOM elements:</p>
-
-                    <div class="code-block">
-                        <span class="code-label">JavaScript - Creating Elements</span>
-                        <code>
-<span class="comment">// Create a new element</span><br>
-const newDiv = document.createElement("div");<br>
-newDiv.id = "myNewDiv";<br>
-newDiv.className = "card";<br>
-newDiv.textContent = "I'm a new div!";<br>
-<br>
-<span class="comment">// Create a text node (rarely needed - textContent is easier)</span><br>
-const textNode = document.createTextNode("Hello!");<br>
-<br>
-<span class="comment">// Set attributes</span><br>
-newDiv.setAttribute("data-id", "123");<br>
-newDiv.setAttribute("aria-label", "Card");<br>
-console.log(newDiv.getAttribute("data-id")); <span class="comment">// "123"</span>
-                        </code>
-                    </div>
-
-                    <div class="code-block">
-                        <span class="code-label">JavaScript - Inserting Elements</span>
-                        <code>
-const container = document.getElementById("container");<br>
-const newItem = document.createElement("li");<br>
-newItem.textContent = "New Item";<br>
-<br>
-<span class="comment">// appendChild - adds to the end</span><br>
-container.appendChild(newItem);<br>
-<br>
-<span class="comment">// insertBefore - insert before a reference node</span><br>
-const referenceNode = container.firstElementChild;<br>
-container.insertBefore(newItem, referenceNode);<br>
-<br>
-<span class="comment">// Modern methods (easier syntax)</span><br>
-container.prepend(newItem);              <span class="comment">// Add to beginning</span><br>
-container.append(newItem);               <span class="comment">// Add to end</span><br>
-referenceNode.before(newItem);           <span class="comment">// Insert before</span><br>
-referenceNode.after(newItem);            <span class="comment">// Insert after</span><br>
-<br>
-<span class="comment">// Insert HTML string</span><br>
-container.insertAdjacentHTML("beforeend", "&lt;p&gt;New paragraph&lt;/p&gt;");
-                        </code>
-                    </div>
-
-                    <div class="code-block">
-                        <span class="code-label">JavaScript - Removing and Replacing</span>
-                        <code>
-const container = document.getElementById("container");<br>
-const oldChild = container.firstElementChild;<br>
-<br>
-<span class="comment">// removeChild - remove a child element (returns removed node)</span><br>
-const removed = container.removeChild(oldChild);<br>
-<br>
-<span class="comment">// Modern: remove() - element removes itself</span><br>
-oldChild.remove();<br>
-<br>
-<span class="comment">// replaceChild - replace one child with another</span><br>
-const newChild = document.createElement("p");<br>
-newChild.textContent = "Replacement!";<br>
-container.replaceChild(newChild, oldChild);<br>
-<br>
-<span class="comment">// Modern: replaceWith()</span><br>
-oldChild.replaceWith(newChild);
-                        </code>
-                    </div>
-                </div>
-
-                <div class="lesson">
-                    <h3>5.3.2 Browser DevTools for DOM Debugging</h3>
-                    <p>Modern browsers have powerful built-in developer tools (DevTools) that replaced tools
-                        like Firebug. Here's how to use them for DOM debugging:</p>
-
-                    <h4>Opening DevTools</h4>
-                    <ul>
-                        <li><strong>Chrome/Edge:</strong> F12 or Ctrl+Shift+I (Cmd+Opt+I on Mac)</li>
-                        <li><strong>Firefox:</strong> F12 or Ctrl+Shift+I</li>
-                        <li><strong>Right-click:</strong> "Inspect" on any element</li>
-                    </ul>
-
-                    <h4>Key DevTools Panels</h4>
-
-                    <div class="info-box info-box--info">
-                        <h5>🔍 Elements Panel</h5>
-                        <ul>
-                            <li>View and edit the DOM tree in real-time</li>
-                            <li>Inspect and modify CSS styles</li>
-                            <li>See computed styles (final applied values)</li>
-                            <li>Right-click elements to copy, delete, or edit</li>
-                        </ul>
-                    </div>
-
-                    <div class="info-box info-box--purple">
-                        <h5>🖥️ Console Panel</h5>
-                        <ul>
-                            <li>Run JavaScript commands directly</li>
-                            <li><code>$0</code> - Reference to currently selected element</li>
-                            <li><code>$("selector")</code> - Shorthand for querySelector</li>
-                            <li><code>$$("selector")</code> - Shorthand for querySelectorAll</li>
-                        </ul>
-                    </div>
-
-                    <h4>Debugging with Breakpoints</h4>
-                    <p>In the <strong>Sources</strong> panel, you can set breakpoints to pause code execution:</p>
-
-                    <div class="code-block">
-                        <span class="code-label">JavaScript - Using debugger</span>
-                        <code>
-function updateElement() {<br>
-&nbsp;&nbsp;const el = document.getElementById("myElement");<br>
-&nbsp;&nbsp;debugger; <span class="comment">// Code pauses here when DevTools is open</span><br>
-&nbsp;&nbsp;el.textContent = "Updated!";<br>
-}
-                        </code>
-                    </div>
-
-                    <h4>Useful Console Commands</h4>
-                    <div class="code-block">
-                        <span class="code-label">DevTools Console</span>
-                        <code>
-<span class="comment">// Inspect selected element</span><br>
-console.dir($0);           <span class="comment">// Show all properties</span><br>
-<br>
-<span class="comment">// Find elements</span><br>
-$$("button")               <span class="comment">// All buttons on page</span><br>
-<br>
-<span class="comment">// Monitor events</span><br>
-monitorEvents($0, "click"); <span class="comment">// Log all click events on element</span><br>
-<br>
-<span class="comment">// Copy to clipboard</span><br>
-copy($0.outerHTML);        <span class="comment">// Copy element's HTML</span>
-                        </code>
-                    </div>
-                </div>
-
-                <!-- ============================================
-                     Quizzes
-                     ============================================ -->
-                <div class="quiz" data-correct="b" data-quiz-id="dom-1">
-                    <h4>📝 Quick Quiz: Which global object provides information about the current URL?</h4>
-                    <div class="quiz-options">
-                        <div class="quiz-option" onclick="checkQuiz(this, 'a')">
-                            <span class="option-letter">A</span>
-                            <span>navigator</span>
-                        </div>
-                        <div class="quiz-option" onclick="checkQuiz(this, 'b')">
-                            <span class="option-letter">B</span>
-                            <span>location</span>
-                        </div>
-                        <div class="quiz-option" onclick="checkQuiz(this, 'c')">
-                            <span class="option-letter">C</span>
-                            <span>history</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="quiz" data-correct="c" data-quiz-id="dom-2">
-                    <h4>📝 Quick Quiz: What is the safest way to insert user-provided text into a DOM element?</h4>
-                    <div class="quiz-options">
-                        <div class="quiz-option" onclick="checkQuiz(this, 'a')">
-                            <span class="option-letter">A</span>
-                            <span>element.innerHTML = userInput</span>
-                        </div>
-                        <div class="quiz-option" onclick="checkQuiz(this, 'b')">
-                            <span class="option-letter">B</span>
-                            <span>element.outerHTML = userInput</span>
-                        </div>
-                        <div class="quiz-option" onclick="checkQuiz(this, 'c')">
-                            <span class="option-letter">C</span>
-                            <span>element.textContent = userInput</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="quiz" data-correct="a" data-quiz-id="dom-3">
-                    <h4>📝 Quick Quiz: What does classList.toggle("active") do?</h4>
-                    <div class="quiz-options">
-                        <div class="quiz-option" onclick="checkQuiz(this, 'a')">
-                            <span class="option-letter">A</span>
-                            <span>Adds "active" if missing, removes it if present</span>
-                        </div>
-                        <div class="quiz-option" onclick="checkQuiz(this, 'b')">
-                            <span class="option-letter">B</span>
-                            <span>Always adds the "active" class</span>
-                        </div>
-                        <div class="quiz-option" onclick="checkQuiz(this, 'c')">
-                            <span class="option-letter">C</span>
-                            <span>Checks if the "active" class exists</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="quiz" data-correct="b" data-quiz-id="dom-4">
-                    <h4>📝 Quick Quiz: Why should you use firstElementChild instead of firstChild?</h4>
-                    <div class="quiz-options">
-                        <div class="quiz-option" onclick="checkQuiz(this, 'a')">
-                            <span class="option-letter">A</span>
-                            <span>firstElementChild is faster</span>
-                        </div>
-                        <div class="quiz-option" onclick="checkQuiz(this, 'b')">
-                            <span class="option-letter">B</span>
-                            <span>firstChild might return a whitespace text node instead of an element</span>
-                        </div>
-                        <div class="quiz-option" onclick="checkQuiz(this, 'c')">
-                            <span class="option-letter">C</span>
-                            <span>firstChild is deprecated</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ============================================
-                     Exercises
-                     ============================================ -->
-                <div class="exercise">
-                    <div class="exercise-header">
-                        <span class="exercise-badge">EXERCISE</span>
-                        <h4>DOM Manipulation</h4>
-                    </div>
-                    <p>Practice creating and styling elements dynamically. Modify the code to create a styled card with:
+        <!-- Main Content -->
+        <main class="main-content">
+            <article class="chapter-page" data-chapter="dom">
+                <!-- Introduction -->
+                <section id="intro" class="animate-fade-in">
+                    <h1>Chapter 5: The Document Object Model (DOM)</h1>
+                    <p class="section-intro">
+                        The Document Object Model (DOM) is a programming interface for web documents. It represents
+                        the page so that programs can change the document structure, style, and content. The DOM
+                        represents the document as nodes and objects, allowing JavaScript to interact with the page.
                     </p>
-                    <ul>
-                        <li>A title and description</li>
-                        <li>Padding and background color</li>
-                        <li>Rounded corners and a border</li>
-                    </ul>
-                    <textarea id="dom-exercise-1" placeholder="// Create a new card element
+
+                    <div class="alert alert--info">
+                        <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10" />
+                                <circle cx="12" cy="12" r="6" />
+                                <circle cx="12" cy="12" r="2" />
+                            </svg></span>
+                        <div class="alert__content">
+                            <strong>What you'll learn:</strong>
+                            <ul>
+                                <li>Global DOM objects (window, document, location, navigator, screen, history)</li>
+                                <li>Unobtrusive JavaScript and best practices</li>
+                                <li>Modifying element content, styles, and classes</li>
+                                <li>Traversing and manipulating the DOM tree</li>
+                                <li>Using browser DevTools for debugging</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5.1 Global DOM Objects -->
+                <section id="global-objects">
+                    <h2>5.1 Global DOM Objects</h2>
+
+                    <article class="problem-card">
+                        <p>When JavaScript runs in a browser, it has access to several <strong>global objects</strong>
+                            that represent different aspects of the browser environment. These objects provide the
+                            foundation for all DOM manipulation and browser interaction.</p>
+
+                        <h4>The Six Global DOM Objects</h4>
+                        <p>Every browser provides six core global objects that JavaScript can access:</p>
+
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Object</th>
+                                        <th>Description</th>
+                                        <th>Common Uses</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>window</code></td>
+                                        <td>The browser window itself; the global scope</td>
+                                        <td>Timers, alerts, window dimensions</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>document</code></td>
+                                        <td>The HTML document loaded in the window</td>
+                                        <td>Selecting/modifying elements</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>location</code></td>
+                                        <td>The current URL and navigation</td>
+                                        <td>Redirects, URL parameters</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>navigator</code></td>
+                                        <td>Information about the browser</td>
+                                        <td>Browser detection, geolocation</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>screen</code></td>
+                                        <td>Information about the user's screen</td>
+                                        <td>Screen dimensions, color depth</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>history</code></td>
+                                        <td>The browser's session history</td>
+                                        <td>Back/forward navigation</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h4>The <code>window</code> Object</h4>
+                        <p>The <code>window</code> object is the top-level object in the browser. All global variables
+                            and functions become properties of <code>window</code>.</p>
+
+                        <pre><code class="language-javascript">// Window properties
+console.log(window.innerWidth);  // Browser viewport width
+console.log(window.innerHeight); // Browser viewport height
+console.log(window.outerWidth);  // Full window width
+console.log(window.outerHeight); // Full window height
+
+// Window methods
+window.alert("Hello!");   // Show alert dialog
+window.confirm("Sure?");  // Show confirm dialog (returns boolean)
+window.prompt("Name?");   // Show input dialog (returns string)
+
+// Timers
+window.setTimeout(() => console.log("Delayed!"), 1000);
+window.setInterval(() => console.log("Repeating!"), 2000);</code></pre>
+
+                        <h4>The <code>document</code> Object</h4>
+                        <p>The <code>document</code> object represents the entire HTML page. It's your primary interface
+                            for selecting and manipulating DOM elements.</p>
+
+                        <pre><code class="language-javascript">// Document properties
+console.log(document.title);       // Page title
+console.log(document.URL);         // Current URL
+console.log(document.referrer);    // Previous page URL
+console.log(document.cookie);      // Cookies (string)
+
+// Selecting elements
+document.getElementById("myId");          // By ID
+document.querySelector(".myClass");       // CSS selector (first match)
+document.querySelectorAll("p");           // All matches
+
+// Document structure
+console.log(document.documentElement);    // &lt;html&gt; element
+console.log(document.head);               // &lt;head&gt; element
+console.log(document.body);               // &lt;body&gt; element</code></pre>
+
+                        <h4>The <code>location</code> Object</h4>
+                        <p>The <code>location</code> object provides information about the current URL and methods to
+                            navigate to other pages.</p>
+
+                        <pre><code class="language-javascript">// Location properties (for URL: https://example.com:8080/path/page.html?id=123#section)
+console.log(location.href);      // Full URL
+console.log(location.protocol);  // "https:"
+console.log(location.host);      // "example.com:8080"
+console.log(location.hostname);  // "example.com"
+console.log(location.port);      // "8080"
+console.log(location.pathname);  // "/path/page.html"
+console.log(location.search);    // "?id=123"
+console.log(location.hash);      // "#section"
+
+// Navigation methods
+location.assign("https://google.com");  // Navigate (adds to history)
+location.replace("https://google.com"); // Navigate (no history entry)
+location.reload();                      // Refresh the page</code></pre>
+
+                        <h4>The <code>navigator</code>, <code>screen</code>, and <code>history</code> Objects</h4>
+
+                        <pre><code class="language-javascript">// Navigator - browser information
+console.log(navigator.userAgent);   // Browser identifier string
+console.log(navigator.language);    // Browser language (e.g., "en-US")
+console.log(navigator.onLine);      // true if connected to internet
+console.log(navigator.cookieEnabled); // true if cookies enabled
+
+// Screen - display information
+console.log(screen.width);       // Screen width in pixels
+console.log(screen.height);      // Screen height in pixels
+console.log(screen.availWidth);  // Available width (minus taskbar)
+console.log(screen.colorDepth);  // Color depth (bits)
+
+// History - session navigation
+history.back();      // Go back one page
+history.forward();   // Go forward one page
+history.go(-2);      // Go back 2 pages
+console.log(history.length); // Number of entries in history</code></pre>
+                    </article>
+                </section>
+
+                <!-- 5.1.2 Unobtrusive JavaScript -->
+                <section id="unobtrusive-js">
+                    <h2>5.1.2 Unobtrusive JavaScript</h2>
+
+                    <article class="problem-card">
+                        <p><strong>Unobtrusive JavaScript</strong> is a best practice that keeps JavaScript code
+                            separate
+                            from HTML, making code more maintainable and accessible. Instead of inline event handlers,
+                            we attach events from external JavaScript files.</p>
+
+                        <div class="alert alert--warning">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                                    <line x1="12" y1="9" x2="12" y2="13" />
+                                    <line x1="12" y1="17" x2="12.01" y2="17" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>Obtrusive JavaScript (Avoid This!)</strong>
+                                <pre><code class="language-html">&lt;button onclick="alert('Clicked!')"&gt;Click Me&lt;/button&gt;
+&lt;a href="#" onclick="doSomething(); return false;"&gt;Link&lt;/a&gt;
+&lt;input onchange="validateField(this)"&gt;</code></pre>
+                                <p>Problems: Mixes behavior with structure, hard to maintain, not accessible.</p>
+                            </div>
+                        </div>
+
+                        <div class="alert alert--tip">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                                    <polyline points="22 4 12 14.01 9 11.01" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>Unobtrusive JavaScript (Best Practice)</strong>
+                                <pre><code class="language-html">&lt;button id="myButton"&gt;Click Me&lt;/button&gt;
+&lt;a href="/actual-page" id="myLink"&gt;Link&lt;/a&gt;
+&lt;input id="myInput"&gt;</code></pre>
+                                <pre><code class="language-javascript">document.getElementById("myButton").onclick = function() {
+  alert("Clicked!");
+};
+
+document.getElementById("myLink").onclick = function(event) {
+  event.preventDefault();
+  doSomething();
+};</code></pre>
+                            </div>
+                        </div>
+
+                        <h4>The <code>window.onload</code> Event Handler</h4>
+                        <p>When JavaScript runs, the DOM might not be fully loaded yet. The <code>window.onload</code>
+                            event fires when the entire page (including images, stylesheets) has loaded.</p>
+
+                        <pre><code class="language-javascript">// Wait for page to fully load before running code
+window.onload = function() {
+  // DOM is now fully loaded - safe to manipulate elements
+  const heading = document.getElementById("main-heading");
+  heading.textContent = "Page Loaded!";
+};
+
+// Modern alternative: DOMContentLoaded (faster, doesn't wait for images)
+document.addEventListener("DOMContentLoaded", function() {
+  console.log("DOM ready!");
+});</code></pre>
+
+                        <h4>Anonymous Functions</h4>
+                        <p>An <strong>anonymous function</strong> is a function without a name. They're commonly used
+                            for event handlers and callbacks.</p>
+
+                        <pre><code class="language-javascript">// Named function
+function greet() {
+  console.log("Hello!");
+}
+
+// Anonymous function (assigned to variable)
+const greet = function() {
+  console.log("Hello!");
+};
+
+// Anonymous function (as event handler)
+button.onclick = function() {
+  console.log("Clicked!");
+};
+
+// Arrow function (ES6 shorthand)
+button.onclick = () => console.log("Clicked!");
+
+// With parameters
+button.onclick = (event) => {
+  console.log(event.target);
+};</code></pre>
+
+                        <h4>The <code>this</code> Keyword in DOM Events</h4>
+                        <p>In event handlers, <code>this</code> refers to the DOM element that triggered the event.
+                            This is incredibly useful for reusable event handlers.</p>
+
+                        <pre><code class="language-javascript">// 'this' refers to the clicked button
+const buttons = document.querySelectorAll(".btn");
+
+buttons.forEach(function(button) {
+  button.onclick = function() {
+    console.log(this.textContent); // Text of THIS button
+    this.style.backgroundColor = "green";
+  };
+});
+
+// ⚠️ Warning: Arrow functions don't bind 'this'!
+button.onclick = () => {
+  console.log(this); // 'this' is NOT the button (inherits from scope)
+};
+
+// Solution: Use event.target with arrow functions
+button.onclick = (event) => {
+  console.log(event.target); // The clicked element
+};</code></pre>
+                    </article>
+                </section>
+
+                <!-- 5.2 DOM Element Objects -->
+                <section id="element-objects">
+                    <h2>5.2 DOM Element Objects</h2>
+
+                    <article class="problem-card">
+                        <p>Once you've selected a DOM element, you can read and modify its properties. This section
+                            covers the most common ways to manipulate element content, styles, and attributes.</p>
+
+                        <h4>Modifying Element Text</h4>
+                        <p>There are three main properties for working with element content:</p>
+
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Property</th>
+                                        <th>Description</th>
+                                        <th>When to Use</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>innerHTML</code></td>
+                                        <td>Gets/sets HTML content (parses tags)</td>
+                                        <td>When you need to insert HTML elements</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>textContent</code></td>
+                                        <td>Gets/sets text only (ignores tags)</td>
+                                        <td>When inserting plain text (safer!)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>value</code></td>
+                                        <td>Gets/sets value of form inputs</td>
+                                        <td>For &lt;input&gt;, &lt;textarea&gt;, &lt;select&gt;</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <pre><code class="language-javascript">const div = document.getElementById("myDiv");
+const input = document.getElementById("myInput");
+
+// innerHTML - parses HTML tags
+div.innerHTML = "&lt;strong&gt;Bold text&lt;/strong&gt;"; // Renders as bold
+console.log(div.innerHTML); // "&lt;strong&gt;Bold text&lt;/strong&gt;"
+
+// textContent - treats everything as text (safer)
+div.textContent = "&lt;strong&gt;Bold text&lt;/strong&gt;"; // Shows literal tags
+console.log(div.textContent); // "&lt;strong&gt;Bold text&lt;/strong&gt;"
+
+// value - for form elements
+console.log(input.value);    // Current input value
+input.value = "New text";    // Set new value
+input.value = "";            // Clear the input</code></pre>
+
+                        <div class="alert alert--warning">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                                    <line x1="12" y1="9" x2="12" y2="13" />
+                                    <line x1="12" y1="17" x2="12.01" y2="17" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>Security Warning: innerHTML and XSS</strong>
+                                <p>Never use <code>innerHTML</code> with user-provided data! It can lead to Cross-Site
+                                    Scripting (XSS) attacks where malicious code is injected into your page.</p>
+                                <pre><code class="language-javascript">// ❌ DANGEROUS - user could inject scripts
+div.innerHTML = userInput;
+
+// ✅ SAFE - textContent escapes HTML
+div.textContent = userInput;</code></pre>
+                            </div>
+                        </div>
+
+                        <h4>Adjusting Styles with the DOM</h4>
+                        <p>Every element has a <code>style</code> property that allows you to directly modify CSS
+                            properties. Note that CSS properties with hyphens become camelCase in JavaScript.</p>
+
+                        <pre><code class="language-javascript">const element = document.getElementById("myElement");
+
+// Setting individual styles
+element.style.color = "blue";
+element.style.backgroundColor = "yellow";  // Note: camelCase!
+element.style.fontSize = "20px";
+element.style.border = "2px solid red";
+element.style.marginTop = "10px";
+
+// Reading styles (only works for inline styles)
+console.log(element.style.color); // "blue"
+
+// To read computed styles (including CSS file styles)
+const computed = window.getComputedStyle(element);
+console.log(computed.fontSize); // "20px"</code></pre>
+
+                        <h4>CSS Property Name Conversion</h4>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>CSS Property</th>
+                                        <th>JavaScript Property</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>background-color</code></td>
+                                        <td><code>backgroundColor</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>font-size</code></td>
+                                        <td><code>fontSize</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>margin-top</code></td>
+                                        <td><code>marginTop</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>border-radius</code></td>
+                                        <td><code>borderRadius</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>z-index</code></td>
+                                        <td><code>zIndex</code></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h4>Unobtrusive Styling with <code>className</code> and <code>classList</code></h4>
+                        <p>Instead of setting styles directly, the <strong>unobtrusive approach</strong> is to toggle
+                            CSS classes. This keeps your styles in CSS files and your JavaScript clean.</p>
+
+                        <pre><code class="language-javascript">const element = document.getElementById("myElement");
+
+// className - get/set the entire class attribute
+console.log(element.className); // "card primary"
+element.className = "card active"; // Replaces ALL classes
+
+// classList - modern API for managing classes (preferred!)
+element.classList.add("active");      // Add a class
+element.classList.remove("hidden");   // Remove a class
+element.classList.toggle("expanded"); // Add if missing, remove if present
+element.classList.contains("active"); // Returns true/false
+element.classList.replace("old", "new"); // Replace one class with another
+
+// Add multiple classes
+element.classList.add("class1", "class2", "class3");</code></pre>
+
+                        <div class="alert alert--important">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M9 18h6M10 22h4M12 2a7 7 0 0 1 7 7c0 2.4-1.2 4.5-3 5.7V17H8v-2.3C6.2 13.5 5 11.4 5 9a7 7 0 0 1 7-7z" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>Best Practice: Use classList for State Changes</strong>
+                                <p>Define your visual states in CSS, then toggle classes in JavaScript:</p>
+                                <pre><code class="language-css">.button { background: blue; }
+.button.loading { background: gray; cursor: wait; }
+.button.success { background: green; }</code></pre>
+                                <pre><code class="language-javascript">button.classList.add("loading");
+// After async operation...
+button.classList.remove("loading");
+button.classList.add("success");</code></pre>
+                            </div>
+                        </div>
+                    </article>
+                </section>
+
+                <!-- 5.3 The DOM Tree -->
+                <section id="dom-tree">
+                    <h2>5.3 The DOM Tree</h2>
+
+                    <article class="problem-card">
+                        <p>The DOM represents an HTML document as a tree structure where each element, attribute,
+                            and piece of text is a <strong>node</strong>. Understanding this tree structure is essential
+                            for navigating and manipulating the DOM.</p>
+
+                        <h4>Types of DOM Nodes</h4>
+                        <p>There are three main types of nodes you'll work with:</p>
+
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Node Type</th>
+                                        <th>nodeType Value</th>
+                                        <th>Description</th>
+                                        <th>Example</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Element Node</strong></td>
+                                        <td>1</td>
+                                        <td>HTML tags</td>
+                                        <td><code>&lt;div&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;span&gt;</code>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Text Node</strong></td>
+                                        <td>3</td>
+                                        <td>Text content inside elements</td>
+                                        <td>"Hello World"</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Attribute Node</strong></td>
+                                        <td>2</td>
+                                        <td>Attributes on elements</td>
+                                        <td><code>id="main"</code>, <code>class="card"</code></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <pre><code class="language-html">&lt;div id="container"&gt;
+  &lt;p class="intro"&gt;Hello &lt;strong&gt;World&lt;/strong&gt;&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Item 1&lt;/li&gt;
+    &lt;li&gt;Item 2&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+
+                        <pre><code class="language-javascript">const div = document.getElementById("container");
+
+console.log(div.nodeType);     // 1 (Element)
+console.log(div.nodeName);     // "DIV"
+console.log(div.nodeValue);    // null (elements have no nodeValue)
+
+const textNode = div.firstChild;
+console.log(textNode.nodeType); // 3 (Text - includes whitespace!)</code></pre>
+
+                        <h4>Traversing the DOM Tree</h4>
+                        <p>You can navigate between nodes using these properties:</p>
+
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Property</th>
+                                        <th>Returns</th>
+                                        <th>Includes Text Nodes?</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>parentNode</code></td>
+                                        <td>Parent node</td>
+                                        <td>N/A</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>childNodes</code></td>
+                                        <td>All child nodes (NodeList)</td>
+                                        <td>✅ Yes</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>children</code></td>
+                                        <td>Child <em>elements</em> only</td>
+                                        <td>❌ No</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>firstChild</code></td>
+                                        <td>First child node</td>
+                                        <td>✅ Yes</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>firstElementChild</code></td>
+                                        <td>First child element</td>
+                                        <td>❌ No</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>lastChild</code></td>
+                                        <td>Last child node</td>
+                                        <td>✅ Yes</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>lastElementChild</code></td>
+                                        <td>Last child element</td>
+                                        <td>❌ No</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>nextSibling</code></td>
+                                        <td>Next sibling node</td>
+                                        <td>✅ Yes</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>nextElementSibling</code></td>
+                                        <td>Next sibling element</td>
+                                        <td>❌ No</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>previousSibling</code></td>
+                                        <td>Previous sibling node</td>
+                                        <td>✅ Yes</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>previousElementSibling</code></td>
+                                        <td>Previous sibling element</td>
+                                        <td>❌ No</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="alert alert--warning">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                                    <line x1="12" y1="9" x2="12" y2="13" />
+                                    <line x1="12" y1="17" x2="12.01" y2="17" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>Watch Out for Text Nodes!</strong>
+                                <p>Whitespace between tags creates text nodes! Use the <code>Element</code> variants
+                                    (like <code>firstElementChild</code>) to skip text nodes.</p>
+                            </div>
+                        </div>
+
+                        <pre><code class="language-javascript">const ul = document.querySelector("ul");
+
+// Parent navigation
+console.log(ul.parentNode);       // &lt;div id="container"&gt;
+
+// Child navigation (prefer Element variants)
+console.log(ul.children);         // HTMLCollection [li, li]
+console.log(ul.firstElementChild); // First &lt;li&gt;
+console.log(ul.lastElementChild);  // Last &lt;li&gt;
+
+// Sibling navigation
+const firstLi = ul.firstElementChild;
+console.log(firstLi.nextElementSibling); // Second &lt;li&gt;</code></pre>
+
+                        <h4>Selecting Groups of Elements</h4>
+                        <p>Modern JavaScript provides powerful methods to select elements:</p>
+
+                        <pre><code class="language-javascript">// By ID (returns single element or null)
+const header = document.getElementById("header");
+
+// By tag name (returns live HTMLCollection)
+const paragraphs = document.getElementsByTagName("p");
+
+// By class name (returns live HTMLCollection)
+const cards = document.getElementsByClassName("card");
+
+// By name attribute (returns live NodeList)
+const radios = document.getElementsByName("color");
+
+// CSS selectors (RECOMMENDED - most flexible)
+const firstCard = document.querySelector(".card");         // First match
+const allCards = document.querySelectorAll(".card");       // All matches
+const nested = document.querySelector("#main .card.active"); // Complex selector</code></pre>
+
+                        <h4>Creating and Modifying Nodes</h4>
+                        <p>You can dynamically create, insert, and remove DOM elements:</p>
+
+                        <pre><code class="language-javascript">// Create a new element
+const newDiv = document.createElement("div");
+newDiv.id = "myNewDiv";
+newDiv.className = "card";
+newDiv.textContent = "I'm a new div!";
+
+// Create a text node (rarely needed - textContent is easier)
+const textNode = document.createTextNode("Hello!");
+
+// Set attributes
+newDiv.setAttribute("data-id", "123");
+newDiv.setAttribute("aria-label", "Card");
+console.log(newDiv.getAttribute("data-id")); // "123"</code></pre>
+
+                        <pre><code class="language-javascript">const container = document.getElementById("container");
+const newItem = document.createElement("li");
+newItem.textContent = "New Item";
+
+// appendChild - adds to the end
+container.appendChild(newItem);
+
+// insertBefore - insert before a reference node
+const referenceNode = container.firstElementChild;
+container.insertBefore(newItem, referenceNode);
+
+// Modern methods (easier syntax)
+container.prepend(newItem);              // Add to beginning
+container.append(newItem);               // Add to end
+referenceNode.before(newItem);           // Insert before
+referenceNode.after(newItem);            // Insert after
+
+// Insert HTML string
+container.insertAdjacentHTML("beforeend", "&lt;p&gt;New paragraph&lt;/p&gt;");</code></pre>
+
+                        <pre><code class="language-javascript">const container = document.getElementById("container");
+const oldChild = container.firstElementChild;
+
+// removeChild - remove a child element (returns removed node)
+const removed = container.removeChild(oldChild);
+
+// Modern: remove() - element removes itself
+oldChild.remove();
+
+// replaceChild - replace one child with another
+const newChild = document.createElement("p");
+newChild.textContent = "Replacement!";
+container.replaceChild(newChild, oldChild);
+
+// Modern: replaceWith()
+oldChild.replaceWith(newChild);</code></pre>
+                    </article>
+                </section>
+
+                <!-- 5.3.2 Browser DevTools -->
+                <section id="devtools">
+                    <h2>5.3.2 Browser DevTools for DOM Debugging</h2>
+
+                    <article class="problem-card">
+                        <p>Modern browsers have powerful built-in developer tools (DevTools) that replaced tools
+                            like Firebug. Here's how to use them for DOM debugging:</p>
+
+                        <h4>Opening DevTools</h4>
+                        <ul class="content-list">
+                            <li><strong>Chrome/Edge:</strong> F12 or Ctrl+Shift+I (Cmd+Opt+I on Mac)</li>
+                            <li><strong>Firefox:</strong> F12 or Ctrl+Shift+I</li>
+                            <li><strong>Right-click:</strong> "Inspect" on any element</li>
+                        </ul>
+
+                        <h4>Key DevTools Panels</h4>
+
+                        <div class="alert alert--info">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="11" cy="11" r="8" />
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>Elements Panel</strong>
+                                <ul>
+                                    <li>View and edit the DOM tree in real-time</li>
+                                    <li>Inspect and modify CSS styles</li>
+                                    <li>See computed styles (final applied values)</li>
+                                    <li>Right-click elements to copy, delete, or edit</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="alert alert--important">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                                    <line x1="3" y1="9" x2="21" y2="9" />
+                                    <line x1="9" y1="21" x2="9" y2="9" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>Console Panel</strong>
+                                <ul>
+                                    <li>Run JavaScript commands directly</li>
+                                    <li><code>$0</code> - Reference to currently selected element</li>
+                                    <li><code>$("selector")</code> - Shorthand for querySelector</li>
+                                    <li><code>$$("selector")</code> - Shorthand for querySelectorAll</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h4>Debugging with Breakpoints</h4>
+                        <p>In the <strong>Sources</strong> panel, you can set breakpoints to pause code execution:</p>
+
+                        <pre><code class="language-javascript">function updateElement() {
+  const el = document.getElementById("myElement");
+  debugger; // Code pauses here when DevTools is open
+  el.textContent = "Updated!";
+}</code></pre>
+
+                        <h4>Useful Console Commands</h4>
+                        <pre><code class="language-javascript">// Inspect selected element
+console.dir($0);           // Show all properties
+
+// Find elements
+$$("button")               // All buttons on page
+
+// Monitor events
+monitorEvents($0, "click"); // Log all click events on element
+
+// Copy to clipboard
+copy($0.outerHTML);        // Copy element's HTML</code></pre>
+                    </article>
+                </section>
+
+                <!-- Quizzes -->
+                <section id="quizzes">
+                    <h2>Quick Quizzes</h2>
+
+                    <div class="alert alert--info">
+                        <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                                <line x1="12" y1="17" x2="12.01" y2="17" />
+                            </svg></span>
+                        <div class="alert__content">
+                            <strong>Test your knowledge!</strong> Click on an answer to check if you're correct.
+                        </div>
+                    </div>
+
+                    <!-- Quiz 1 -->
+                    <article class="problem-card">
+                        <div class="quiz" data-correct="b" data-quiz-id="dom-1">
+                            <h4>Quiz 1: Which global object provides information about the current URL?</h4>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="checkQuiz(this, 'a')">
+                                    <span class="option-letter">A</span>
+                                    <span>navigator</span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'b')">
+                                    <span class="option-letter">B</span>
+                                    <span>location</span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'c')">
+                                    <span class="option-letter">C</span>
+                                    <span>history</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Quiz 2 -->
+                    <article class="problem-card">
+                        <div class="quiz" data-correct="c" data-quiz-id="dom-2">
+                            <h4>Quiz 2: What is the safest way to insert user-provided text into a DOM element?</h4>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="checkQuiz(this, 'a')">
+                                    <span class="option-letter">A</span>
+                                    <span>element.innerHTML = userInput</span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'b')">
+                                    <span class="option-letter">B</span>
+                                    <span>element.outerHTML = userInput</span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'c')">
+                                    <span class="option-letter">C</span>
+                                    <span>element.textContent = userInput</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Quiz 3 -->
+                    <article class="problem-card">
+                        <div class="quiz" data-correct="a" data-quiz-id="dom-3">
+                            <h4>Quiz 3: What does classList.toggle("active") do?</h4>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="checkQuiz(this, 'a')">
+                                    <span class="option-letter">A</span>
+                                    <span>Adds "active" if missing, removes it if present</span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'b')">
+                                    <span class="option-letter">B</span>
+                                    <span>Always adds the "active" class</span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'c')">
+                                    <span class="option-letter">C</span>
+                                    <span>Checks if the "active" class exists</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Quiz 4 -->
+                    <article class="problem-card">
+                        <div class="quiz" data-correct="b" data-quiz-id="dom-4">
+                            <h4>Quiz 4: Why should you use firstElementChild instead of firstChild?</h4>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="checkQuiz(this, 'a')">
+                                    <span class="option-letter">A</span>
+                                    <span>firstElementChild is faster</span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'b')">
+                                    <span class="option-letter">B</span>
+                                    <span>firstChild might return a whitespace text node instead of an element</span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'c')">
+                                    <span class="option-letter">C</span>
+                                    <span>firstChild is deprecated</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </section>
+
+                <!-- Exercises -->
+                <section id="exercises">
+                    <h2>Hands-On Exercises</h2>
+
+                    <div class="alert alert--tip">
+                        <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                                <polyline points="22 4 12 14.01 9 11.01" />
+                            </svg></span>
+                        <div class="alert__content">
+                            <strong>Practice makes perfect!</strong> Write code in the textarea and click "Run Code" to
+                            execute it and see the results in the preview area.
+                        </div>
+                    </div>
+
+                    <!-- Exercise 1 -->
+                    <article class="problem-card">
+                        <div class="exercise">
+                            <div class="exercise-header">
+                                <span class="exercise-badge">EXERCISE</span>
+                                <h4>DOM Manipulation</h4>
+                            </div>
+                            <p>Practice creating and styling elements dynamically. Modify the code to create a styled
+                                card
+                                with:</p>
+                            <ul class="content-list">
+                                <li>A title and description</li>
+                                <li>Padding and background color</li>
+                                <li>Rounded corners and a border</li>
+                            </ul>
+                            <textarea id="dom-exercise-1" placeholder="// Create a new card element
 const card = document.createElement('div');
 card.className = 'exercise-card';
 
@@ -939,57 +1089,87 @@ card.className = 'exercise-card';
 
 // Add to output
 document.getElementById('dom-output-1').appendChild(card);"></textarea>
-                    <button class="btn" onclick="runJSCode('dom-exercise-1', 'dom-output-1')">▶ Run Code</button>
-                    <button class="btn btn-secondary" onclick="showHint('dom-hint-1')">💡 Show Hint</button>
-                    <div id="dom-hint-1" class="feedback"
-                        style="display:none; background: rgba(245, 158, 11, 0.2); border-color: var(--accent); color: var(--accent);">
-                        <strong>Hint:</strong> Use innerHTML to add content, then use style.padding,
-                        style.backgroundColor,
-                        style.borderRadius, and style.border to style the element.
-                    </div>
-                    <div class="output-preview" id="dom-output-1">
-                        <em style="color: #999;">Your preview will appear here...</em>
-                    </div>
-                </div>
+                            <div class="btn-group">
+                                <button class="btn btn--primary" onclick="runJSCode('dom-exercise-1', 'dom-output-1')">▶
+                                    Run Code</button>
+                                <button class="btn btn--secondary" onclick="showHint('dom-hint-1')">💡 Show
+                                    Hint</button>
+                            </div>
+                            <div id="dom-hint-1" class="feedback" style="display:none;">
+                                <strong>Hint:</strong> Use innerHTML to add content, then use style.padding,
+                                style.backgroundColor, style.borderRadius, and style.border to style the element.
+                            </div>
+                            <div class="output-preview" id="dom-output-1">
+                                <em>Your preview will appear here...</em>
+                            </div>
+                        </div>
+                    </article>
 
-                <div class="exercise">
-                    <div class="exercise-header">
-                        <span class="exercise-badge">EXERCISE</span>
-                        <h4>DOM Traversal</h4>
-                    </div>
-                    <p>Practice navigating the DOM tree. Write code that:</p>
-                    <ul>
-                        <li>Creates a list with multiple items</li>
-                        <li>Traverses the list using firstElementChild and nextElementSibling</li>
-                        <li>Styles each item during traversal</li>
-                    </ul>
-                    <textarea id="dom-exercise-2" placeholder="// Create a list for demonstration
+                    <!-- Exercise 2 -->
+                    <article class="problem-card">
+                        <div class="exercise">
+                            <div class="exercise-header">
+                                <span class="exercise-badge">EXERCISE</span>
+                                <h4>DOM Traversal</h4>
+                            </div>
+                            <p>Practice navigating the DOM tree. Write code that:</p>
+                            <ul class="content-list">
+                                <li>Creates a list with multiple items</li>
+                                <li>Traverses the list using firstElementChild and nextElementSibling</li>
+                                <li>Styles each item during traversal</li>
+                            </ul>
+                            <textarea id="dom-exercise-2" placeholder="// Create a list for demonstration
 const output = document.getElementById('dom-output-2');
 output.innerHTML = '<ul id=&quot;demo-list&quot;><li>First Item</li><li>Second Item</li></ul>';
 
 // Traverse and style the list..."></textarea>
-                    <button class="btn" onclick="runJSCode('dom-exercise-2', 'dom-output-2')">▶ Run Code</button>
-                    <button class="btn btn-secondary" onclick="showHint('dom-hint-2')">💡 Show Hint</button>
-                    <div id="dom-hint-2" class="feedback"
-                        style="display:none; background: rgba(245, 158, 11, 0.2); border-color: var(--accent); color: var(--accent);">
-                        <strong>Hint:</strong> Use a while loop: let current = list.firstElementChild; then current =
-                        current.nextElementSibling in the loop.
+                            <div class="btn-group">
+                                <button class="btn btn--primary" onclick="runJSCode('dom-exercise-2', 'dom-output-2')">▶
+                                    Run Code</button>
+                                <button class="btn btn--secondary" onclick="showHint('dom-hint-2')">💡 Show
+                                    Hint</button>
+                            </div>
+                            <div id="dom-hint-2" class="feedback" style="display:none;">
+                                <strong>Hint:</strong> Use a while loop: let current = list.firstElementChild; then
+                                current = current.nextElementSibling in the loop.
+                            </div>
+                            <div class="output-preview" id="dom-output-2">
+                                <em>Your preview will appear here...</em>
+                            </div>
+                        </div>
+                    </article>
+                </section>
+
+                <!-- Footer -->
+                <footer class="chapter-footer">
+                    <div class="alert alert--tip">
+                        <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10" />
+                                <circle cx="12" cy="12" r="6" />
+                                <circle cx="12" cy="12" r="2" />
+                            </svg></span>
+                        <div class="alert__content">
+                            <strong>Ready for the next chapter?</strong> Learn JavaScript fundamentals and take your
+                            web development skills to the next level.
+                            <p class="cta-button">
+                                <a href="javascript.html" class="btn btn--primary">Go to Chapter 6: JavaScript →</a>
+                            </p>
+                        </div>
                     </div>
-                    <div class="output-preview" id="dom-output-2">
-                        <em style="color: #999;">Your preview will appear here...</em>
-                    </div>
-                </div>
+                    <p class="chapter-footer__meta">
+                        WebDev Academy • Chapter 5: The DOM<br>
+                        <a href="layout.html">← Previous: Layout</a> |
+                        <a href="index.html">Back to Chapters</a>
+                    </p>
+                </footer>
+            </article>
+        </main>
+    </div>
 
-            </div>
-        </article>
-    </main>
-
-    <footer>
-        <p>Web Development Fundamentals Course</p>
-        <p>Created by panoskava for WebDev Studying</p>
-    </footer>
-
-    <script src="../app.js" defer></script>
+    <!-- JavaScript -->
+    <script src="../app.js"></script>
 </body>
 
 </html>
