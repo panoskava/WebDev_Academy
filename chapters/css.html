@@ -6,48 +6,226 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
         content="Learn CSS fundamentals including selectors, properties, box model, colors, and styling techniques.">
-    <meta name="author" content="WebDev Academy">
-    <title>Chapter 3: CSS - Styling Web Pages - WebDev Academy</title>
+    <meta name="theme-color" content="#0d1117">
+
+    <title>Chapter 3: CSS - Styling Web Pages | WebDev Academy</title>
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
         rel="stylesheet">
+
+    <!-- Styles -->
     <link rel="stylesheet" href="../styles.css">
+
+    <!-- Highlight.js - Syntax Highlighting with Atom One Dark Theme -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
 </head>
 
 <body>
-    <nav>
-        <div class="nav-content">
-            <a href="../index.html" class="logo">WebDev Academy</a>
-            <ul class="nav-links">
-                <li><a href="internet.html">Internet</a></li>
-                <li><a href="html.html">HTML</a></li>
-                <li><a href="css.html">CSS</a></li>
-                <li><a href="layout.html">Layout</a></li>
-                <li><a href="dom.html">DOM</a></li>
-                <li><a href="javascript.html">JavaScript</a></li>
-                <li><a href="javascript-part2.html">JS Part 2</a></li>
-                <li><a href="../projects.html">Projects</a></li>
-            </ul>
-        </div>
-    </nav>
+    <!-- Header -->
+    <header class="header">
+        <a href="../index.html" class="header__logo">
+            <span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="16 18 22 12 16 6"></polyline>
+                    <polyline points="8 6 2 12 8 18"></polyline>
+                </svg></span> WebDev Academy
+        </a>
+        <nav class="header__nav">
+            <a href="index.html" class="header__link">← Back to Chapters</a>
+        </nav>
+    </header>
 
-    <div class="breadcrumb">
-        <a href="../index.html">Home</a> › Chapter 3: CSS - Styling Web Pages
-    </div>
-
-    <main>
-        <article class="chapter-page" data-chapter="css">
-            <header class="chapter-page-header">
-                <span class="chapter-icon">🎨</span>
-                <h1>Chapter 3: CSS - Styling Web Pages</h1>
-            </header>
-            <button class="chapter-toggle">▼</button>
+    <!-- Main Layout with Sidebar -->
+    <div class="app-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar__section">
+                <h3 class="sidebar__title">Chapter 3</h3>
+                <ul class="sidebar__list">
+                    <li class="sidebar__item">
+                        <a href="#intro" class="sidebar__link sidebar__link--active">
+                            <span class="sidebar__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <line x1="2" y1="12" x2="22" y2="12" />
+                                    <path
+                                        d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                                </svg></span>
+                            Introduction
+                        </a>
+                    </li>
+                    <li class="sidebar__item">
+                        <a href="#what-is-css" class="sidebar__link">
+                            <span class="sidebar__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 20h9" />
+                                    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+                                </svg></span>
+                            3.1 What is CSS?
+                        </a>
+                    </li>
+                    <li class="sidebar__item">
+                        <a href="#selectors" class="sidebar__link">
+                            <span class="sidebar__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="3" />
+                                    <path
+                                        d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                                </svg></span>
+                            3.2 CSS Selectors
+                        </a>
+                    </li>
+                    <li class="sidebar__item">
+                        <a href="#colors" class="sidebar__link">
+                            <span class="sidebar__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="13.5" cy="6.5" r="2.5" />
+                                    <circle cx="19" cy="17" r="2" />
+                                    <circle cx="6" cy="12" r="3" />
+                                    <circle cx="12" cy="19" r="2" />
+                                </svg></span>
+                            3.3 CSS Colors
+                        </a>
+                    </li>
+                    <li class="sidebar__item">
+                        <a href="#typography" class="sidebar__link">
+                            <span class="sidebar__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="4 7 4 4 20 4 20 7" />
+                                    <line x1="9" y1="20" x2="15" y2="20" />
+                                    <line x1="12" y1="4" x2="12" y2="20" />
+                                </svg></span>
+                            3.4 Typography
+                        </a>
+                    </li>
+                    <li class="sidebar__item">
+                        <a href="#box-model" class="sidebar__link">
+                            <span class="sidebar__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                                </svg></span>
+                            3.5 Box Model
+                        </a>
+                    </li>
+                    <li class="sidebar__item">
+                        <a href="#backgrounds" class="sidebar__link">
+                            <span class="sidebar__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                                    <circle cx="8.5" cy="8.5" r="1.5" />
+                                    <polyline points="21 15 16 10 5 21" />
+                                </svg></span>
+                            3.6 Backgrounds
+                        </a>
+                    </li>
+                    <li class="sidebar__item">
+                        <a href="#units" class="sidebar__link">
+                            <span class="sidebar__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="4" y1="9" x2="20" y2="9" />
+                                    <line x1="4" y1="15" x2="20" y2="15" />
+                                    <line x1="10" y1="3" x2="8" y2="21" />
+                                    <line x1="16" y1="3" x2="14" y2="21" />
+                                </svg></span>
+                            3.7 CSS Units
+                        </a>
+                    </li>
+                    <li class="sidebar__item">
+                        <a href="#exercise" class="sidebar__link">
+                            <span class="sidebar__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="16 18 22 12 16 6" />
+                                    <polyline points="8 6 2 12 8 18" />
+                                </svg></span>
+                            Exercise
+                        </a>
+                    </li>
+                    <li class="sidebar__item">
+                        <a href="#quizzes" class="sidebar__link">
+                            <span class="sidebar__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                                    <line x1="12" y1="17" x2="12.01" y2="17" />
+                                </svg></span>
+                            Quizzes
+                        </a>
+                    </li>
+                </ul>
             </div>
-            <div class="chapter-content">
-                <div class="chapter-inner">
-                    <div class="lesson">
-                        <h3>3.1 What is CSS?</h3>
+
+            <div class="sidebar__section">
+                <h3 class="sidebar__title">Navigation</h3>
+                <ul class="sidebar__list">
+                    <li class="sidebar__item">
+                        <a href="html.html" class="sidebar__link">
+                            <span class="sidebar__icon">←</span>
+                            Previous: HTML
+                        </a>
+                    </li>
+                    <li class="sidebar__item">
+                        <a href="layout.html" class="sidebar__link">
+                            <span class="sidebar__icon">→</span>
+                            Next: Layout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <article class="chapter-page" data-chapter="css">
+                <!-- Introduction -->
+                <section id="intro" class="animate-fade-in">
+                    <h1>Chapter 3: CSS - Styling Web Pages</h1>
+                    <p class="section-intro">
+                        CSS (Cascading Style Sheets) is the language used to describe the visual presentation of HTML
+                        documents.
+                        Learn about selectors, properties, the box model, colors, typography, and responsive design.
+                    </p>
+
+                    <div class="alert alert--info">
+                        <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                            </svg></span>
+                        <div class="alert__content">
+                            <strong>What you'll learn:</strong>
+                            <ul>
+                                <li>How CSS works and the cascade</li>
+                                <li>CSS selectors and specificity</li>
+                                <li>Colors, typography, and backgrounds</li>
+                                <li>The box model (margin, padding, border)</li>
+                                <li>CSS units (px, em, rem, %, vh, vw)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 3.1 What is CSS? -->
+                <section id="what-is-css" class="animate-fade-in">
+                    <h2>3.1 What is CSS?</h2>
+                    <article class="problem-card">
                         <p><strong>CSS (Cascading Style Sheets)</strong> is the language used to describe the visual
                             presentation of HTML documents. While HTML provides the structure and content of a web
                             page,
@@ -56,7 +234,7 @@
                             behavior across different devices.</p>
 
                         <h4>Why CSS is Essential</h4>
-                        <ul>
+                        <ul class="content-list">
                             <li><strong>Separation of Concerns:</strong> CSS separates presentation from content,
                                 making code easier to maintain and update</li>
                             <li><strong>Consistency:</strong> One stylesheet can control the look of hundreds of
@@ -73,21 +251,16 @@
                         <h4>CSS Syntax</h4>
                         <p>CSS consists of <strong>rules</strong> that target HTML elements and apply styles to
                             them:</p>
-                        <div class="code-block">
-                            <span class="code-label">Basic CSS Rule Structure</span>
-                            <code>
-<span class="selector">selector</span> {<br>
-&nbsp;&nbsp;<span class="property">property</span>: <span class="css-value">value</span>;<br>
-&nbsp;&nbsp;<span class="property">property</span>: <span class="css-value">value</span>;<br>
-}<br>
-<br>
-<span class="comment">/* Example */</span><br>
-<span class="selector">p</span> {<br>
-&nbsp;&nbsp;<span class="property">color</span>: <span class="css-value">blue</span>;<br>
-&nbsp;&nbsp;<span class="property">font-size</span>: <span class="css-value">16px</span>;<br>
+                        <pre><code class="language-css">selector {
+    property: value;
+    property: value;
 }
-                                </code>
-                        </div>
+
+/* Example */
+p {
+    color: blue;
+    font-size: 16px;
+}</code></pre>
                         <p><strong>Selector:</strong> Targets which HTML elements to style<br>
                             <strong>Property:</strong> The aspect you want to change (color, size, margin, etc.)<br>
                             <strong>Value:</strong> What you want to set the property to<br>
@@ -113,340 +286,292 @@
 
                         <p><strong>3. Importance</strong> - The <code>!important</code> declaration overrides normal
                             cascade rules:</p>
-                        <div class="code-block">
-                            <span class="code-label">Using !important (use sparingly!)</span>
-                            <code>
-<span class="selector">p</span> {<br>
-&nbsp;&nbsp;<span class="property">color</span>: <span class="css-value">red</span> <span class="css-value">!important</span>; <span class="comment">/* This will always win */</span><br>
-}
-                                </code>
+                        <pre><code class="language-css">p {
+    color: red !important; /* This will always win */
+}</code></pre>
+                        <div class="alert alert--warning">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                                    <line x1="12" y1="9" x2="12" y2="13" />
+                                    <line x1="12" y1="17" x2="12.01" y2="17" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>Warning:</strong> Overusing <code>!important</code> makes CSS hard to maintain.
+                                Use it only as a last resort!
+                            </div>
                         </div>
-                        <p><strong>⚠️ Warning:</strong> Overusing <code>!important</code> makes CSS hard to
-                            maintain. Use it only as a last resort!</p>
 
                         <h4>Three Ways to Add CSS</h4>
-                        <div class="code-block">
-                            <span class="code-label">1. External Stylesheet (Recommended for production)</span>
-                            <code>
-<span class="comment">&lt;!-- In your HTML &lt;head&gt; --&gt;</span><br>
-<span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="value">"stylesheet"</span> <span class="attr">href</span>=<span class="value">"styles.css"</span><span class="tag">&gt;</span><br>
-<br>
-<span class="comment">/* In styles.css file */</span><br>
-<span class="selector">p</span> { <span class="property">color</span>: <span class="css-value">blue</span>; }
-                                </code>
-                        </div>
+                        <p><strong>1. External Stylesheet (Recommended for production)</strong></p>
+                        <pre><code class="language-html">&lt;!-- In your HTML &lt;head&gt; --&gt;
+&lt;link rel="stylesheet" href="styles.css"&gt;</code></pre>
+                        <pre><code class="language-css">/* In styles.css file */
+p { color: blue; }</code></pre>
                         <p><strong>Benefits:</strong> Reusable across pages, cacheable by browser, keeps HTML clean,
                             easier to maintain</p>
 
-                        <div class="code-block">
-                            <span class="code-label">2. Internal Styles (Good for single-page styles)</span>
-                            <code>
-<span class="tag">&lt;head&gt;</span><br>
-&nbsp;&nbsp;<span class="tag">&lt;style&gt;</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="selector">p</span> { <span class="property">color</span>: <span class="css-value">blue</span>; }<br>
-&nbsp;&nbsp;<span class="tag">&lt;/style&gt;</span><br>
-<span class="tag">&lt;/head&gt;</span>
-                                </code>
-                        </div>
-                        <p><strong>Use when:</strong> Styles are specific to one page only, or for quick prototyping
-                        </p>
+                        <p><strong>2. Internal Styles (Good for single-page styles)</strong></p>
+                        <pre><code class="language-html">&lt;head&gt;
+    &lt;style&gt;
+        p { color: blue; }
+    &lt;/style&gt;
+&lt;/head&gt;</code></pre>
+                        <p><strong>Use when:</strong> Styles are specific to one page only, or for quick prototyping</p>
 
-                        <div class="code-block">
-                            <span class="code-label">3. Inline Styles (Avoid when possible)</span>
-                            <code>
-<span class="tag">&lt;p</span> <span class="attr">style</span>=<span class="value">"color: blue; font-size: 16px;"</span><span class="tag">&gt;</span>Text<span class="tag">&lt;/p&gt;</span>
-                                </code>
-                        </div>
+                        <p><strong>3. Inline Styles (Avoid when possible)</strong></p>
+                        <pre><code class="language-html">&lt;p style="color: blue; font-size: 16px;"&gt;Text&lt;/p&gt;</code></pre>
+                    </article>
+                </section>
 
-                        <div class="code-block">
-                            <span class="code-label">CSS Syntax</span>
-                            <code>
-<span class="selector">selector</span> {<br>
-&nbsp;&nbsp;<span class="property">property</span>: <span class="css-value">value</span>;<br>
-&nbsp;&nbsp;<span class="property">another-property</span>: <span class="css-value">value</span>;<br>
-}<br>
-<br>
-<span class="comment">/* Example: */</span><br>
-<span class="selector">h1</span> {<br>
-&nbsp;&nbsp;<span class="property">color</span>: <span class="css-value">#333333</span>;<br>
-&nbsp;&nbsp;<span class="property">font-size</span>: <span class="css-value">24px</span>;<br>
-&nbsp;&nbsp;<span class="property">text-align</span>: <span class="css-value">center</span>;<br>
-}
-                                </code>
-                        </div>
-                    </div>
-
-                    <div class="lesson">
-                        <h3>3.2 CSS Selectors</h3>
-                        <p>Selectors determine which HTML elements your styles apply to. They are the "targeting
-                            system"
+                <!-- 3.2 CSS Selectors -->
+                <section id="selectors" class="animate-fade-in">
+                    <h2>3.2 CSS Selectors</h2>
+                    <article class="problem-card">
+                        <p>Selectors determine which HTML elements your styles apply to. They are the "targeting system"
                             of CSS - mastering selectors is essential for efficient styling. CSS offers many types
-                            of
-                            selectors, from simple to very specific.</p>
+                            of selectors, from simple to very specific.</p>
 
                         <h4>Basic Selectors</h4>
                         <p>These are the foundation of CSS and are used most frequently:</p>
-                        <div class="code-block">
-                            <span class="code-label">Basic Selectors</span>
-                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                            <code>
-<span class="comment">/* Element/Type selector - selects ALL elements of that type */</span><br>
-<span class="selector">p</span> { <span class="property">color</span>: <span class="css-value">blue</span>; }        <span class="comment">/* Every &lt;p&gt; on the page */</span><br>
-<span class="selector">h1</span> { <span class="property">font-size</span>: <span class="css-value">32px</span>; }   <span class="comment">/* Every &lt;h1&gt; on the page */</span><br>
-<span class="selector">div</span> { <span class="property">margin</span>: <span class="css-value">10px</span>; }     <span class="comment">/* Every &lt;div&gt; on the page */</span><br>
-<br>
-<span class="comment">/* Class selector (.) - reusable, can apply to MANY elements */</span><br>
-<span class="selector">.highlight</span> { <span class="property">background</span>: <span class="css-value">yellow</span>; }<br>
-<span class="selector">.btn</span> { <span class="property">padding</span>: <span class="css-value">10px 20px</span>; }<br>
-<span class="selector">.error-text</span> { <span class="property">color</span>: <span class="css-value">red</span>; }<br>
-<span class="comment">/* Used as: &lt;p class="highlight"&gt;Text&lt;/p&gt; */</span><br>
-<span class="comment">/* Multiple classes: &lt;div class="btn highlight"&gt;&lt;/div&gt; */</span><br>
-<br>
-<span class="comment">/* ID selector (#) - UNIQUE, should only be used once per page */</span><br>
-<span class="selector">#header</span> { <span class="property">position</span>: <span class="css-value">fixed</span>; }<br>
-<span class="selector">#main-content</span> { <span class="property">max-width</span>: <span class="css-value">1200px</span>; }<br>
-<span class="selector">#footer</span> { <span class="property">margin-top</span>: <span class="css-value">auto</span>; }<br>
-<span class="comment">/* Used as: &lt;div id="header"&gt;&lt;/div&gt; */</span><br>
-<br>
-<span class="comment">/* Universal selector (*) - selects EVERYTHING */</span><br>
-<span class="selector">*</span> { <span class="property">box-sizing</span>: <span class="css-value">border-box</span>; } <span class="comment">/* Common reset */</span><br>
-<span class="selector">*</span> { <span class="property">margin</span>: <span class="css-value">0</span>; <span class="property">padding</span>: <span class="css-value">0</span>; }   <span class="comment">/* Reset all spacing */</span>
-                                </code>
+                        <pre><code class="language-css">/* Element/Type selector - selects ALL elements of that type */
+p { color: blue; }        /* Every &lt;p&gt; on the page */
+h1 { font-size: 32px; }   /* Every &lt;h1&gt; on the page */
+div { margin: 10px; }     /* Every &lt;div&gt; on the page */
+
+/* Class selector (.) - reusable, can apply to MANY elements */
+.highlight { background: yellow; }
+.btn { padding: 10px 20px; }
+.error-text { color: red; }
+/* Used as: &lt;p class="highlight"&gt;Text&lt;/p&gt; */
+/* Multiple classes: &lt;div class="btn highlight"&gt;&lt;/div&gt; */
+
+/* ID selector (#) - UNIQUE, should only be used once per page */
+#header { position: fixed; }
+#main-content { max-width: 1200px; }
+#footer { margin-top: auto; }
+/* Used as: &lt;div id="header"&gt;&lt;/div&gt; */
+
+/* Universal selector (*) - selects EVERYTHING */
+* { box-sizing: border-box; } /* Common reset */
+* { margin: 0; padding: 0; }   /* Reset all spacing */</code></pre>
+
+                        <div class="alert alert--tip">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <line x1="12" y1="16" x2="12" y2="12" />
+                                    <line x1="12" y1="8" x2="12.01" y2="8" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>Best Practice:</strong> Prefer classes over IDs for styling. IDs have higher
+                                specificity which can make CSS harder to override. Reserve IDs for JavaScript or anchor
+                                links.
+                            </div>
                         </div>
-                        <p><strong>💡 Best Practice:</strong> Prefer classes over IDs for styling. IDs have higher
-                            specificity
-                            which can make CSS harder to override. Reserve IDs for JavaScript or anchor links.</p>
 
                         <h4>Grouping Selectors</h4>
                         <p>Apply the same styles to multiple selectors at once using commas:</p>
-                        <div class="code-block">
-                            <span class="code-label">Grouping Multiple Selectors</span>
-                            <code>
-<span class="comment">/* Without grouping - repetitive */</span><br>
-<span class="selector">h1</span> { <span class="property">font-family</span>: <span class="css-value">Arial</span>; }<br>
-<span class="selector">h2</span> { <span class="property">font-family</span>: <span class="css-value">Arial</span>; }<br>
-<span class="selector">h3</span> { <span class="property">font-family</span>: <span class="css-value">Arial</span>; }<br>
-<br>
-<span class="comment">/* With grouping - clean and DRY */</span><br>
-<span class="selector">h1, h2, h3</span> { <span class="property">font-family</span>: <span class="css-value">Arial</span>; }<br>
-<br>
-<span class="comment">/* Mix different selector types */</span><br>
-<span class="selector">h1, .title, #main-heading</span> { <span class="property">color</span>: <span class="css-value">navy</span>; }
-                                </code>
-                        </div>
+                        <pre><code class="language-css">/* Without grouping - repetitive */
+h1 { font-family: Arial; }
+h2 { font-family: Arial; }
+h3 { font-family: Arial; }
+
+/* With grouping - clean and DRY */
+h1, h2, h3 { font-family: Arial; }
+
+/* Mix different selector types */
+h1, .title, #main-heading { color: navy; }</code></pre>
 
                         <h4>Combinator Selectors</h4>
                         <p>Combinators describe relationships between elements, allowing you to target elements
                             based on their position in the HTML structure:</p>
-                        <div class="code-block">
-                            <span class="code-label">Combinator Selectors</span>
-                            <code>
-<span class="comment">/* DESCENDANT selector (space) - any nested element, any depth */</span><br>
-<span class="selector">nav a</span> { <span class="property">text-decoration</span>: <span class="css-value">none</span>; }  <span class="comment">/* Any &lt;a&gt; inside &lt;nav&gt; */</span><br>
-<span class="selector">article p</span> { <span class="property">line-height</span>: <span class="css-value">1.6</span>; }  <span class="comment">/* Any &lt;p&gt; inside &lt;article&gt; */</span><br>
-<span class="selector">.container div span</span> { ... }     <span class="comment">/* Multiple levels deep */</span><br>
-<br>
-<span class="comment">/* CHILD selector (>) - DIRECT children only, not grandchildren */</span><br>
-<span class="selector">ul > li</span> { <span class="property">margin</span>: <span class="css-value">5px</span>; }        <span class="comment">/* Only direct &lt;li&gt; of &lt;ul&gt; */</span><br>
-<span class="selector">.card > h2</span> { <span class="property">margin-top</span>: <span class="css-value">0</span>; }   <span class="comment">/* Direct &lt;h2&gt; children of .card */</span><br>
-<br>
-<span class="comment">/* ADJACENT SIBLING (+) - immediately following element */</span><br>
-<span class="selector">h2 + p</span> { <span class="property">margin-top</span>: <span class="css-value">0</span>; }       <span class="comment">/* First &lt;p&gt; right after &lt;h2&gt; */</span><br>
-<span class="selector">label + input</span> { <span class="property">margin-left</span>: <span class="css-value">10px</span>; }<br>
-<br>
-<span class="comment">/* GENERAL SIBLING (~) - all following siblings */</span><br>
-<span class="selector">h2 ~ p</span> { <span class="property">color</span>: <span class="css-value">gray</span>; }        <span class="comment">/* All &lt;p&gt; elements after &lt;h2&gt; */</span>
-                                </code>
-                        </div>
+                        <pre><code class="language-css">/* DESCENDANT selector (space) - any nested element, any depth */
+nav a { text-decoration: none; }  /* Any &lt;a&gt; inside &lt;nav&gt; */
+article p { line-height: 1.6; }  /* Any &lt;p&gt; inside &lt;article&gt; */
+.container div span { ... }     /* Multiple levels deep */
+
+/* CHILD selector (>) - DIRECT children only, not grandchildren */
+ul > li { margin: 5px; }        /* Only direct &lt;li&gt; of &lt;ul&gt; */
+.card > h2 { margin-top: 0; }   /* Direct &lt;h2&gt; children of .card */
+
+/* ADJACENT SIBLING (+) - immediately following element */
+h2 + p { margin-top: 0; }       /* First &lt;p&gt; right after &lt;h2&gt; */
+label + input { margin-left: 10px; }
+
+/* GENERAL SIBLING (~) - all following siblings */
+h2 ~ p { color: gray; }        /* All &lt;p&gt; elements after &lt;h2&gt; */</code></pre>
                         <p><strong>Visual Example:</strong></p>
-                        <div class="code-block">
-                            <span class="code-label">HTML Structure</span>
-                            <code>
-<span class="tag">&lt;nav&gt;</span><br>
-&nbsp;&nbsp;<span class="tag">&lt;ul&gt;</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;li&gt;</span><span class="tag">&lt;a&gt;</span>Home<span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/li&gt;</span>        <span class="comment">&lt;-- nav a, ul > li, nav li</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;li&gt;</span><span class="tag">&lt;a&gt;</span>About<span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/li&gt;</span>       <span class="comment">&lt;-- li + li (adjacent sibling)</span><br>
-&nbsp;&nbsp;<span class="tag">&lt;/ul&gt;</span><br>
-<span class="tag">&lt;/nav&gt;</span>
-                                </code>
-                        </div>
+                        <pre><code class="language-html">&lt;nav&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a&gt;Home&lt;/a&gt;&lt;/li&gt;        &lt;!-- nav a, ul > li, nav li --&gt;
+        &lt;li&gt;&lt;a&gt;About&lt;/a&gt;&lt;/li&gt;       &lt;!-- li + li (adjacent sibling) --&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
 
                         <h4>Attribute Selectors</h4>
                         <p>Target elements based on their attributes or attribute values - very powerful for forms
                             and links:</p>
-                        <div class="code-block">
-                            <span class="code-label">Attribute Selectors</span>
-                            <code>
-<span class="comment">/* Has attribute (any value) */</span><br>
-<span class="selector">[disabled]</span> { <span class="property">opacity</span>: <span class="css-value">0.5</span>; }      <span class="comment">/* Any element with disabled attr */</span><br>
-<span class="selector">[required]</span> { <span class="property">border-color</span>: <span class="css-value">red</span>; } <span class="comment">/* Any required field */</span><br>
-<br>
-<span class="comment">/* Attribute equals exact value */</span><br>
-<span class="selector">[type="submit"]</span> { <span class="property">background</span>: <span class="css-value">blue</span>; }<br>
-<span class="selector">[type="text"]</span> { <span class="property">padding</span>: <span class="css-value">8px</span>; }<br>
-<span class="selector">input[type="email"]</span> { ... }       <span class="comment">/* More specific */</span><br>
-<br>
-<span class="comment">/* Attribute STARTS WITH (^=) - great for external links */</span><br>
-<span class="selector">[href^="https"]</span> { <span class="property">color</span>: <span class="css-value">green</span>; }  <span class="comment">/* Secure links */</span><br>
-<span class="selector">[href^="http"]</span> { ... }            <span class="comment">/* External links */</span><br>
-<span class="selector">[class^="btn-"]</span> { ... }           <span class="comment">/* Classes starting with btn- */</span><br>
-<br>
-<span class="comment">/* Attribute ENDS WITH ($=) - great for file types */</span><br>
-<span class="selector">[href$=".pdf"]</span> { <span class="property">color</span>: <span class="css-value">red</span>; }    <span class="comment">/* PDF links */</span><br>
-<span class="selector">[href$=".jpg"]</span> { ... }            <span class="comment">/* JPG image links */</span><br>
-<span class="selector">[src$=".png"]</span> { ... }             <span class="comment">/* PNG images */</span><br>
-<br>
-<span class="comment">/* Attribute CONTAINS (*=) */</span><br>
-<span class="selector">[class*="btn"]</span> { <span class="property">cursor</span>: <span class="css-value">pointer</span>; } <span class="comment">/* Any class containing "btn" */</span><br>
-<span class="selector">[href*="google"]</span> { ... }           <span class="comment">/* Links to Google */</span>
-                                </code>
-                        </div>
+                        <pre><code class="language-css">/* Has attribute (any value) */
+[disabled] { opacity: 0.5; }      /* Any element with disabled attr */
+[required] { border-color: red; } /* Any required field */
+
+/* Attribute equals exact value */
+[type="submit"] { background: blue; }
+[type="text"] { padding: 8px; }
+input[type="email"] { ... }       /* More specific */
+
+/* Attribute STARTS WITH (^=) - great for external links */
+[href^="https"] { color: green; }  /* Secure links */
+[href^="http"] { ... }            /* External links */
+[class^="btn-"] { ... }           /* Classes starting with btn- */
+
+/* Attribute ENDS WITH ($=) - great for file types */
+[href$=".pdf"] { color: red; }    /* PDF links */
+[href$=".jpg"] { ... }            /* JPG image links */
+[src$=".png"] { ... }             /* PNG images */
+
+/* Attribute CONTAINS (*=) */
+[class*="btn"] { cursor: pointer; } /* Any class containing "btn" */
+[href*="google"] { ... }           /* Links to Google */</code></pre>
 
                         <h4>Pseudo-classes and Pseudo-elements</h4>
                         <p><strong>Pseudo-classes</strong> select elements based on their <em>state</em> (like
                             hover) or
                             <em>position</em> (like first-child). They use a single colon (<code>:</code>).
                         </p>
-                        <div class="code-block">
-                            <span class="code-label">Pseudo-classes (:) - State-based</span>
-                            <code>
-<span class="comment">/* INTERACTIVE STATES - respond to user actions */</span><br>
-<span class="selector">a:link</span> { <span class="property">color</span>: <span class="css-value">blue</span>; }      <span class="comment">/* Unvisited link */</span><br>
-<span class="selector">a:visited</span> { <span class="property">color</span>: <span class="css-value">purple</span>; }  <span class="comment">/* Already visited */</span><br>
-<span class="selector">a:hover</span> { <span class="property">color</span>: <span class="css-value">red</span>; }       <span class="comment">/* Mouse over */</span><br>
-<span class="selector">a:active</span> { <span class="property">color</span>: <span class="css-value">orange</span>; }   <span class="comment">/* Being clicked */</span><br>
-<br>
-<span class="selector">button:hover</span> { <span class="property">background</span>: <span class="css-value">#eee</span>; }      <span class="comment">/* Mouse over button */</span><br>
-<span class="selector">button:active</span> { <span class="property">transform</span>: <span class="css-value">scale(0.98)</span>; } <span class="comment">/* Click effect */</span><br>
-<span class="selector">input:focus</span> { <span class="property">outline</span>: <span class="css-value">2px solid blue</span>; } <span class="comment">/* When selected */</span><br>
-<br>
-<span class="comment">/* FORM STATES - essential for form styling */</span><br>
-<span class="selector">input:checked</span> { ... }    <span class="comment">/* Checked checkbox/radio */</span><br>
-<span class="selector">input:disabled</span> { <span class="property">opacity</span>: <span class="css-value">0.5</span>; }  <span class="comment">/* Disabled field */</span><br>
-<span class="selector">input:enabled</span> { ... }    <span class="comment">/* Enabled field */</span><br>
-<span class="selector">input:required</span> { <span class="property">border-color</span>: <span class="css-value">red</span>; } <span class="comment">/* Required field */</span><br>
-<span class="selector">input:valid</span> { <span class="property">border-color</span>: <span class="css-value">green</span>; }   <span class="comment">/* Valid input */</span><br>
-<span class="selector">input:invalid</span> { <span class="property">border-color</span>: <span class="css-value">red</span>; }   <span class="comment">/* Invalid input */</span><br>
-<span class="selector">input:placeholder-shown</span> { ... }  <span class="comment">/* Placeholder visible */</span>
-                                </code>
-                        </div>
+                        <pre><code class="language-css">/* INTERACTIVE STATES - respond to user actions */
+a:link { color: blue; }      /* Unvisited link */
+a:visited { color: purple; }  /* Already visited */
+a:hover { color: red; }       /* Mouse over */
+a:active { color: orange; }   /* Being clicked */
 
-                        <div class="code-block">
-                            <span class="code-label">Pseudo-classes (:) - Position-based</span>
-                            <code>
-<span class="comment">/* POSITION-BASED - target by position in parent */</span><br>
-<span class="selector">li:first-child</span> { <span class="property">font-weight</span>: <span class="css-value">bold</span>; }  <span class="comment">/* First element */</span><br>
-<span class="selector">li:last-child</span> { <span class="property">border</span>: <span class="css-value">none</span>; }     <span class="comment">/* Last element */</span><br>
-<span class="selector">li:only-child</span> { ... }               <span class="comment">/* If it's the only child */</span><br>
-<br>
-<span class="comment">/* nth-child - very powerful! */</span><br>
-<span class="selector">li:nth-child(3)</span> { ... }        <span class="comment">/* 3rd item */</span><br>
-<span class="selector">li:nth-child(odd)</span> { <span class="property">background</span>: <span class="css-value">#f0f0f0</span>; }  <span class="comment">/* Odd rows */</span><br>
-<span class="selector">li:nth-child(even)</span> { <span class="property">background</span>: <span class="css-value">#fff</span>; }   <span class="comment">/* Even rows */</span><br>
-<span class="selector">li:nth-child(3n)</span> { ... }       <span class="comment">/* Every 3rd (3, 6, 9...) */</span><br>
-<span class="selector">li:nth-child(3n+1)</span> { ... }     <span class="comment">/* 1st of every 3 (1, 4, 7...) */</span><br>
-<br>
-<span class="comment">/* Count from the end */</span><br>
-<span class="selector">li:nth-last-child(2)</span> { ... }   <span class="comment">/* 2nd from last */</span><br>
-<br>
-<span class="comment">/* OTHER USEFUL PSEUDO-CLASSES */</span><br>
-<span class="selector">p:empty</span> { <span class="property">display</span>: <span class="css-value">none</span>; }     <span class="comment">/* Empty elements */</span><br>
-<span class="selector">:not(.special)</span> { ... }           <span class="comment">/* Everything EXCEPT .special */</span><br>
-<span class="selector">p:not(:first-child)</span> { ... }     <span class="comment">/* All p except first */</span>
-                                </code>
-                        </div>
+button:hover { background: #eee; }      /* Mouse over button */
+button:active { transform: scale(0.98); } /* Click effect */
+input:focus { outline: 2px solid blue; } /* When selected */
+
+/* FORM STATES - essential for form styling */
+input:checked { ... }    /* Checked checkbox/radio */
+input:disabled { opacity: 0.5; }  /* Disabled field */
+input:enabled { ... }    /* Enabled field */
+input:required { border-color: red; } /* Required field */
+input:valid { border-color: green; }   /* Valid input */
+input:invalid { border-color: red; }   /* Invalid input */
+input:placeholder-shown { ... }  /* Placeholder visible */</code></pre>
+
+                        <pre><code class="language-css">/* POSITION-BASED - target by position in parent */
+li:first-child { font-weight: bold; }  /* First element */
+li:last-child { border: none; }     /* Last element */
+li:only-child { ... }               /* If it's the only child */
+
+/* nth-child - very powerful! */
+li:nth-child(3) { ... }        /* 3rd item */
+li:nth-child(odd) { background: #f0f0f0; }  /* Odd rows */
+li:nth-child(even) { background: #fff; }   /* Even rows */
+li:nth-child(3n) { ... }       /* Every 3rd (3, 6, 9...) */
+li:nth-child(3n+1) { ... }     /* 1st of every 3 (1, 4, 7...) */
+
+/* Count from the end */
+li:nth-last-child(2) { ... }   /* 2nd from last */
+
+/* OTHER USEFUL PSEUDO-CLASSES */
+p:empty { display: none; }     /* Empty elements */
+:not(.special) { ... }           /* Everything EXCEPT .special */
+p:not(:first-child) { ... }     /* All p except first */</code></pre>
 
                         <p><strong>Pseudo-elements</strong> create "virtual" elements that don't exist in HTML,
                             allowing you to style specific parts of an element. They use double colons
                             (<code>::</code>).</p>
-                        <div class="code-block">
-                            <span class="code-label">Pseudo-elements (::)</span>
-                            <code>
-<span class="comment">/* INSERT CONTENT - content property required! */</span><br>
-<span class="selector">p::before</span> { <span class="property">content</span>: <span class="css-value">"→ "</span>; }   <span class="comment">/* Add before content */</span><br>
-<span class="selector">p::after</span> { <span class="property">content</span>: <span class="css-value">" ←"</span>; }    <span class="comment">/* Add after content */</span><br>
-<br>
-<span class="comment">/* Common use: Icons and decorations */</span><br>
-<span class="selector">.required::after</span> {<br>
-&nbsp;&nbsp;<span class="property">content</span>: <span class="css-value">" *"</span>;<br>
-&nbsp;&nbsp;<span class="property">color</span>: <span class="css-value">red</span>;<br>
-}<br>
-<br>
-<span class="selector">.external-link::after</span> {<br>
-&nbsp;&nbsp;<span class="property">content</span>: <span class="css-value">" ↗"</span>;<br>
-}<br>
-<br>
-<span class="comment">/* STYLE PARTS OF TEXT */</span><br>
-<span class="selector">p::first-letter</span> {               <span class="comment">/* Drop cap effect */</span><br>
-&nbsp;&nbsp;<span class="property">font-size</span>: <span class="css-value">3em</span>;<br>
-&nbsp;&nbsp;<span class="property">float</span>: <span class="css-value">left</span>;<br>
-}<br>
-<span class="selector">p::first-line</span> { <span class="property">font-weight</span>: <span class="css-value">bold</span>; } <span class="comment">/* First line only */</span><br>
-<br>
-<span class="comment">/* USER SELECTION */</span><br>
-<span class="selector">::selection</span> {                    <span class="comment">/* When user selects text */</span><br>
-&nbsp;&nbsp;<span class="property">background</span>: <span class="css-value">yellow</span>;<br>
-&nbsp;&nbsp;<span class="property">color</span>: <span class="css-value">black</span>;<br>
-}<br>
-<br>
-<span class="comment">/* FORM PLACEHOLDER */</span><br>
-<span class="selector">input::placeholder</span> { <span class="property">color</span>: <span class="css-value">#999</span>; }
-                                </code>
-                        </div>
+                        <pre><code class="language-css">/* INSERT CONTENT - content property required! */
+p::before { content: "→ "; }   /* Add before content */
+p::after { content: " ←"; }    /* Add after content */
+
+/* Common use: Icons and decorations */
+.required::after {
+    content: " *";
+    color: red;
+}
+
+.external-link::after {
+    content: " ↗";
+}
+
+/* STYLE PARTS OF TEXT */
+p::first-letter {               /* Drop cap effect */
+    font-size: 3em;
+    float: left;
+}
+p::first-line { font-weight: bold; } /* First line only */
+
+/* USER SELECTION */
+::selection {                    /* When user selects text */
+    background: yellow;
+    color: black;
+}
+
+/* FORM PLACEHOLDER */
+input::placeholder { color: #999; }</code></pre>
 
                         <h4>Selector Specificity (Very Important!)</h4>
                         <p>When multiple CSS rules target the same element, <strong>specificity</strong> determines
                             which rule wins.
                             This is one of the most important concepts to understand in CSS!</p>
-                        <div class="code-block">
-                            <span class="code-label">Specificity Hierarchy (highest to lowest)</span>
-                            <code>
-1. !important          <span class="comment">/* AVOID! Nuclear option, overrides everything */</span><br>
-2. Inline styles       <span class="comment">/* style="..." attribute (1,0,0,0) */</span><br>
-3. ID selectors        <span class="comment">/* #header (0,1,0,0) */</span><br>
-4. Class selectors     <span class="comment">/* .button (0,0,1,0) */</span><br>
-5. Element selectors   <span class="comment">/* p, div (0,0,0,1) */</span><br>
-6. Universal (*)       <span class="comment">/* (0,0,0,0) */</span>
-                                </code>
-                        </div>
+                        <pre><code class="language-text">1. !important          /* AVOID! Nuclear option, overrides everything */
+2. Inline styles       /* style="..." attribute (1,0,0,0) */
+3. ID selectors        /* #header (0,1,0,0) */
+4. Class selectors     /* .button (0,0,1,0) */
+5. Element selectors   /* p, div (0,0,0,1) */
+6. Universal (*)       /* (0,0,0,0) */</code></pre>
 
                         <p><strong>How to Calculate Specificity:</strong></p>
                         <p>Count selectors in format: (Inline, IDs, Classes, Elements)</p>
-                        <div class="code-block">
-                            <span class="code-label">Specificity Calculation Examples</span>
-                            <code>
-<span class="selector">p</span>                    <span class="comment">/* (0,0,0,1) - 1 element */</span><br>
-<span class="selector">.intro</span>               <span class="comment">/* (0,0,1,0) - 1 class */</span><br>
-<span class="selector">p.intro</span>              <span class="comment">/* (0,0,1,1) - 1 class + 1 element */</span><br>
-<span class="selector">#header</span>              <span class="comment">/* (0,1,0,0) - 1 ID */</span><br>
-<span class="selector">#header .nav li</span>      <span class="comment">/* (0,1,1,1) - 1 ID + 1 class + 1 element */</span><br>
-<span class="selector">#header .nav li a.active</span> <span class="comment">/* (0,1,2,2) */</span><br>
-<br>
-<span class="comment">/* Example conflict: */</span><br>
-<span class="selector">p</span> { <span class="property">color</span>: <span class="css-value">blue</span>; }        <span class="comment">/* (0,0,0,1) */</span><br>
-<span class="selector">.text</span> { <span class="property">color</span>: <span class="css-value">red</span>; }     <span class="comment">/* (0,0,1,0) - WINS! */</span><br>
-<span class="selector">#intro</span> { <span class="property">color</span>: <span class="css-value">green</span>; }  <span class="comment">/* (0,1,0,0) - WINS over both! */</span><br>
-<br>
-<span class="comment">/* If specificity is equal, last rule wins: */</span><br>
-<span class="selector">.text</span> { <span class="property">color</span>: <span class="css-value">red</span>; }<br>
-<span class="selector">.text</span> { <span class="property">color</span>: <span class="css-value">blue</span>; }    <span class="comment">/* This wins (same specificity, later) */</span>
-                                </code>
-                        </div>
-                        <p><strong>💡 Best Practices:</strong></p>
-                        <ul>
-                            <li>Keep specificity low - use classes instead of IDs</li>
-                            <li>Avoid <code>!important</code> - it makes debugging very difficult</li>
-                            <li>Be consistent with naming conventions (like BEM)</li>
-                            <li>If you can't override a style, check specificity first!</li>
-                        </ul>
-                    </div>
+                        <pre><code class="language-css">p                    /* (0,0,0,1) - 1 element */
+.intro               /* (0,0,1,0) - 1 class */
+p.intro              /* (0,0,1,1) - 1 class + 1 element */
+#header              /* (0,1,0,0) - 1 ID */
+#header .nav li      /* (0,1,1,1) - 1 ID + 1 class + 1 element */
+#header .nav li a.active /* (0,1,2,2) */
 
-                    <div class="lesson">
-                        <h3>3.3 CSS Colors</h3>
+/* Example conflict: */
+p { color: blue; }        /* (0,0,0,1) */
+.text { color: red; }     /* (0,0,1,0) - WINS! */
+#intro { color: green; }  /* (0,1,0,0) - WINS over both! */
+
+/* If specificity is equal, last rule wins: */
+.text { color: red; }
+.text { color: blue; }    /* This wins (same specificity, later) */</code></pre>
+
+                        <div class="alert alert--tip">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <line x1="12" y1="16" x2="12" y2="12" />
+                                    <line x1="12" y1="8" x2="12.01" y2="8" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>Best Practices:</strong>
+                                <ul class="content-list">
+                                    <li>Keep specificity low - use classes instead of IDs</li>
+                                    <li>Avoid <code>!important</code> - it makes debugging very difficult</li>
+                                    <li>Be consistent with naming conventions (like BEM)</li>
+                                    <li>If you can't override a style, check specificity first!</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+                </section>
+
+                <!-- 3.3 CSS Colors -->
+                <section id="colors" class="animate-fade-in">
+                    <h2>3.3 CSS Colors</h2>
+                    <article class="problem-card">
                         <p>Color is one of the most impactful aspects of web design. CSS provides multiple ways to
                             specify colors, each with its own advantages. Understanding these formats is essential
-                            for
-                            working with design tools and creating accessible, visually appealing websites.</p>
+                            for working with design tools and creating accessible, visually appealing websites.</p>
 
                         <h4>Color Properties</h4>
                         <p>Colors can be applied to many properties:</p>
@@ -460,132 +585,109 @@
 
                         <h4>Named Colors</h4>
                         <p>CSS has 147 predefined color names. Easy to read but limited options:</p>
-                        <div class="code-block">
-                            <span class="code-label">Named Colors (147 built-in names)</span>
-                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                            <code>
-<span class="comment">/* Basic named colors */</span><br>
-<span class="property">color</span>: <span class="css-value">red</span>;<br>
-<span class="property">color</span>: <span class="css-value">blue</span>;<br>
-<span class="property">color</span>: <span class="css-value">green</span>;<br>
-<span class="property">color</span>: <span class="css-value">black</span>;<br>
-<span class="property">color</span>: <span class="css-value">white</span>;<br>
-<br>
-<span class="comment">/* Extended named colors */</span><br>
-<span class="property">color</span>: <span class="css-value">dodgerblue</span>;    <span class="comment">/* Nice blue */</span><br>
-<span class="property">color</span>: <span class="css-value">tomato</span>;        <span class="comment">/* Red-orange */</span><br>
-<span class="property">color</span>: <span class="css-value">coral</span>;         <span class="comment">/* Pink-orange */</span><br>
-<span class="property">color</span>: <span class="css-value">slategray</span>;     <span class="comment">/* Gray-blue */</span><br>
-<span class="property">color</span>: <span class="css-value">rebeccapurple</span>; <span class="comment">/* Purple (added as tribute) */</span><br>
-<br>
-<span class="comment">/* Special values */</span><br>
-<span class="property">color</span>: <span class="css-value">transparent</span>;   <span class="comment">/* Fully transparent */</span><br>
-<span class="property">color</span>: <span class="css-value">currentColor</span>;  <span class="comment">/* Inherits from color property */</span><br>
-<span class="property">color</span>: <span class="css-value">inherit</span>;       <span class="comment">/* Inherits from parent */</span>
-                                </code>
-                        </div>
+                        <pre><code class="language-css">/* Basic named colors */
+color: red;
+color: blue;
+color: green;
+color: black;
+color: white;
+
+/* Extended named colors */
+color: dodgerblue;    /* Nice blue */
+color: tomato;        /* Red-orange */
+color: coral;         /* Pink-orange */
+color: slategray;     /* Gray-blue */
+color: rebeccapurple; /* Purple (added as tribute) */
+
+/* Special values */
+color: transparent;   /* Fully transparent */
+color: currentColor;  /* Inherits from color property */
+color: inherit;       /* Inherits from parent */</code></pre>
 
                         <h4>Hexadecimal Colors</h4>
                         <p>The most common format in professional work. Uses base-16 (0-9, A-F) notation:</p>
-                        <div class="code-block">
-                            <span class="code-label">Hexadecimal Colors (#RRGGBB)</span>
-                            <code>
-<span class="comment">/* Full format: #RRGGBB (Red, Green, Blue) */</span><br>
-<span class="property">color</span>: <span class="css-value">#ff0000</span>;      <span class="comment">/* Pure Red (ff=255, 00=0, 00=0) */</span><br>
-<span class="property">color</span>: <span class="css-value">#00ff00</span>;      <span class="comment">/* Pure Green */</span><br>
-<span class="property">color</span>: <span class="css-value">#0000ff</span>;      <span class="comment">/* Pure Blue */</span><br>
-<span class="property">color</span>: <span class="css-value">#000000</span>;      <span class="comment">/* Black */</span><br>
-<span class="property">color</span>: <span class="css-value">#ffffff</span>;      <span class="comment">/* White */</span><br>
-<span class="property">color</span>: <span class="css-value">#808080</span>;      <span class="comment">/* Gray */</span><br>
-<span class="property">color</span>: <span class="css-value">#3b82f6</span>;      <span class="comment">/* Custom blue */</span><br>
-<br>
-<span class="comment">/* Shorthand: #RGB (when pairs repeat) */</span><br>
-<span class="property">color</span>: <span class="css-value">#f00</span>;         <span class="comment">/* Same as #ff0000 (Red) */</span><br>
-<span class="property">color</span>: <span class="css-value">#0f0</span>;         <span class="comment">/* Same as #00ff00 (Green) */</span><br>
-<span class="property">color</span>: <span class="css-value">#fff</span>;         <span class="comment">/* Same as #ffffff (White) */</span><br>
-<span class="property">color</span>: <span class="css-value">#333</span>;         <span class="comment">/* Same as #333333 (Dark gray) */</span><br>
-<br>
-<span class="comment">/* With alpha: #RRGGBBAA */</span><br>
-<span class="property">color</span>: <span class="css-value">#ff000080</span>;    <span class="comment">/* 50% transparent red (80 ≈ 50%) */</span><br>
-<span class="property">color</span>: <span class="css-value">#0000ff40</span>;    <span class="comment">/* 25% transparent blue */</span>
-                                </code>
-                        </div>
+                        <pre><code class="language-css">/* Full format: #RRGGBB (Red, Green, Blue) */
+color: #ff0000;      /* Pure Red (ff=255, 00=0, 00=0) */
+color: #00ff00;      /* Pure Green */
+color: #0000ff;      /* Pure Blue */
+color: #000000;      /* Black */
+color: #ffffff;      /* White */
+color: #808080;      /* Gray */
+color: #3b82f6;      /* Custom blue */
+
+/* Shorthand: #RGB (when pairs repeat) */
+color: #f00;         /* Same as #ff0000 (Red) */
+color: #0f0;         /* Same as #00ff00 (Green) */
+color: #fff;         /* Same as #ffffff (White) */
+color: #333;         /* Same as #333333 (Dark gray) */
+
+/* With alpha: #RRGGBBAA */
+color: #ff000080;    /* 50% transparent red (80 ≈ 50%) */
+color: #0000ff40;    /* 25% transparent blue */</code></pre>
                         <p><strong>Hex Values Explained:</strong> Each pair represents 0-255 in hexadecimal (00-FF).
                             Think of it as mixing light: more = brighter.</p>
 
                         <h4>RGB and RGBA Colors</h4>
                         <p>RGB is more intuitive - specify Red, Green, Blue values from 0-255:</p>
-                        <div class="code-block">
-                            <span class="code-label">RGB Colors (0-255 per channel)</span>
-                            <code>
-<span class="comment">/* RGB - Red, Green, Blue (0-255 each) */</span><br>
-<span class="property">color</span>: <span class="css-value">rgb(255, 0, 0)</span>;      <span class="comment">/* Red */</span><br>
-<span class="property">color</span>: <span class="css-value">rgb(0, 255, 0)</span>;      <span class="comment">/* Green */</span><br>
-<span class="property">color</span>: <span class="css-value">rgb(0, 0, 255)</span>;      <span class="comment">/* Blue */</span><br>
-<span class="property">color</span>: <span class="css-value">rgb(0, 0, 0)</span>;        <span class="comment">/* Black */</span><br>
-<span class="property">color</span>: <span class="css-value">rgb(255, 255, 255)</span>;  <span class="comment">/* White */</span><br>
-<span class="property">color</span>: <span class="css-value">rgb(59, 130, 246)</span>;   <span class="comment">/* Custom blue */</span><br>
-<br>
-<span class="comment">/* RGBA - RGB with Alpha transparency (0-1) */</span><br>
-<span class="property">color</span>: <span class="css-value">rgba(255, 0, 0, 1)</span>;    <span class="comment">/* Fully opaque red */</span><br>
-<span class="property">color</span>: <span class="css-value">rgba(255, 0, 0, 0.5)</span>;  <span class="comment">/* 50% transparent red */</span><br>
-<span class="property">color</span>: <span class="css-value">rgba(255, 0, 0, 0.25)</span>; <span class="comment">/* 25% transparent red */</span><br>
-<span class="property">color</span>: <span class="css-value">rgba(255, 0, 0, 0)</span>;    <span class="comment">/* Fully transparent */</span><br>
-<br>
-<span class="comment">/* Great for overlays and shadows */</span><br>
-<span class="property">background</span>: <span class="css-value">rgba(0, 0, 0, 0.5)</span>;  <span class="comment">/* Semi-transparent black */</span><br>
-<span class="property">box-shadow</span>: <span class="css-value">0 2px 10px rgba(0, 0, 0, 0.2)</span>;
-                                </code>
-                        </div>
+                        <pre><code class="language-css">/* RGB - Red, Green, Blue (0-255 each) */
+color: rgb(255, 0, 0);      /* Red */
+color: rgb(0, 255, 0);      /* Green */
+color: rgb(0, 0, 255);      /* Blue */
+color: rgb(0, 0, 0);        /* Black */
+color: rgb(255, 255, 255);  /* White */
+color: rgb(59, 130, 246);   /* Custom blue */
+
+/* RGBA - RGB with Alpha transparency (0-1) */
+color: rgba(255, 0, 0, 1);    /* Fully opaque red */
+color: rgba(255, 0, 0, 0.5);  /* 50% transparent red */
+color: rgba(255, 0, 0, 0.25); /* 25% transparent red */
+color: rgba(255, 0, 0, 0);    /* Fully transparent */
+
+/* Great for overlays and shadows */
+background: rgba(0, 0, 0, 0.5);  /* Semi-transparent black */
+box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);</code></pre>
 
                         <h4>HSL and HSLA Colors</h4>
                         <p>HSL is the most intuitive for designers - specify Hue, Saturation, and Lightness:</p>
-                        <div class="code-block">
-                            <span class="code-label">HSL Colors (Hue, Saturation, Lightness)</span>
-                            <code>
-<span class="comment">/* HSL - Hue (0-360°), Saturation (0-100%), Lightness (0-100%) */</span><br>
-<br>
-<span class="comment">/* HUE = Color wheel position (degrees) */</span><br>
-<span class="comment">/* 0° = Red, 60° = Yellow, 120° = Green,</span><br>
-<span class="comment">   180° = Cyan, 240° = Blue, 300° = Magenta */</span><br>
-<br>
-<span class="property">color</span>: <span class="css-value">hsl(0, 100%, 50%)</span>;     <span class="comment">/* Red */</span><br>
-<span class="property">color</span>: <span class="css-value">hsl(120, 100%, 50%)</span>;   <span class="comment">/* Green */</span><br>
-<span class="property">color</span>: <span class="css-value">hsl(240, 100%, 50%)</span>;   <span class="comment">/* Blue */</span><br>
-<span class="property">color</span>: <span class="css-value">hsl(220, 90%, 60%)</span>;    <span class="comment">/* Nice blue */</span><br>
-<br>
-<span class="comment">/* SATURATION = Intensity (0% = gray, 100% = vivid) */</span><br>
-<span class="property">color</span>: <span class="css-value">hsl(0, 0%, 50%)</span>;       <span class="comment">/* Gray (no saturation) */</span><br>
-<span class="property">color</span>: <span class="css-value">hsl(0, 50%, 50%)</span>;      <span class="comment">/* Muted red */</span><br>
-<span class="property">color</span>: <span class="css-value">hsl(0, 100%, 50%)</span>;     <span class="comment">/* Vivid red */</span><br>
-<br>
-<span class="comment">/* LIGHTNESS = Brightness (0% = black, 50% = normal, 100% = white) */</span><br>
-<span class="property">color</span>: <span class="css-value">hsl(0, 100%, 0%)</span>;      <span class="comment">/* Black */</span><br>
-<span class="property">color</span>: <span class="css-value">hsl(0, 100%, 25%)</span>;     <span class="comment">/* Dark red */</span><br>
-<span class="property">color</span>: <span class="css-value">hsl(0, 100%, 50%)</span>;     <span class="comment">/* Normal red */</span><br>
-<span class="property">color</span>: <span class="css-value">hsl(0, 100%, 75%)</span>;     <span class="comment">/* Light red */</span><br>
-<span class="property">color</span>: <span class="css-value">hsl(0, 100%, 100%)</span>;    <span class="comment">/* White */</span><br>
-<br>
-<span class="comment">/* HSLA - HSL with Alpha transparency */</span><br>
-<span class="property">color</span>: <span class="css-value">hsla(0, 100%, 50%, 0.5)</span>; <span class="comment">/* 50% transparent red */</span>
-                                </code>
-                        </div>
+                        <pre><code class="language-css">/* HSL - Hue (0-360°), Saturation (0-100%), Lightness (0-100%) */
+
+/* HUE = Color wheel position (degrees) */
+/* 0° = Red, 60° = Yellow, 120° = Green,
+   180° = Cyan, 240° = Blue, 300° = Magenta */
+
+color: hsl(0, 100%, 50%);     /* Red */
+color: hsl(120, 100%, 50%);   /* Green */
+color: hsl(240, 100%, 50%);   /* Blue */
+color: hsl(220, 90%, 60%);    /* Nice blue */
+
+/* SATURATION = Intensity (0% = gray, 100% = vivid) */
+color: hsl(0, 0%, 50%);       /* Gray (no saturation) */
+color: hsl(0, 50%, 50%);      /* Muted red */
+color: hsl(0, 100%, 50%);     /* Vivid red */
+
+/* LIGHTNESS = Brightness (0% = black, 50% = normal, 100% = white) */
+color: hsl(0, 100%, 0%);      /* Black */
+color: hsl(0, 100%, 25%);     /* Dark red */
+color: hsl(0, 100%, 50%);     /* Normal red */
+color: hsl(0, 100%, 75%);     /* Light red */
+color: hsl(0, 100%, 100%);    /* White */
+
+/* HSLA - HSL with Alpha transparency */
+color: hsla(0, 100%, 50%, 0.5); /* 50% transparent red */</code></pre>
                         <p><strong>💡 Why HSL is Powerful:</strong> Easy to create color variations!
                             Keep hue the same, adjust saturation and lightness for different shades.</p>
-                        <div class="code-block">
-                            <span class="code-label">Creating Color Schemes with HSL</span>
-                            <code>
-<span class="comment">/* Same hue (220 = blue), different variations */</span><br>
-<span class="property">--primary</span>: <span class="css-value">hsl(220, 90%, 50%)</span>;       <span class="comment">/* Main color */</span><br>
-<span class="property">--primary-light</span>: <span class="css-value">hsl(220, 90%, 70%)</span>;  <span class="comment">/* Lighter */</span><br>
-<span class="property">--primary-dark</span>: <span class="css-value">hsl(220, 90%, 30%)</span>;   <span class="comment">/* Darker */</span><br>
-<span class="property">--primary-muted</span>: <span class="css-value">hsl(220, 40%, 50%)</span>;  <span class="comment">/* Less saturated */</span>
-                                </code>
-                        </div>
-                    </div>
+                        <pre><code class="language-css">/* Same hue (220 = blue), different variations */
+--primary: hsl(220, 90%, 50%);       /* Main color */
+--primary-light: hsl(220, 90%, 70%);  /* Lighter */
+--primary-dark: hsl(220, 90%, 30%);   /* Darker */
+--primary-muted: hsl(220, 40%, 50%);  /* Less saturated */</code></pre>
+                    </article>
+                </section>
 
-                    <div class="lesson">
-                        <h3>3.4 CSS Typography</h3>
+                <!-- 3.4 CSS Typography -->
+                <section id="typography" class="animate-fade-in">
+                    <h2>3.4 CSS Typography</h2>
+                    <article class="problem-card">
                         <p>Typography is one of the most important aspects of web design. Good typography improves
                             readability, establishes visual hierarchy, and creates the right mood for your content.
                             CSS provides extensive control over how text appears.</p>
@@ -593,150 +695,138 @@
                         <h4>Font Family</h4>
                         <p>The <code>font-family</code> property specifies which font(s) to use. Always provide
                             fallbacks!</p>
-                        <div class="code-block">
-                            <span class="code-label">Font Family with Fallbacks</span>
-                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                            <code>
-<span class="comment">/* RULE: Always provide fallbacks in case fonts aren't available */</span><br>
-<span class="comment">/* Order: Preferred → Fallback → Generic */</span><br>
-<br>
-<span class="selector">body</span> {<br>
-&nbsp;&nbsp;<span class="property">font-family</span>: <span class="css-value">"Helvetica Neue", Arial, sans-serif</span>;<br>
-}<br>
-<br>
-<span class="comment">/* Fonts with spaces need quotes */</span><br>
-<span class="property">font-family</span>: <span class="css-value">"Times New Roman", Georgia, serif</span>;<br>
-<span class="property">font-family</span>: <span class="css-value">"Courier New", Consolas, monospace</span>;<br>
-<br>
-<span class="comment">/* Generic font families (always last in the list) */</span><br>
-<span class="property">font-family</span>: <span class="css-value">serif</span>;       <span class="comment">/* Times-like fonts with serifs */</span><br>
-<span class="property">font-family</span>: <span class="css-value">sans-serif</span>;  <span class="comment">/* Clean fonts like Arial, Helvetica */</span><br>
-<span class="property">font-family</span>: <span class="css-value">monospace</span>;   <span class="comment">/* Fixed-width fonts for code */</span><br>
-<span class="property">font-family</span>: <span class="css-value">cursive</span>;     <span class="comment">/* Handwriting-style fonts */</span><br>
-<span class="property">font-family</span>: <span class="css-value">fantasy</span>;     <span class="comment">/* Decorative fonts */</span><br>
-<br>
-<span class="comment">/* Modern system font stack (uses device's native font) */</span><br>
-<span class="property">font-family</span>: <span class="css-value">-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif</span>;
-                                </code>
-                        </div>
+                        <pre><code class="language-css">/* RULE: Always provide fallbacks in case fonts aren't available */
+/* Order: Preferred → Fallback → Generic */
+
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Fonts with spaces need quotes */
+font-family: "Times New Roman", Georgia, serif;
+font-family: "Courier New", Consolas, monospace;
+
+/* Generic font families (always last in the list) */
+font-family: serif;       /* Times-like fonts with serifs */
+font-family: sans-serif;  /* Clean fonts like Arial, Helvetica */
+font-family: monospace;   /* Fixed-width fonts for code */
+font-family: cursive;     /* Handwriting-style fonts */
+font-family: fantasy;     /* Decorative fonts */
+
+/* Modern system font stack (uses device's native font) */
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;</code></pre>
 
                         <h4>Font Size</h4>
                         <p>Control text size using various units. Prefer relative units for accessibility:</p>
-                        <div class="code-block">
-                            <span class="code-label">Font Size Units</span>
-                            <code>
-<span class="comment">/* Absolute units */</span><br>
-<span class="property">font-size</span>: <span class="css-value">16px</span>;   <span class="comment">/* Pixels - fixed size */</span><br>
-<span class="property">font-size</span>: <span class="css-value">12pt</span>;   <span class="comment">/* Points - print design */</span><br>
-<br>
-<span class="comment">/* Relative units (preferred for accessibility!) */</span><br>
-<span class="property">font-size</span>: <span class="css-value">1rem</span>;     <span class="comment">/* 1x root element size (usually 16px) */</span><br>
-<span class="property">font-size</span>: <span class="css-value">1.5rem</span>;   <span class="comment">/* 1.5x root = 24px */</span><br>
-<span class="property">font-size</span>: <span class="css-value">0.875rem</span>; <span class="comment">/* 14px */</span><br>
-<br>
-<span class="property">font-size</span>: <span class="css-value">1em</span>;      <span class="comment">/* 1x parent element size */</span><br>
-<span class="property">font-size</span>: <span class="css-value">1.2em</span>;    <span class="comment">/* 1.2x parent size */</span><br>
-<br>
-<span class="property">font-size</span>: <span class="css-value">100%</span>;     <span class="comment">/* Same as 1em */</span><br>
-<span class="property">font-size</span>: <span class="css-value">larger</span>;   <span class="comment">/* Larger than parent */</span><br>
-<span class="property">font-size</span>: <span class="css-value">smaller</span>;  <span class="comment">/* Smaller than parent */</span>
-                                </code>
+                        <pre><code class="language-css">/* Absolute units */
+font-size: 16px;   /* Pixels - fixed size */
+font-size: 12pt;   /* Points - print design */
+
+/* Relative units (preferred for accessibility!) */
+font-size: 1rem;     /* 1x root element size (usually 16px) */
+font-size: 1.5rem;   /* 1.5x root = 24px */
+font-size: 0.875rem; /* 14px */
+
+font-size: 1em;      /* 1x parent element size */
+font-size: 1.2em;    /* 1.2x parent size */
+
+font-size: 100%;     /* Same as 1em */
+font-size: larger;   /* Larger than parent */
+font-size: smaller;  /* Smaller than parent */</code></pre>
+                        <div class="alert alert--tip">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <line x1="12" y1="16" x2="12" y2="12" />
+                                    <line x1="12" y1="8" x2="12.01" y2="8" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>Best Practice:</strong> Use <code>rem</code> for most text. It respects user
+                                browser settings for accessibility!
+                            </div>
                         </div>
-                        <p><strong>💡 Best Practice:</strong> Use <code>rem</code> for most text. It respects user
-                            browser settings for accessibility!</p>
 
                         <h4>Font Weight and Style</h4>
-                        <div class="code-block">
-                            <span class="code-label">Font Weight and Style</span>
-                            <code>
-<span class="comment">/* Font weight - boldness (100-900) */</span><br>
-<span class="property">font-weight</span>: <span class="css-value">100</span>;     <span class="comment">/* Thin */</span><br>
-<span class="property">font-weight</span>: <span class="css-value">200</span>;     <span class="comment">/* Extra Light */</span><br>
-<span class="property">font-weight</span>: <span class="css-value">300</span>;     <span class="comment">/* Light */</span><br>
-<span class="property">font-weight</span>: <span class="css-value">400</span>;     <span class="comment">/* Normal (same as 'normal') */</span><br>
-<span class="property">font-weight</span>: <span class="css-value">500</span>;     <span class="comment">/* Medium */</span><br>
-<span class="property">font-weight</span>: <span class="css-value">600</span>;     <span class="comment">/* Semi Bold */</span><br>
-<span class="property">font-weight</span>: <span class="css-value">700</span>;     <span class="comment">/* Bold (same as 'bold') */</span><br>
-<span class="property">font-weight</span>: <span class="css-value">800</span>;     <span class="comment">/* Extra Bold */</span><br>
-<span class="property">font-weight</span>: <span class="css-value">900</span>;     <span class="comment">/* Black (heaviest) */</span><br>
-<br>
-<span class="property">font-weight</span>: <span class="css-value">normal</span>;  <span class="comment">/* = 400 */</span><br>
-<span class="property">font-weight</span>: <span class="css-value">bold</span>;    <span class="comment">/* = 700 */</span><br>
-<span class="property">font-weight</span>: <span class="css-value">lighter</span>; <span class="comment">/* One step lighter than parent */</span><br>
-<span class="property">font-weight</span>: <span class="css-value">bolder</span>;  <span class="comment">/* One step bolder than parent */</span><br>
-<br>
-<span class="comment">/* Font style */</span><br>
-<span class="property">font-style</span>: <span class="css-value">normal</span>;   <span class="comment">/* Regular text */</span><br>
-<span class="property">font-style</span>: <span class="css-value">italic</span>;   <span class="comment">/* Italic */</span><br>
-<span class="property">font-style</span>: <span class="css-value">oblique</span>;  <span class="comment">/* Slanted (faked italic) */</span>
-                                </code>
-                        </div>
+                        <pre><code class="language-css">/* Font weight - boldness (100-900) */
+font-weight: 100;     /* Thin */
+font-weight: 200;     /* Extra Light */
+font-weight: 300;     /* Light */
+font-weight: 400;     /* Normal (same as 'normal') */
+font-weight: 500;     /* Medium */
+font-weight: 600;     /* Semi Bold */
+font-weight: 700;     /* Bold (same as 'bold') */
+font-weight: 800;     /* Extra Bold */
+font-weight: 900;     /* Black (heaviest) */
+
+font-weight: normal;  /* = 400 */
+font-weight: bold;    /* = 700 */
+font-weight: lighter; /* One step lighter than parent */
+font-weight: bolder;  /* One step bolder than parent */
+
+/* Font style */
+font-style: normal;   /* Regular text */
+font-style: italic;   /* Italic */
+font-style: oblique;  /* Slanted (faked italic) */</code></pre>
 
                         <h4>Text Properties</h4>
                         <p>Control text appearance, alignment, spacing, and decoration:</p>
-                        <div class="code-block">
-                            <span class="code-label">Text Properties</span>
-                            <code>
-<span class="selector">p</span> {<br>
-&nbsp;&nbsp;<span class="comment">/* TEXT COLOR */</span><br>
-&nbsp;&nbsp;<span class="property">color</span>: <span class="css-value">#333</span>;    <span class="comment">/* Dark gray - good for readability */</span><br>
-<br>
-&nbsp;&nbsp;<span class="comment">/* LINE HEIGHT - spacing between lines */</span><br>
-&nbsp;&nbsp;<span class="property">line-height</span>: <span class="css-value">1.6</span>;  <span class="comment">/* 1.5-1.8 is most readable */</span><br>
-&nbsp;&nbsp;<span class="property">line-height</span>: <span class="css-value">24px</span>; <span class="comment">/* Can use px too */</span><br>
-<br>
-&nbsp;&nbsp;<span class="comment">/* SPACING */</span><br>
-&nbsp;&nbsp;<span class="property">letter-spacing</span>: <span class="css-value">1px</span>;   <span class="comment">/* Space between letters */</span><br>
-&nbsp;&nbsp;<span class="property">letter-spacing</span>: <span class="css-value">0.1em</span>; <span class="comment">/* Relative spacing */</span><br>
-&nbsp;&nbsp;<span class="property">word-spacing</span>: <span class="css-value">2px</span>;     <span class="comment">/* Space between words */</span><br>
-<br>
-&nbsp;&nbsp;<span class="comment">/* TEXT ALIGNMENT */</span><br>
-&nbsp;&nbsp;<span class="property">text-align</span>: <span class="css-value">left</span>;     <span class="comment">/* Default for LTR languages */</span><br>
-&nbsp;&nbsp;<span class="property">text-align</span>: <span class="css-value">right</span>;    <span class="comment">/* Align to right */</span><br>
-&nbsp;&nbsp;<span class="property">text-align</span>: <span class="css-value">center</span>;   <span class="comment">/* Center text */</span><br>
-&nbsp;&nbsp;<span class="property">text-align</span>: <span class="css-value">justify</span>;  <span class="comment">/* Stretch to fill width */</span><br>
-<br>
-&nbsp;&nbsp;<span class="comment">/* TEXT DECORATION */</span><br>
-&nbsp;&nbsp;<span class="property">text-decoration</span>: <span class="css-value">none</span>;         <span class="comment">/* Remove decoration */</span><br>
-&nbsp;&nbsp;<span class="property">text-decoration</span>: <span class="css-value">underline</span>;    <span class="comment">/* Underline */</span><br>
-&nbsp;&nbsp;<span class="property">text-decoration</span>: <span class="css-value">line-through</span>; <span class="comment">/* Strikethrough */</span><br>
-&nbsp;&nbsp;<span class="property">text-decoration</span>: <span class="css-value">overline</span>;     <span class="comment">/* Line above */</span><br>
-<br>
-&nbsp;&nbsp;<span class="comment">/* TEXT TRANSFORM */</span><br>
-&nbsp;&nbsp;<span class="property">text-transform</span>: <span class="css-value">uppercase</span>;  <span class="comment">/* ALL CAPS */</span><br>
-&nbsp;&nbsp;<span class="property">text-transform</span>: <span class="css-value">lowercase</span>;  <span class="comment">/* all lowercase */</span><br>
-&nbsp;&nbsp;<span class="property">text-transform</span>: <span class="css-value">capitalize</span>; <span class="comment">/* First Letter Each Word */</span><br>
-&nbsp;&nbsp;<span class="property">text-transform</span>: <span class="css-value">none</span>;       <span class="comment">/* Normal case */</span><br>
-<br>
-&nbsp;&nbsp;<span class="comment">/* TEXT INDENT */</span><br>
-&nbsp;&nbsp;<span class="property">text-indent</span>: <span class="css-value">2em</span>;  <span class="comment">/* Indent first line */</span><br>
-<br>
-&nbsp;&nbsp;<span class="comment">/* TEXT SHADOW */</span><br>
-&nbsp;&nbsp;<span class="property">text-shadow</span>: <span class="css-value">2px 2px 4px rgba(0,0,0,0.3)</span>;<br>
-&nbsp;&nbsp;<span class="comment">/* x-offset y-offset blur-radius color */</span><br>
-}
-                                </code>
-                        </div>
+                        <pre><code class="language-css">p {
+  /* TEXT COLOR */
+  color: #333;    /* Dark gray - good for readability */
+
+  /* LINE HEIGHT - spacing between lines */
+  line-height: 1.6;  /* 1.5-1.8 is most readable */
+  line-height: 24px; /* Can use px too */
+
+  /* SPACING */
+  letter-spacing: 1px;   /* Space between letters */
+  letter-spacing: 0.1em; /* Relative spacing */
+  word-spacing: 2px;     /* Space between words */
+
+  /* TEXT ALIGNMENT */
+  text-align: left;     /* Default for LTR languages */
+  text-align: right;    /* Align to right */
+  text-align: center;   /* Center text */
+  text-align: justify;  /* Stretch to fill width */
+
+  /* TEXT DECORATION */
+  text-decoration: none;         /* Remove decoration */
+  text-decoration: underline;    /* Underline */
+  text-decoration: line-through; /* Strikethrough */
+  text-decoration: overline;     /* Line above */
+
+  /* TEXT TRANSFORM */
+  text-transform: uppercase;  /* ALL CAPS */
+  text-transform: lowercase;  /* all lowercase */
+  text-transform: capitalize; /* First Letter Each Word */
+  text-transform: none;       /* Normal case */
+
+  /* TEXT INDENT */
+  text-indent: 2em;  /* Indent first line */
+
+  /* TEXT SHADOW */
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  /* x-offset y-offset blur-radius color */
+}</code></pre>
 
                         <h4>Web Fonts (Google Fonts)</h4>
                         <p>Use custom fonts from services like Google Fonts:</p>
-                        <div class="code-block">
-                            <span class="code-label">Loading Web Fonts</span>
-                            <code>
-<span class="comment">&lt;!-- In HTML &lt;head&gt; --&gt;</span><br>
-<span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="value">"preconnect"</span> <span class="attr">href</span>=<span class="value">"https://fonts.googleapis.com"</span><span class="tag">&gt;</span><br>
-<span class="tag">&lt;link</span> <span class="attr">href</span>=<span class="value">"https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap"</span> <span class="attr">rel</span>=<span class="value">"stylesheet"</span><span class="tag">&gt;</span><br>
-<br>
-<span class="comment">/* Then use in CSS */</span><br>
-<span class="selector">body</span> {<br>
-&nbsp;&nbsp;<span class="property">font-family</span>: <span class="css-value">'Inter', sans-serif</span>;<br>
-}
-                                </code>
-                        </div>
-                    </div>
+                        <pre><code class="language-html">&lt;!-- In HTML &lt;head&gt; --&gt;
+&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"&gt;</code></pre>
 
-                    <div class="lesson">
-                        <h3>3.5 The CSS Box Model</h3>
+                        <pre><code class="language-css">/* Then use in CSS */
+body {
+  font-family: 'Inter', sans-serif;
+}</code></pre>
+                    </article>
+                </section>
+
+                <!-- 3.5 The CSS Box Model -->
+                <section id="box-model" class="animate-fade-in">
+                    <h2>3.5 The CSS Box Model</h2>
+                    <article class="problem-card">
                         <p>The Box Model is one of the <strong>most fundamental concepts</strong> in CSS. Every HTML
                             element is rendered as a rectangular box, and understanding how these boxes work is
                             essential
@@ -744,10 +834,7 @@
 
                         <h4>The Four Layers of the Box Model</h4>
                         <p>Every box has four layers, from inside to outside:</p>
-                        <div class="code-block">
-                            <span class="code-label">Box Model Diagram</span>
-                            <code style="white-space: pre; font-family: monospace;">
-┌─────────────────────────────────────┐
+                        <pre><code class="language-plaintext">┌─────────────────────────────────────┐
 │           MARGIN (outside)          │  ← Space OUTSIDE the border
 │  ┌───────────────────────────────┐  │     (separates from other elements)
 │  │        BORDER                 │  │  ← The visible edge
@@ -759,10 +846,8 @@
 │  │  │  └───────────────────┘  │  │  │
 │  │  └─────────────────────────┘  │  │
 │  └───────────────────────────────┘  │
-└─────────────────────────────────────┘
-                                </code>
-                        </div>
-                        <ul>
+└─────────────────────────────────────┘</code></pre>
+                        <ul class="content-list">
                             <li><strong>Content:</strong> The actual content (text, images) - controlled by
                                 <code>width</code> and <code>height</code>
                             </li>
@@ -774,550 +859,577 @@
                         </ul>
 
                         <h4>Width and Height</h4>
-                        <div class="code-block">
-                            <span class="code-label">Content Dimensions</span>
-                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                            <code>
-<span class="selector">.box</span> {<br>
-&nbsp;&nbsp;<span class="comment">/* Fixed dimensions */</span><br>
-&nbsp;&nbsp;<span class="property">width</span>: <span class="css-value">300px</span>;<br>
-&nbsp;&nbsp;<span class="property">height</span>: <span class="css-value">200px</span>;<br>
-<br>
-&nbsp;&nbsp;<span class="comment">/* Percentage (relative to parent) */</span><br>
-&nbsp;&nbsp;<span class="property">width</span>: <span class="css-value">50%</span>;     <span class="comment">/* Half of parent width */</span><br>
-&nbsp;&nbsp;<span class="property">width</span>: <span class="css-value">100%</span>;    <span class="comment">/* Full parent width */</span><br>
-<br>
-&nbsp;&nbsp;<span class="comment">/* Min and Max constraints */</span><br>
-&nbsp;&nbsp;<span class="property">min-width</span>: <span class="css-value">200px</span>;   <span class="comment">/* Never smaller than 200px */</span><br>
-&nbsp;&nbsp;<span class="property">max-width</span>: <span class="css-value">800px</span>;   <span class="comment">/* Never larger than 800px */</span><br>
-&nbsp;&nbsp;<span class="property">min-height</span>: <span class="css-value">100px</span>;<br>
-&nbsp;&nbsp;<span class="property">max-height</span>: <span class="css-value">500px</span>;<br>
-<br>
-&nbsp;&nbsp;<span class="comment">/* Auto - browser calculates */</span><br>
-&nbsp;&nbsp;<span class="property">width</span>: <span class="css-value">auto</span>;     <span class="comment">/* Default - fills available space */</span><br>
-&nbsp;&nbsp;<span class="property">height</span>: <span class="css-value">auto</span>;    <span class="comment">/* Default - fits content */</span><br>
-}
-                                </code>
-                        </div>
+                        <pre><code class="language-css">.box {
+  /* Fixed dimensions */
+  width: 300px;
+  height: 200px;
+
+  /* Percentage (relative to parent) */
+  width: 50%;     /* Half of parent width */
+  width: 100%;    /* Full parent width */
+
+  /* Min and Max constraints */
+  min-width: 200px;   /* Never smaller than 200px */
+  max-width: 800px;   /* Never larger than 800px */
+  min-height: 100px;
+  max-height: 500px;
+
+  /* Auto - browser calculates */
+  width: auto;     /* Default - fills available space */
+  height: auto;    /* Default - fits content */
+}</code></pre>
 
                         <h4>Padding (Inside Spacing)</h4>
                         <p>Padding adds space between the content and the border. It takes the element's background
                             color.</p>
-                        <div class="code-block">
-                            <span class="code-label">Padding Properties</span>
-                            <code>
-<span class="selector">.box</span> {<br>
-&nbsp;&nbsp;<span class="comment">/* Individual sides */</span><br>
-&nbsp;&nbsp;<span class="property">padding-top</span>: <span class="css-value">10px</span>;<br>
-&nbsp;&nbsp;<span class="property">padding-right</span>: <span class="css-value">20px</span>;<br>
-&nbsp;&nbsp;<span class="property">padding-bottom</span>: <span class="css-value">10px</span>;<br>
-&nbsp;&nbsp;<span class="property">padding-left</span>: <span class="css-value">20px</span>;<br>
-<br>
-&nbsp;&nbsp;<span class="comment">/* SHORTHAND - most common */</span><br>
-&nbsp;&nbsp;<span class="property">padding</span>: <span class="css-value">20px</span>;               <span class="comment">/* All 4 sides same */</span><br>
-&nbsp;&nbsp;<span class="property">padding</span>: <span class="css-value">10px 20px</span>;          <span class="comment">/* Vertical | Horizontal */</span><br>
-&nbsp;&nbsp;<span class="property">padding</span>: <span class="css-value">10px 20px 15px</span>;     <span class="comment">/* Top | Horizontal | Bottom */</span><br>
-&nbsp;&nbsp;<span class="property">padding</span>: <span class="css-value">10px 20px 15px 25px</span>; <span class="comment">/* Top | Right | Bottom | Left */</span><br>
-&nbsp;&nbsp;<span class="comment">/* Remember: Clockwise from top (TRBL = TRouBLe) */</span><br>
-}
-                                </code>
-                        </div>
+                        <pre><code class="language-css">.box {
+  /* INDIVIDUAL SIDES */
+  padding-top: 10px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+
+  /* SHORTHAND - most common */
+  padding: 20px;               /* All 4 sides same */
+  padding: 10px 20px;          /* Vertical | Horizontal */
+  padding: 10px 20px 15px;     /* Top | Horizontal | Bottom */
+  padding: 10px 20px 15px 25px; /* Top | Right | Bottom | Left */
+  /* Remember: Clockwise from top (TRBL = TRouBLe) */
+}</code></pre>
 
                         <h4>Margin (Outside Spacing)</h4>
                         <p>Margin adds space outside the border, separating the element from others. Margins are
                             transparent.</p>
-                        <div class="code-block">
-                            <span class="code-label">Margin Properties</span>
-                            <code>
-<span class="selector">.box</span> {<br>
-&nbsp;&nbsp;<span class="comment">/* Same syntax as padding */</span><br>
-&nbsp;&nbsp;<span class="property">margin</span>: <span class="css-value">20px</span>;            <span class="comment">/* All sides */</span><br>
-&nbsp;&nbsp;<span class="property">margin</span>: <span class="css-value">10px 20px</span>;       <span class="comment">/* Vertical | Horizontal */</span><br>
-&nbsp;&nbsp;<span class="property">margin</span>: <span class="css-value">10px 20px 15px 25px</span>; <span class="comment">/* TRBL */</span><br>
-<br>
-&nbsp;&nbsp;<span class="comment">/* CENTER HORIZONTALLY - very common! */</span><br>
-&nbsp;&nbsp;<span class="property">margin</span>: <span class="css-value">0 auto</span>;  <span class="comment">/* No vertical, auto horizontal */</span><br>
-&nbsp;&nbsp;<span class="comment">/* Note: Element must have a width set */</span><br>
-<br>
-&nbsp;&nbsp;<span class="comment">/* Negative margins (pull elements closer) */</span><br>
-&nbsp;&nbsp;<span class="property">margin-top</span>: <span class="css-value">-10px</span>;  <span class="comment">/* Overlaps with element above */</span><br>
-}
-                                </code>
+                        <pre><code class="language-css">.box {
+  /* Same syntax as padding */
+  margin: 20px;            /* All sides */
+  margin: 10px 20px;       /* Vertical | Horizontal */
+  margin: 10px 20px 15px 25px; /* TRBL */
+
+  /* CENTER HORIZONTALLY - very common! */
+  margin: 0 auto;  /* No vertical, auto horizontal */
+  /* Note: Element must have a width set */
+
+  /* Negative margins (pull elements closer) */
+  margin-top: -10px;  /* Overlaps with element above */
+}</code></pre>
+                        <div class="alert alert--warning">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                                    </path>
+                                    <line x1="12" y1="9" x2="12" y2="13"></line>
+                                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>Margin Collapse:</strong> Vertical margins between elements can "collapse" -
+                                only the larger margin is used, not both added together. This only happens vertically,
+                                not horizontally.
+                            </div>
                         </div>
-                        <p><strong>⚠️ Margin Collapse:</strong> Vertical margins between elements can "collapse" -
-                            only the larger margin is used, not both added together. This only happens vertically,
-                            not horizontally.</p>
 
                         <h4>Border Properties</h4>
-                        <div class="code-block">
-                            <span class="code-label">Border Properties</span>
-                            <code>
-<span class="selector">.box</span> {<br>
-&nbsp;&nbsp;<span class="comment">/* SHORTHAND - most common */</span><br>
-&nbsp;&nbsp;<span class="property">border</span>: <span class="css-value">1px solid #ccc</span>;  <span class="comment">/* width style color */</span><br>
-&nbsp;&nbsp;<span class="property">border</span>: <span class="css-value">2px dashed red</span>;<br>
-&nbsp;&nbsp;<span class="property">border</span>: <span class="css-value">3px dotted #333</span>;<br>
-<br>
-&nbsp;&nbsp;<span class="comment">/* Individual properties */</span><br>
-&nbsp;&nbsp;<span class="property">border-width</span>: <span class="css-value">2px</span>;<br>
-&nbsp;&nbsp;<span class="property">border-style</span>: <span class="css-value">solid</span>;   <span class="comment">/* solid, dashed, dotted, double, none */</span><br>
-&nbsp;&nbsp;<span class="property">border-color</span>: <span class="css-value">#333</span>;<br>
-<br>
-&nbsp;&nbsp;<span class="comment">/* Individual sides */</span><br>
-&nbsp;&nbsp;<span class="property">border-top</span>: <span class="css-value">2px solid red</span>;<br>
-&nbsp;&nbsp;<span class="property">border-bottom</span>: <span class="css-value">1px solid #ccc</span>;<br>
-&nbsp;&nbsp;<span class="property">border-left-width</span>: <span class="css-value">4px</span>;<br>
-<br>
-&nbsp;&nbsp;<span class="comment">/* BORDER-RADIUS - rounded corners */</span><br>
-&nbsp;&nbsp;<span class="property">border-radius</span>: <span class="css-value">8px</span>;    <span class="comment">/* All corners */</span><br>
-&nbsp;&nbsp;<span class="property">border-radius</span>: <span class="css-value">50%</span>;    <span class="comment">/* Perfect circle (if square) */</span><br>
-&nbsp;&nbsp;<span class="property">border-radius</span>: <span class="css-value">10px 20px</span>; <span class="comment">/* top-left/bottom-right | top-right/bottom-left */</span><br>
-&nbsp;&nbsp;<span class="property">border-radius</span>: <span class="css-value">10px 20px 30px 40px</span>; <span class="comment">/* Each corner */</span><br>
-}
-                                </code>
-                        </div>
+                        <pre><code class="language-css">.box {
+  /* SHORTHAND - most common */
+  border: 1px solid #ccc;  /* width style color */
+  border: 2px dashed red;
+  border: 3px dotted #333;
+
+  /* Individual properties */
+  border-width: 2px;
+  border-style: solid;   /* solid, dashed, dotted, double, none */
+  border-color: #333;
+
+  /* Individual sides */
+  border-top: 2px solid red;
+  border-bottom: 1px solid #ccc;
+  border-left-width: 4px;
+
+  /* BORDER-RADIUS - rounded corners */
+  border-radius: 8px;    /* All corners */
+  border-radius: 50%;    /* Perfect circle (if square) */
+  border-radius: 10px 20px; /* top-left/bottom-right | top-right/bottom-left */
+  border-radius: 10px 20px 30px 40px; /* Each corner */
+}</code></pre>
 
                         <h4>Box-Sizing (CRITICAL!)</h4>
                         <p>This property changes how <code>width</code> and <code>height</code> are calculated -
                             it's one of the most
                             important CSS properties to understand!</p>
-                        <div class="code-block">
-                            <span class="code-label">Box-Sizing Explained</span>
-                            <code>
-<span class="comment">/* DEFAULT: content-box */</span><br>
-<span class="comment">/* width/height = content ONLY */</span><br>
-<span class="comment">/* Total size = width + padding + border */</span><br>
-<span class="selector">.box</span> {<br>
-&nbsp;&nbsp;<span class="property">box-sizing</span>: <span class="css-value">content-box</span>;<br>
-&nbsp;&nbsp;<span class="property">width</span>: <span class="css-value">200px</span>;<br>
-&nbsp;&nbsp;<span class="property">padding</span>: <span class="css-value">20px</span>;<br>
-&nbsp;&nbsp;<span class="property">border</span>: <span class="css-value">5px solid</span>;<br>
-&nbsp;&nbsp;<span class="comment">/* Actual width: 200 + 40 + 10 = 250px! */</span><br>
-}<br>
-<br>
-<span class="comment">/* BETTER: border-box */</span><br>
-<span class="comment">/* width/height = content + padding + border */</span><br>
-<span class="comment">/* Total size = width (exactly what you set!) */</span><br>
-<span class="selector">.box</span> {<br>
-&nbsp;&nbsp;<span class="property">box-sizing</span>: <span class="css-value">border-box</span>;<br>
-&nbsp;&nbsp;<span class="property">width</span>: <span class="css-value">200px</span>;<br>
-&nbsp;&nbsp;<span class="property">padding</span>: <span class="css-value">20px</span>;<br>
-&nbsp;&nbsp;<span class="property">border</span>: <span class="css-value">5px solid</span>;<br>
-&nbsp;&nbsp;<span class="comment">/* Actual width: exactly 200px! */</span><br>
-}<br>
-<br>
-<span class="comment">/* BEST PRACTICE: Apply to all elements */</span><br>
-<span class="selector">*, *::before, *::after</span> {<br>
-&nbsp;&nbsp;<span class="property">box-sizing</span>: <span class="css-value">border-box</span>;<br>
+                        <pre><code class="language-css">/* DEFAULT: content-box */
+/* width/height = content ONLY */
+/* Total size = width + padding + border */
+.box {
+  box-sizing: content-box;
+  width: 200px;
+  padding: 20px;
+  border: 5px solid;
+  /* Actual width: 200 + 40 + 10 = 250px! */
 }
-                                </code>
-                        </div>
-                        <p><strong>💡 Always use <code>border-box</code>!</strong> It makes layout much easier
-                            because
-                            elements are exactly the size you specify.</p>
-                    </div>
 
-                    <div class="lesson">
-                        <h3>3.6 Backgrounds</h3>
+/* BETTER: border-box */
+/* width/height = content + padding + border */
+/* Total size = width (exactly what you set!) */
+.box {
+  box-sizing: border-box;
+  width: 200px;
+  padding: 20px;
+  border: 5px solid;
+  /* Actual width: 200px (content shrinks to fit) */
+}
+
+/* BEST PRACTICE: Apply to all elements */
+*, *::before, *::after {
+  box-sizing: border-box;
+}</code></pre>
+                        <div class="alert alert--tip">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <line x1="12" y1="16" x2="12" y2="12" />
+                                    <line x1="12" y1="8" x2="12.01" y2="8" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>Always use <code>border-box</code>!</strong> It makes layout much easier because
+                                elements are exactly the size you specify.
+                            </div>
+                        </div>
+                    </article>
+                </section>
+
+                <!-- 3.6 Backgrounds -->
+                <section id="backgrounds" class="animate-fade-in">
+                    <h2>3.6 Backgrounds</h2>
+                    <article class="problem-card">
                         <p>CSS provides extensive control over element backgrounds - from simple colors to complex
                             multi-layered images and gradients. Backgrounds are fundamental to visual design.</p>
 
                         <h4>Background Color</h4>
-                        <div class="code-block">
-                            <span class="code-label">Background Color</span>
-                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                            <code>
-<span class="selector">.box</span> {<br>
-&nbsp;&nbsp;<span class="comment">/* Solid colors - any color format works */</span><br>
-&nbsp;&nbsp;<span class="property">background-color</span>: <span class="css-value">#f5f5f5</span>;      <span class="comment">/* Hex */</span><br>
-&nbsp;&nbsp;<span class="property">background-color</span>: <span class="css-value">rgb(245, 245, 245)</span>;<br>
-&nbsp;&nbsp;<span class="property">background-color</span>: <span class="css-value">hsl(0, 0%, 96%)</span>;<br>
-&nbsp;&nbsp;<span class="property">background-color</span>: <span class="css-value">lightgray</span>;   <span class="comment">/* Named */</span><br>
-<br>
-&nbsp;&nbsp;<span class="comment">/* Transparent backgrounds */</span><br>
-&nbsp;&nbsp;<span class="property">background-color</span>: <span class="css-value">transparent</span>;<br>
-&nbsp;&nbsp;<span class="property">background-color</span>: <span class="css-value">rgba(0, 0, 0, 0.5)</span>; <span class="comment">/* Semi-transparent */</span><br>
-}
-                                </code>
-                        </div>
+                        <pre><code class="language-css">.box {
+  /* Solid colors - any color format works */
+  background-color: #f5f5f5;      /* Hex */
+  background-color: rgb(245, 245, 245);
+  background-color: hsl(0, 0%, 96%);
+  background-color: lightgray;   /* Named */
+
+  /* Transparent backgrounds */
+  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent */
+}</code></pre>
 
                         <h4>Background Images</h4>
-                        <div class="code-block">
-                            <span class="code-label">Background Image Properties</span>
-                            <code>
-<span class="selector">.hero</span> {<br>
-&nbsp;&nbsp;<span class="comment">/* Load image from URL */</span><br>
-&nbsp;&nbsp;<span class="property">background-image</span>: <span class="css-value">url('images/hero.jpg')</span>;<br>
-&nbsp;&nbsp;<span class="property">background-image</span>: <span class="css-value">url('../images/bg.png')</span>; <span class="comment">/* Relative path */</span><br>
-&nbsp;&nbsp;<span class="property">background-image</span>: <span class="css-value">url('https://example.com/image.jpg')</span>; <span class="comment">/* Absolute */</span><br>
-<br>
-&nbsp;&nbsp;<span class="comment">/* REPEAT - how image tiles */</span><br>
-&nbsp;&nbsp;<span class="property">background-repeat</span>: <span class="css-value">repeat</span>;     <span class="comment">/* Tile both ways (default) */</span><br>
-&nbsp;&nbsp;<span class="property">background-repeat</span>: <span class="css-value">no-repeat</span>;  <span class="comment">/* Don't tile */</span><br>
-&nbsp;&nbsp;<span class="property">background-repeat</span>: <span class="css-value">repeat-x</span>;   <span class="comment">/* Tile horizontally */</span><br>
-&nbsp;&nbsp;<span class="property">background-repeat</span>: <span class="css-value">repeat-y</span>;   <span class="comment">/* Tile vertically */</span><br>
-<br>
-&nbsp;&nbsp;<span class="comment">/* POSITION - where image sits */</span><br>
-&nbsp;&nbsp;<span class="property">background-position</span>: <span class="css-value">center center</span>; <span class="comment">/* Centered */</span><br>
-&nbsp;&nbsp;<span class="property">background-position</span>: <span class="css-value">top left</span>;     <span class="comment">/* Keywords */</span><br>
-&nbsp;&nbsp;<span class="property">background-position</span>: <span class="css-value">50% 50%</span>;     <span class="comment">/* Percentage */</span><br>
-&nbsp;&nbsp;<span class="property">background-position</span>: <span class="css-value">100px 50px</span>;  <span class="comment">/* Pixels */</span><br>
-<br>
-&nbsp;&nbsp;<span class="comment">/* SIZE - how image scales */</span><br>
-&nbsp;&nbsp;<span class="property">background-size</span>: <span class="css-value">auto</span>;     <span class="comment">/* Original size (default) */</span><br>
-&nbsp;&nbsp;<span class="property">background-size</span>: <span class="css-value">cover</span>;    <span class="comment">/* Fill container, may crop */</span><br>
-&nbsp;&nbsp;<span class="property">background-size</span>: <span class="css-value">contain</span>;  <span class="comment">/* Fit inside, may leave space */</span><br>
-&nbsp;&nbsp;<span class="property">background-size</span>: <span class="css-value">100% 100%</span>; <span class="comment">/* Stretch to fill */</span><br>
-&nbsp;&nbsp;<span class="property">background-size</span>: <span class="css-value">200px</span>;    <span class="comment">/* Fixed width */</span><br>
-<br>
-&nbsp;&nbsp;<span class="comment">/* ATTACHMENT - scroll behavior */</span><br>
-&nbsp;&nbsp;<span class="property">background-attachment</span>: <span class="css-value">scroll</span>; <span class="comment">/* Scrolls with content (default) */</span><br>
-&nbsp;&nbsp;<span class="property">background-attachment</span>: <span class="css-value">fixed</span>;  <span class="comment">/* Fixed (parallax effect) */</span><br>
-}
-                                </code>
-                        </div>
+                        <pre><code class="language-css">.hero {
+  /* Load image from URL */
+  background-image: url('images/hero.jpg');
+  background-image: url('../images/bg.png'); /* Relative path */
+  background-image: url('https://example.com/image.jpg'); /* Absolute */
+
+  /* REPEAT - how image tiles */
+  background-repeat: repeat;     /* Tile both ways (default) */
+  background-repeat: no-repeat;  /* Don't tile */
+  background-repeat: repeat-x;   /* Tile horizontally */
+  background-repeat: repeat-y;   /* Tile vertically */
+
+  /* POSITION - where image sits */
+  background-position: center center; /* Centered */
+  background-position: top left;     /* Keywords */
+  background-position: 50% 50%;     /* Percentage */
+  background-position: 100px 50px;  /* Pixels */
+
+  /* SIZE - how image scales */
+  background-size: auto;     /* Original size (default) */
+  background-size: cover;    /* Fill container, may crop */
+  background-size: contain;  /* Fit inside, may leave space */
+  background-size: 100% 100%; /* Stretch to fill */
+  background-size: 200px;    /* Fixed width */
+
+  /* ATTACHMENT - scroll behavior */
+  background-attachment: scroll; /* Scrolls with content (default) */
+  background-attachment: fixed;  /* Fixed (parallax effect) */
+}</code></pre>
 
                         <h4>CSS Gradients</h4>
                         <p>Gradients are smooth transitions between colors - they're created with CSS, no images
                             needed!</p>
-                        <div class="code-block">
-                            <span class="code-label">Linear Gradients</span>
-                            <code>
-<span class="selector">.box</span> {<br>
-&nbsp;&nbsp;<span class="comment">/* Basic: top to bottom */</span><br>
-&nbsp;&nbsp;<span class="property">background</span>: <span class="css-value">linear-gradient(red, blue)</span>;<br>
-<br>
-&nbsp;&nbsp;<span class="comment">/* With direction */</span><br>
-&nbsp;&nbsp;<span class="property">background</span>: <span class="css-value">linear-gradient(to right, red, blue)</span>;<br>
-&nbsp;&nbsp;<span class="property">background</span>: <span class="css-value">linear-gradient(to bottom right, red, blue)</span>;<br>
-&nbsp;&nbsp;<span class="property">background</span>: <span class="css-value">linear-gradient(45deg, red, blue)</span>; <span class="comment">/* Angle */</span><br>
-<br>
-&nbsp;&nbsp;<span class="comment">/* Multiple color stops */</span><br>
-&nbsp;&nbsp;<span class="property">background</span>: <span class="css-value">linear-gradient(to right, red, orange, yellow, green)</span>;<br>
-<br>
-&nbsp;&nbsp;<span class="comment">/* With position stops */</span><br>
-&nbsp;&nbsp;<span class="property">background</span>: <span class="css-value">linear-gradient(to right, red 0%, blue 50%, green 100%)</span>;<br>
-<br>
-&nbsp;&nbsp;<span class="comment">/* Beautiful examples */</span><br>
-&nbsp;&nbsp;<span class="property">background</span>: <span class="css-value">linear-gradient(to right, #3b82f6, #8b5cf6)</span>; <span class="comment">/* Blue-Purple */</span><br>
-&nbsp;&nbsp;<span class="property">background</span>: <span class="css-value">linear-gradient(135deg, #667eea 0%, #764ba2 100%)</span>;<br>
-}
-                                </code>
-                        </div>
+                        <pre><code class="language-css">.box {
+  /* Basic: top to bottom */
+  background: linear-gradient(red, blue);
 
-                        <div class="code-block">
-                            <span class="code-label">Radial Gradients</span>
-                            <code>
-<span class="selector">.box</span> {<br>
-&nbsp;&nbsp;<span class="comment">/* Basic: center outward */</span><br>
-&nbsp;&nbsp;<span class="property">background</span>: <span class="css-value">radial-gradient(white, black)</span>;<br>
-<br>
-&nbsp;&nbsp;<span class="comment">/* Shape */</span><br>
-&nbsp;&nbsp;<span class="property">background</span>: <span class="css-value">radial-gradient(circle, white, black)</span>;<br>
-&nbsp;&nbsp;<span class="property">background</span>: <span class="css-value">radial-gradient(ellipse, white, black)</span>;<br>
-<br>
-&nbsp;&nbsp;<span class="comment">/* Position */</span><br>
-&nbsp;&nbsp;<span class="property">background</span>: <span class="css-value">radial-gradient(circle at top left, white, black)</span>;<br>
-}
-                                </code>
-                        </div>
+  /* With direction */
+  background: linear-gradient(to right, red, blue);
+  background: linear-gradient(to bottom right, red, blue);
+  background: linear-gradient(45deg, red, blue); /* Angle */
+
+  /* Multiple color stops */
+  background: linear-gradient(to right, red, orange, yellow, green);
+
+  /* With position stops */
+  background: linear-gradient(to right, red 0%, blue 50%, green 100%);
+
+  /* Beautiful examples */
+  background: linear-gradient(to right, #3b82f6, #8b5cf6); /* Blue-Purple */
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}</code></pre>
+
+                        <pre><code class="language-css">.box {
+  /* Basic: center outward */
+  background: radial-gradient(white, black);
+
+  /* Shape */
+  background: radial-gradient(circle, white, black);
+  background: radial-gradient(ellipse, white, black);
+
+  /* Position */
+  background: radial-gradient(circle at top left, white, black);
+}</code></pre>
 
                         <h4>Background Shorthand</h4>
-                        <div class="code-block">
-                            <span class="code-label">Background Shorthand Property</span>
-                            <code>
-<span class="comment">/* Order: color image repeat position/size */</span><br>
-<span class="property">background</span>: <span class="css-value">#f5f5f5 url('bg.jpg') no-repeat center/cover</span>;<br>
-<br>
-<span class="comment">/* Multiple backgrounds (layered, first is on top) */</span><br>
-<span class="property">background</span>:<br>
-&nbsp;&nbsp;<span class="css-value">linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5))</span>,<br>
-&nbsp;&nbsp;<span class="css-value">url('hero.jpg') center/cover</span>;<br>
-<span class="comment">/* Creates a darkened hero image! */</span>
-                                </code>
-                        </div>
-                    </div>
+                        <pre><code class="language-css">/* Order: color image repeat position/size */
+background: #f5f5f5 url('bg.jpg') no-repeat center/cover;
 
-                    <div class="lesson">
-                        <h3>3.7 CSS Units</h3>
+/* Multiple backgrounds (layered, first is on top) */
+background:
+  linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+  url('hero.jpg') center/cover;
+/* Creates a darkened hero image! */</code></pre>
+                    </article>
+                </section>
+
+                <!-- 3.7 CSS Units -->
+                <section id="units" class="animate-fade-in">
+                    <h2>3.7 CSS Units</h2>
+                    <article class="problem-card">
                         <p>Understanding CSS units is essential for creating responsive, accessible designs.
                             Different units serve different purposes - choosing the right one matters!</p>
 
                         <h4>Absolute Units</h4>
                         <p>Absolute units are fixed sizes that don't change based on other elements:</p>
-                        <div class="code-block">
-                            <span class="code-label">Absolute Units</span>
-                            <code>
-<span class="comment">/* PIXELS (px) - Most common absolute unit */</span><br>
-<span class="property">width</span>: <span class="css-value">100px</span>;   <span class="comment">/* Fixed size, doesn't scale */</span><br>
-<span class="property">font-size</span>: <span class="css-value">16px</span>;<br>
-<span class="property">border</span>: <span class="css-value">1px solid</span>;<br>
-<br>
-<span class="comment">/* Print units (rarely used for screens) */</span><br>
-<span class="property">width</span>: <span class="css-value">1in</span>;     <span class="comment">/* 1 inch = 96px */</span><br>
-<span class="property">width</span>: <span class="css-value">2.54cm</span>;  <span class="comment">/* 1 cm ≈ 38px */</span><br>
-<span class="property">width</span>: <span class="css-value">25.4mm</span>;  <span class="comment">/* Millimeters */</span><br>
-<span class="property">width</span>: <span class="css-value">12pt</span>;    <span class="comment">/* Points (1pt = 1/72 inch) */</span>
-                                </code>
-                        </div>
+                        <pre><code class="language-css">/* PIXELS (px) - Most common absolute unit */
+width: 100px;   /* Fixed size, doesn't scale */
+font-size: 16px;
+border: 1px solid;
+
+/* Print units (rarely used for screens) */
+width: 1in;     /* 1 inch = 96px */
+width: 2.54cm;  /* 1 cm ≈ 38px */
+width: 25.4mm;  /* Millimeters */
+width: 12pt;    /* Points (1pt = 1/72 inch) */</code></pre>
                         <p><strong>When to use pixels:</strong> Borders, box-shadows, very small fixed values,
                             when you need exact control.</p>
 
                         <h4>Relative Units - Font-Based</h4>
                         <p>These units scale based on font sizes - great for accessibility!</p>
-                        <div class="code-block">
-                            <span class="code-label">em and rem Units</span>
-                            <code>
-<span class="comment">/* EM - relative to PARENT element's font-size */</span><br>
-<span class="selector">.parent</span> { <span class="property">font-size</span>: <span class="css-value">20px</span>; }<br>
-<span class="selector">.child</span> {<br>
-&nbsp;&nbsp;<span class="property">font-size</span>: <span class="css-value">1.5em</span>;   <span class="comment">/* = 30px (1.5 × 20px) */</span><br>
-&nbsp;&nbsp;<span class="property">padding</span>: <span class="css-value">1em</span>;      <span class="comment">/* = 30px (uses element's own font-size) */</span><br>
-}<br>
-<br>
-<span class="comment">/* ⚠️ Problem: em compounds (multiplies) in nested elements! */</span><br>
-<span class="selector">.grandchild</span> {<br>
-&nbsp;&nbsp;<span class="property">font-size</span>: <span class="css-value">1.5em</span>;  <span class="comment">/* = 45px! (1.5 × 30px) */</span><br>
-}<br>
-<br>
-<span class="comment">/* REM - relative to ROOT (html) element's font-size */</span><br>
-<span class="comment">/* Much more predictable! */</span><br>
-<span class="selector">html</span> { <span class="property">font-size</span>: <span class="css-value">16px</span>; }  <span class="comment">/* Default in most browsers */</span><br>
-<span class="selector">.any-element</span> {<br>
-&nbsp;&nbsp;<span class="property">font-size</span>: <span class="css-value">1rem</span>;    <span class="comment">/* = 16px */</span><br>
-&nbsp;&nbsp;<span class="property">font-size</span>: <span class="css-value">1.5rem</span>;  <span class="comment">/* = 24px */</span><br>
-&nbsp;&nbsp;<span class="property">font-size</span>: <span class="css-value">0.875rem</span>; <span class="comment">/* = 14px */</span><br>
-&nbsp;&nbsp;<span class="property">margin</span>: <span class="css-value">2rem</span>;      <span class="comment">/* = 32px */</span><br>
-}<br>
-<br>
-<span class="comment">/* 💡 REM doesn't compound - always relative to root! */</span>
-                                </code>
+                        <pre><code class="language-css">/* EM - relative to PARENT element's font-size */
+.parent { font-size: 20px; }
+.child {
+  font-size: 1.5em;   /* = 30px (1.5 × 20px) */
+  padding: 1em;      /* = 30px (uses element's own font-size) */
+}
+
+/* ⚠️ Problem: em compounds (multiplies) in nested elements! */
+.grandchild {
+  font-size: 1.5em;  /* = 45px! (1.5 × 30px) */
+}
+
+/* REM - relative to ROOT (html) element's font-size */
+/* Much more predictable! */
+html { font-size: 16px; }  /* Default in most browsers */
+.any-element {
+  font-size: 1rem;    /* = 16px */
+  font-size: 1.5rem;  /* = 24px */
+  font-size: 0.875rem; /* = 14px */
+  margin: 2rem;      /* = 32px */
+}
+
+/* 💡 REM doesn't compound - always relative to root! */</code></pre>
+                        <div class="alert alert--tip">
+                            <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <line x1="12" y1="16" x2="12" y2="12" />
+                                    <line x1="12" y1="8" x2="12.01" y2="8" />
+                                </svg></span>
+                            <div class="alert__content">
+                                <strong>Best Practice:</strong> Use <code>rem</code> for most sizes. It respects user
+                                browser settings and scales consistently!
+                            </div>
                         </div>
-                        <p><strong>Best Practice:</strong> Use <code>rem</code> for most sizes. It respects user
-                            browser
-                            settings and scales consistently!</p>
 
                         <h4>Relative Units - Viewport-Based</h4>
                         <p>These units are relative to the browser viewport (visible screen area):</p>
-                        <div class="code-block">
-                            <span class="code-label">Viewport Units (vw, vh, vmin, vmax)</span>
-                            <code>
-<span class="comment">/* VW - viewport width (1vw = 1% of viewport width) */</span><br>
-<span class="property">width</span>: <span class="css-value">100vw</span>;   <span class="comment">/* Full viewport width */</span><br>
-<span class="property">width</span>: <span class="css-value">50vw</span>;    <span class="comment">/* Half viewport width */</span><br>
-<span class="property">font-size</span>: <span class="css-value">5vw</span>;  <span class="comment">/* Text scales with window width */</span><br>
-<br>
-<span class="comment">/* VH - viewport height (1vh = 1% of viewport height) */</span><br>
-<span class="property">height</span>: <span class="css-value">100vh</span>;  <span class="comment">/* Full viewport height (full screen!) */</span><br>
-<span class="property">min-height</span>: <span class="css-value">100vh</span>; <span class="comment">/* At least full screen */</span><br>
-<br>
-<span class="comment">/* VMIN - % of smaller dimension */</span><br>
-<span class="property">font-size</span>: <span class="css-value">5vmin</span>; <span class="comment">/* Scales nicely on any orientation */</span><br>
-<br>
-<span class="comment">/* VMAX - % of larger dimension */</span><br>
-<span class="property">font-size</span>: <span class="css-value">5vmax</span>;<br>
-<br>
-<span class="comment">/* Common patterns */</span><br>
-<span class="selector">.hero</span> {<br>
-&nbsp;&nbsp;<span class="property">height</span>: <span class="css-value">100vh</span>;  <span class="comment">/* Full-screen hero section */</span><br>
-}<br>
-<br>
-<span class="selector">.full-width</span> {<br>
-&nbsp;&nbsp;<span class="property">width</span>: <span class="css-value">100vw</span>;<br>
-&nbsp;&nbsp;<span class="property">margin-left</span>: <span class="css-value">calc(-50vw + 50%)</span>; <span class="comment">/* Break out of container */</span><br>
+                        <pre><code class="language-css">/* VW - viewport width (1vw = 1% of viewport width) */
+width: 100vw;   /* Full viewport width */
+width: 50vw;    /* Half viewport width */
+font-size: 5vw;  /* Text scales with window width */
+
+/* VH - viewport height (1vh = 1% of viewport height) */
+height: 100vh;  /* Full viewport height (full screen!) */
+min-height: 100vh; /* At least full screen */
+
+/* VMIN - % of smaller dimension */
+font-size: 5vmin; /* Scales nicely on any orientation */
+
+/* VMAX - % of larger dimension */
+font-size: 5vmax;
+
+/* Common patterns */
+.hero {
+  height: 100vh;  /* Full-screen hero section */
 }
-                                </code>
-                        </div>
+
+.full-width {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%); /* Break out of container */
+}</code></pre>
 
                         <h4>Percentage (%)</h4>
-                        <div class="code-block">
-                            <span class="code-label">Percentage Unit</span>
-                            <code>
-<span class="comment">/* Percentage - relative to PARENT element */</span><br>
-<span class="selector">.parent</span> { <span class="property">width</span>: <span class="css-value">800px</span>; }<br>
-<span class="selector">.child</span> {<br>
-&nbsp;&nbsp;<span class="property">width</span>: <span class="css-value">50%</span>;     <span class="comment">/* = 400px (50% of parent) */</span><br>
-&nbsp;&nbsp;<span class="property">width</span>: <span class="css-value">100%</span>;    <span class="comment">/* = 800px (full parent width) */</span><br>
-}<br>
-<br>
-<span class="comment">/* For height %, parent MUST have explicit height! */</span><br>
-<span class="selector">.parent</span> { <span class="property">height</span>: <span class="css-value">500px</span>; }<br>
-<span class="selector">.child</span> { <span class="property">height</span>: <span class="css-value">50%</span>; }  <span class="comment">/* = 250px */</span>
-                                </code>
-                        </div>
+                        <pre><code class="language-css">/* Percentage - relative to PARENT element */
+.parent { width: 800px; }
+.child {
+  width: 50%;     /* = 400px (50% of parent) */
+  width: 100%;    /* = 800px (full parent width) */
+}
+
+/* For height %, parent MUST have explicit height! */
+.parent { height: 500px; }
+.child { height: 50%; }  /* = 250px */</code></pre>
 
                         <h4>When to Use What?</h4>
-                        <div class="code-block">
-                            <span class="code-label">Unit Recommendations</span>
-                            <code>
-<span class="comment">/* FONT SIZES: rem (best), px (okay) */</span><br>
-<span class="property">font-size</span>: <span class="css-value">1rem</span>;   <span class="comment">/* Respects user settings ✓ */</span><br>
-<br>
-<span class="comment">/* SPACING (margin, padding): rem or em */</span><br>
-<span class="property">padding</span>: <span class="css-value">1.5rem</span>;   <span class="comment">/* Scales with root font */</span><br>
-<span class="property">margin</span>: <span class="css-value">1em</span>;       <span class="comment">/* Scales with element's font */</span><br>
-<br>
-<span class="comment">/* WIDTHS: %, vw, or max-width with px */</span><br>
-<span class="property">width</span>: <span class="css-value">100%</span>;       <span class="comment">/* Flexible */</span><br>
-<span class="property">max-width</span>: <span class="css-value">1200px</span>; <span class="comment">/* With constraint */</span><br>
-<br>
-<span class="comment">/* HEIGHTS: vh for full-screen, auto otherwise */</span><br>
-<span class="property">min-height</span>: <span class="css-value">100vh</span>; <span class="comment">/* Full viewport */</span><br>
-<br>
-<span class="comment">/* BORDERS/SHADOWS: px (small, precise values) */</span><br>
-<span class="property">border</span>: <span class="css-value">1px solid</span>;<br>
-<span class="property">box-shadow</span>: <span class="css-value">0 2px 4px rgba(0,0,0,0.1)</span>;
-                                </code>
+                        <pre><code class="language-css">/* FONT SIZES: rem (best), px (okay) */
+font-size: 1rem;   /* Respects user settings ✓ */
+
+/* SPACING (margin, padding): rem or em */
+padding: 1.5rem;   /* Scales with root font */
+margin: 1em;       /* Scales with element's font */
+
+/* WIDTHS: %, vw, or max-width with px */
+width: 100%;       /* Flexible */
+max-width: 1200px; /* With constraint */
+
+/* HEIGHTS: vh for full-screen, auto otherwise */
+min-height: 100vh; /* Full viewport */
+
+/* BORDERS/SHADOWS: px (small, precise values) */
+border: 1px solid;
+box-shadow: 0 2px 4px rgba(0,0,0,0.1);</code></pre>
+                    </article>
+                </section>
+
+                <!-- Exercise -->
+                <section id="exercise">
+                    <h2>Exercise: Style a Button</h2>
+
+                    <article class="problem-card">
+                        <div class="exercise">
+                            <div class="exercise-header">
+                                <span class="exercise-badge">EXERCISE</span>
+                            </div>
+                            <p>Write CSS to create a styled button with:</p>
+                            <ul class="content-list">
+                                <li>Blue background color (<code>#3b82f6</code>)</li>
+                                <li>White text</li>
+                                <li>Padding of <code>12px 24px</code></li>
+                                <li>Rounded corners (<code>8px</code>)</li>
+                                <li>No border</li>
+                            </ul>
+                            <textarea id="css-exercise-1" placeholder="Write your CSS here..."></textarea>
+                            <div class="btn-group">
+                                <button class="btn btn--primary"
+                                    onclick="runCSSCode('css-exercise-1', 'css-output-1')">▶ Run
+                                    Code</button>
+                                <button class="btn btn--secondary" onclick="showHint('css-hint-1')">💡 Show
+                                    Hint</button>
+                            </div>
+                            <div id="css-hint-1" class="feedback" style="display:none;">
+                                <strong>Hint:</strong> Use background-color, color, padding, border-radius, and
+                                border: none;
+                            </div>
+                            <div class="output-preview" id="css-output-1">
+                                <em>Your preview will appear here...</em>
+                            </div>
+                        </div>
+                    </article>
+                </section>
+
+                <!-- Quizzes -->
+                <section id="quizzes">
+                    <h2>Quick Quizzes</h2>
+
+                    <div class="alert alert--info">
+                        <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                                <line x1="12" y1="17" x2="12.01" y2="17" />
+                            </svg></span>
+                        <div class="alert__content">
+                            <strong>Test your knowledge!</strong> Click on an answer to check if you're correct.
                         </div>
                     </div>
 
-                    <div class="exercise">
-                        <div class="exercise-header">
-                            <span class="exercise-badge">EXERCISE</span>
-                            <h4>Style a Button</h4>
+                    <!-- Quiz 1 -->
+                    <article class="problem-card">
+                        <div class="quiz" data-correct="b" data-quiz-id="css-1">
+                            <h4>Quiz 1: How do you select an element with class="intro"?</h4>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="checkQuiz(this, 'a')">
+                                    <span class="option-letter">A</span>
+                                    <span>#intro</span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'b')">
+                                    <span class="option-letter">B</span>
+                                    <span>.intro</span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'c')">
+                                    <span class="option-letter">C</span>
+                                    <span>intro</span>
+                                </div>
+                            </div>
                         </div>
-                        <p>Write CSS to create a styled button with:</p>
-                        <ul>
-                            <li>Blue background color (#3b82f6)</li>
-                            <li>White text</li>
-                            <li>Padding of 12px 24px</li>
-                            <li>Rounded corners (8px)</li>
-                            <li>No border</li>
-                        </ul>
-                        <textarea id="css-exercise-1"
-                            placeholder=".btn {&#10;  /* Write your CSS here */&#10;}"></textarea>
-                        <button class="btn" onclick="runCSSCode('css-exercise-1', 'css-output-1')">▶ Run
-                            Code</button>
-                        <button class="btn btn-secondary" onclick="showHint('css-hint-1')">💡 Show Hint</button>
-                        <div id="css-hint-1" class="feedback"
-                            style="display:none; background: rgba(245, 158, 11, 0.2); border-color: var(--accent); color: var(--accent);">
-                            <strong>Hint:</strong> Use background-color, color, padding, border-radius, and border:
-                            none;
+                    </article>
+
+                    <!-- Quiz 2 -->
+                    <article class="problem-card">
+                        <div class="quiz" data-correct="c" data-quiz-id="css-2">
+                            <h4>Quiz 2: What does "box-sizing: border-box" do?</h4>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="checkQuiz(this, 'a')">
+                                    <span class="option-letter">A</span>
+                                    <span>Adds a border around the element</span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'b')">
+                                    <span class="option-letter">B</span>
+                                    <span>Makes the element's width equal to content only</span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'c')">
+                                    <span class="option-letter">C</span>
+                                    <span>Makes width/height include padding and border</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="output-preview" id="css-output-1">
-                            <button class="styled-btn">Click Me</button>
+                    </article>
+
+                    <!-- Quiz 3 -->
+                    <article class="problem-card">
+                        <div class="quiz" data-correct="b" data-quiz-id="css-3">
+                            <h4>Quiz 3: Which CSS selector has the HIGHEST specificity?</h4>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="checkQuiz(this, 'a')">
+                                    <span class="option-letter">A</span>
+                                    <span>.header .nav li</span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'b')">
+                                    <span class="option-letter">B</span>
+                                    <span>#main-nav</span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'c')">
+                                    <span class="option-letter">C</span>
+                                    <span>nav ul li a</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Quiz 4 -->
+                    <article class="problem-card">
+                        <div class="quiz" data-correct="a" data-quiz-id="css-4">
+                            <h4>Quiz 4: What is the difference between "em" and "rem" units?</h4>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="checkQuiz(this, 'a')">
+                                    <span class="option-letter">A</span>
+                                    <span>em is relative to parent font-size, rem is relative to root (html)
+                                        font-size</span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'b')">
+                                    <span class="option-letter">B</span>
+                                    <span>em is for margins, rem is for fonts</span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'c')">
+                                    <span class="option-letter">C</span>
+                                    <span>They are the same, rem is just newer</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Quiz 5 -->
+                    <article class="problem-card">
+                        <div class="quiz" data-correct="c" data-quiz-id="css-5">
+                            <h4>Quiz 5: Which property controls the space OUTSIDE an element's border?</h4>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="checkQuiz(this, 'a')">
+                                    <span class="option-letter">A</span>
+                                    <span>padding</span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'b')">
+                                    <span class="option-letter">B</span>
+                                    <span>border-spacing</span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'c')">
+                                    <span class="option-letter">C</span>
+                                    <span>margin</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Quiz 6 -->
+                    <article class="problem-card">
+                        <div class="quiz" data-correct="b" data-quiz-id="css-6">
+                            <h4>Quiz 6: What CSS property would you use to make a full-screen hero section?</h4>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="checkQuiz(this, 'a')">
+                                    <span class="option-letter">A</span>
+                                    <span>height: 100%</span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'b')">
+                                    <span class="option-letter">B</span>
+                                    <span>height: 100vh</span>
+                                </div>
+                                <div class="quiz-option" onclick="checkQuiz(this, 'c')">
+                                    <span class="option-letter">C</span>
+                                    <span>height: full-screen</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </section>
+
+                <!-- Footer -->
+                <footer class="chapter-footer">
+                    <div class="alert alert--tip">
+                        <span class="alert__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 12 20 22 4 22 4 12" />
+                                <rect x="2" y="7" width="20" height="5" />
+                                <line x1="12" y1="22" x2="12" y2="7" />
+                                <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z" />
+                                <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" />
+                            </svg></span>
+                        <div class="alert__content">
+                            <strong>Ready for the next chapter?</strong> Learn how to create page layouts with CSS.
+                            <p class="cta-button">
+                                <a href="layout.html" class="btn btn--primary">Go to Chapter 4: Layout →</a>
+                            </p>
                         </div>
                     </div>
+                    <p class="chapter-footer__meta">
+                        WebDev Academy • Chapter 3: CSS<br>
+                        <a href="../index.html">← Back to Chapters</a>
+                    </p>
+                </footer>
+            </article>
+        </main>
+    </div>
 
-                    <div class="quiz" data-correct="b">
-                        <h4>📝 Quick Quiz: How do you select an element with class="intro"?</h4>
-                        <div class="quiz-options">
-                            <div class="quiz-option" onclick="checkQuiz(this, 'a')">
-                                <span class="option-letter">A</span>
-                                <span>#intro</span>
-                            </div>
-                            <div class="quiz-option" onclick="checkQuiz(this, 'b')">
-                                <span class="option-letter">B</span>
-                                <span>.intro</span>
-                            </div>
-                            <div class="quiz-option" onclick="checkQuiz(this, 'c')">
-                                <span class="option-letter">C</span>
-                                <span>intro</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="quiz" data-correct="c">
-                        <h4>📝 Quick Quiz: What does "box-sizing: border-box" do?</h4>
-                        <div class="quiz-options">
-                            <div class="quiz-option" onclick="checkQuiz(this, 'a')">
-                                <span class="option-letter">A</span>
-                                <span>Adds a border around the element</span>
-                            </div>
-                            <div class="quiz-option" onclick="checkQuiz(this, 'b')">
-                                <span class="option-letter">B</span>
-                                <span>Makes the element's width equal to content only</span>
-                            </div>
-                            <div class="quiz-option" onclick="checkQuiz(this, 'c')">
-                                <span class="option-letter">C</span>
-                                <span>Makes width/height include padding and border</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="quiz" data-correct="b">
-                        <h4>📝 Quick Quiz: Which CSS selector has the HIGHEST specificity?</h4>
-                        <div class="quiz-options">
-                            <div class="quiz-option" onclick="checkQuiz(this, 'a')">
-                                <span class="option-letter">A</span>
-                                <span>.header .nav li</span>
-                            </div>
-                            <div class="quiz-option" onclick="checkQuiz(this, 'b')">
-                                <span class="option-letter">B</span>
-                                <span>#main-nav</span>
-                            </div>
-                            <div class="quiz-option" onclick="checkQuiz(this, 'c')">
-                                <span class="option-letter">C</span>
-                                <span>nav ul li a</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="quiz" data-correct="a">
-                        <h4>📝 Quick Quiz: What is the difference between "em" and "rem" units?</h4>
-                        <div class="quiz-options">
-                            <div class="quiz-option" onclick="checkQuiz(this, 'a')">
-                                <span class="option-letter">A</span>
-                                <span>em is relative to parent font-size, rem is relative to root (html)
-                                    font-size</span>
-                            </div>
-                            <div class="quiz-option" onclick="checkQuiz(this, 'b')">
-                                <span class="option-letter">B</span>
-                                <span>em is for margins, rem is for fonts</span>
-                            </div>
-                            <div class="quiz-option" onclick="checkQuiz(this, 'c')">
-                                <span class="option-letter">C</span>
-                                <span>They are the same, rem is just newer</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="quiz" data-correct="c">
-                        <h4>📝 Quick Quiz: Which property controls the space OUTSIDE an element's border?</h4>
-                        <div class="quiz-options">
-                            <div class="quiz-option" onclick="checkQuiz(this, 'a')">
-                                <span class="option-letter">A</span>
-                                <span>padding</span>
-                            </div>
-                            <div class="quiz-option" onclick="checkQuiz(this, 'b')">
-                                <span class="option-letter">B</span>
-                                <span>border-spacing</span>
-                            </div>
-                            <div class="quiz-option" onclick="checkQuiz(this, 'c')">
-                                <span class="option-letter">C</span>
-                                <span>margin</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="quiz" data-correct="b">
-                        <h4>📝 Quick Quiz: What CSS property would you use to make a full-screen hero section?</h4>
-                        <div class="quiz-options">
-                            <div class="quiz-option" onclick="checkQuiz(this, 'a')">
-                                <span class="option-letter">A</span>
-                                <span>height: 100%</span>
-                            </div>
-                            <div class="quiz-option" onclick="checkQuiz(this, 'b')">
-                                <span class="option-letter">B</span>
-                                <span>height: 100vh</span>
-                            </div>
-                            <div class="quiz-option" onclick="checkQuiz(this, 'c')">
-                                <span class="option-letter">C</span>
-                                <span>height: full-screen</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        </article>
-    </main>
-
-
-    <footer>
-        <p>Web Development Fundamentals Course</p>
-        <p>Created by panoskava for WebDev Studying</p>
-    </footer>
-
-    <script src="../app.js" defer></script>
+    <!-- JavaScript -->
+    <script src="../app.js"></script>
 </body>
 
 </html>
